@@ -53,7 +53,7 @@ namespace Editor.Utils
         [MenuItem("Services/Config Serialization Window", false, 10)]
         private static void OpenWindow()
         {
-            Selection.activeObject = Resources.FindObjectsOfTypeAll<ConfigUtility>()[0];
+            Selection.activeObject = Resources.Load<ConfigUtility>("ConfigUtility");
         }
     }
 }
