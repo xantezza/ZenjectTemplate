@@ -12,18 +12,15 @@ namespace Editor.Utils
     {
         private enum Type
         {
-            Infrastructure,
-            Infrastructure1
+            Infrastructure
         }
 
         [SerializeField] private Type type;
 
+
         [ShowIf(nameof(condition)), SerializeField] private InfrastructureConfig _infrastructureConfig;
         private bool condition => type == Type.Infrastructure;
 
-        //Demonstration
-        [ShowIf(nameof(condition1)), SerializeField] private InfrastructureConfig _infrastructureConfig1;
-        private bool condition1 => type == Type.Infrastructure1;
 
         [SerializeField] [TextArea(12, 9999)] private string _serialized;
 
@@ -34,9 +31,6 @@ namespace Editor.Utils
             {
                 case Type.Infrastructure:
                     _serialized = JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented);
-                    break;
-                case Type.Infrastructure1:
-                    _serialized = JsonConvert.SerializeObject(_infrastructureConfig1, Formatting.Indented);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -50,9 +44,6 @@ namespace Editor.Utils
             {
                 case Type.Infrastructure:
                     _infrastructureConfig = JsonConvert.DeserializeObject<InfrastructureConfig>(_serialized);
-                    break;
-                case Type.Infrastructure1:
-                    _infrastructureConfig1 = JsonConvert.DeserializeObject<InfrastructureConfig>(_serialized);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
