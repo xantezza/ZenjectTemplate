@@ -10,4 +10,5 @@ Unity project template with implemented functionality necessary for almost any p
 - [EditorWindows](https://github.com/xantezza/ZenjectTemplate/tree/main/Assets/_Scripts/Editor/EditorWindows) and other utilities to improve QOL]
 
 [DEMO](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
-[![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/5ae255b0-0c5d-4e3e-8efa-c66bfec12b6b)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
+
+[![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/b2ac04e7-be44-480a-94e0-8ca7eb11d553)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
