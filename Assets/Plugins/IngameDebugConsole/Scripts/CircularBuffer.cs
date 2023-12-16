@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class CircularBuffer<T>
 	{

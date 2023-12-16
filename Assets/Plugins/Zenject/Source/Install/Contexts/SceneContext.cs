@@ -3,16 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Runtime;
-using Plugins.Zenject.Source.Runtime.Kernels;
-using Plugins.Zenject.Source.Util;
+using ModestTree;
+using ModestTree.Util;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Zenject.Internal;
+using UnityEngine.Events;
 
-namespace Plugins.Zenject.Source.Install.Contexts
+namespace Zenject
 {
     public class SceneContext : RunnableContext
     {

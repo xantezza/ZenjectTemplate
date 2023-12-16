@@ -1,19 +1,14 @@
-using Plugins.Zenject.Source.Binding.Binders.Factory.FactoryFromBinder;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders.Factory.FactoryToChoiceBinder
+namespace Zenject
 {
     [NoReflectionBaking]
     public class DecoratorToChoiceFromBinder<TContract>
     {
         DiContainer _bindContainer;
-        BindInfo.BindInfo _bindInfo;
+        BindInfo _bindInfo;
         FactoryBindInfo _factoryBindInfo;
 
         public DecoratorToChoiceFromBinder(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
+            DiContainer bindContainer, BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
         {
             _bindContainer = bindContainer;
             _bindInfo = bindInfo;

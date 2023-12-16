@@ -1,29 +1,20 @@
 using System;
 using System.Collections.Generic;
+using ModestTree;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.Binders.ConcreteBinders;
-using Plugins.Zenject.Source.Binding.Binders.GameObject;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Binding.Finalizers;
-using Plugins.Zenject.Source.Factories;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.ComponentProviders;
-using Plugins.Zenject.Source.Providers.ComponentProviders.AddToGameObjectComponentProviders;
-using UnityEngine;
-using Zenject;
+
 #if !NOT_UNITY3D
+using UnityEngine;
 #endif
 
-namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
+using Zenject.Internal;
+
+namespace Zenject
 {
     public abstract class FromBinder : ScopeConcreteIdArgConditionCopyNonLazyBinder
     {
         public FromBinder(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo,
+            DiContainer bindContainer, BindInfo bindInfo,
             BindStatement bindStatement)
             : base(bindInfo)
         {
@@ -183,7 +174,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
 
 #if !NOT_UNITY3D
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentsOn(UnityEngine.GameObject gameObject)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentsOn(GameObject gameObject)
         {
             BindingUtil.AssertIsValidGameObject(gameObject);
             BindingUtil.AssertIsComponent(ConcreteTypes);
@@ -198,7 +189,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
             return new ScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo);
         }
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentOn(UnityEngine.GameObject gameObject)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentOn(GameObject gameObject)
         {
             BindingUtil.AssertIsValidGameObject(gameObject);
             BindingUtil.AssertIsComponent(ConcreteTypes);
@@ -213,7 +204,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
             return new ScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo);
         }
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentsOn(Func<InjectContext, UnityEngine.GameObject> gameObjectGetter)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentsOn(Func<InjectContext, GameObject> gameObjectGetter)
         {
             BindingUtil.AssertIsComponent(ConcreteTypes);
             BindingUtil.AssertTypesAreNotAbstract(ConcreteTypes);
@@ -227,7 +218,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
             return new ScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo);
         }
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentOn(Func<InjectContext, UnityEngine.GameObject> gameObjectGetter)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromComponentOn(Func<InjectContext, GameObject> gameObjectGetter)
         {
             BindingUtil.AssertIsComponent(ConcreteTypes);
             BindingUtil.AssertTypesAreNotAbstract(ConcreteTypes);
@@ -253,7 +244,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
                 ctx => ctx.Container.Resolve<Context>().gameObject);
         }
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromNewComponentOn(UnityEngine.GameObject gameObject)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromNewComponentOn(GameObject gameObject)
         {
             BindingUtil.AssertIsValidGameObject(gameObject);
             BindingUtil.AssertIsComponent(ConcreteTypes);
@@ -268,7 +259,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.FromBinders
             return new ScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo);
         }
 
-        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromNewComponentOn(Func<InjectContext, UnityEngine.GameObject> gameObjectGetter)
+        public ScopeConcreteIdArgConditionCopyNonLazyBinder FromNewComponentOn(Func<InjectContext, GameObject> gameObjectGetter)
         {
             BindingUtil.AssertIsComponent(ConcreteTypes);
             BindingUtil.AssertTypesAreNotAbstract(ConcreteTypes);

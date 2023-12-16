@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Internal;
-using Zenject;
+using ModestTree;
+using ModestTree.Util;
 
-namespace Plugins.Zenject.Source.Runtime
+namespace Zenject
 {
     public class DisposableManager : IDisposable
     {

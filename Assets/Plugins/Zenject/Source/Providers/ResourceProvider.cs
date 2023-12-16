@@ -2,12 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 using UnityEngine;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class ResourceProvider : IProvider

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Internal;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Factories.Pooling.Util
+namespace Zenject
 {
     // If you want to ensure that all items are always returned to the pool, include the following
     // in an installer

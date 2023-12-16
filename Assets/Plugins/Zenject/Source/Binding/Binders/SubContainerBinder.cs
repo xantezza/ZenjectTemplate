@@ -1,27 +1,18 @@
 using System;
-using Plugins.Zenject.Source.Binding.Binders.GameObject;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Binding.Finalizers;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers.PrefabProviders;
-using Plugins.Zenject.Source.Providers.SubContainerCreators;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Binders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class SubContainerBinder
     {
-        readonly BindInfo.BindInfo _bindInfo;
+        readonly BindInfo _bindInfo;
         readonly BindStatement _bindStatement;
         readonly object _subIdentifier;
         readonly bool _resolveAll;
 
         public SubContainerBinder(
-            BindInfo.BindInfo bindInfo,
+            BindInfo bindInfo,
             BindStatement bindStatement,
             object subIdentifier, bool resolveAll)
         {

@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Main;
+using System;
 
-namespace Plugins.Zenject.Source.Providers.SubContainerCreators
+namespace Zenject
 {
     public interface ISubContainerCreator
     {

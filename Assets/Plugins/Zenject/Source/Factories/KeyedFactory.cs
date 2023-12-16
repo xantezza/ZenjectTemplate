@@ -1,15 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.Binders;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Util;
-using Plugins.Zenject.Source.Validation;
-using Zenject;
+using ModestTree;
+using ModestTree.Util;
 
-namespace Plugins.Zenject.Source.Factories
+namespace Zenject
 {
     public abstract class KeyedFactoryBase<TBase, TKey> : IValidatable
     {

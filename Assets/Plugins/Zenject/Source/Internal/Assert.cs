@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using Plugins.Zenject.Source.Util;
+using Zenject;
 
-namespace Plugins.Zenject.Source.Internal
+namespace ModestTree
 {
     public static class Assert
     {
@@ -305,7 +306,7 @@ namespace Plugins.Zenject.Source.Internal
         {
             if (!condition)
             {
-                Log.Warn("Warning!  See call stack");
+                ModestTree.Log.Warn("Warning!  See call stack");
             }
         }
 
@@ -316,7 +317,7 @@ namespace Plugins.Zenject.Source.Internal
         {
             if (!condition)
             {
-                Log.Warn("Warning Assert hit! " + messageGenerator());
+                ModestTree.Log.Warn("Warning Assert hit! " + messageGenerator());
             }
         }
 
@@ -378,7 +379,7 @@ namespace Plugins.Zenject.Source.Internal
         {
             if (!condition)
             {
-                Log.Warn("Warning Assert hit! " + message);
+                ModestTree.Log.Warn("Warning Assert hit! " + message);
             }
         }
 

@@ -2,14 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.SubContainerCreators;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class SubContainerPrefabBindingFinalizer : ProviderBindingFinalizer
@@ -19,7 +14,7 @@ namespace Plugins.Zenject.Source.Binding.Finalizers
         readonly Func<DiContainer, ISubContainerCreator> _subContainerCreatorFactory;
 
         public SubContainerPrefabBindingFinalizer(
-            BindInfo.BindInfo bindInfo,
+            BindInfo bindInfo,
             object subIdentifier, bool resolveAll,
             Func<DiContainer, ISubContainerCreator> subContainerCreatorFactory)
             : base(bindInfo)

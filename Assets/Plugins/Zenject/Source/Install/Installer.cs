@@ -1,7 +1,4 @@
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Main;
-
-namespace Plugins.Zenject.Source.Install
+namespace Zenject
 {
     //
     // I'd recommmend using Installer<> instead, and then always use the approach

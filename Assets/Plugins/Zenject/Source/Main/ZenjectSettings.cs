@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
-using Zenject;
 #if !NOT_UNITY3D
+using UnityEngine;
 #endif
 
-namespace Plugins.Zenject.Source.Main
+namespace Zenject
 {
     public enum ValidationErrorResponses
     {

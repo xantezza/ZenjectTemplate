@@ -1,6 +1,4 @@
-﻿using Zenject;
-
-namespace Plugins.Zenject.Source.Runtime.Kernels
+﻿namespace Zenject
 {
     public interface IDecoratableMonoKernel
     {

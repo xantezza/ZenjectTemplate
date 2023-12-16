@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Factories.Pooling.Util
+namespace Zenject
 {
 #if UNITY_EDITOR
     public static class StaticMemoryPoolRegistry

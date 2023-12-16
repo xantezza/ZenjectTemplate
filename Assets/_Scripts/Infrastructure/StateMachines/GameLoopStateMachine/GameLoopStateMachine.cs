@@ -3,7 +3,6 @@ using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
-using Plugins.Zenject.Source.Main;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine

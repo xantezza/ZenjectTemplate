@@ -1,8 +1,4 @@
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class NullBindingFinalizer : IBindingFinalizer

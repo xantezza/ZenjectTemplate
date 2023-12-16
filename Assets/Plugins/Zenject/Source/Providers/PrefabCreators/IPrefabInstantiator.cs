@@ -2,11 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Injection;
 using UnityEngine;
 
-namespace Plugins.Zenject.Source.Providers.PrefabCreators
+namespace Zenject
 {
     public interface IPrefabInstantiator
     {

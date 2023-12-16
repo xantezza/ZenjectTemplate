@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Util;
+using ModestTree;
+using Zenject.Internal;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     public static class IProviderExtensions
     {

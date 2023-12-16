@@ -1,11 +1,9 @@
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class NonLazyBinder : IfNotBoundBinder
     {
-        public NonLazyBinder(BindInfo.BindInfo bindInfo)
+        public NonLazyBinder(BindInfo bindInfo)
             : base(bindInfo)
         {
         }

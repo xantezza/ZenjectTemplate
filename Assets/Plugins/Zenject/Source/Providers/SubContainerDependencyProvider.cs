@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers.SubContainerCreators;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class SubContainerDependencyProvider : IProvider

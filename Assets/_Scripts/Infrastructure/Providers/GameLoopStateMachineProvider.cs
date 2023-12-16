@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using JetBrains.Annotations;
-using Plugins.Zenject.Source.Main;
 using Zenject;
 
 namespace Infrastructure.Providers

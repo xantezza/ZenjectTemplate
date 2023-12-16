@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Util;
-using Plugins.Zenject.Source.Validation;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class MethodProviderMultiple<TReturn> : IProvider

@@ -1,6 +1,8 @@
 #if !NOT_UNITY3D
 
-namespace Plugins.Zenject.Source.Runtime.Kernels
+using ModestTree;
+
+namespace Zenject
 {
     public class SceneKernel : MonoKernel
     {

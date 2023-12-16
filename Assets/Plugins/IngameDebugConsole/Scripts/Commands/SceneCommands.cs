@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Plugins.IngameDebugConsole.Scripts.Commands
+namespace IngameDebugConsole.Commands
 {
 	public class SceneCommands
 	{

@@ -1,8 +1,6 @@
 using System;
-using Plugins.Zenject.Source.Install.Contexts;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Runtime
+namespace Zenject
 {
     public class SceneContextRegistryAdderAndRemover : IInitializable, IDisposable
     {

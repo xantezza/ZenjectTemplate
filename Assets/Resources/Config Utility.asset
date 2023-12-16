@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff239c7787094c748a62e0845ee8ddc9, type: 3}
   m_Name: Config Utility
   m_EditorClassIdentifier: 
-  type: 1
-  _infrastructureConfig:
-    <IsDebugEnabled1>k__BackingField: 0
-  _infrastructureConfig1:
-    <IsDebugEnabled1>k__BackingField: 0
+  type: 0
   _serialized: "{\r\n  \"IsDebugEnabled\": false,\r\n  \"FakeTimeBeforeLoad\": 5.0,\r\n 
-    \"FakeMinimalLoadTime\": 0.0,\r\n  \"FakeTimeAfterLoad\": 0.5,\r\n  \"IsDebugEnabled1\":
-    false\r\n}"
+    \"FakeMinimalLoadTime\": 0.0,\r\n  \"FakeTimeAfterLoad\": 0.5\r\n}"

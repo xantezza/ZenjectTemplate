@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.IngameDebugConsole.Scripts.Commands
+namespace IngameDebugConsole.Commands
 {
 	public class PlayerPrefsCommands
 	{

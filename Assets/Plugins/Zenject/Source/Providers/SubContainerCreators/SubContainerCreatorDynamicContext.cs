@@ -2,13 +2,11 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Main;
 using UnityEngine;
-using Zenject;
+using ModestTree;
+using Zenject.Internal;
 
-namespace Plugins.Zenject.Source.Providers.SubContainerCreators
+namespace Zenject
 {
     [NoReflectionBaking]
     public abstract class SubContainerCreatorDynamicContext : ISubContainerCreator

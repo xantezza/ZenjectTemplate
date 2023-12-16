@@ -1,15 +1,12 @@
 using System;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Binding.Binders.Factory.FactoryFromBinder.Untyped
+namespace Zenject
 {
     [NoReflectionBaking]
     public class FactoryFromBinderUntyped : FactoryFromBinderBase
     {
         public FactoryFromBinderUntyped(
-            DiContainer bindContainer, Type contractType, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
+            DiContainer bindContainer, Type contractType, BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
             : base(bindContainer, contractType, bindInfo, factoryBindInfo)
         {
         }

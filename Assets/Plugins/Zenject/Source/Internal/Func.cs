@@ -1,6 +1,6 @@
 #if !NET_4_6
 
-namespace Plugins.Zenject.Source.Internal
+namespace ModestTree.Util
 {
     // C# 3.5 only defines Func and Action to a maximum of 4 generic parameters
     // Note that if you are using .NET framework > 3.5 you will have to comment these out to avoid ambiguous errors

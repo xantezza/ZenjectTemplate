@@ -1,14 +1,10 @@
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders.ConcreteBinders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class ConcreteIdBinderGeneric<TContract> : ConcreteBinderGeneric<TContract>
     {
         public ConcreteIdBinderGeneric(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo,
+            DiContainer bindContainer, BindInfo bindInfo,
             BindStatement bindStatement)
             : base(bindContainer, bindInfo, bindStatement)
         {

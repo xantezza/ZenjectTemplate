@@ -1,11 +1,10 @@
 #if !NOT_UNITY3D
 
+using ModestTree;
+using UnityEngine;
 using System;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Providers.PrefabProviders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class PrefabProviderCustom : IPrefabProvider

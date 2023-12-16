@@ -1,27 +1,18 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.Binders.ConcreteBinders;
-using Plugins.Zenject.Source.Binding.Binders.GameObject;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.ComponentProviders;
-using Plugins.Zenject.Source.Providers.ComponentProviders.AddToGameObjectComponentProviders;
-using Plugins.Zenject.Source.Providers.PrefabCreators;
-using Plugins.Zenject.Source.Providers.PrefabProviders;
-using Zenject;
+using ModestTree;
+
 #if !NOT_UNITY3D
+using UnityEngine;
 #endif
 
-namespace Plugins.Zenject.Source.Binding.Binders.Factory
+namespace Zenject
 {
     [NoReflectionBaking]
     public class FactoryFromBinderBase : ScopeConcreteIdArgConditionCopyNonLazyBinder
     {
         public FactoryFromBinderBase(
-            DiContainer bindContainer, Type contractType, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
+            DiContainer bindContainer, Type contractType, BindInfo bindInfo, FactoryBindInfo factoryBindInfo)
             : base(bindInfo)
         {
             FactoryBindInfo = factoryBindInfo;
@@ -116,7 +107,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory
 
 #if !NOT_UNITY3D
 
-        public ConditionCopyNonLazyBinder FromComponentOn(UnityEngine.GameObject gameObject)
+        public ConditionCopyNonLazyBinder FromComponentOn(GameObject gameObject)
         {
             BindingUtil.AssertIsValidGameObject(gameObject);
             BindingUtil.AssertIsComponent(ContractType);
@@ -129,7 +120,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory
             return this;
         }
 
-        public ConditionCopyNonLazyBinder FromComponentOn(Func<InjectContext, UnityEngine.GameObject> gameObjectGetter)
+        public ConditionCopyNonLazyBinder FromComponentOn(Func<InjectContext, GameObject> gameObjectGetter)
         {
             BindingUtil.AssertIsComponent(ContractType);
             BindingUtil.AssertIsNotAbstract(ContractType);
@@ -147,7 +138,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory
                 ctx => BindContainer.Resolve<Context>().gameObject);
         }
 
-        public ConditionCopyNonLazyBinder FromNewComponentOn(UnityEngine.GameObject gameObject)
+        public ConditionCopyNonLazyBinder FromNewComponentOn(GameObject gameObject)
         {
             BindingUtil.AssertIsValidGameObject(gameObject);
             BindingUtil.AssertIsComponent(ContractType);
@@ -162,7 +153,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory
         }
 
         public ConditionCopyNonLazyBinder FromNewComponentOn(
-            Func<InjectContext, UnityEngine.GameObject> gameObjectGetter)
+            Func<InjectContext, GameObject> gameObjectGetter)
         {
             BindingUtil.AssertIsComponent(ContractType);
             BindingUtil.AssertIsNotAbstract(ContractType);

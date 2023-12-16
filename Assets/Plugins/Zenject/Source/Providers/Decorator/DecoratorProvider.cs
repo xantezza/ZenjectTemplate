@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Factories;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Providers.Decorator
+namespace Zenject.Internal
 {
     public interface IDecoratorProvider
     {

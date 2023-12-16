@@ -1,14 +1,14 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Text;
 #if UNITY_EDITOR
+using UnityEditor;
+using System.Text.RegularExpressions;
 #endif
 
 // A UI element to show information about a debug entry
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class DebugLogItem : MonoBehaviour, IPointerClickHandler
 	{

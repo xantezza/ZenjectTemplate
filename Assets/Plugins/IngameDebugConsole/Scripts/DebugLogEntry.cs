@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 // Container for a simple debug entry
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class DebugLogEntry
 	{

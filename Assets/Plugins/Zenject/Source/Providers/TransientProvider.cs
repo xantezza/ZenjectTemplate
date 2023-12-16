@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Util;
-using Zenject;
+using ModestTree;
+using Zenject.Internal;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class TransientProvider : IProvider

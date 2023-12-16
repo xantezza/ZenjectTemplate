@@ -1,11 +1,10 @@
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Runtime.Kernels;
-using Plugins.Zenject.Source.Util;
+using System;
+using ModestTree;
 #if !NOT_UNITY3D
+using UnityEngine;
 #endif
 
-namespace Plugins.Zenject.Source.Providers.SubContainerCreators
+namespace Zenject
 {
     public static class SubContainerCreatorUtil
     {

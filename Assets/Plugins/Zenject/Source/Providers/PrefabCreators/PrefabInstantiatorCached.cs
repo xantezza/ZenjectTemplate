@@ -2,13 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 using UnityEngine;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Providers.PrefabCreators
+namespace Zenject
 {
     [NoReflectionBaking]
     public class PrefabInstantiatorCached : IPrefabInstantiator

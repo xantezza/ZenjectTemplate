@@ -1,11 +1,7 @@
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Runtime;
+using ModestTree;
 using UnityEngine;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Util
+namespace Zenject
 {
     public class ZenAutoInjecter : MonoBehaviour
     {

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Util
+namespace Zenject.Internal
 {
     [NoReflectionBaking]
     public class ReflectionTypeInfo

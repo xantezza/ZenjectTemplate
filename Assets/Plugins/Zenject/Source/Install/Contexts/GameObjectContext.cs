@@ -2,17 +2,14 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Runtime.Kernels;
-using Plugins.Zenject.Source.Util;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Zenject;
+using Zenject.Internal;
 
 #pragma warning disable 649
 
-namespace Plugins.Zenject.Source.Install.Contexts
+namespace Zenject
 {
     public class GameObjectContext : RunnableContext
     {

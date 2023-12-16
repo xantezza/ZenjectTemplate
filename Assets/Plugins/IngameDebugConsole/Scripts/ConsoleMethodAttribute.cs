@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	[AttributeUsage( AttributeTargets.Method, Inherited = false, AllowMultiple = true )]
 	public class ConsoleMethodAttribute : Attribute

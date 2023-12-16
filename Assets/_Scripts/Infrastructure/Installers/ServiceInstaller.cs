@@ -2,7 +2,6 @@
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
-using Plugins.Zenject.Source.Install;
 using Zenject;
 
 namespace Infrastructure.Installers

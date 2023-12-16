@@ -2,33 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.Binders;
-using Plugins.Zenject.Source.Binding.Binders.ConcreteBinders;
-using Plugins.Zenject.Source.Binding.Binders.Conventions;
-using Plugins.Zenject.Source.Binding.Binders.Factory;
-using Plugins.Zenject.Source.Binding.Binders.Factory.FactoryToChoiceBinder;
-using Plugins.Zenject.Source.Binding.Binders.Factory.FactoryToChoiceIdBinder;
-using Plugins.Zenject.Source.Binding.Binders.Factory.Pooling;
-using Plugins.Zenject.Source.Binding.Binders.FromBinders;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Binding.Finalizers;
-using Plugins.Zenject.Source.Factories;
-using Plugins.Zenject.Source.Factories.Pooling;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.Decorator;
-using Plugins.Zenject.Source.Runtime;
-using Plugins.Zenject.Source.Util;
-using Plugins.Zenject.Source.Validation;
-using UnityEngine;
-using Zenject;
+using ModestTree;
+using ModestTree.Util;
+using Zenject.Internal;
 #if !NOT_UNITY3D
+using UnityEngine;
 #endif
 
-namespace Plugins.Zenject.Source.Main
+namespace Zenject
 {
     public delegate bool BindingCondition(InjectContext c);
 

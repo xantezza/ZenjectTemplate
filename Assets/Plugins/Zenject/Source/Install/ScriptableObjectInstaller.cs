@@ -1,11 +1,9 @@
 #if !NOT_UNITY3D
 
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
+using ModestTree;
 using UnityEngine;
 
-namespace Plugins.Zenject.Source.Install
+namespace Zenject
 {
     // We'd prefer to make this abstract but Unity 5.3.5 has a bug where references
     // can get lost during compile errors for classes that are abstract

@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using ModestTree;
+using Zenject.Internal;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Util;
-using UnityEngine;
-using TypeExtensions = Plugins.Zenject.Source.Internal.TypeExtensions;
+using TypeExtensions = ModestTree.TypeExtensions;
 
 #if !NOT_UNITY3D
+using UnityEngine;
 
 #if UNITY_EDITOR
+using UnityEditor;
 #endif
 
 #endif
 
-namespace Plugins.Zenject.Source.Binding
+namespace Zenject
 {
     internal static class BindingUtil
     {

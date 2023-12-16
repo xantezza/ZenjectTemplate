@@ -1,19 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Util;
-using Zenject;
+using ModestTree;
+using Zenject.Internal;
 
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public abstract class ProviderBindingFinalizer : IBindingFinalizer
     {
-        public ProviderBindingFinalizer(BindInfo.BindInfo bindInfo)
+        public ProviderBindingFinalizer(BindInfo bindInfo)
         {
             BindInfo = bindInfo;
         }
@@ -23,7 +19,7 @@ namespace Plugins.Zenject.Source.Binding.Finalizers
             get { return BindInfo.BindingInheritanceMethod; }
         }
 
-        protected BindInfo.BindInfo BindInfo
+        protected BindInfo BindInfo
         {
             get;
             private set;

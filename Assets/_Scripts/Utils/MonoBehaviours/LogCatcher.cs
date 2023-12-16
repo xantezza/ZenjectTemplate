@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Configs;
-using Plugins.IngameDebugConsole.Scripts;
+using IngameDebugConsole;
 using UnityEngine;
 
 namespace Utils.MonoBehaviours

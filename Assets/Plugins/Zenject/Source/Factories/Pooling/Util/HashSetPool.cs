@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Factories.Pooling.Static;
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Factories.Pooling.Util
+namespace Zenject
 {
     public class HashSetPool<T> : StaticMemoryPool<HashSet<T>>
     {

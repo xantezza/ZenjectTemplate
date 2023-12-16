@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.SubContainerCreators;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class SubContainerBindingFinalizer : ProviderBindingFinalizer
@@ -17,7 +12,7 @@ namespace Plugins.Zenject.Source.Binding.Finalizers
         readonly Func<DiContainer, ISubContainerCreator> _creatorFactory;
 
         public SubContainerBindingFinalizer(
-            BindInfo.BindInfo bindInfo, object subIdentifier,
+            BindInfo bindInfo, object subIdentifier,
             bool resolveAll, Func<DiContainer, ISubContainerCreator> creatorFactory)
             : base(bindInfo)
         {

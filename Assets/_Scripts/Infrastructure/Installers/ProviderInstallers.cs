@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Providers;
 using Infrastructure.Providers.DefaultConfigProvider;
-using Plugins.Zenject.Source.Install;
 using UnityEngine;
 using Zenject;
 

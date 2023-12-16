@@ -1,11 +1,7 @@
 using System;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class SingleProviderBindingFinalizer : ProviderBindingFinalizer
@@ -13,7 +9,7 @@ namespace Plugins.Zenject.Source.Binding.Finalizers
         readonly Func<DiContainer, Type, IProvider> _providerFactory;
 
         public SingleProviderBindingFinalizer(
-            BindInfo.BindInfo bindInfo, Func<DiContainer, Type, IProvider> providerFactory)
+            BindInfo bindInfo, Func<DiContainer, Type, IProvider> providerFactory)
             : base(bindInfo)
         {
             _providerFactory = providerFactory;

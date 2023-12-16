@@ -1,21 +1,13 @@
 using System;
-using Plugins.Zenject.Source.Binding.Binders.GameObject;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Install;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.PrefabProviders;
-using Plugins.Zenject.Source.Providers.SubContainerCreators;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Binders.Factory.FactoryFromBinder.SubContainerBinder
+namespace Zenject
 {
     [NoReflectionBaking]
     public class FactorySubContainerBinderWithParams<TContract> : FactorySubContainerBinderBase<TContract>
     {
         public FactorySubContainerBinderWithParams(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo, object subIdentifier)
+            DiContainer bindContainer, BindInfo bindInfo, FactoryBindInfo factoryBindInfo, object subIdentifier)
             : base(bindContainer, bindInfo, factoryBindInfo, subIdentifier)
         {
         }

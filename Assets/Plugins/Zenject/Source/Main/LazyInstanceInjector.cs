@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Util;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Main
+using System.Collections.Generic;
+using ModestTree;
+
+namespace Zenject
 {
     // When the app starts up, typically there is a list of instances that need to be injected
     // The question is, what is the order that they should be injected?  Originally we would

@@ -1,11 +1,9 @@
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class IdScopeConcreteIdArgConditionCopyNonLazyBinder : ScopeConcreteIdArgConditionCopyNonLazyBinder
     {
-        public IdScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo.BindInfo bindInfo)
+        public IdScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo bindInfo)
             : base(bindInfo)
         {
         }

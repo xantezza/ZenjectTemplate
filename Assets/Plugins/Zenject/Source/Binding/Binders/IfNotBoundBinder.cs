@@ -1,17 +1,15 @@
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class IfNotBoundBinder
     {
-        public IfNotBoundBinder(BindInfo.BindInfo bindInfo)
+        public IfNotBoundBinder(BindInfo bindInfo)
         {
             BindInfo = bindInfo;
         }
 
         // Do not use this
-        public BindInfo.BindInfo BindInfo
+        public BindInfo BindInfo
         {
             get;
             private set;

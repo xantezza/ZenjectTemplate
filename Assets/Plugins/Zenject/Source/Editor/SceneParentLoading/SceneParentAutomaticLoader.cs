@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Util;
+using ModestTree;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Plugins.Zenject.Source.Editor.SceneParentLoading
+namespace Zenject.Internal
 {
     [InitializeOnLoad]
     public static class SceneParentAutomaticLoader

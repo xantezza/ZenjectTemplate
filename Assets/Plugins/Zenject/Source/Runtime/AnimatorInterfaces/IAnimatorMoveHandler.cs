@@ -1,4 +1,4 @@
-namespace Plugins.Zenject.Source.Runtime.AnimatorInterfaces
+namespace Zenject
 {
     public interface IAnimatorMoveHandler
     {

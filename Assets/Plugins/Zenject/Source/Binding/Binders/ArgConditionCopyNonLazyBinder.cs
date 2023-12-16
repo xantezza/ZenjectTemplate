@@ -1,14 +1,12 @@
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Internal;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Binders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class ArgConditionCopyNonLazyBinder : InstantiateCallbackConditionCopyNonLazyBinder
     {
-        public ArgConditionCopyNonLazyBinder(BindInfo.BindInfo bindInfo)
+        public ArgConditionCopyNonLazyBinder(BindInfo bindInfo)
             : base(bindInfo)
         {
         }

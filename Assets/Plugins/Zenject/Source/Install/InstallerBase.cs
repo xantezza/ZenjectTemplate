@@ -1,7 +1,4 @@
-using Plugins.Zenject.Source.Main;
-using Zenject;
-
-namespace Plugins.Zenject.Source.Install
+namespace Zenject
 {
     public abstract class InstallerBase : IInstaller
     {

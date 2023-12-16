@@ -2,11 +2,11 @@
 
 #pragma warning disable 649
 
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 using UnityEngine;
-using Zenject;
+using UnityEngine.Analytics;
 
-namespace Plugins.Zenject.Source.Runtime.Kernels
+namespace Zenject
 {
     public abstract class MonoKernel : MonoBehaviour
     {

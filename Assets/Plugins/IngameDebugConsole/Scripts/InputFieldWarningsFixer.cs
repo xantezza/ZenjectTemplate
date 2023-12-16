@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	// Fixes: https://github.com/yasirkula/UnityIngameDebugConsole/issues/77
 	// This was caused by Canvas.ForceUpdateCanvases in InputField.UpdateLabel (added in 2022.1 to resolve another bug: https://issuetracker.unity3d.com/issues/input-fields-width-doesnt-change-after-entering-specific-combinations-of-text-when-the-content-size-fitter-is-used)

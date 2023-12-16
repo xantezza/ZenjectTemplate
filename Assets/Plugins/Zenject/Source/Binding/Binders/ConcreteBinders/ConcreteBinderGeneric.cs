@@ -1,22 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Zenject.Source.Binding.Binders.Conventions;
-using Plugins.Zenject.Source.Binding.Binders.FromBinders;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Binding.Finalizers;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Binders.ConcreteBinders
+namespace Zenject
 {
     [NoReflectionBaking]
     public class ConcreteBinderGeneric<TContract> : FromBinderGeneric<TContract>
     {
         public ConcreteBinderGeneric(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo,
+            DiContainer bindContainer, BindInfo bindInfo,
             BindStatement bindStatement)
             : base(bindContainer, bindInfo, bindStatement)
         {

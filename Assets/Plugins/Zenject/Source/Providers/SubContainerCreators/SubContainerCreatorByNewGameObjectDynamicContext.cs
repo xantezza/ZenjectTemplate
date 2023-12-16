@@ -2,17 +2,11 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Injection;
-using Plugins.Zenject.Source.Install;
-using Plugins.Zenject.Source.Install.Contexts;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Util;
 using UnityEngine;
-using Zenject;
+using ModestTree;
+using Zenject.Internal;
 
-namespace Plugins.Zenject.Source.Providers.SubContainerCreators
+namespace Zenject
 {
     [NoReflectionBaking]
     public abstract class SubContainerCreatorByNewGameObjectDynamicContext : SubContainerCreatorDynamicContext
@@ -190,7 +184,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
     {
         readonly
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4> _installerMethod;
 
@@ -198,7 +192,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
             DiContainer container,
             GameObjectCreationParameters gameObjectBindInfo,
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
             : base(container, gameObjectBindInfo)
@@ -231,7 +225,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
     {
         readonly
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> _installerMethod;
 
@@ -239,7 +233,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
             DiContainer container,
             GameObjectCreationParameters gameObjectBindInfo,
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> installerMethod)
             : base(container, gameObjectBindInfo)
@@ -274,7 +268,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
     {
         readonly
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> _installerMethod;
 
@@ -282,7 +276,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
             DiContainer container,
             GameObjectCreationParameters gameObjectBindInfo,
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> installerMethod)
             : base(container, gameObjectBindInfo)
@@ -319,7 +313,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
     {
         readonly
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> _installerMethod;
 
@@ -327,7 +321,7 @@ namespace Plugins.Zenject.Source.Providers.SubContainerCreators
             DiContainer container,
             GameObjectCreationParameters gameObjectBindInfo,
 #if !NET_4_6
-            Internal.
+            ModestTree.Util.
 #endif
             Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> installerMethod)
             : base(container, gameObjectBindInfo)

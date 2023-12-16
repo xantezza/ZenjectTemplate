@@ -1,10 +1,9 @@
 #if !NOT_UNITY3D
 
 using System;
-using Plugins.Zenject.Source.Install;
 using UnityEngine;
 
-namespace Plugins.Zenject.Source.Util
+namespace Zenject
 {
     public class DefaultGameObjectParentInstaller : Installer<string, DefaultGameObjectParentInstaller>
     {

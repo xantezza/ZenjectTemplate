@@ -1,15 +1,10 @@
-using Plugins.Zenject.Source.Binding.Binders.Factory.FactoryArgumentsToChoiceBinder;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-using Zenject;
-
-namespace Plugins.Zenject.Source.Binding.Binders.Factory.Pooling
+namespace Zenject
 {
     [NoReflectionBaking]
     public class MemoryPoolMaxSizeBinder<TContract> : MemoryPoolExpandBinder<TContract>
     {
         public MemoryPoolMaxSizeBinder(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
+            DiContainer bindContainer, BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
             : base(bindContainer, bindInfo, factoryBindInfo, poolBindInfo)
         {
         }
@@ -25,7 +20,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory.Pooling
     public class MemoryPoolInitialSizeMaxSizeBinder<TContract> : MemoryPoolMaxSizeBinder<TContract>
     {
         public MemoryPoolInitialSizeMaxSizeBinder(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
+            DiContainer bindContainer, BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
             : base(bindContainer, bindInfo, factoryBindInfo, poolBindInfo)
         {
         }
@@ -49,7 +44,7 @@ namespace Plugins.Zenject.Source.Binding.Binders.Factory.Pooling
     public class MemoryPoolIdInitialSizeMaxSizeBinder<TContract> : MemoryPoolInitialSizeMaxSizeBinder<TContract>
     {
         public MemoryPoolIdInitialSizeMaxSizeBinder(
-            DiContainer bindContainer, BindInfo.BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
+            DiContainer bindContainer, BindInfo bindInfo, FactoryBindInfo factoryBindInfo, MemoryPoolBindInfo poolBindInfo)
             : base(bindContainer, bindInfo, factoryBindInfo, poolBindInfo)
         {
         }

@@ -2,15 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Internal;
-using Plugins.Zenject.Source.Main;
-using Plugins.Zenject.Source.Providers;
-using Plugins.Zenject.Source.Providers.PrefabCreators;
-using Plugins.Zenject.Source.Providers.PrefabProviders;
-using Zenject;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     [NoReflectionBaking]
     public class PrefabResourceBindingFinalizer : ProviderBindingFinalizer
@@ -20,7 +14,7 @@ namespace Plugins.Zenject.Source.Binding.Finalizers
         readonly Func<Type, IPrefabInstantiator, IProvider> _providerFactory;
 
         public PrefabResourceBindingFinalizer(
-            BindInfo.BindInfo bindInfo,
+            BindInfo bindInfo,
             GameObjectCreationParameters gameObjectBindInfo,
             string resourcePath, Func<Type, IPrefabInstantiator, IProvider> providerFactory)
             : base(bindInfo)

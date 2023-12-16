@@ -1,7 +1,7 @@
 using System;
-using Plugins.Zenject.Source.Internal;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Providers
+namespace Zenject
 {
     public static class ProviderUtil
     {

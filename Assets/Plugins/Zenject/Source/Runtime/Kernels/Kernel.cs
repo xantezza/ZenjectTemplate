@@ -1,8 +1,7 @@
 using System;
 using System.Diagnostics;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Runtime.Kernels
+namespace Zenject
 {
     [DebuggerStepThrough]
     public class Kernel : IInitializable, IDisposable, ITickable, ILateTickable, IFixedTickable, ILateDisposable

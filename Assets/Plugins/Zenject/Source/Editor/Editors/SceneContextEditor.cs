@@ -1,10 +1,8 @@
 #if !ODIN_INSPECTOR
 
-using Plugins.Zenject.Source.Install.Contexts;
 using UnityEditor;
-using Zenject;
 
-namespace Plugins.Zenject.Source.Editor.Editors
+namespace Zenject
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(SceneContext))]

@@ -1,11 +1,16 @@
 #if !ODIN_INSPECTOR
 
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Plugins.Zenject.Source.Install.Contexts;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEditor;
-using Zenject;
+using UnityEditorInternal;
+using UnityEngine;
+using ModestTree;
 
-namespace Plugins.Zenject.Source.Editor.Editors
+namespace Zenject
 {
     [CustomEditor(typeof(SceneDecoratorContext))]
     [NoReflectionBaking]

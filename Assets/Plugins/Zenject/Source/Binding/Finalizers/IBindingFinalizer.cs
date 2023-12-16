@@ -1,7 +1,4 @@
-using Plugins.Zenject.Source.Binding.BindInfo;
-using Plugins.Zenject.Source.Main;
-
-namespace Plugins.Zenject.Source.Binding.Finalizers
+namespace Zenject
 {
     public interface IBindingFinalizer
     {
