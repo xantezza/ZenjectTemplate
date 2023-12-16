@@ -7,7 +7,7 @@ Unity project template with implemented functionality necessary for almost any p
 - Ready-To-Grow architecture on Zenject + [GameLoopState FSM](https://github.com/xantezza/ZenjectTemplate/tree/main/Assets/_Scripts/Infrastructure/StateMachines/GameLoopStateMachine)
 - Unity RemoteConfig + [CachedDefaultConfigProvider](https://github.com/xantezza/ZenjectTemplate/blob/main/Assets/_Scripts/Infrastructure/Providers/DefaultConfigProvider/CachedDefaultConfigProvider.cs)
 - [SaveService](https://github.com/xantezza/ZenjectTemplate/tree/main/Assets/_Scripts/Infrastructure/Services/Saving)
-- [EditorWindows](https://github.com/xantezza/ZenjectTemplate/tree/main/Assets/_Scripts/Editor/EditorWindows) and other utilities to improve QOL]
+- [EditorWindows](https://github.com/xantezza/ZenjectTemplate/tree/main/Assets/_Scripts/Editor/EditorWindows) and other utilities to improve QOL
 
 [DEMO](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
