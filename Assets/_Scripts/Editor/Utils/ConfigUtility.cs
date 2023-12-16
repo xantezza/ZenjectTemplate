@@ -2,12 +2,10 @@
 using Configs;
 using Newtonsoft.Json;
 using TriInspector;
-using UnityEditor;
 using UnityEngine;
 
 namespace Editor.Utils
 {
-    [CreateAssetMenu]
     public class ConfigUtility : ScriptableObject
     {
         private enum Type
@@ -48,12 +46,6 @@ namespace Editor.Utils
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-        }
-
-        [MenuItem("Services/Config Serialization Window", false, 10)]
-        private static void OpenWindow()
-        {
-            Selection.activeObject = Resources.Load<ConfigUtility>("ConfigUtility");
         }
     }
 }
