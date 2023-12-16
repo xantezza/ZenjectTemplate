@@ -1,0 +1,10 @@
+*.glslv linguist-detectable=false
+*.glslf linguist-detectable=false
+*.vert linguist-detectable=false
+*.tesc linguist-detectable=false
+*.tese linguist-detectable=false
+*.geom linguist-detectable=false
+*.frag linguist-detectable=false
+*.comp linguist-detectable=false
+*.shader linguist-detectable=false
+*.cginc linguist-detectable=false 

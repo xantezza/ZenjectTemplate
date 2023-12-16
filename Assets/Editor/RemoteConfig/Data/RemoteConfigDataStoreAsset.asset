@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fbc5753f-774a-463b-85dc-58a21e7aeb32\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"infrastructure_config\",\r\n      \"type\":
+    \"json\",\r\n      \"schemaId\": null,\r\n      \"value\": {\r\n        \"IsDebugEnabled\":
+    true,\r\n        \"FakeTimeBeforeLoad\": 0.0,\r\n        \"FakeMinimalLoadTime\":
+    0.5,\r\n        \"FakeTimeAfterLoad\": 0.5\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fbc5753f-774a-463b-85dc-58a21e7aeb32\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"infrastructure_config\",\r\n      \"type\":
+    \"json\",\r\n      \"schemaId\": null,\r\n      \"value\": {\r\n        \"IsDebugEnabled\":
+    true,\r\n        \"FakeTimeBeforeLoad\": 0.0,\r\n        \"FakeMinimalLoadTime\":
+    0.5,\r\n        \"FakeTimeAfterLoad\": 0.5\r\n      }\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"c8eda3aa-80f3-4fd8-96d3-01091da83836\",\r\n   
+    \"name\": \"production\",\r\n    \"id\": \"c11e4cb8-fec1-41e3-b9d9-f8671e7a5560\",\r\n   
+    \"isDefault\": true,\r\n    \"createdAt\": \"2023-12-11T10:40:55Z\",\r\n    \"updatedAt\":
+    \"2023-12-11T10:40:55Z\"\r\n  },\r\n  {\r\n    \"projectId\": \"c8eda3aa-80f3-4fd8-96d3-01091da83836\",\r\n   
+    \"name\": \"dev\",\r\n    \"id\": \"6919c09a-fb3a-4990-9c58-3bae436ede1b\",\r\n   
+    \"isDefault\": false,\r\n    \"createdAt\": \"2023-12-11T10:57:26Z\",\r\n   
+    \"updatedAt\": \"2023-12-11T10:57:26Z\"\r\n  }\r\n]"
