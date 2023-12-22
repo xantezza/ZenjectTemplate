@@ -14,7 +14,7 @@ namespace Utils.MonoBehaviours
 
         private void Awake()
         {
-#if IN_GAME_CONSOLE
+#if DEV
 
             if (IsAwakened)
             {
@@ -28,23 +28,8 @@ namespace Utils.MonoBehaviours
             _logs = new List<(string, string, LogType)>(30);
 
             Application.logMessageReceived += CacheLogOnMessageReceived;
-            Remote.OnInitializeRemote += OnRemoteInitializeAnyRemote;
             DebugLogManager.OnInit += InGameDebugWindowInitialize;
 #endif
-        }
-
-        private void OnRemoteInitializeAnyRemote()
-        {
-            Remote.OnInitializeRemote -= OnRemoteInitializeAnyRemote;
-
-            _isDebugEnabled = Remote.InfrastructureConfig.IsDebugEnabled;
-
-            if (_isDebugEnabled) return;
-
-            Application.logMessageReceived -= CacheLogOnMessageReceived;
-            DebugLogManager.OnInit -= InGameDebugWindowInitialize;
-            _logs.Clear();
-            Destroy(gameObject);
         }
 
         private void InGameDebugWindowInitialize()

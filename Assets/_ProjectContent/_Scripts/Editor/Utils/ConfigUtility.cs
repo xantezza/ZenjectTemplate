@@ -15,7 +15,6 @@ namespace Editor.Utils
 
         [SerializeField] private Type type;
 
-
         [ShowIf(nameof(condition)), SerializeField] private InfrastructureConfig _infrastructureConfig;
         private bool condition => type == Type.Infrastructure;
 

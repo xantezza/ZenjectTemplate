@@ -15,7 +15,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         private readonly GameLoopStateMachine _gameLoopStateMachine;
         private readonly AssetReferenceProvider _assetReferenceProvider;
-        private InfrastructureConfig _infrastructureConfig;
 
         public override string StateName => nameof(InitializeDebugState);
 
@@ -23,13 +22,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         {
             _gameLoopStateMachine = stateMachine;
             _assetReferenceProvider = assetReferenceProvider;
-
-            Remote.OnInitializeAny += OnRemoteInitializeAny;
-        }
-
-        private void OnRemoteInitializeAny()
-        {
-            _infrastructureConfig = Remote.InfrastructureConfig;
         }
 
         private void ToNextState()
@@ -51,13 +43,10 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             }
 
             IsInitialized = true;
-
-            if (_infrastructureConfig.IsDebugEnabled)
-            {
-                var debugRoot = await _assetReferenceProvider.DebugRootAssetReference.InstantiateAsync();
-                Object.DontDestroyOnLoad(debugRoot);
-            }
-
+#if DEV
+            var debugRoot = await _assetReferenceProvider.DebugRootAssetReference.InstantiateAsync();
+            Object.DontDestroyOnLoad(debugRoot);
+#endif
             ToNextState();
         }
     }
