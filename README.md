@@ -9,7 +9,7 @@ Unity project template with implemented functionality necessary for almost any p
 - Addressables
 - UniTasks
 
-- [DEMO](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
+[DEMO](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
 [![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/b2ac04e7-be44-480a-94e0-8ca7eb11d553)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
