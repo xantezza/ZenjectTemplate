@@ -64,7 +64,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _conditionalLoggingService.Log("Start of InitializeRemoteConfigAsync with environment: dev", LogTag.RemoteSettings);
 #else
             var options = new InitializationOptions().SetEnvironmentName("production");
-            _loggingService.Log($"Start of InitializeRemoteConfigAsync with environment: production", LogTag.RemoteSettings);
 #endif
 
             await UnityServices.InitializeAsync(options);
