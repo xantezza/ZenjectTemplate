@@ -3,14 +3,14 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class MenuState : BaseState, IEnterableState
+    public class MenuState : BaseGameLoopState, IEnterableState
     {
         private readonly GameLoopStateMachine _stateMachine;
         
         public override string StateName => nameof(MenuState);
 
         [Inject]
-        public MenuState(GameLoopStateMachine stateMachine)
+        public MenuState(GameLoopStateMachine stateMachine) : base(stateMachine)
         {
             _stateMachine = stateMachine;
         }

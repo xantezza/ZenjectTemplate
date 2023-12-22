@@ -10,7 +10,6 @@ namespace Utils.MonoBehaviours
         private static bool IsAwakened;
 
         private List<(string, string, LogType)> _logs;
-        private bool _isDebugEnabled = true;
 
         private void Awake()
         {

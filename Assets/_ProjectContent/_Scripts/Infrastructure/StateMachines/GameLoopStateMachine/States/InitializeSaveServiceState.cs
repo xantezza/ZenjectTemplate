@@ -6,16 +6,14 @@ using JetBrains.Annotations;
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
     [UsedImplicitly]
-    public class InitializeSaveServiceState : BaseState, IEnterableState, IPayloadedState<string>
+    public class InitializeSaveServiceState : BaseGameLoopState, IEnterableState, IPayloadedState<string>
     {
         private readonly ISaveService _saveService;
-        private readonly GameLoopStateMachine _gameLoopStateMachine;
 
         public override string StateName => nameof(InitializeSaveServiceState);
 
-        public InitializeSaveServiceState(GameLoopStateMachine gameLoopStateMachine, ISaveService saveService)
+        public InitializeSaveServiceState(GameLoopStateMachine gameLoopStateMachine, ISaveService saveService) : base(gameLoopStateMachine)
         {
-            _gameLoopStateMachine = gameLoopStateMachine;
             _saveService = saveService;
         }
 

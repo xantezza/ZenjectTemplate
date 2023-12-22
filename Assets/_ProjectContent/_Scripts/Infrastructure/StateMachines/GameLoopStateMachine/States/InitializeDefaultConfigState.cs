@@ -1,6 +1,5 @@
 ﻿using System;
 using Configs;
-using Infrastructure.Providers;
 using Infrastructure.Providers.DefaultConfigProvider;
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.StateMachine;
@@ -8,9 +7,8 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class InitializeDefaultConfigState : BaseState, IEnterableState
+    public class InitializeDefaultConfigState : BaseGameLoopState, IEnterableState
     {
-        private readonly GameLoopStateMachine _gameLoopStateMachine;
         private readonly IDefaultConfigProvider _defaultConfigProvider;
         private readonly IConditionalLoggingService _conditionalLoggingService;
 
@@ -21,11 +19,10 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             GameLoopStateMachine gameLoopStateMachine,
             IDefaultConfigProvider defaultConfigProvider,
             IConditionalLoggingService conditionalLoggingService
-        )
+        ) : base(gameLoopStateMachine)
         {
             _conditionalLoggingService = conditionalLoggingService;
             _defaultConfigProvider = defaultConfigProvider;
-            _gameLoopStateMachine = gameLoopStateMachine;
         }
 
         private void ToNextState()

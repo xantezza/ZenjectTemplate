@@ -10,9 +10,8 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class InitializeRemoteConfigState : BaseState, IEnterableState
+    public class InitializeRemoteConfigState : BaseGameLoopState, IEnterableState
     {
-        private readonly GameLoopStateMachine _stateMachine;
         private readonly IConditionalLoggingService _conditionalLoggingService;
 
         private bool _isInitialized;
@@ -22,15 +21,14 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         [Inject]
         public InitializeRemoteConfigState(
             GameLoopStateMachine stateMachine,
-            IConditionalLoggingService conditionalLoggingService)
+            IConditionalLoggingService conditionalLoggingService) : base(stateMachine)
         {
-            _stateMachine = stateMachine;
             _conditionalLoggingService = conditionalLoggingService;
         }
 
         private void ToNextState()
         {
-            _stateMachine.Enter<InitializeDebugState>();
+            _gameLoopStateMachine.Enter<InitializeDebugState>();
         }
 
         public async void Enter()

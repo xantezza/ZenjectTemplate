@@ -5,18 +5,16 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class GameplayState : BaseState, IEnterableState
+    public class GameplayState : BaseGameLoopState, IEnterableState
     {
-        private readonly GameLoopStateMachine _gameLoopStateMachine;
         private readonly ISaveService _saveService;
 
         public override string StateName => nameof(GameplayState);
 
         [Inject]
-        public GameplayState(GameLoopStateMachine gameLoopStateMachine, ISaveService saveService)
+        public GameplayState(GameLoopStateMachine gameLoopStateMachine, ISaveService saveService) : base(gameLoopStateMachine)
         {
             _saveService = saveService;
-            _gameLoopStateMachine = gameLoopStateMachine;
         }
 
         //State changes by GameStateSwitchButton in scene

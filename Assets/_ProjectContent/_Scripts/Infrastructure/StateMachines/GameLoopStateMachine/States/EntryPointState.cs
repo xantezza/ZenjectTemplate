@@ -3,16 +3,13 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class EntryPointState : BaseState, IEnterableState
+    public class EntryPointState : BaseGameLoopState, IEnterableState
     {
-        private readonly GameLoopStateMachine _gameLoopStateMachine;
-        
         public override string StateName => nameof(EntryPointState);
-
+        
         [Inject]
-        public EntryPointState(GameLoopStateMachine gameLoopStateMachine)
+        public EntryPointState(GameLoopStateMachine stateMachine) : base(stateMachine)
         {
-            _gameLoopStateMachine = gameLoopStateMachine;
         }
 
         private void ToNextState()

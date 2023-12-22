@@ -5,28 +5,27 @@ using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 using UnityEngine;
+using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    [UsedImplicitly]
-    public class InitializeDebugState : BaseState, IEnterableState
+    public class InitializeDebugState : BaseGameLoopState, IEnterableState
     {
         private static bool IsInitialized { get; set; }
 
-        private readonly GameLoopStateMachine _gameLoopStateMachine;
         private readonly AssetReferenceProvider _assetReferenceProvider;
 
         public override string StateName => nameof(InitializeDebugState);
 
-        public InitializeDebugState(GameLoopStateMachine stateMachine, AssetReferenceProvider assetReferenceProvider)
+        [Inject]
+        public InitializeDebugState(GameLoopStateMachine stateMachine, AssetReferenceProvider assetReferenceProvider) : base(stateMachine)
         {
-            _gameLoopStateMachine = stateMachine;
             _assetReferenceProvider = assetReferenceProvider;
         }
 
         private void ToNextState()
         {
-            _gameLoopStateMachine.Enter<InitializeSaveServiceState>();
+            _gameLoopStateMachine.Enter<InitializeAnalyticsState>();
         }
 
         public async void Enter()
@@ -43,10 +42,12 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             }
 
             IsInitialized = true;
+
 #if DEV
             var debugRoot = await _assetReferenceProvider.DebugRootAssetReference.InstantiateAsync();
             Object.DontDestroyOnLoad(debugRoot);
 #endif
+
             ToNextState();
         }
     }
