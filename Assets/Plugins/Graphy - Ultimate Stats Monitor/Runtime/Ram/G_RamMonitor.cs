@@ -14,7 +14,7 @@
 using UnityEngine;
 using UnityEngine.Profiling;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Ram
+namespace Tayx.Graphy.Ram
 {
     public class G_RamMonitor : MonoBehaviour
     {

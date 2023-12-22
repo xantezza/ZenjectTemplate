@@ -11,13 +11,15 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System.Collections.Generic;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps
+using System.Collections.Generic;
+
+using Tayx.Graphy.UI;
+using Tayx.Graphy.Utils;
+
+namespace Tayx.Graphy.Fps
 {
     public class G_FpsManager : MonoBehaviour, IMovable, IModifiableState
     {

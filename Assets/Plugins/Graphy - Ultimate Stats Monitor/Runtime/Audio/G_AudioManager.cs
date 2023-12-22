@@ -11,13 +11,13 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System.Collections.Generic;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using Tayx.Graphy.UI;
+using Tayx.Graphy.Utils;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Audio
+namespace Tayx.Graphy.Audio
 {
     public class G_AudioManager : MonoBehaviour, IMovable, IModifiableState
     {

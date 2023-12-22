@@ -11,15 +11,16 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System.Collections.Generic;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime;
-using UnityEditor;
+using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Editor
+namespace Tayx.Graphy
 {
     [CustomEditor( typeof( GraphyDebugger ) )]
-    internal class GraphyDebuggerEditor : UnityEditor.Editor
+    internal class GraphyDebuggerEditor : Editor
     {
         #region Variables -> Private
 

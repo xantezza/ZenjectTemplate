@@ -11,11 +11,11 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util
+namespace Tayx.Graphy.Utils
 {
     public static class G_ExtensionMethods
     {

@@ -11,12 +11,11 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Graph;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Shader;
+using Tayx.Graphy.Graph;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps
+namespace Tayx.Graphy.Fps
 {
     public class G_FpsGraph : G_Graph
     {
@@ -24,8 +23,8 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps
 
         [SerializeField] private Image m_imageGraph = null;
 
-        [SerializeField] private UnityEngine.Shader ShaderFull = null;
-        [SerializeField] private UnityEngine.Shader ShaderLight = null;
+        [SerializeField] private Shader ShaderFull = null;
+        [SerializeField] private Shader ShaderLight = null;
 
         // This keeps track of whether Init() has run or not
         [SerializeField] private bool m_isInitialized = false;

@@ -14,7 +14,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Audio
+namespace Tayx.Graphy.Audio
 {
     /// <summary>
     /// Note: this class only works with Unity's AudioListener.

@@ -11,17 +11,21 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System.Collections.Generic;
-using System.Text;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
+
 #if GRAPHY_XR
+using UnityEngine.XR;
 #endif
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Advanced
+using System.Collections.Generic;
+using System.Text;
+
+using Tayx.Graphy.UI;
+using Tayx.Graphy.Utils;
+using Tayx.Graphy.Utils.NumString;
+
+namespace Tayx.Graphy.Advanced
 {
     public class G_AdvancedData : MonoBehaviour, IMovable, IModifiableState
     {

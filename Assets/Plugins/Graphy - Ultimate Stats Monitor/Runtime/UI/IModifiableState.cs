@@ -11,7 +11,7 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI
+namespace Tayx.Graphy.UI
 {
     public interface IModifiableState
     {

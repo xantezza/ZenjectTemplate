@@ -12,17 +12,19 @@
  * -------------------------------------*/
 
 using System;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Advanced;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Audio;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Ram;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
+using Tayx.Graphy.Audio;
+using Tayx.Graphy.Fps;
+using Tayx.Graphy.Ram;
+using Tayx.Graphy.Utils;
+using Tayx.Graphy.Advanced;
+using Tayx.Graphy.Utils.NumString;
+
 #if GRAPHY_NEW_INPUT
 using UnityEngine.InputSystem;
 #endif
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
+namespace Tayx.Graphy
 {
     /// <summary>
     /// Main class to access the Graphy API.
@@ -104,7 +106,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
         [SerializeField] private bool m_keepAlive = true;
 
         [SerializeField] private bool m_background = true;
-        [SerializeField] private Color m_backgroundColor = new Color(0, 0, 0, 0.3f);
+        [SerializeField] private Color m_backgroundColor = new Color( 0, 0, 0, 0.3f );
 
         [SerializeField] private bool m_enableHotkeys = true;
 
@@ -125,36 +127,36 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
         [SerializeField] private bool m_toggleActiveAlt = false;
 
         [SerializeField] private ModulePosition m_graphModulePosition = ModulePosition.TOP_RIGHT;
-        [SerializeField] private Vector2 m_graphModuleOffset = new Vector2(0, 0);
+        [SerializeField] private Vector2 m_graphModuleOffset = new Vector2( 0, 0 );
 
         // Fps ---------------------------------------------------------------------------
 
         [SerializeField] private ModuleState m_fpsModuleState = ModuleState.FULL;
 
-        [SerializeField] private Color m_goodFpsColor = new Color32(118, 212, 58, 255);
+        [SerializeField] private Color m_goodFpsColor = new Color32( 118, 212, 58, 255 );
         [SerializeField] private int m_goodFpsThreshold = 60;
 
-        [SerializeField] private Color m_cautionFpsColor = new Color32(243, 232, 0, 255);
+        [SerializeField] private Color m_cautionFpsColor = new Color32( 243, 232, 0, 255 );
         [SerializeField] private int m_cautionFpsThreshold = 30;
 
-        [SerializeField] private Color m_criticalFpsColor = new Color32(220, 41, 30, 255);
+        [SerializeField] private Color m_criticalFpsColor = new Color32( 220, 41, 30, 255 );
 
-        [Range(10, 300)] [SerializeField] private int m_fpsGraphResolution = 150;
+        [Range( 10, 300 )] [SerializeField] private int m_fpsGraphResolution = 150;
 
-        [Range(1, 200)] [SerializeField] private int m_fpsTextUpdateRate = 3; // 3 updates per sec.
+        [Range( 1, 200 )] [SerializeField] private int m_fpsTextUpdateRate = 3; // 3 updates per sec.
 
         // Ram ---------------------------------------------------------------------------
 
         [SerializeField] private ModuleState m_ramModuleState = ModuleState.FULL;
 
-        [SerializeField] private Color m_allocatedRamColor = new Color32(255, 190, 60, 255);
-        [SerializeField] private Color m_reservedRamColor = new Color32(205, 84, 229, 255);
-        [SerializeField] private Color m_monoRamColor = new Color(0.3f, 0.65f, 1f, 1);
+        [SerializeField] private Color m_allocatedRamColor = new Color32( 255, 190, 60, 255 );
+        [SerializeField] private Color m_reservedRamColor = new Color32( 205, 84, 229, 255 );
+        [SerializeField] private Color m_monoRamColor = new Color( 0.3f, 0.65f, 1f, 1 );
 
-        [Range(10, 300)] [SerializeField] private int m_ramGraphResolution = 150;
+        [Range( 10, 300 )] [SerializeField] private int m_ramGraphResolution = 150;
 
 
-        [Range(1, 200)] [SerializeField] private int m_ramTextUpdateRate = 3; // 3 updates per sec.
+        [Range( 1, 200 )] [SerializeField] private int m_ramTextUpdateRate = 3; // 3 updates per sec.
 
         // Audio -------------------------------------------------------------------------
 
@@ -167,20 +169,20 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
 
         [SerializeField] private Color m_audioGraphColor = Color.white;
 
-        [Range(10, 300)] [SerializeField] private int m_audioGraphResolution = 81;
+        [Range( 10, 300 )] [SerializeField] private int m_audioGraphResolution = 81;
 
-        [Range(1, 200)] [SerializeField] private int m_audioTextUpdateRate = 3; // 3 updates per sec.
+        [Range( 1, 200 )] [SerializeField] private int m_audioTextUpdateRate = 3; // 3 updates per sec.
 
         [SerializeField] private FFTWindow m_FFTWindow = FFTWindow.Blackman;
 
-        [Tooltip("Must be a power of 2 and between 64-8192")] [SerializeField]
+        [Tooltip( "Must be a power of 2 and between 64-8192" )] [SerializeField]
         private int m_spectrumSize = 512;
 
         // Advanced ----------------------------------------------------------------------
 
         [SerializeField] private ModulePosition m_advancedModulePosition = ModulePosition.BOTTOM_LEFT;
 
-        [SerializeField] private Vector2 m_advancedModuleOffset = new Vector2(0, 0);
+        [SerializeField] private Vector2 m_advancedModuleOffset = new Vector2( 0, 0 );
 
         [SerializeField] private ModuleState m_advancedModuleState = ModuleState.FULL;
 
@@ -247,9 +249,9 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_graphModulePosition = value;
-                m_fpsManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-                m_ramManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-                m_audioManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
+                m_fpsManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+                m_ramManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+                m_audioManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
             }
         }
 
@@ -263,7 +265,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_fpsModuleState = value;
-                m_fpsManager.SetState(m_fpsModuleState);
+                m_fpsManager.SetState( m_fpsModuleState );
             }
         }
 
@@ -354,7 +356,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_ramModuleState = value;
-                m_ramManager.SetState(m_ramModuleState);
+                m_ramManager.SetState( m_ramModuleState );
             }
         }
 
@@ -425,7 +427,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_audioModuleState = value;
-                m_audioManager.SetState(m_audioModuleState);
+                m_audioManager.SetState( m_audioModuleState );
             }
         }
 
@@ -522,7 +524,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_advancedModuleState = value;
-                m_advancedData.SetState(m_advancedModuleState);
+                m_advancedData.SetState( m_advancedModuleState );
             }
         }
 
@@ -532,7 +534,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             set
             {
                 m_advancedModulePosition = value;
-                m_advancedData.SetPosition(m_advancedModulePosition, m_advancedModuleOffset);
+                m_advancedData.SetPosition( m_advancedModulePosition, m_advancedModuleOffset );
             }
         }
 
@@ -553,17 +555,17 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
 
         private void Update()
         {
-            if (m_focused && m_enableHotkeys)
+            if( m_focused && m_enableHotkeys )
             {
                 CheckForHotkeyPresses();
             }
         }
 
-        private void OnApplicationFocus(bool isFocused)
+        private void OnApplicationFocus( bool isFocused )
         {
             m_focused = isFocused;
 
-            if (m_initialized && isFocused)
+            if( m_initialized && isFocused )
             {
                 RefreshAllParameters();
             }
@@ -573,51 +575,51 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
 
         #region Methods -> Public
 
-        public void SetModulePosition(ModuleType moduleType, ModulePosition modulePosition)
+        public void SetModulePosition( ModuleType moduleType, ModulePosition modulePosition )
         {
-            switch (moduleType)
+            switch( moduleType )
             {
                 case ModuleType.FPS:
                 case ModuleType.RAM:
                 case ModuleType.AUDIO:
                     m_graphModulePosition = modulePosition;
 
-                    m_ramManager.SetPosition(modulePosition, m_graphModuleOffset);
-                    m_fpsManager.SetPosition(modulePosition, m_graphModuleOffset);
-                    m_audioManager.SetPosition(modulePosition, m_graphModuleOffset);
+                    m_ramManager.SetPosition( modulePosition, m_graphModuleOffset );
+                    m_fpsManager.SetPosition( modulePosition, m_graphModuleOffset );
+                    m_audioManager.SetPosition( modulePosition, m_graphModuleOffset );
                     break;
 
                 case ModuleType.ADVANCED:
-                    m_advancedData.SetPosition(modulePosition, Vector2.zero);
+                    m_advancedData.SetPosition( modulePosition, Vector2.zero );
                     break;
             }
         }
 
-        public void SetModuleMode(ModuleType moduleType, ModuleState moduleState)
+        public void SetModuleMode( ModuleType moduleType, ModuleState moduleState )
         {
-            switch (moduleType)
+            switch( moduleType )
             {
                 case ModuleType.FPS:
-                    m_fpsManager.SetState(moduleState);
+                    m_fpsManager.SetState( moduleState );
                     break;
 
                 case ModuleType.RAM:
-                    m_ramManager.SetState(moduleState);
+                    m_ramManager.SetState( moduleState );
                     break;
 
                 case ModuleType.AUDIO:
-                    m_audioManager.SetState(moduleState);
+                    m_audioManager.SetState( moduleState );
                     break;
 
                 case ModuleType.ADVANCED:
-                    m_advancedData.SetState(moduleState);
+                    m_advancedData.SetState( moduleState );
                     break;
             }
         }
 
         public void ToggleModes()
         {
-            if ((int) m_modulePresetState >= Enum.GetNames(typeof(ModulePreset)).Length - 1)
+            if( (int) m_modulePresetState >= Enum.GetNames( typeof( ModulePreset ) ).Length - 1 )
             {
                 m_modulePresetState = 0;
             }
@@ -626,122 +628,108 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
                 m_modulePresetState++;
             }
 
-            SetPreset(m_modulePresetState);
+            SetPreset( m_modulePresetState );
         }
 
-        public void SetPreset(ModulePreset modulePreset)
+        public void SetPreset( ModulePreset modulePreset )
         {
-            SetActive(true);
-            
             m_modulePresetState = modulePreset;
 
-            switch (m_modulePresetState)
+            switch( m_modulePresetState )
             {
                 case ModulePreset.FPS_BASIC:
-                    m_fpsManager.SetState(ModuleState.BASIC);
-                    m_ramManager.SetState(ModuleState.OFF);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.BASIC );
+                    m_ramManager.SetState( ModuleState.OFF );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_TEXT:
-                    m_fpsManager.SetState(ModuleState.TEXT);
-                    m_ramManager.SetState(ModuleState.OFF);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.TEXT );
+                    m_ramManager.SetState( ModuleState.OFF );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.OFF);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.OFF );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_TEXT_RAM_TEXT:
-                    m_fpsManager.SetState(ModuleState.TEXT);
-                    m_ramManager.SetState(ModuleState.TEXT);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.TEXT );
+                    m_ramManager.SetState( ModuleState.TEXT );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_TEXT:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.TEXT);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.TEXT );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_FULL:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.FULL);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.FULL );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_TEXT_RAM_TEXT_AUDIO_TEXT:
-                    m_fpsManager.SetState(ModuleState.TEXT);
-                    m_ramManager.SetState(ModuleState.TEXT);
-                    m_audioManager.SetState(ModuleState.TEXT);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.TEXT );
+                    m_ramManager.SetState( ModuleState.TEXT );
+                    m_audioManager.SetState( ModuleState.TEXT );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_TEXT_AUDIO_TEXT:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.TEXT);
-                    m_audioManager.SetState(ModuleState.TEXT);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.TEXT );
+                    m_audioManager.SetState( ModuleState.TEXT );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_FULL_AUDIO_TEXT:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.FULL);
-                    m_audioManager.SetState(ModuleState.TEXT);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.FULL );
+                    m_audioManager.SetState( ModuleState.TEXT );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_FULL_AUDIO_FULL:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.FULL);
-                    m_audioManager.SetState(ModuleState.FULL);
-                    m_advancedData.SetState(ModuleState.OFF);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.FULL );
+                    m_audioManager.SetState( ModuleState.FULL );
+                    m_advancedData.SetState( ModuleState.OFF );
                     break;
 
                 case ModulePreset.FPS_FULL_RAM_FULL_AUDIO_FULL_ADVANCED_FULL:
-                    m_fpsManager.SetState(ModuleState.FULL);
-                    m_ramManager.SetState(ModuleState.FULL);
-                    m_audioManager.SetState(ModuleState.FULL);
-                    m_advancedData.SetState(ModuleState.FULL);
+                    m_fpsManager.SetState( ModuleState.FULL );
+                    m_ramManager.SetState( ModuleState.FULL );
+                    m_audioManager.SetState( ModuleState.FULL );
+                    m_advancedData.SetState( ModuleState.FULL );
                     break;
 
                 case ModulePreset.FPS_BASIC_ADVANCED_FULL:
-                    m_fpsManager.SetState(ModuleState.BASIC);
-                    m_ramManager.SetState(ModuleState.OFF);
-                    m_audioManager.SetState(ModuleState.OFF);
-                    m_advancedData.SetState(ModuleState.FULL);
+                    m_fpsManager.SetState( ModuleState.BASIC );
+                    m_ramManager.SetState( ModuleState.OFF );
+                    m_audioManager.SetState( ModuleState.OFF );
+                    m_advancedData.SetState( ModuleState.FULL );
                     break;
 
                 default:
-                    Debug.LogWarning("[GraphyManager]::SetPreset - Tried to set a preset that is not supported.");
+                    Debug.LogWarning( "[GraphyManager]::SetPreset - Tried to set a preset that is not supported." );
                     break;
-            }
-        }
-
-        public void SetActive(bool active)
-        {
-            if (active)
-            {
-                Enable();
-            }
-            else
-            {
-                Disable();
             }
         }
 
         public void ToggleActive()
         {
-            if (!m_active)
+            if( !m_active )
             {
                 Enable();
             }
@@ -753,29 +741,35 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
 
         public void Enable()
         {
-            if (m_initialized)
+            if( !m_active )
             {
-                m_fpsManager.RestorePreviousState();
-                m_ramManager.RestorePreviousState();
-                m_audioManager.RestorePreviousState();
-                m_advancedData.RestorePreviousState();
+                if( m_initialized )
+                {
+                    m_fpsManager.RestorePreviousState();
+                    m_ramManager.RestorePreviousState();
+                    m_audioManager.RestorePreviousState();
+                    m_advancedData.RestorePreviousState();
 
-                m_active = true;
-            }
-            else
-            {
-                Init();
+                    m_active = true;
+                }
+                else
+                {
+                    Init();
+                }
             }
         }
 
         public void Disable()
         {
-            m_fpsManager.SetState(ModuleState.OFF);
-            m_ramManager.SetState(ModuleState.OFF);
-            m_audioManager.SetState(ModuleState.OFF);
-            m_advancedData.SetState(ModuleState.OFF);
+            if( m_active )
+            {
+                m_fpsManager.SetState( ModuleState.OFF );
+                m_ramManager.SetState( ModuleState.OFF );
+                m_audioManager.SetState( ModuleState.OFF );
+                m_advancedData.SetState( ModuleState.OFF );
 
-            m_active = false;
+                m_active = false;
+            }
         }
 
         #endregion
@@ -784,31 +778,31 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
 
         private void Init()
         {
-            if (m_keepAlive)
+            if( m_keepAlive )
             {
-                DontDestroyOnLoad(transform.root.gameObject);
+                DontDestroyOnLoad( transform.root.gameObject );
             }
 
-            m_fpsMonitor = GetComponentInChildren<G_FpsMonitor>(true);
-            m_ramMonitor = GetComponentInChildren<G_RamMonitor>(true);
-            m_audioMonitor = GetComponentInChildren<G_AudioMonitor>(true);
+            m_fpsMonitor = GetComponentInChildren<G_FpsMonitor>( true );
+            m_ramMonitor = GetComponentInChildren<G_RamMonitor>( true );
+            m_audioMonitor = GetComponentInChildren<G_AudioMonitor>( true );
 
-            m_fpsManager = GetComponentInChildren<G_FpsManager>(true);
-            m_ramManager = GetComponentInChildren<G_RamManager>(true);
-            m_audioManager = GetComponentInChildren<G_AudioManager>(true);
-            m_advancedData = GetComponentInChildren<G_AdvancedData>(true);
+            m_fpsManager = GetComponentInChildren<G_FpsManager>( true );
+            m_ramManager = GetComponentInChildren<G_RamManager>( true );
+            m_audioManager = GetComponentInChildren<G_AudioManager>( true );
+            m_advancedData = GetComponentInChildren<G_AdvancedData>( true );
 
-            m_fpsManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-            m_ramManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-            m_audioManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-            m_advancedData.SetPosition(m_advancedModulePosition, m_advancedModuleOffset);
+            m_fpsManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+            m_ramManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+            m_audioManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+            m_advancedData.SetPosition( m_advancedModulePosition, m_advancedModuleOffset );
 
-            m_fpsManager.SetState(m_fpsModuleState);
-            m_ramManager.SetState(m_ramModuleState);
-            m_audioManager.SetState(m_audioModuleState);
-            m_advancedData.SetState(m_advancedModuleState);
+            m_fpsManager.SetState( m_fpsModuleState );
+            m_ramManager.SetState( m_ramModuleState );
+            m_audioManager.SetState( m_audioModuleState );
+            m_advancedData.SetState( m_advancedModuleState );
 
-            if (!m_enableOnStartup)
+            if( !m_enableOnStartup )
             {
                 ToggleActive();
 
@@ -822,17 +816,17 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
         // AMW
         public void OnValidate()
         {
-            if (m_initialized)
+            if( m_initialized )
             {
-                m_fpsManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-                m_ramManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-                m_audioManager.SetPosition(m_graphModulePosition, m_graphModuleOffset);
-                m_advancedData.SetPosition(m_advancedModulePosition, m_advancedModuleOffset);
+                m_fpsManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+                m_ramManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+                m_audioManager.SetPosition( m_graphModulePosition, m_graphModuleOffset );
+                m_advancedData.SetPosition( m_advancedModulePosition, m_advancedModuleOffset );
 
-                m_fpsManager.SetState(m_fpsModuleState);
-                m_ramManager.SetState(m_ramModuleState);
-                m_audioManager.SetState(m_audioModuleState);
-                m_advancedData.SetState(m_advancedModuleState);
+                m_fpsManager.SetState( m_fpsModuleState );
+                m_ramManager.SetState( m_ramModuleState );
+                m_audioManager.SetState( m_audioModuleState );
+                m_advancedData.SetState( m_advancedModuleState );
             }
         }
 
@@ -921,7 +915,7 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             {
                 if (m_toggleModeCtrl && m_toggleModeAlt)
                 {
-                    if (CheckFor3KeyPress(m_toggleModeKeyCode, KeyCode.LeftControl, KeyCode.LeftAlt)
+                    if (   CheckFor3KeyPress(m_toggleModeKeyCode, KeyCode.LeftControl, KeyCode.LeftAlt)
                         || CheckFor3KeyPress(m_toggleModeKeyCode, KeyCode.RightControl, KeyCode.LeftAlt)
                         || CheckFor3KeyPress(m_toggleModeKeyCode, KeyCode.RightControl, KeyCode.RightAlt)
                         || CheckFor3KeyPress(m_toggleModeKeyCode, KeyCode.LeftControl, KeyCode.RightAlt))
@@ -931,16 +925,16 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
                 }
                 else if (m_toggleModeCtrl)
                 {
-                    if (CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.LeftControl)
-                        || CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.RightControl))
+                    if (    CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.LeftControl)
+                        ||  CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.RightControl))
                     {
                         ToggleModes();
                     }
                 }
                 else if (m_toggleModeAlt)
                 {
-                    if (CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.LeftAlt)
-                        || CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.RightAlt))
+                    if (    CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.LeftAlt)
+                        ||  CheckFor2KeyPress(m_toggleModeKeyCode, KeyCode.RightAlt))
                     {
                         ToggleModes();
                     }
@@ -959,27 +953,27 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
             {
                 if (m_toggleActiveCtrl && m_toggleActiveAlt)
                 {
-                    if (CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl, KeyCode.LeftAlt)
-                        || CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl, KeyCode.LeftAlt)
-                        || CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl, KeyCode.RightAlt)
-                        || CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl, KeyCode.RightAlt))
+                    if (    CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl, KeyCode.LeftAlt)
+                        ||  CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl, KeyCode.LeftAlt)
+                        ||  CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl, KeyCode.RightAlt)
+                        ||  CheckFor3KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl, KeyCode.RightAlt))
                     {
                         ToggleActive();
                     }
                 }
-
+                
                 else if (m_toggleActiveCtrl)
                 {
-                    if (CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl)
-                        || CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl))
+                    if (    CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.LeftControl)
+                        ||  CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.RightControl))
                     {
                         ToggleActive();
                     }
                 }
                 else if (m_toggleActiveAlt)
                 {
-                    if (CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.LeftAlt)
-                        || CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.RightAlt))
+                    if (    CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.LeftAlt)
+                        ||  CheckFor2KeyPress(m_toggleActiveKeyCode, KeyCode.RightAlt))
                     {
                         ToggleActive();
                     }
@@ -1046,14 +1040,14 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
         private bool CheckFor2KeyPress(KeyCode key1, KeyCode key2)
         {
             return Input.GetKeyDown(key1) && Input.GetKey(key2)
-                   || Input.GetKeyDown(key2) && Input.GetKey(key1);
+                || Input.GetKeyDown(key2) && Input.GetKey(key1);
         }
 
         private bool CheckFor3KeyPress(KeyCode key1, KeyCode key2, KeyCode key3)
         {
             return Input.GetKeyDown(key1) && Input.GetKey(key2) && Input.GetKey(key3)
-                   || Input.GetKeyDown(key2) && Input.GetKey(key1) && Input.GetKey(key3)
-                   || Input.GetKeyDown(key3) && Input.GetKey(key1) && Input.GetKey(key2);
+                || Input.GetKeyDown(key2) && Input.GetKey(key1) && Input.GetKey(key3)
+                || Input.GetKeyDown(key3) && Input.GetKey(key1) && Input.GetKey(key2);
         }
 #endif
         private void UpdateAllParameters()

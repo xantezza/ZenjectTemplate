@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util
+namespace Tayx.Graphy.Utils
 {
     /// <summary>
     /// Be aware this will not prevent a non singleton constructor

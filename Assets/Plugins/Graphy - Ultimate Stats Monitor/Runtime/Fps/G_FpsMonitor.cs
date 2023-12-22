@@ -14,7 +14,7 @@
 using System;
 using UnityEngine;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps
+namespace Tayx.Graphy.Fps
 {
     public class G_FpsMonitor : MonoBehaviour
     {

@@ -11,11 +11,11 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
 using UnityEngine.UI;
+using Tayx.Graphy.Utils.NumString;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Audio
+namespace Tayx.Graphy.Audio
 {
     public class G_AudioText : MonoBehaviour
     {

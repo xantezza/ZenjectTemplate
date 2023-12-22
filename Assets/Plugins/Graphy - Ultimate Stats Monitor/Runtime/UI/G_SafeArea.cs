@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI
+namespace Graphy.Runtime.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public sealed class G_SafeArea : MonoBehaviour

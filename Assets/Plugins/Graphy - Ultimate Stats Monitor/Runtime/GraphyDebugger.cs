@@ -12,17 +12,19 @@
  * -------------------------------------*/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Audio;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Fps;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Ram;
-using Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util;
 using UnityEngine;
 using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime
+using System.Collections.Generic;
+using System.Linq;
+
+using Tayx.Graphy.Audio;
+using Tayx.Graphy.Fps;
+using Tayx.Graphy.Ram;
+using Tayx.Graphy.Utils;
+
+namespace Tayx.Graphy
 {
     /// <summary>
     /// Main class to access the Graphy Debugger API.

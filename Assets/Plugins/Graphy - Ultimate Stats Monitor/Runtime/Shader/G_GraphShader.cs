@@ -14,7 +14,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Shader
+namespace Tayx.Graphy
 {
     /// <summary>
     /// This class communicates directly with the shader to draw the graphs. Performance here is very important
@@ -42,17 +42,17 @@ namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Shader
         public Color CautionColor = Color.white;
         public Color CriticalColor = Color.white;
 
-        private static readonly int AveragePropertyId = UnityEngine.Shader.PropertyToID( "Average" );
+        private static readonly int AveragePropertyId = Shader.PropertyToID( "Average" );
 
-        private static readonly int GoodThresholdPropertyId = UnityEngine.Shader.PropertyToID( "_GoodThreshold" );
-        private static readonly int CautionThresholdPropertyId = UnityEngine.Shader.PropertyToID( "_CautionThreshold" );
+        private static readonly int GoodThresholdPropertyId = Shader.PropertyToID( "_GoodThreshold" );
+        private static readonly int CautionThresholdPropertyId = Shader.PropertyToID( "_CautionThreshold" );
         
-        private static readonly int GoodColorPropertyId = UnityEngine.Shader.PropertyToID( "_GoodColor" );
-        private static readonly int CautionColorPropertyId = UnityEngine.Shader.PropertyToID( "_CautionColor" );
-        private static readonly int CriticalColorPropertyId = UnityEngine.Shader.PropertyToID( "_CriticalColor" );
+        private static readonly int GoodColorPropertyId = Shader.PropertyToID( "_GoodColor" );
+        private static readonly int CautionColorPropertyId = Shader.PropertyToID( "_CautionColor" );
+        private static readonly int CriticalColorPropertyId = Shader.PropertyToID( "_CriticalColor" );
         
-        private static readonly int GraphValues = UnityEngine.Shader.PropertyToID( "GraphValues" );
-        private static readonly int GraphValuesLength = UnityEngine.Shader.PropertyToID( "GraphValues_Length" );
+        private static readonly int GraphValues = Shader.PropertyToID( "GraphValues" );
+        private static readonly int GraphValuesLength = Shader.PropertyToID( "GraphValues_Length" );
 
         #endregion
 

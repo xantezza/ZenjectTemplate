@@ -13,7 +13,7 @@
 
 using UnityEngine;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.UI
+namespace Tayx.Graphy.UI
 {
     public interface IMovable
     {

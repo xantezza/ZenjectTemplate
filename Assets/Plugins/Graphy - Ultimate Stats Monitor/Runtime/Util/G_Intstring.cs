@@ -13,7 +13,7 @@
 
 using UnityEngine;
 
-namespace Plugins.Graphy___Ultimate_Stats_Monitor.Runtime.Util
+namespace Tayx.Graphy.Utils.NumString
 {
     public static class G_IntString
     {
