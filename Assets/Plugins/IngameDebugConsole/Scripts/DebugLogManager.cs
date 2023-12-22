@@ -973,7 +973,7 @@ namespace IngameDebugConsole
 		// Command field input is changed, check if command is submitted
 		private char OnValidateCommand( string text, int charIndex, char addedChar )
 		{
-			if( addedChar == '\t' ) // Autocomplete attempt
+			if( addedChar == '\t' || addedChar == ',') // Autocomplete attempt
 			{
 				if( !string.IsNullOrEmpty( text ) )
 				{
