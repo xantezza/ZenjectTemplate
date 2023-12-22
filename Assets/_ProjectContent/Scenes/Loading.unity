@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 291411756}
-  - component: {fileID: 291411755}
+  - component: {fileID: 291411757}
   m_Layer: 0
   m_Name: EntryPointLoader
   m_TagString: Untagged
@@ -140,18 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &291411755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291411754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a1dbc0ca9a542d3aef039124915736c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &291411756
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +155,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &291411757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291411754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c50838575c1475db8f35768163e30ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302051061
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 302051062}
   - component: {fileID: 302051064}
   - component: {fileID: 302051063}
-  - component: {fileID: 302051065}
+  - component: {fileID: 302051066}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -243,7 +243,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302051061}
   m_CullTransparentMesh: 1
---- !u!114 &302051065
+--- !u!114 &302051066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,13 +252,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 302051061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa1b0f4110106f14fab1451ccc5f01e1, type: 3}
+  m_Script: {fileID: 11500000, guid: f60252680783440e877cb58cf1d0a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   randomizeSpeed: 0
-  _degreesPerFrame: -720
+  _degreesPerFrame: 360
   randomizeAxis: 1
-  _axis: {x: 0, y: 0, z: 1}
+  _axis: {x: 0, y: 0, z: 0}
 --- !u!1 &536045316
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 536045316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab24f415a3f41d7a6581a78cfa1f32a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4398476d7ac64c9fb3f7d37ed1a49eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 536045318}

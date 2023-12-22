@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace Infrastructure.Providers.DefaultConfigProvider
 {
     public interface IDefaultConfigProvider
     {
-        public JToken CachedConfig { get; }
+        public IDictionary<string, JToken> CachedConfig { get; }
     }
 }

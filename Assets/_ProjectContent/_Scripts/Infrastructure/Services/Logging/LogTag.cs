@@ -4,6 +4,7 @@
     {
         GameLoopStateMachine,
         RemoteSettings,
+        Analytics,
         SceneLoader,
         UI,
         SaveService

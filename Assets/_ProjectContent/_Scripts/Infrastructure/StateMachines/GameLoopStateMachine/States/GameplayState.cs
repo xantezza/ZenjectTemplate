@@ -27,7 +27,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         private void OnSceneUnloaded(Scene _)
         {
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
-            _saveService.StoreAllSaveData(false);
+            _saveService.StoreSaveFile(false);
         }
     }
 }

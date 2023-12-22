@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff239c7787094c748a62e0845ee8ddc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e8b72cafb88422f91d08150666e15aa, type: 3}
   m_Name: ConfigUtility
   m_EditorClassIdentifier: 
   type: 0
-  _serialized: "{\r\n  \"IsDebugEnabled\": false,\r\n  \"FakeTimeBeforeLoad\": 5.0,\r\n 
-    \"FakeMinimalLoadTime\": 0.0,\r\n  \"FakeTimeAfterLoad\": 0.5\r\n}"
+  _serialized: "infrastructure_config\n{\r\n  \"FakeTimeBeforeLoad\": 0.0,\r\n  \"FakeMinimalLoadTime\":
+    0.2,\r\n  \"FakeTimeAfterLoad\": 0.2\r\n}"

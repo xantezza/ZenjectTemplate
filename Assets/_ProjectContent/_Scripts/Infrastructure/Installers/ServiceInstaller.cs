@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.CoroutineRunner;
+﻿using Infrastructure.Services.Analytics;
+using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
@@ -13,6 +14,7 @@ namespace Infrastructure.Installers
             BindConditionalLoggingService();
             BindCoroutineRunnerService();
             BindSceneLoaderService();
+            BindAnalyticsService();
             BindSaveService();
         }
 
@@ -29,6 +31,12 @@ namespace Infrastructure.Installers
         private void BindSceneLoaderService()
         {
             Container.BindInterfacesTo<SceneLoaderService>().FromNew().AsSingle();
+        }
+
+        private void BindAnalyticsService()
+        {
+            Container.Bind<IAnalyticsLogService>().To<FirebaseAnalyticsLogService>().FromNew().AsSingle();
+            Container.Bind<Analytics>().To<Analytics>().FromNew().AsSingle();
         }
 
         private void BindSaveService()

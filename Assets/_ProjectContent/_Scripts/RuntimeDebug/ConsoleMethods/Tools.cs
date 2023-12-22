@@ -3,16 +3,16 @@ using Tayx.Graphy;
 
 namespace RuntimeDebug.ConsoleMethods
 {
-    public static class Tools
+    public class Tools
     {
-        [ConsoleMethod("graphy.toggle-active", "toggles graphy state"), UnityEngine.Scripting.Preserve]
-        public static void ToggleGraphyActive()
+        [ConsoleMethod("graphy.toggle-a", "toggle active"), UnityEngine.Scripting.Preserve]
+        public static void GraphyToggleActive()
         {
             GraphyManager.Instance.ToggleActive();
         }
 
-        [ConsoleMethod("graphy.toggle-mode", "toggles graphy view mode"), UnityEngine.Scripting.Preserve]
-        public static void ToggleGraphyMode()
+        [ConsoleMethod("graphy.toggle-m", "toggle mode"), UnityEngine.Scripting.Preserve]
+        public static void GraphyToggleMode()
         {
             GraphyManager.Instance.ToggleModes();
         }

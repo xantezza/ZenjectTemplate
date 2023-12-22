@@ -2,7 +2,7 @@
 {
     public interface IDataSaveable<TSave>
     {
-        string SaveId { get; }
+        string SaveId();
 
         TSave SaveData { get; set; }
         

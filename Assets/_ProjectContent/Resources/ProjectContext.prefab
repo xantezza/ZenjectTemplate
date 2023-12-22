@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4895855354268550096}
-  - component: {fileID: 7447525169315896610}
+  - component: {fileID: 9191255481482360321}
   m_Layer: 0
   m_Name: ServiceInstaller
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6994547916840969886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7447525169315896610
+--- !u!114 &9191255481482360321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1936359611953218155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d8b2aa0e346470aa0db0f396a7298c1, type: 3}
+  m_Script: {fileID: 11500000, guid: d11656b466394910acda24a6a4d3b079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4417802573853759439
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5092476381204130082}
-  - component: {fileID: 3888376314131536850}
+  - component: {fileID: 6512837330124944504}
   m_Layer: 0
   m_Name: AssetReferenceProvider
   m_TagString: Untagged
@@ -76,7 +76,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7538335589412189997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3888376314131536850
+--- !u!114 &6512837330124944504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4417802573853759439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c80fbafec24906b0938fad9024613e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8abd5e53b6a344caa448aeda32f2b335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <DebugRootAssetReference>k__BackingField:
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 7447525169315896610}
-  - {fileID: 1525261815681865972}
+  - {fileID: 9191255481482360321}
+  - {fileID: 6306480746035815621}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7538335589412189997}
-  - component: {fileID: 1525261815681865972}
+  - component: {fileID: 6306480746035815621}
   m_Layer: 0
   m_Name: ProviderInstaller
   m_TagString: Untagged
@@ -192,7 +192,7 @@ Transform:
   - {fileID: 3127834018754900462}
   m_Father: {fileID: 6994547916840969886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1525261815681865972
+--- !u!114 &6306480746035815621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,11 +201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5524281937185170949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b61b92779da47ed83725f9574eb1ae5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e05f611bfc041f5882470b999085bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _assetReferenceProvider: {fileID: 3888376314131536850}
-  cachedDefaultConfigProvider: {fileID: 6074794361794626428}
+  _assetReferenceProvider: {fileID: 6512837330124944504}
+  cachedDefaultConfigProvider: {fileID: 7569658092093155845}
 --- !u!1 &6281541942477739200
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6441658032917134241}
-  - component: {fileID: 3721753141592701987}
+  - component: {fileID: 5711891090867938816}
   m_Layer: 31
   m_Name: LogCatcher
   m_TagString: Untagged
@@ -238,7 +238,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6994547916840969886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3721753141592701987
+--- !u!114 &5711891090867938816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6281541942477739200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cfe15500c38147dcbf3f7baae211ab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f440f3df7324803b6b960f57aaf0705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8257824420714989116
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3127834018754900462}
-  - component: {fileID: 6074794361794626428}
+  - component: {fileID: 7569658092093155845}
   m_Layer: 0
   m_Name: DefaultConfigProvider
   m_TagString: Untagged
@@ -282,7 +282,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7538335589412189997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6074794361794626428
+--- !u!114 &7569658092093155845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,12 +291,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8257824420714989116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe57df121d364350bfda14b059d55219, type: 3}
+  m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 16.12.2023 16:25:27
-  _currentDate: 16.12.2023 16:27:22
-  _minutesFromLastFetch: -1
-  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
-    false,\r\n    \"FakeTimeBeforeLoad\": 0.0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   
-    \"FakeTimeAfterLoad\": 0.5\r\n  }\r\n}"
+  _lastFetchDate: 23.12.2023 1:04:49
+  _currentDate: 23.12.2023 1:04:54
+  _minutesFromLastFetch: 0
+  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeTimeBeforeLoad\":
+    0,\r\n    \"FakeMinimalLoadTime\": 0.2,\r\n    \"FakeTimeAfterLoad\": 0.2\r\n 
+    }\r\n}"

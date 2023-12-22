@@ -1,7 +1,13 @@
-﻿namespace Infrastructure.StateMachines.StateMachine
+﻿using Zenject;
+
+namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class BaseState
     {
+        public BaseState()
+        {
+            
+        }
         public abstract string StateName { get; }
 
         /// <summary>

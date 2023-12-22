@@ -15,8 +15,8 @@ namespace Gameplay
             public float PassedTime;
         }
 
-        public string SaveId => $"{SaveKeys.InGameTime}_{gameObject.name}";
-        
+        public string SaveId() => SaveKeys.InGameTime;
+
         public Save SaveData { get; set; }
         public Save Default => new Save();
 
@@ -34,7 +34,7 @@ namespace Gameplay
         {
             _saveService = saveService;
         }
-        
+
         private void OnEnable()
         {
             _saveService.Load(this);
@@ -45,7 +45,7 @@ namespace Gameplay
         private void Update()
         {
             SaveData.PassedTime += Time.unscaledDeltaTime;
-            
+
             _timeText.SetText(SaveData.PassedTime.ToString("N2"));
         }
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Editor.Utils
 {
+    [CreateAssetMenu]
     public class ConfigUtility : ScriptableObject
     {
         private enum Type
@@ -14,6 +15,7 @@ namespace Editor.Utils
         }
 
         [SerializeField] private Type type;
+
 
         [ShowIf(nameof(condition)), SerializeField] private InfrastructureConfig _infrastructureConfig;
         private bool condition => type == Type.Infrastructure;
@@ -27,7 +29,7 @@ namespace Editor.Utils
             switch (type)
             {
                 case Type.Infrastructure:
-                    _serialized = JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented);
+                    _serialized = $"{ConfigType.InfrastructureConfig}\n{JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented)}";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

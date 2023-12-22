@@ -18,9 +18,9 @@ namespace Infrastructure.Services.Saving
         protected string _cachedSaveFileName;
         protected abstract string _defaultFileName { get; }
 
-        public abstract void LoadAllData(bool useDefaultFileName = true, string fileName = null);
+        public abstract void LoadSaveFile(bool useDefaultFileName = true, string fileName = null);
 
-        public abstract void StoreAllSaveData(bool useDefaultFileName = true, string fileName = null);
+        public abstract void StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
 
         [Inject]
         protected BaseSaveService(IConditionalLoggingService loggingService)
@@ -41,13 +41,13 @@ namespace Infrastructure.Services.Saving
                 if (SceneManager.GetActiveScene().buildIndex != (int) SceneNames.Gameplay) return;
                 Application.quitting -= OnApplicationQuitting;
                 var hasCachedFileName = _cachedSaveFileName != null;
-                StoreAllSaveData(hasCachedFileName, _cachedSaveFileName);
+                StoreSaveFile(hasCachedFileName, _cachedSaveFileName);
             }
         }
 
         public void Load<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class
         {
-            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveId, out var value) && value is TSave save)
+            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveId(), out var value) && value is TSave save)
             {
                 dataSaveable.SaveData = save;
             }
@@ -59,13 +59,13 @@ namespace Infrastructure.Services.Saving
 
         public void AddToSave<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class
         {
-            if (_readyToSaveDictionary.ContainsKey(dataSaveable.SaveId))
+            if (_readyToSaveDictionary.ContainsKey(dataSaveable.SaveId()))
             {
-                _readyToSaveDictionary[dataSaveable.SaveId] = dataSaveable.SaveData;
+                _readyToSaveDictionary[dataSaveable.SaveId()] = dataSaveable.SaveData;
                 return;
             }
 
-            _readyToSaveDictionary.Add(dataSaveable.SaveId, dataSaveable.SaveData);
+            _readyToSaveDictionary.Add(dataSaveable.SaveId(), dataSaveable.SaveData);
         }
     }
 }

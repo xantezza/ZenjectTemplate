@@ -2,16 +2,15 @@
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
-using JetBrains.Annotations;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine
 {
-    [UsedImplicitly]
     public class GameLoopStateMachine : BaseStateMachine
     {
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
+        [Inject]
         public GameLoopStateMachine(IInstantiator instantiator, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             var stateMachine = this;

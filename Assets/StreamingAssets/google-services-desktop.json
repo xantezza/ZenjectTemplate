@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1026080937705",
+    "project_id": "zenjecttemplate",
+    "firebase_url": "https://empty-project-95e84.firebaseio.com",
+    "storage_bucket": "zenjecttemplate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026080937705:android:3ef8da031e1e3c4af14278",
+        "android_client_info": {
+          "package_name": "com.xantezza.zenjectTemplate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjFXOsQwoQJ9iy0pBVChM0F1MmphPppT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

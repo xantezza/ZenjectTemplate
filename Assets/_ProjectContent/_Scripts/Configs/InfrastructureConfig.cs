@@ -6,8 +6,8 @@ namespace Configs
     [Serializable]
     public class InfrastructureConfig : IConfig
     {
-        [JsonProperty] public readonly float FakeTimeBeforeLoad = 5f;
-        [JsonProperty] public readonly float FakeMinimalLoadTime;
-        [JsonProperty] public readonly float FakeTimeAfterLoad = 0.5f;
+        [JsonProperty] public readonly float FakeTimeBeforeLoad = 0;
+        [JsonProperty] public readonly float FakeMinimalLoadTime = 0.2f;
+        [JsonProperty] public readonly float FakeTimeAfterLoad = 0.2f;
     }
 }

@@ -24,13 +24,13 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         public void Enter()
         {
-            _saveService.LoadAllData();
+            _saveService.LoadSaveFile();
             ToNextState(SceneNames.Menu);
         }
 
         public void Enter(string saveName)
         {
-            _saveService.LoadAllData(false, saveName);
+            _saveService.LoadSaveFile(false, saveName);
             ToNextState(SceneNames.Gameplay);
         }
 

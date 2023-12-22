@@ -15,7 +15,7 @@ namespace Infrastructure.Services.Saving
         {
         }
 
-        public override void LoadAllData(bool useDefaultFileName = true, string fileName = null)
+        public override void LoadSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName) fileName = _defaultFileName;
 
@@ -36,7 +36,7 @@ namespace Infrastructure.Services.Saving
             _loggingService.Log("Game data loaded!", LogTag.SaveService);
         }
 
-        public override void StoreAllSaveData(bool useDefaultFileName = true, string fileName = null)
+        public override void StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName || _cachedSaveFileName == null) fileName = _defaultFileName;
             else if (fileName == null && _cachedSaveFileName != null) fileName = _cachedSaveFileName;
