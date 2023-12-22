@@ -2,6 +2,9 @@
 
 namespace IngameDebugConsole
 {
+	/// <summary>
+	/// whitespaces and ',' in command name is prohibited
+	/// </summary>
 	[AttributeUsage( AttributeTargets.Method, Inherited = false, AllowMultiple = true )]
 	public class ConsoleMethodAttribute : Attribute
 	{
