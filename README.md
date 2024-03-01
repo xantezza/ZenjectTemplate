@@ -22,3 +22,5 @@ If adding *.unitypackage to existing project don't forget to add dependencies to
     "com.unity.ide.rider": "3.0.27",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "2.0.0",
+
+Also if you want to enable DEV functionality you must add DEV to PlayerSettings/Other Settings/Scripting Define Symbols and rebuild addressable groups
