@@ -44,7 +44,7 @@ namespace Editor.EditorWindows.Windows
                 if (GUILayout.Button(sceneName))
                 {
                     AssetDatabase.SaveAssets();
-                    EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+                    if (SceneManager.GetActiveScene().buildIndex != -1) EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
                     EditorSceneManager.OpenScene(sceneName);
                 }
             }

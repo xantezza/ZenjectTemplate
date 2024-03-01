@@ -13,7 +13,7 @@ Unity project template with implemented functionality necessary for almost any p
 
 [![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/b2ac04e7-be44-480a-94e0-8ca7eb11d553)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
-If adding *.unitypackage to existing project don't forget to add dependencies to <ProjectName>/Packages/manifest.json
+If adding *.unitypackage to existing project don't forget to add dependencies to <ProjectName>/Packages/manifest.json and add scenes in Assets/Scenes/ to build with indexes like a number in their names
 
     "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",

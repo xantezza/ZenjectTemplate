@@ -11,7 +11,7 @@ namespace Editor.Utils.Static
         [MenuItem("Assets/Project/To Entry Point", false, 7)]
         private static void ToEntryPoint()
         {
-            EditorSceneManager.OpenScene(SceneUtility.GetScenePathByBuildIndex(0));
+            EditorSceneManager.OpenScene($"Assets/Scenes/0_EntryPoint.unity");
         }
 
         [MenuItem("Assets/Project/Select Project Context", false, 5)]
