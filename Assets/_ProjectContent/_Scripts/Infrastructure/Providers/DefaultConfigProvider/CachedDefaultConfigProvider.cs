@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using AYellowpaper.SerializedCollections;
 using Firebase.Extensions;
 using Firebase.RemoteConfig;
 using JetBrains.Annotations;
@@ -76,6 +75,7 @@ namespace Infrastructure.Providers.DefaultConfigProvider
                 _cachedConfigString = JsonConvert.SerializeObject(cache, Formatting.Indented);
                 _minutesFromLastFetch = 0;
                 _lastFetchDate = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                UnityEditor.EditorUtility.SetDirty(this);
             }
         }
 #endif
