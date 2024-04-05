@@ -7,14 +7,25 @@ using Zenject;
 
 namespace Infrastructure.Services.Saving
 {
+    // used in dev purposes
     public class JsonSaveService : BaseSaveService
     {
-        protected override string _defaultFileName => "jsonDefaultSave";
+        protected virtual string _defaultFileName => "jsonDefaultSave";
 
         public JsonSaveService(IConditionalLoggingService loggingService) : base(loggingService)
         {
         }
 
+        protected override void Load<TSave>(IDataSaveable<TSave> dataSaveable)
+        {
+            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveId, out var value))
+            {
+                dataSaveable.SaveData = JsonConvert.DeserializeObject<TSave>(JsonConvert.SerializeObject(value));
+            }
+
+            dataSaveable.SaveData ??= new TSave();
+        }
+        
         public override void LoadSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName) fileName = _defaultFileName;

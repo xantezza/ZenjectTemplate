@@ -1,4 +1,4 @@
-﻿using Editor.Utils.Static;
+﻿using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -9,13 +9,6 @@ namespace Editor.EditorWindows.Windows
     public class SceneSelector : EditorWindow
     {
         private string[] _scenes = new string[1];
-
-        private void OnValidate()
-        {
-            var sceneCount = SceneManager.sceneCountInBuildSettings;
-
-            if (sceneCount == _scenes.Length) UpdateScenes(this);
-        }
 
         [MenuItem("Window/Scene Selector", false, 10)]
         public static void OpenWindow()
@@ -32,16 +25,17 @@ namespace Editor.EditorWindows.Windows
 
         private void OnGUI()
         {
-            if (GUILayout.Button("Update list of scenes"))
+            if (GUILayout.Button("Update list of scenes", new GUIStyle(GUI.skin.button) {alignment = TextAnchor.MiddleLeft}))
             {
                 UpdateScenes(this);
             }
 
-            GUILayout.Space(50f);
+            GUILayout.Space(25f);
 
-            foreach (var sceneName in _scenes)
+            for (var index = 0; index < _scenes.Length; index++)
             {
-                if (GUILayout.Button(sceneName))
+                var sceneName = _scenes[index];
+                if (GUILayout.Button($"{index + 1}: {Path.GetFileName(sceneName).Replace(".unity", "")}", new GUIStyle(GUI.skin.button) {alignment = TextAnchor.MiddleLeft}))
                 {
                     AssetDatabase.SaveAssets();
                     if (SceneManager.GetActiveScene().buildIndex != -1) EditorSceneManager.SaveScene(SceneManager.GetActiveScene());

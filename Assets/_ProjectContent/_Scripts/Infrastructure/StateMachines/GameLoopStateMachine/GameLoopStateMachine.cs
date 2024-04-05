@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Infrastructure.Services.Logging;
+﻿using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using Zenject;
@@ -11,20 +10,17 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
         [Inject]
-        public GameLoopStateMachine(IInstantiator instantiator, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public GameLoopStateMachine(StatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
-            var stateMachine = this;
-            var extraArgs = new List<object> {stateMachine};
-
-            RegisterState(instantiator.Instantiate<EntryPointState>(extraArgs));
-            RegisterState(instantiator.Instantiate<InitializeDefaultConfigState>(extraArgs));
-            RegisterState(instantiator.Instantiate<LoadSceneState>(extraArgs));
-            RegisterState(instantiator.Instantiate<InitializeRemoteConfigState>(extraArgs));
-            RegisterState(instantiator.Instantiate<InitializeDebugState>(extraArgs));
-            RegisterState(instantiator.Instantiate<InitializeAnalyticsState>(extraArgs));
-            RegisterState(instantiator.Instantiate<InitializeSaveServiceState>(extraArgs));
-            RegisterState(instantiator.Instantiate<MenuState>(extraArgs));
-            RegisterState(instantiator.Instantiate<GameplayState>(extraArgs));
+            RegisterState(statesFactory.Create<EntryPointState>(this));
+            RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
+            RegisterState(statesFactory.Create<LoadSceneState>(this));
+            RegisterState(statesFactory.Create<InitializeRemoteConfigState>(this));
+            RegisterState(statesFactory.Create<InitializeDebugState>(this));
+            RegisterState(statesFactory.Create<InitializeAnalyticsState>(this));
+            RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
+            RegisterState(statesFactory.Create<MenuState>(this));
+            RegisterState(statesFactory.Create<GameplayState>(this));
         }
     }
 }

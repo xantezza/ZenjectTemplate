@@ -1,9 +1,10 @@
-﻿using Infrastructure.StateMachines.StateMachine;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine
 {
-    public abstract class BaseGameLoopState : BaseState
+    public abstract class BaseGameLoopState : IState
     {
         protected readonly GameLoopStateMachine _gameLoopStateMachine;
 
@@ -11,6 +12,11 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected BaseGameLoopState(GameLoopStateMachine stateMachine)
         {
             _gameLoopStateMachine = stateMachine;
+        }
+
+        public virtual UniTask Exit()
+        {
+            return default;
         }
     }
 }

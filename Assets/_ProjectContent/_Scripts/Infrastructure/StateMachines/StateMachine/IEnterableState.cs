@@ -1,7 +1,9 @@
-﻿namespace Infrastructure.StateMachines.StateMachine
+﻿using Cysharp.Threading.Tasks;
+
+namespace Infrastructure.StateMachines.StateMachine
 {
     public interface IEnterableState
     {
-        void Enter();
+        UniTask Enter();
     }
 }

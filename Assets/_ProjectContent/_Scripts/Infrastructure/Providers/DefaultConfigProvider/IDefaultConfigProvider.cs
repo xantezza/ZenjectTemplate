@@ -5,6 +5,6 @@ namespace Infrastructure.Providers.DefaultConfigProvider
 {
     public interface IDefaultConfigProvider
     {
-        public IDictionary<string, JToken> CachedConfig { get; }
+        public JToken CachedConfig { get; }
     }
 }

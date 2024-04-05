@@ -1,26 +1,17 @@
-Unity project template with implemented functionality necessary for almost any project:
+<span style="font-family:monospace;">
 
-- Ready-To-Grow architecture on Zenject + GameLoopState FSM
-- FireBase Analytics + RemoteConfig + Autocaching
-- Debugging plug-ins to make QA easier
-- Exhaustive logging
-- Json/Binary SaveService
-- EditorWindows and other utilities to improve QOL
-- Addressables
-- UniTasks
+#Project template for Unity with ready-made functionality and technology stack for a quick start
 
-[DEMO](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
+### Architecture on Zenject + GameLoop Finite-State Machine
+- Detailed logging
+- JSON/Binary Save Service
+### UniRX(R3), UniTasks, Addressables, NuGetForUnity
+- Analytics, RemoteConfig (with caching)
+- Debugging tools
+###Editor Windows and other utilities to improve QOL
+
+##[Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
 [![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/b2ac04e7-be44-480a-94e0-8ca7eb11d553)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
-If adding *.unitypackage to existing project don't forget to add dependencies to <ProjectName>/Packages/manifest.json and add scenes in Assets/Scenes/ to build with indexes like a number in their names
-
-    "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-    "com.unity.2d.sprite": "1.0.0",
-    "com.unity.addressables": "1.21.19",
-    "com.unity.ide.rider": "3.0.27",
-    "com.unity.textmeshpro": "3.0.6",
-    "com.unity.ugui": "2.0.0",
-
-Also if you want to enable DEV functionality you must add DEV to PlayerSettings/Other Settings/Scripting Define Symbols and rebuild addressable groups
+</span>

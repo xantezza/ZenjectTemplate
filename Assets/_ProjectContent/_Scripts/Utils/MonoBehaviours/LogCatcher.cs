@@ -7,14 +7,13 @@ namespace Utils.MonoBehaviours
 {
     public class LogCatcher : MonoBehaviour
     {
+#if DEV
         private static bool IsAwakened;
 
         private List<(string, string, LogType)> _logs;
 
-        private void Awake()
+        private void OnEnable()
         {
-#if DEV
-
             if (IsAwakened)
             {
                 Destroy(this);
@@ -28,7 +27,12 @@ namespace Utils.MonoBehaviours
 
             Application.logMessageReceived += CacheLogOnMessageReceived;
             DebugLogManager.OnInit += InGameDebugWindowInitialize;
-#endif
+        }
+
+        private void OnDisable()
+        {
+            Application.logMessageReceived -= CacheLogOnMessageReceived;
+            DebugLogManager.OnInit -= InGameDebugWindowInitialize;
         }
 
         private void InGameDebugWindowInitialize()
@@ -56,5 +60,6 @@ namespace Utils.MonoBehaviours
         {
             DebugLogManager.Instance.ReceivedLog(condition, stacktrace, type);
         }
+#endif
     }
 }

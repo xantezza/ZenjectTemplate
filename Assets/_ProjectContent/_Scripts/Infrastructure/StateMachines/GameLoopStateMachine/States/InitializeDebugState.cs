@@ -14,8 +14,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         private static bool IsInitialized { get; set; }
 
         private readonly AssetReferenceProvider _assetReferenceProvider;
-
-        public override string StateName => nameof(InitializeDebugState);
+        
 
         [Inject]
         public InitializeDebugState(GameLoopStateMachine stateMachine, AssetReferenceProvider assetReferenceProvider) : base(stateMachine)
@@ -28,7 +27,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _gameLoopStateMachine.Enter<InitializeAnalyticsState>();
         }
 
-        public async void Enter()
+        public async UniTask Enter()
         {
             await InitializeDebugRoot();
         }

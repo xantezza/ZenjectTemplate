@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Saving;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.Services.Saving;
 using Infrastructure.StateMachines.StateMachine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -9,8 +10,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
     {
         private readonly ISaveService _saveService;
 
-        public override string StateName => nameof(GameplayState);
-
         [Inject]
         public GameplayState(GameLoopStateMachine gameLoopStateMachine, ISaveService saveService) : base(gameLoopStateMachine)
         {
@@ -18,16 +17,9 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         }
 
         //State changes by GameStateSwitchButton in scene
-        public void Enter()
+        public UniTask Enter()
         {
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
-        }
-
-        private void OnSceneUnloaded(Scene _)
-        {
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
-            _saveService.StoreSaveFile(false);
+            return default;
         }
     }
 }

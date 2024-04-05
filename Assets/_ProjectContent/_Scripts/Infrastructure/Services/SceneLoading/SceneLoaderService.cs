@@ -13,7 +13,7 @@ namespace Infrastructure.Services.SceneLoading
     {
         private readonly ICoroutineRunnerService _coroutineRunner;
         private readonly IConditionalLoggingService _conditionalLoggingService;
-        private int _cachedSceneIndex = 0;
+        private int _cachedSceneIndex;
 
         public SceneLoaderService(ICoroutineRunnerService coroutineRunner, IConditionalLoggingService conditionalLoggingService)
         {
@@ -47,7 +47,7 @@ namespace Infrastructure.Services.SceneLoading
             _conditionalLoggingService.Log($"Loading scene: {SceneUtility.GetScenePathByBuildIndex(nextScene)} with wait {minimalLoadTime}", LogTag.SceneLoader);
 
             var timePassed = 0f;
-            
+
             _cachedSceneIndex = nextScene;
 
             var waitNextScene = SceneManager.LoadSceneAsync(nextScene);

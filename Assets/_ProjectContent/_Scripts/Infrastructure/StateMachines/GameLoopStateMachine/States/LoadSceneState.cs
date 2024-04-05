@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Configs;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.SceneLoading;
@@ -10,7 +11,7 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class LoadSceneState : BaseState, IPayloadedState<Action>, IPayloadedState<SceneNames>, IPayloadedState<SceneNames, Action>
+    public class LoadSceneState : IState, IPayloadedState<Action>, IPayloadedState<SceneNames>, IPayloadedState<SceneNames, Action>
     {
         private const int LoadingSceneNumber = 1;
         public static event Action<float> OnLoadSceneProgressUpdated;
@@ -23,8 +24,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         private SceneNames _cachedSceneToLoadAfterLoadingSceneLoad;
         private Action _cachedCallback;
-
-        public override string StateName => nameof(LoadSceneState);
 
         [Inject]
         public LoadSceneState(
@@ -55,23 +54,26 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
                 _conditionalLoggingService.LogError("Missing logic", LogTag.GameLoopStateMachine);
         }
 
-        public void Enter(Action onLoadingSceneLoad)
+        public UniTask Enter(Action onLoadingSceneLoad)
         {
             _sceneLoaderService.LoadScene(LoadingSceneNumber, onLoadingSceneLoad);
+            return default;
         }
 
-        public void Enter(SceneNames sceneToLoadAfterLoadingSceneLoad)
+        public UniTask Enter(SceneNames sceneToLoadAfterLoadingSceneLoad)
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingSceneLoad;
             _cachedCallback = null;
             _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
+            return default;
         }
 
-        public void Enter(SceneNames payload, Action onPayloadSceneLoad)
+        public UniTask Enter(SceneNames payload, Action onPayloadSceneLoad)
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = payload;
             _cachedCallback = onPayloadSceneLoad;
             _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
+            return default;
         }
 
         private void OnLoadingSceneLoaded()
@@ -105,6 +107,11 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
                 OnLoadSceneProgressUpdated?.Invoke(Mathf.Clamp01(timePassed / _infrastructureConfig.FakeMinimalLoadTime));
                 yield return null;
             }
+        }
+
+        public UniTask Exit()
+        {
+            return default;
         }
     }
 }

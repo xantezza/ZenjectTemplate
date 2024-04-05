@@ -9,19 +9,19 @@ namespace Infrastructure.StateMachines.StateMachine
     {
         private readonly IConditionalLoggingService _conditionalLoggingService;
 
-        private BaseState _activeBaseState;
-        private readonly Dictionary<Type, BaseState> _states;
+        private IState _activeState;
+        private readonly Dictionary<Type, IState> _states;
 
         protected abstract LogTag LogTag { get; }
 
         [Inject]
         protected BaseStateMachine(IConditionalLoggingService conditionalLoggingService)
         {
-            _states = new Dictionary<Type, BaseState>();
+            _states = new Dictionary<Type, IState>();
             _conditionalLoggingService = conditionalLoggingService;
         }
 
-        public void Enter<TState>() where TState : BaseState, IEnterableState
+        public void Enter<TState>() where TState : class, IState, IEnterableState
         {
             var state = ChangeState<TState>();
 
@@ -30,7 +30,7 @@ namespace Infrastructure.StateMachines.StateMachine
             state?.Enter();
         }
 
-        public void Enter<TState, TPayload>(TPayload payload) where TState : BaseState, IPayloadedState<TPayload>
+        public void Enter<TState, TPayload>(TPayload payload) where TState : class, IState, IPayloadedState<TPayload>
         {
             var state = ChangeState<TState>();
 
@@ -39,7 +39,7 @@ namespace Infrastructure.StateMachines.StateMachine
             state?.Enter(payload);
         }
 
-        public void Enter<TState, TPayload, TPayload1>(TPayload payload, TPayload1 payload1) where TState : BaseState, IPayloadedState<TPayload, TPayload1>
+        public void Enter<TState, TPayload, TPayload1>(TPayload payload, TPayload1 payload1) where TState : class, IState, IPayloadedState<TPayload, TPayload1>
         {
             var state = ChangeState<TState>();
 
@@ -48,27 +48,22 @@ namespace Infrastructure.StateMachines.StateMachine
             state?.Enter(payload, payload1);
         }
 
-        protected void RegisterState<TState>(TState state) where TState : BaseState
+        protected void RegisterState<TState>(TState state) where TState : IState
         {
             _states.Add(typeof(TState), state);
         }
 
-        private TState ChangeState<TState>() where TState : BaseState
+        private TState ChangeState<TState>() where TState : class, IState
         {
-#if DEV
-            var stateName = _activeBaseState == null ? "None" : _activeBaseState?.StateName;
-            _conditionalLoggingService.Log($"Exiting state {stateName}", LogTag);
-#endif
-
-            _activeBaseState?.Exit();
+            _activeState?.Exit();
 
             var state = GetState<TState>();
-            _activeBaseState = state;
+            _activeState = state;
 
             return state;
         }
 
-        private TState GetState<TState>() where TState : BaseState
+        private TState GetState<TState>() where TState : class, IState
         {
             return _states[typeof(TState)] as TState;
         }

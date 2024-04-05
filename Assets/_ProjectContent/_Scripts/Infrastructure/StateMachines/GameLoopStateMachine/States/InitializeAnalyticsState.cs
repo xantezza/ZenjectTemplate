@@ -1,7 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using Firebase;
-using Firebase.Analytics;
+﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.StateMachine;
@@ -13,8 +10,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
     {
         private readonly IConditionalLoggingService _conditionalLoggingService;
         private readonly IAnalyticsLogService _analyticsLogService;
-
-        public override string StateName => nameof(InitializeAnalyticsState);
 
         [Inject]
         public InitializeAnalyticsState(
@@ -32,7 +27,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _gameLoopStateMachine.Enter<InitializeSaveServiceState>();
         }
 
-        public async void Enter()
+        public async UniTask Enter()
         {
             await _analyticsLogService.Initialize();
             ToNextState();

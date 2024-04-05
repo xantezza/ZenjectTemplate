@@ -2,10 +2,8 @@
 {
     public interface IDataSaveable<TSave>
     {
-        string SaveId();
+        string SaveId { get; }
 
         TSave SaveData { get; set; }
-        
-        TSave Default { get; }
     }
 }

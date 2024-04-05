@@ -7,7 +7,7 @@ using Zenject;
 namespace Gameplay
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class InGameTimeText : MonoBehaviour, IDataSaveable<InGameTimeText.Save>
+    public class TimePassedLabel : MonoBehaviour, IDataSaveable<TimePassedLabel.Save>
     {
         [Serializable]
         public class Save
@@ -15,10 +15,9 @@ namespace Gameplay
             public float PassedTime;
         }
 
-        public string SaveId() => SaveKeys.InGameTime;
+        public string SaveId => SaveKeys.InGameTime;
 
         public Save SaveData { get; set; }
-        public Save Default => new Save();
 
         [SerializeField] private TextMeshProUGUI _timeText;
 
@@ -33,13 +32,12 @@ namespace Gameplay
         private void Inject(ISaveService saveService)
         {
             _saveService = saveService;
+            _saveService.Process(this);
         }
 
         private void OnEnable()
         {
-            _saveService.Load(this);
-            _saveService.AddToSave(this);
-            _timeText.SetText(SaveData.PassedTime.ToString("N1"));
+            _timeText.SetText(SaveData.PassedTime.ToString("N2"));
         }
 
         private void Update()

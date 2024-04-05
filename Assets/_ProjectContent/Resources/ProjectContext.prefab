@@ -294,9 +294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 01.03.2024 21:48:33
-  _currentDate: 01.03.2024 21:48:33
+  _lastFetchDate: 06.04.2024 1:03:48
+  _currentDate: 06.04.2024 1:04:24
   _minutesFromLastFetch: 0
-  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeTimeBeforeLoad\":
-    0,\r\n    \"FakeMinimalLoadTime\": 0.2,\r\n    \"FakeTimeAfterLoad\": 0.2\r\n 
-    }\r\n}"
+  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
+    false,\r\n    \"FakeTimeBeforeLoad\": 0.0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   
+    \"FakeTimeAfterLoad\": 0.5\r\n  }\r\n}"

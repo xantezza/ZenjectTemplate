@@ -1,12 +1,11 @@
-﻿using Infrastructure.StateMachines.StateMachine;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
     public class EntryPointState : BaseGameLoopState, IEnterableState
     {
-        public override string StateName => nameof(EntryPointState);
-        
         [Inject]
         public EntryPointState(GameLoopStateMachine stateMachine) : base(stateMachine)
         {
@@ -17,9 +16,10 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _gameLoopStateMachine.Enter<InitializeDefaultConfigState>();
         }
 
-        public void Enter()
+        public UniTask Enter()
         {
             ToNextState();
+            return default;
         }
     }
 }

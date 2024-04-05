@@ -7,12 +7,23 @@ using Zenject;
 
 namespace Infrastructure.Services.Saving
 {
+    // used in production
     public class BinarySaveService : BaseSaveService
     {
-        protected override string _defaultFileName => "binaryDefaultSave";
+        protected virtual string _defaultFileName => "binaryDefaultSave";
 
         public BinarySaveService(IConditionalLoggingService loggingService) : base(loggingService)
         {
+        }
+
+        protected override void Load<TSave>(IDataSaveable<TSave> dataSaveable)
+        {
+            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveId, out var value) && value is TSave save)
+            {
+                dataSaveable.SaveData = save;
+            }
+
+            dataSaveable.SaveData ??= new TSave();
         }
 
         public override void LoadSaveFile(bool useDefaultFileName = true, string fileName = null)
@@ -20,7 +31,7 @@ namespace Infrastructure.Services.Saving
             if (useDefaultFileName) fileName = _defaultFileName;
 
             var path = $"{Application.persistentDataPath}/{fileName}.dat";
-            
+
             if (!File.Exists(path))
             {
                 _loggingService.Log("No game data to load", LogTag.SaveService);

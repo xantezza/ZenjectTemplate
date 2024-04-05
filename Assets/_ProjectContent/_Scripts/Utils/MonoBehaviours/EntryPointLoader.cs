@@ -12,7 +12,7 @@ namespace Utils.MonoBehaviours
             if (EntryPoint.IsAwakened)
                 Destroy(gameObject);
             else
-                SceneManager.LoadScene((int) 0);
+                SceneManager.LoadScene(0);
         }
     }
 }

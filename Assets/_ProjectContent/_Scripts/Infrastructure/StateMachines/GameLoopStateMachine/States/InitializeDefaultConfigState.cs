@@ -1,5 +1,6 @@
 ﻿using System;
 using Configs;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.DefaultConfigProvider;
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.StateMachine;
@@ -11,8 +12,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
     {
         private readonly IDefaultConfigProvider _defaultConfigProvider;
         private readonly IConditionalLoggingService _conditionalLoggingService;
-
-        public override string StateName => nameof(InitializeDefaultConfigState);
 
         [Inject]
         public InitializeDefaultConfigState(
@@ -35,11 +34,12 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             ToNextState();
         }
 
-        public void Enter()
+        public UniTask Enter()
         {
             Remote.InitializeByDefault(_defaultConfigProvider.CachedConfig, _conditionalLoggingService);
 
             _gameLoopStateMachine.Enter<LoadSceneState, Action>(OnLoadingSceneLoadedCallback);
+            return default;
         }
     }
 }

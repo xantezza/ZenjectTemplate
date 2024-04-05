@@ -11,19 +11,16 @@ namespace Infrastructure.Services.Analytics
     public class TutorialAnalytics : IDataSaveable<Save>
     {
         private readonly IAnalyticsLogService _analyticsLogService;
-        public string SaveId() => SaveKeys.TutorialAnalytics;
 
+        public string SaveId => SaveKeys.TutorialAnalytics;
+        
         public Save SaveData { get; set; }
-
-        public Save Default => new Save();
 
         [Inject]
         public TutorialAnalytics(IAnalyticsLogService analyticsLogService, ISaveService saveService)
         {
             _analyticsLogService = analyticsLogService;
-            saveService.Load(this);
-            saveService.AddToSave(this);
-
+            saveService.Process(this);
             Initialize();
         }
 
