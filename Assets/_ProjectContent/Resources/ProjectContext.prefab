@@ -89,12 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ModalsAssetReferences>k__BackingField:
-    <PrivacyPolicyModal>k__BackingField:
-      m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    <Test2Modal>k__BackingField:
+    _privacyPolicyModal:
       m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
       m_SubObjectName: 
       m_SubObjectType: 
@@ -467,9 +462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 06.04.2024 14:13:18
-  _currentDate: 06.04.2024 14:16:34
-  _minutesFromLastFetch: -3
+  _lastFetchDate: 06.04.2024 16:36:28
+  _currentDate: 06.04.2024 16:36:33
+  _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
     false,\r\n    \"FakeTimeBeforeLoad\": 0.0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   
     \"FakeTimeAfterLoad\": 0.5\r\n  }\r\n}"
