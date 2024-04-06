@@ -60,23 +60,26 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             }
         }
 
-        public async UniTask Enter(Action onLoadingSceneLoad)
+        public UniTask Enter(Action onLoadingSceneLoad)
         {
             _sceneLoaderService.LoadScene(LoadingSceneNumber, onLoadingSceneLoad);
+            return default;
         }
 
-        public async UniTask Enter(SceneNames sceneToLoadAfterLoadingSceneLoad)
+        public UniTask Enter(SceneNames sceneToLoadAfterLoadingSceneLoad)
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingSceneLoad;
             _cachedCallback = null;
             _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
+            return default;
         }
 
-        public async UniTask Enter(SceneNames payload, Action onPayloadSceneLoad)
+        public UniTask Enter(SceneNames payload, Action onPayloadSceneLoad)
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = payload;
             _cachedCallback = onPayloadSceneLoad;
             _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
+            return default;
         }
 
         private void OnLoadingSceneLoaded()

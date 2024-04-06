@@ -10,16 +10,16 @@ namespace Infrastructure.Services.Analytics
 
     public class TutorialAnalytics : IDataSaveable<Save>
     {
-        private readonly IAnalyticsLogService _analyticsLogService;
+        private readonly IAnalyticsSendService _analyticsSendService;
 
-        public string SaveId => SaveKeys.TutorialAnalytics;
+        public SaveKey SaveId => SaveKey.TutorialAnalytics;
         
         public Save SaveData { get; set; }
 
         [Inject]
-        public TutorialAnalytics(IAnalyticsLogService analyticsLogService, ISaveService saveService)
+        public TutorialAnalytics(IAnalyticsSendService analyticsSendService, ISaveService saveService)
         {
-            _analyticsLogService = analyticsLogService;
+            _analyticsSendService = analyticsSendService;
             saveService.Process(this);
             Initialize();
         }
@@ -33,7 +33,7 @@ namespace Infrastructure.Services.Analytics
         {
             if (!SaveData.FirstOpen) return;
             SaveData.FirstOpen = false;
-            _analyticsLogService.LogEvent(EventNames.TutorialFirstOpen);
+            _analyticsSendService.SendEvent(EventNames.TutorialFirstOpen);
         }
     }
 }

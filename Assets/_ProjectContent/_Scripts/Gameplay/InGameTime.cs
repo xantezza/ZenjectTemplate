@@ -15,7 +15,7 @@ namespace Gameplay
             public float PassedTime;
         }
 
-        public string SaveId => SaveKeys.InGameTime;
+        public SaveKey SaveId => SaveKey.InGameTime;
 
         public Save SaveData { get; set; }
 

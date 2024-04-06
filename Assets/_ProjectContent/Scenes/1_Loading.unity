@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 302051063}
   - component: {fileID: 302051066}
   m_Layer: 5
-  m_Name: Box
+  m_Name: RotatingBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   randomizeSpeed: 0
   _degreesPerSecond: 360
   randomizeAxis: 0
-  _axis: {x: 1, y: 1, z: 1}
+  _axis: {x: 1, y: 3, z: 1}
 --- !u!1 &536045316
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 0.9
   m_WholeNumbers: 0
-  m_Value: 0.563
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 1740950715}
   - component: {fileID: 1740950714}
   m_Layer: 5
-  m_Name: Loading
+  m_Name: LoadingLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

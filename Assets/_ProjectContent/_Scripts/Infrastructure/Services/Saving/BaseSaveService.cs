@@ -10,7 +10,7 @@ namespace Infrastructure.Services.Saving
 {
     public abstract class BaseSaveService : ISaveService, IInitializable, IDisposable
     {
-        protected Dictionary<string, object> _readyToSaveDictionary = new();
+        protected Dictionary<SaveKey, object> _readyToSaveDictionary = new();
 
         protected readonly IConditionalLoggingService _loggingService;
 
@@ -34,15 +34,15 @@ namespace Infrastructure.Services.Saving
 
         public void Initialize()
         {
-            Application.focusChanged += OnApplicationQuitting;
+            Application.focusChanged += OnApplicationFocus;
         }
 
         public void Dispose()
         {
-            Application.focusChanged -= OnApplicationQuitting;
+            Application.focusChanged -= OnApplicationFocus;
         }
 
-        private void OnApplicationQuitting(bool focusStatus)
+        private void OnApplicationFocus(bool focusStatus)
         {
             if (focusStatus) return;
             if (!Application.isPlaying) return;

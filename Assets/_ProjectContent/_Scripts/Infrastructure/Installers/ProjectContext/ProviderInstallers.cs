@@ -1,4 +1,4 @@
-﻿using Infrastructure.Providers;
+﻿using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Providers.DefaultConfigProvider;
 using UnityEngine;
 using Zenject;

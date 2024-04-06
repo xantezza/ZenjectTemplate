@@ -45,15 +45,15 @@ namespace UI
             _button.onClick.RemoveListener(OnClick);
         }
 
-        private void OnClick()
+        private async void OnClick()
         {
             switch (_targetState)
             {
                 case TargetStates.Menu:
-                    _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, SceneNames>(SceneNames.Menu);
+                    await _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, SceneNames>(SceneNames.Menu);
                     break;
                 case TargetStates.Gameplay:
-                    _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, SceneNames>(SceneNames.Gameplay);
+                    await _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, SceneNames>(SceneNames.Gameplay);
                     break;
                 default:
                     _conditionalLoggingService.LogError($"Missing logic in {this}", LogTag.UI);

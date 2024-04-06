@@ -42,7 +42,7 @@ namespace Infrastructure.Services.Saving
 
             var file = File.ReadAllText(path);
 
-            _readyToSaveDictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(file);
+            _readyToSaveDictionary = JsonConvert.DeserializeObject<Dictionary<SaveKey, object>>(file);
 
             _loggingService.Log("Game data loaded!", LogTag.SaveService);
         }

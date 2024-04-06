@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
-using Utils.Extensions;
 using Zenject;
 
 namespace Infrastructure.StateMachines.StateMachine
@@ -31,7 +30,7 @@ namespace Infrastructure.StateMachines.StateMachine
                 indexOfActiveState = _statesList.IndexOf(_activeState);
                 if (indexOfActiveState == _statesList.Count - 1)
                 {
-                    _activeState.Exit();
+                    await _activeState.Exit();
                     _activeState = null;
                     return;
                 }
@@ -47,15 +46,6 @@ namespace Infrastructure.StateMachines.StateMachine
             _conditionalLoggingService.Log($"Entering state {typeof(TState).Name}", LogTag);
 
             await state.Enter();
-        }
-
-        public async UniTask Enter(int index)
-        {
-            var state = await ChangeState(index);
-
-            _conditionalLoggingService.Log($"Entering state {state.GetType().Name}", LogTag);
-
-            if (state is IEnterableState enterableState) enterableState.Enter();
         }
 
         public async UniTask Enter<TState, TPayload>(TPayload payload) where TState : class, IState, IPayloadedState<TPayload>
@@ -80,6 +70,15 @@ namespace Infrastructure.StateMachines.StateMachine
         {
             _states.Add(typeof(TState), state);
             _statesList.Add(state);
+        }
+
+        private async UniTask Enter(int index)
+        {
+            var state = await ChangeState(index);
+
+            _conditionalLoggingService.Log($"Entering state {state.GetType().Name}", LogTag);
+
+            if (state is IEnterableState enterableState) await enterableState.Enter();
         }
 
         private async UniTask<TState> ChangeState<TState>() where TState : class, IState

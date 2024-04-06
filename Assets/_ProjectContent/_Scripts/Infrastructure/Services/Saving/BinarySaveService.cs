@@ -41,7 +41,7 @@ namespace Infrastructure.Services.Saving
             _cachedSaveFileName = fileName;
             var binaryFormatter = new BinaryFormatter();
             var file = File.Open(path, FileMode.Open);
-            _readyToSaveDictionary = (Dictionary<string, object>) binaryFormatter.Deserialize(file);
+            _readyToSaveDictionary = (Dictionary<SaveKey, object>) binaryFormatter.Deserialize(file);
 
             file.Close();
 

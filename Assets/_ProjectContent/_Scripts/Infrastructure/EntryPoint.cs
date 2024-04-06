@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using Infrastructure.Providers;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;

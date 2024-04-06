@@ -10,6 +10,7 @@ namespace UI.LoadingScene
 
         private void OnEnable()
         {
+            _slider.value = 0;
             LoadingScreenState.OnLoadSceneProgressUpdated += OnLoadingStateSceneProgressUpdated;
         }
 

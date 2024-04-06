@@ -17,8 +17,9 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         }
 
         //State changes by GameLoopStateSwitchButton in scene
-        public async UniTask Enter()
+        public UniTask Enter()
         {
+            return default;
         }
     }
 }

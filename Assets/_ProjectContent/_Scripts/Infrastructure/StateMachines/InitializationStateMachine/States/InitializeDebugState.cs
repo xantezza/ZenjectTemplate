@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Providers;
+using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.StateMachines.StateMachine;
 using UnityEngine;
 using Zenject;

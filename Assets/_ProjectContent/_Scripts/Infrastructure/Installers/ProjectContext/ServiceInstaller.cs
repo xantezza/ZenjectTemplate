@@ -2,6 +2,7 @@
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
+using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines;
@@ -20,26 +21,37 @@ namespace Infrastructure.Installers.ProjectContext
             BindSceneLoaderService();
             BindAnalyticsLogService();
             BindSaveService();
-            BindStatesFactory();
-            BindGameLoopStateMachineFactory();
-            BindInitializationStateMachineFactory();
+            BindFactories();
         }
 
-        private void BindConditionalLoggingService() => Container.Bind<IConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
-        private void BindCoroutineRunnerService() => Container.BindInterfacesTo<CoroutineRunnerService>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
-        private void BindSceneLoaderService() => Container.BindInterfacesTo<SceneLoaderService>().FromNew().AsSingle().NonLazy();
-        private void BindAnalyticsLogService() => Container.Bind<IAnalyticsLogService>().To<AnalyticsLogService>().FromNew().AsSingle().NonLazy();
-        private void BindStatesFactory() => Container.Bind<StatesFactory>().FromNew().AsSingle().NonLazy();
-
-        private void BindGameLoopStateMachineFactory()
+        private void BindFactories()
         {
+            Container.Bind<StatesFactory>().FromNew().AsSingle().NonLazy();
             Container.Bind<GameLoopStateMachineFactory>().FromNew().AsSingle().NonLazy();
+            Container.Bind<InitializationStateMachineFactory>().FromNew().AsSingle().NonLazy();
+            Container.Bind<ModalsFactory>().FromNew().AsSingle().NonLazy();
         }
 
-        private void BindInitializationStateMachineFactory()
+        private void BindConditionalLoggingService()
         {
-            Container.Bind<InitializationStateMachineFactory>().FromNew().AsSingle().NonLazy();
+            Container.BindInterfacesTo<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
         }
+
+        private void BindAnalyticsLogService()
+        {
+            Container.BindInterfacesTo<UnityAnalyticsSendService>().FromNew().AsSingle().NonLazy();
+        }
+
+        private void BindCoroutineRunnerService()
+        {
+            Container.BindInterfacesTo<CoroutineRunnerService>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
+        }
+
+        private void BindSceneLoaderService()
+        {
+            Container.BindInterfacesTo<SceneLoaderService>().FromNew().AsSingle().NonLazy();
+        }
+
 
         private void BindSaveService()
         {
