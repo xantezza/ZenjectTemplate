@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Services.Logging;
+using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
@@ -22,10 +23,12 @@ namespace UI
 
         private ConditionalLoggingService _conditionalLoggingService;
         private GameLoopStateMachineFactory _gameLoopStateMachineFactory;
+        private ISaveService _saveService;
 
         [Inject]
-        private void Inject(GameLoopStateMachineFactory gameLoopStateMachineFactory, ConditionalLoggingService conditionalLoggingService)
+        private void Inject(GameLoopStateMachineFactory gameLoopStateMachineFactory, ISaveService saveService, ConditionalLoggingService conditionalLoggingService)
         {
+            _saveService = saveService;
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
             _conditionalLoggingService = conditionalLoggingService;
         }
@@ -50,6 +53,7 @@ namespace UI
             switch (_targetState)
             {
                 case TargetStates.Menu:
+                    _saveService.StoreSaveFile();
                     await _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, SceneNames>(SceneNames.Menu);
                     break;
                 case TargetStates.Gameplay:

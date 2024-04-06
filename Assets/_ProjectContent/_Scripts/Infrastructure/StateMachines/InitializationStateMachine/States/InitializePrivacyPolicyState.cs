@@ -47,6 +47,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private async void OnInteract()
         {
             SaveData.ConsentGiven = true;
+            _saveService.StoreSaveFile();
             AnalyticsService.Instance.StartDataCollection();
             await _stateMachine.NextState();
         }
