@@ -51,7 +51,7 @@ namespace Infrastructure.Services.Analytics
 
             foreach (var (key, value) in paramsDictionary)
             {
-                stringBuilder.AppendLine($"with param: {key}:{value}");
+                stringBuilder.AppendLine($"\nwith param: {key}: {value}");
                 customEvent.Add(key, value);
             }
 

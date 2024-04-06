@@ -1,11 +1,13 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Zenject;
 
 namespace Infrastructure.Services.Modals
 {
-    public class ModalsFactory
+    public class ModalsFactory : MonoBehaviour
     {
         public enum ModalType
         {
@@ -13,25 +15,26 @@ namespace Infrastructure.Services.Modals
             Test2
         }
 
-        private readonly AssetReferenceProvider _assetReferenceProvider;
+        private AssetReferenceProvider _assetReferenceProvider;
 
-        public ModalsFactory(AssetReferenceProvider assetReferenceProvider)
+        [Inject]
+        public void Inject(AssetReferenceProvider assetReferenceProvider)
         {
             _assetReferenceProvider = assetReferenceProvider;
         }
 
         public async UniTask<ModalPopup> Show(ModalType modalType)
         {
-            var gameObject = await TypeToReference(modalType).InstantiateAsync();
-            var modalPopup = gameObject.GetComponent<ModalPopup>();
+            var instantiated = await TypeToReference(modalType).InstantiateAsync(transform);
+            var modalPopup = instantiated.GetComponent<ModalPopup>();
             modalPopup.Show();
             return modalPopup;
         }
 
         public async UniTask<T> Show<T>(ModalType modalType) where T : ModalPopup
         {
-            var gameObject = await TypeToReference(modalType).InstantiateAsync();
-            var modalPopup = gameObject.GetComponent<T>();
+            var instantiated = await TypeToReference(modalType).InstantiateAsync(transform);
+            var modalPopup = instantiated.GetComponent<T>();
             modalPopup.Show();
             return modalPopup;
         }

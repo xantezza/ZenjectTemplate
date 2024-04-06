@@ -8,6 +8,7 @@ using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.InitializationStateMachine;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Installers.ProjectContext
@@ -21,17 +22,7 @@ namespace Infrastructure.Installers.ProjectContext
             BindSceneLoaderService();
             BindAnalyticsLogService();
             BindSaveService();
-            BindFactories();
         }
-
-        private void BindFactories()
-        {
-            Container.Bind<StatesFactory>().FromNew().AsSingle().NonLazy();
-            Container.Bind<GameLoopStateMachineFactory>().FromNew().AsSingle().NonLazy();
-            Container.Bind<InitializationStateMachineFactory>().FromNew().AsSingle().NonLazy();
-            Container.Bind<ModalsFactory>().FromNew().AsSingle().NonLazy();
-        }
-
         private void BindConditionalLoggingService()
         {
             Container.Bind<ConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();

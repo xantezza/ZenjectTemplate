@@ -41,13 +41,15 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             else
             {
                 var popup = await _modalsFactory.Show<PrivacyPolicyModal>(ModalsFactory.ModalType.PrivacyPolicy);
-                popup.OnInteract.Take(1).Subscribe(_ =>
-                {
-                    SaveData.ConsentGiven = true;
-                    AnalyticsService.Instance.StartDataCollection();
-                    _stateMachine.NextState();
-                });
+                popup.OnInteract.Take(1).Subscribe(onInteract);
             }
+        }
+
+        private async void onInteract(bool _)
+        {
+            SaveData.ConsentGiven = true;
+            AnalyticsService.Instance.StartDataCollection();
+            await _stateMachine.NextState();
         }
     }
 }

@@ -23,12 +23,12 @@ namespace Infrastructure.Services.Modals
 
         [SerializeField] private ModalPopupSettings _modalSettings;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _modalSettings.CloseButton.onClick.AddListener(Hide);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             _modalSettings.CloseButton.onClick.RemoveListener(Hide);
         }
