@@ -133,12 +133,4 @@ namespace UniRx
             }
         }
     }
-
-    public partial class Observable
-    {
-        private static IObservable<T> AddRef<T>(IObservable<T> xs, RefCountDisposable r)
-        {
-            return Create(observer => new CompositeDisposable(r.GetDisposable(), xs.Subscribe(observer)));
-        }
-    }
 }
