@@ -39,7 +39,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             }
             else
             {
-                var popup = await _modalsFactory.Show<PrivacyPolicyModal>(ModalsFactory.ModalType.PrivacyPolicy);
+                var popup = await _modalsFactory.Show<PrivacyPolicyModal>();
                 popup.OnInteract.Subscribe(_ => OnInteract());
             }
         }
