@@ -8,6 +8,7 @@
 ### UniRX(R3), UniTasks, Addressables, NuGetForUnity
 - Analytics, RemoteConfig (with caching)
 - Debugging tools
+ 
 ###Editor Windows and other utilities to improve QOL
 
 ##[Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
