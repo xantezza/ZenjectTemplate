@@ -10,13 +10,13 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     public class InitializeDefaultConfigState : BaseInitializationState, IEnterableState
     {
         private readonly IDefaultConfigProvider _defaultConfigProvider;
-        private readonly IConditionalLoggingService _conditionalLoggingService;
+        private readonly ConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
         public InitializeDefaultConfigState(
             InitializationStateMachine gameLoopStateMachine,
             IDefaultConfigProvider defaultConfigProvider,
-            IConditionalLoggingService conditionalLoggingService
+            ConditionalLoggingService conditionalLoggingService
         ) : base(gameLoopStateMachine)
         {
             _conditionalLoggingService = conditionalLoggingService;

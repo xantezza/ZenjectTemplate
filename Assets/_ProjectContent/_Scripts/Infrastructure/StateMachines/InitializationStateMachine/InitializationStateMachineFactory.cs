@@ -8,11 +8,11 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
     public class InitializationStateMachineFactory
     {
         private InitializationStateMachine _stateMachine;
-        private readonly IConditionalLoggingService _loggingService;
+        private readonly ConditionalLoggingService _loggingService;
         private readonly IInstantiator _instantiator;
 
         [Inject]
-        public InitializationStateMachineFactory(IInstantiator instantiator, IConditionalLoggingService loggingService)
+        public InitializationStateMachineFactory(IInstantiator instantiator, ConditionalLoggingService loggingService)
         {
             _instantiator = instantiator;
             _loggingService = loggingService;

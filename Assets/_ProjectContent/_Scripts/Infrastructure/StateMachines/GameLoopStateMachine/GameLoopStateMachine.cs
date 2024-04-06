@@ -10,7 +10,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
         [Inject]
-        public GameLoopStateMachine(StatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public GameLoopStateMachine(StatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
             RegisterState(statesFactory.Create<LoadingScreenState>(this));

@@ -20,11 +20,11 @@ namespace UI
         [SerializeField] private TargetStates _targetState = 0;
         [HideInInspector] [SerializeField] private Button _button;
 
-        private IConditionalLoggingService _conditionalLoggingService;
+        private ConditionalLoggingService _conditionalLoggingService;
         private GameLoopStateMachineFactory _gameLoopStateMachineFactory;
 
         [Inject]
-        private void Inject(GameLoopStateMachineFactory gameLoopStateMachineFactory, IConditionalLoggingService conditionalLoggingService)
+        private void Inject(GameLoopStateMachineFactory gameLoopStateMachineFactory, ConditionalLoggingService conditionalLoggingService)
         {
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
             _conditionalLoggingService = conditionalLoggingService;

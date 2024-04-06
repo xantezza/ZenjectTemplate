@@ -16,13 +16,13 @@ namespace Configs
 
         public static InfrastructureConfig InfrastructureConfig { get; private set; }
 
-        private static IConditionalLoggingService _loggingService;
+        private static ConditionalLoggingService _loggingService;
         private static JToken _cachedDefaultConfig;
         private static JToken _remoteConfig;
 
         private static bool _hasInitializedByRemote;
 
-        public static void InitializeByDefault(JToken cachedDefaultConfig, IConditionalLoggingService loggingService)
+        public static void InitializeByDefault(JToken cachedDefaultConfig, ConditionalLoggingService loggingService)
         {
             _cachedDefaultConfig = cachedDefaultConfig;
 
@@ -33,7 +33,7 @@ namespace Configs
             OnInitializeAny?.Invoke();
         }
 
-        public static void InitializeByRemote(JToken remoteConfig, IConditionalLoggingService loggingService)
+        public static void InitializeByRemote(JToken remoteConfig, ConditionalLoggingService loggingService)
         {
             _hasInitializedByRemote = true;
             _remoteConfig = remoteConfig;
@@ -42,7 +42,7 @@ namespace Configs
             OnInitializeAny?.Invoke();
         }
 
-        private static void ParseConfigs(IConditionalLoggingService loggingService)
+        private static void ParseConfigs(ConditionalLoggingService loggingService)
         {
             _loggingService = loggingService;
             InfrastructureConfig = Parse<InfrastructureConfig>(ConfigType.InfrastructureConfig);

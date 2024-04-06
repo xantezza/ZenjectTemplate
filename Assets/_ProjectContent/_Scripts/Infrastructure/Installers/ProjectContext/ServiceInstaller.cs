@@ -34,7 +34,7 @@ namespace Infrastructure.Installers.ProjectContext
 
         private void BindConditionalLoggingService()
         {
-            Container.BindInterfacesTo<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
+            Container.Bind<ConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
         }
 
         private void BindAnalyticsLogService()

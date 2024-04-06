@@ -12,7 +12,7 @@ namespace Infrastructure.Services.Saving
     {
         protected virtual string _defaultFileName => "binaryDefaultSave";
 
-        public BinarySaveService(IConditionalLoggingService loggingService) : base(loggingService)
+        public BinarySaveService(ConditionalLoggingService loggingService) : base(loggingService)
         {
         }
 

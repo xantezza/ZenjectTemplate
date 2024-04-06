@@ -8,7 +8,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
-        public InitializationStateMachine(StatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public InitializationStateMachine(StatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeRemoteConfigState>(this));

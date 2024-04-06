@@ -2,8 +2,7 @@
 
 namespace Infrastructure.Services.Logging
 {
-    //fake interface to let [Conditional] work
-    public abstract class IConditionalLoggingService
+    public abstract class ConditionalLoggingService
     {
         [Conditional("DEV")]
         public void Log(string text, LogTag tag)

@@ -8,11 +8,11 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
     public class GameLoopStateMachineFactory
     {
         private GameLoopStateMachine _stateMachine;
-        private readonly IConditionalLoggingService _loggingService;
+        private readonly ConditionalLoggingService _loggingService;
         private readonly IInstantiator _instantiator;
 
         [Inject]
-        public GameLoopStateMachineFactory(IInstantiator instantiator, IConditionalLoggingService loggingService)
+        public GameLoopStateMachineFactory(IInstantiator instantiator, ConditionalLoggingService loggingService)
         {
             _instantiator = instantiator;
             _loggingService = loggingService;
