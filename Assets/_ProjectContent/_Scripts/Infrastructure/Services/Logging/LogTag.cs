@@ -3,6 +3,7 @@
     public enum LogTag
     {
         GameLoopStateMachine,
+        InitializationStateMachine,
         RemoteSettings,
         Analytics,
         SceneLoader,

@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using Infrastructure.StateMachines.InitializationStateMachine;
 using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
@@ -6,20 +8,22 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
     public class EntryPointState : BaseGameLoopState, IEnterableState
     {
+        private readonly InitializationStateMachineFactory _initializationStateMachineFactory;
+
         [Inject]
-        public EntryPointState(GameLoopStateMachine stateMachine) : base(stateMachine)
+        public EntryPointState(GameLoopStateMachine stateMachine, InitializationStateMachineFactory initializationStateMachineFactory) : base(stateMachine)
         {
+            _initializationStateMachineFactory = initializationStateMachineFactory;
         }
 
-        private void ToNextState()
+        private async void ToNextState()
         {
-            _gameLoopStateMachine.Enter<InitializeDefaultConfigState>();
+            await _initializationStateMachineFactory.GetFrom(this).NextState();
         }
 
-        public UniTask Enter()
+        public async UniTask Enter()
         {
-            ToNextState();
-            return default;
+            await _stateMachine.Enter<LoadingScreenState, Action>(ToNextState);
         }
     }
 }

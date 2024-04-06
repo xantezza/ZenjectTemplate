@@ -6,12 +6,12 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
 {
     public abstract class BaseGameLoopState : IState
     {
-        protected readonly GameLoopStateMachine _gameLoopStateMachine;
+        protected readonly GameLoopStateMachine _stateMachine;
 
         [Inject]
         protected BaseGameLoopState(GameLoopStateMachine stateMachine)
         {
-            _gameLoopStateMachine = stateMachine;
+            _stateMachine = stateMachine;
         }
 
         public virtual UniTask Exit()

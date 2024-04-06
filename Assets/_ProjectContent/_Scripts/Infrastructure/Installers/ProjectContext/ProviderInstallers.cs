@@ -12,12 +12,10 @@ namespace Infrastructure.Installers.ProjectContext
 
         public override void InstallBindings()
         {
-            BindGameLoopStateMachineProvider();
             BindAssetReferenceProvider();
             BindDefaultConfigProvider();
         }
 
-        private void BindGameLoopStateMachineProvider() => Container.Bind<GameLoopStateMachineProvider>().FromNew().AsSingle().NonLazy();
         private void BindAssetReferenceProvider() => Container.Bind<AssetReferenceProvider>().FromInstance(_assetReferenceProvider).AsSingle().NonLazy();
         private void BindDefaultConfigProvider() => Container.BindInterfacesTo<CachedDefaultConfigProvider>().FromInstance(cachedDefaultConfigProvider).AsSingle().NonLazy();
     }

@@ -13,12 +13,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         public GameLoopStateMachine(StatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
-            RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
-            RegisterState(statesFactory.Create<LoadSceneState>(this));
-            RegisterState(statesFactory.Create<InitializeRemoteConfigState>(this));
-            RegisterState(statesFactory.Create<InitializeDebugState>(this));
-            RegisterState(statesFactory.Create<InitializeAnalyticsState>(this));
-            RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
+            RegisterState(statesFactory.Create<LoadingScreenState>(this));
             RegisterState(statesFactory.Create<MenuState>(this));
             RegisterState(statesFactory.Create<GameplayState>(this));
         }

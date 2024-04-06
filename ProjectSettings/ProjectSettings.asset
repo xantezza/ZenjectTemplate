@@ -16,7 +16,7 @@ PlayerSettings:
   productName: ZenjectTemplate
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 1860
-  defaultScreenHeightWeb: 900
+  defaultScreenWidthWeb: 1300
+  defaultScreenHeightWeb: 700
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   m_SpriteBatchVertexThreshold: 300
@@ -958,11 +958,11 @@ PlayerSettings:
   cloudProjectId: c8eda3aa-80f3-4fd8-96d3-01091da83836
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SpherumTestAssigment
+  projectName: ZenjectTemplate
   organizationId: itorrri
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0
-  insecureHttpOption: 2
+  insecureHttpOption: 0

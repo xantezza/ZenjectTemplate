@@ -10,12 +10,12 @@ namespace UI.LoadingScene
 
         private void OnEnable()
         {
-            LoadSceneState.OnLoadSceneProgressUpdated += OnLoadingStateSceneProgressUpdated;
+            LoadingScreenState.OnLoadSceneProgressUpdated += OnLoadingStateSceneProgressUpdated;
         }
 
         private void OnDisable()
         {
-            LoadSceneState.OnLoadSceneProgressUpdated -= OnLoadingStateSceneProgressUpdated;
+            LoadingScreenState.OnLoadSceneProgressUpdated -= OnLoadingStateSceneProgressUpdated;
         }
 
         private void OnLoadingStateSceneProgressUpdated(float progress01)

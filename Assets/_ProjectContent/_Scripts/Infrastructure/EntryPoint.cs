@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using Infrastructure.Providers;
+using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
 using Zenject;
@@ -7,20 +9,20 @@ namespace Infrastructure
 {
     public class EntryPoint : MonoBehaviour
     {
-        private GameLoopStateMachineProvider _stateMachineProvider;
+        private GameLoopStateMachineFactory _stateMachineFactory;
 
         public static bool IsAwakened { get; private set; }
 
         [Inject]
-        private void Inject(GameLoopStateMachineProvider stateMachineProvider)
+        private void Inject(GameLoopStateMachineFactory stateMachineFactory)
         {
-            _stateMachineProvider = stateMachineProvider;
+            _stateMachineFactory = stateMachineFactory;
         }
 
-        private void Start()
+        private async void Start()
         {
             IsAwakened = true;
-            _stateMachineProvider.StateMachine(this).Enter<EntryPointState>();
+            await _stateMachineFactory.GetFrom(this).Enter<EntryPointState>();
         }
     }
 }
