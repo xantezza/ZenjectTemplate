@@ -13,7 +13,7 @@
 
 ## [Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
-[![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/b2ac04e7-be44-480a-94e0-8ca7eb11d553)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
+[![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/0c785e38-cf0b-4760-8b44-83febe659efc)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
 </span>
     
