@@ -3,9 +3,8 @@ using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
 using Infrastructure.StateMachines.StateMachine;
-using R3;
+using UniRx;
 using Unity.Services.Analytics;
-using UnityEngine.Analytics;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
@@ -41,11 +40,11 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             else
             {
                 var popup = await _modalsFactory.Show<PrivacyPolicyModal>(ModalsFactory.ModalType.PrivacyPolicy);
-                popup.OnInteract.Take(1).Subscribe(onInteract);
+                popup.OnInteract.Subscribe(_ => OnInteract());
             }
         }
 
-        private async void onInteract(bool _)
+        private async void OnInteract()
         {
             SaveData.ConsentGiven = true;
             AnalyticsService.Instance.StartDataCollection();

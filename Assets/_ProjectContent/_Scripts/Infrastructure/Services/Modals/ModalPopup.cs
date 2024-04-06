@@ -1,5 +1,6 @@
 ﻿using System;
 using R3;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Extensions;
@@ -19,7 +20,7 @@ namespace Infrastructure.Services.Modals
 
     public abstract class ModalPopup : MonoBehaviour
     {
-        public ReactiveCommand<bool> OnInteract = new();
+        public ReactiveCommand OnInteract = new();
 
         [SerializeField] private ModalPopupSettings _modalSettings;
 
@@ -53,7 +54,7 @@ namespace Infrastructure.Services.Modals
                 () => Destroy(gameObject)
             );
 
-            OnInteract.Execute(false);
+            OnInteract.Execute();
         }
     }
 }
