@@ -9,8 +9,6 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
     public class InitializeDebugState : BaseInitializationState, IEnterableState
     {
-        private static bool IsInitialized { get; set; }
-
         private readonly AssetReferenceProvider _assetReferenceProvider;
         
         [Inject]
@@ -31,18 +29,8 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         private async UniTask InitializeDebugRoot()
         {
-            if (IsInitialized)
-            {
-                await ToNextState();
-                return;
-            }
-
-            IsInitialized = true;
-
-#if DEV
             var debugRoot = await _assetReferenceProvider.DebugRootAssetReference.InstantiateAsync();
             Object.DontDestroyOnLoad(debugRoot);
-#endif
 
             await ToNextState();
         }

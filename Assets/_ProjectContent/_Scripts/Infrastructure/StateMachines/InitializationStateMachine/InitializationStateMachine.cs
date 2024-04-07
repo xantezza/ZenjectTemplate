@@ -12,7 +12,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
         {
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeRemoteConfigState>(this));
+#if DEV
             RegisterState(statesFactory.Create<InitializeDebugState>(this));
+#endif
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
             RegisterState(statesFactory.Create<InitializePrivacyPolicyState>(this));
             RegisterState(statesFactory.Create<InitializationFinalizerState>(this));
