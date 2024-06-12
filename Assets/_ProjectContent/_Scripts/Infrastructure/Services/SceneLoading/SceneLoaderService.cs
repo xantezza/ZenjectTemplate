@@ -22,17 +22,17 @@ namespace Infrastructure.Services.SceneLoading
             _coroutineRunner = coroutineRunner;
         }
 
-        public void LoadScene(AssetReference nextSceneName, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
+        public void LoadScene(AssetReference nextSceneName, bool allowReloadSameScene = false, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
         {
-            _coroutineRunner.StartCoroutine(LoadSceneByAddressablesCoroutine(nextSceneName, onLoaded, minimalLoadTime, onProgressUpdate));
+            _coroutineRunner.StartCoroutine(LoadSceneByAddressablesCoroutine(nextSceneName, allowReloadSameScene, onLoaded, minimalLoadTime, onProgressUpdate));
         }
 
 
-        private IEnumerator LoadSceneByAddressablesCoroutine(AssetReference nextScene, Action onLoaded, float minimalLoadTime, Action<float> onProgressUpdate)
+        private IEnumerator LoadSceneByAddressablesCoroutine(AssetReference nextScene, bool allowReloadSameScene, Action onLoaded, float minimalLoadTime, Action<float> onProgressUpdate)
         {
             _conditionalLoggingService.Log($"Loading scene: {nextScene} with wait {minimalLoadTime}", LogTag.SceneLoader);
 
-            if (_cachedSceneGUID == nextScene.AssetGUID)
+            if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
                 _conditionalLoggingService.Log($"Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
                 onLoaded?.Invoke();

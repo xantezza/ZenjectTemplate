@@ -51,7 +51,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         public UniTask Enter(Action onLoadingSceneLoad)
         {
-            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, onLoadingSceneLoad);
+            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, false, onLoadingSceneLoad);
             return default;
         }
         
@@ -59,7 +59,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingScreen;
             _cachedCallback = onPayloadSceneLoad;
-            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, OnLoadingSceneLoaded);
+            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, false, OnLoadingSceneLoaded);
             return default;
         }
 
@@ -69,6 +69,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
             _sceneLoaderService.LoadScene(
                 _cachedSceneToLoadAfterLoadingSceneLoad,
+                false,
                 _cachedCallback,
                 _infrastructureConfig.FakeTimeBeforeLoad
                 + _infrastructureConfig.FakeMinimalLoadTime

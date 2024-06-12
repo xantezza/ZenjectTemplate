@@ -5,6 +5,6 @@ namespace Infrastructure.Services.SceneLoading
 {
     public interface ISceneLoaderService
     {
-        void LoadScene(AssetReference nextSceneName, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null);
+        void LoadScene(AssetReference nextSceneName, bool allowReloadSameScene = false, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null);
     }
 }
