@@ -55,7 +55,9 @@
 	Use InfrastructureConfig.cs as reference for new configs.
 	To easier configure them use  ```Assets/_ProjectContent/Resources/ConfigUtility.asset```
 
-- You need to add ```Assets/_ProjectContent/Scenes/``` in ```Builds Settings/Scenes In Builds``` in with build indexes alike in their names
+- You need to add ```Assets/_ProjectContent/Scenes/0_EntryPoint``` in ```Builds Settings/Scenes In Builds``` in with build index 0(!!!)
+
+	You can add other scenes to use ```Windows/SceneSelector```
 
 - If you have some unexpected troubles you can contact me https://t.me/xantezza
 

@@ -4,6 +4,7 @@ using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.Services.SceneLoading
@@ -13,7 +14,7 @@ namespace Infrastructure.Services.SceneLoading
     {
         private readonly ICoroutineRunnerService _coroutineRunner;
         private readonly ConditionalLoggingService _conditionalLoggingService;
-        private int _cachedSceneIndex;
+        private string _cachedSceneGUID;
 
         public SceneLoaderService(ICoroutineRunnerService coroutineRunner, ConditionalLoggingService conditionalLoggingService)
         {
@@ -21,53 +22,43 @@ namespace Infrastructure.Services.SceneLoading
             _coroutineRunner = coroutineRunner;
         }
 
-        public void LoadScene(SceneNames nextSceneName, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
+        public void LoadScene(AssetReference nextSceneName, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
         {
-            InternalLoadScene((int) nextSceneName, onLoaded, minimalLoadTime, onProgressUpdate);
+            _coroutineRunner.StartCoroutine(LoadSceneByAddressablesCoroutine(nextSceneName, onLoaded, minimalLoadTime, onProgressUpdate));
         }
 
-        public void LoadScene(int nextSceneBuildIndex, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
-        {
-            InternalLoadScene(nextSceneBuildIndex, onLoaded, minimalLoadTime, onProgressUpdate);
-        }
 
-        private void InternalLoadScene(int nextSceneBuildIndex, Action onLoaded = null, float minimalLoadTime = 0f, Action<float> onProgressUpdate = null)
+        private IEnumerator LoadSceneByAddressablesCoroutine(AssetReference nextScene, Action onLoaded, float minimalLoadTime, Action<float> onProgressUpdate)
         {
-            if (_cachedSceneIndex == nextSceneBuildIndex)
+            _conditionalLoggingService.Log($"Loading scene: {nextScene} with wait {minimalLoadTime}", LogTag.SceneLoader);
+
+            if (_cachedSceneGUID == nextScene.AssetGUID)
             {
+                _conditionalLoggingService.Log($"Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
                 onLoaded?.Invoke();
-                return;
+                yield break;
             }
-
-            _coroutineRunner.StartCoroutine(LoadSceneCoroutine(nextSceneBuildIndex, onLoaded, minimalLoadTime, onProgressUpdate));
-        }
-
-        private IEnumerator LoadSceneCoroutine(int nextScene, Action onLoaded, float minimalLoadTime, Action<float> onProgressUpdate)
-        {
-            _conditionalLoggingService.Log($"Loading scene: {SceneUtility.GetScenePathByBuildIndex(nextScene)} with wait {minimalLoadTime}", LogTag.SceneLoader);
 
             var timePassed = 0f;
 
-            _cachedSceneIndex = nextScene;
+            _cachedSceneGUID = nextScene.AssetGUID;
 
-            var waitNextScene = SceneManager.LoadSceneAsync(nextScene);
-
-            waitNextScene.allowSceneActivation = false;
+            var waitNextScene = Addressables.LoadSceneAsync(nextScene, LoadSceneMode.Single, false);
 
             while (timePassed < minimalLoadTime)
             {
                 timePassed += Time.unscaledDeltaTime;
-                onProgressUpdate?.Invoke(waitNextScene.progress);
+                onProgressUpdate?.Invoke(waitNextScene.PercentComplete);
                 yield return null;
             }
 
-            waitNextScene.allowSceneActivation = true;
-
-            while (!waitNextScene.isDone)
+            while (!waitNextScene.IsDone)
             {
                 yield return null;
             }
 
+            waitNextScene.Result.ActivateAsync();
+            _conditionalLoggingService.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
             onLoaded?.Invoke();
         }
     }

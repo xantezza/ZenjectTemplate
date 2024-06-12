@@ -2,27 +2,29 @@
 using System.Collections;
 using Configs;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.StateMachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class LoadingScreenState : IState, IPayloadedState<Action>, IPayloadedState<SceneNames>, IPayloadedState<SceneNames, Action>
+    public class LoadingScreenState : IState, IPayloadedState<Action>, IPayloadedState<AssetReference, Action>
     {
-        private const int LoadingSceneNumber = 1;
         public static event Action<float> OnLoadSceneProgressUpdated;
 
         private readonly ICoroutineRunnerService _coroutineRunnerService;
         private readonly GameLoopStateMachine _stateMachine;
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly AssetReferenceProvider _assetReferenceProvider;
         private InfrastructureConfig _infrastructureConfig;
 
-        private SceneNames _cachedSceneToLoadAfterLoadingSceneLoad;
+        private AssetReference _cachedSceneToLoadAfterLoadingSceneLoad;
         private Action _cachedCallback;
 
         [Inject]
@@ -30,9 +32,12 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             GameLoopStateMachine stateMachine,
             ISceneLoaderService sceneLoaderService,
             ICoroutineRunnerService coroutineRunnerService,
-            ConditionalLoggingService conditionalLoggingService)
+            ConditionalLoggingService conditionalLoggingService,
+            AssetReferenceProvider assetReferenceProvider
+        )
         {
             _conditionalLoggingService = conditionalLoggingService;
+            _assetReferenceProvider = assetReferenceProvider;
             _stateMachine = stateMachine;
             _sceneLoaderService = sceneLoaderService;
             _coroutineRunnerService = coroutineRunnerService;
@@ -44,41 +49,17 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _infrastructureConfig = Remote.InfrastructureConfig;
         }
 
-        private async UniTask ToNextState()
-        {
-            switch (_cachedSceneToLoadAfterLoadingSceneLoad)
-            {
-                case SceneNames.Menu:
-                    await _stateMachine.Enter<MenuState>();
-                    break;
-                case SceneNames.Gameplay:
-                    await _stateMachine.Enter<GameplayState>();
-                    break;
-                default:
-                    _conditionalLoggingService.LogError("Missing logic", LogTag.GameLoopStateMachine);
-                    break;
-            }
-        }
-
         public UniTask Enter(Action onLoadingSceneLoad)
         {
-            _sceneLoaderService.LoadScene(LoadingSceneNumber, onLoadingSceneLoad);
+            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, onLoadingSceneLoad);
             return default;
         }
-
-        public UniTask Enter(SceneNames sceneToLoadAfterLoadingSceneLoad)
+        
+        public UniTask Enter(AssetReference sceneToLoadAfterLoadingScreen, Action onPayloadSceneLoad)
         {
-            _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingSceneLoad;
-            _cachedCallback = null;
-            _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
-            return default;
-        }
-
-        public UniTask Enter(SceneNames payload, Action onPayloadSceneLoad)
-        {
-            _cachedSceneToLoadAfterLoadingSceneLoad = payload;
+            _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingScreen;
             _cachedCallback = onPayloadSceneLoad;
-            _sceneLoaderService.LoadScene(LoadingSceneNumber, OnLoadingSceneLoaded);
+            _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, OnLoadingSceneLoaded);
             return default;
         }
 
@@ -88,17 +69,13 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
             _sceneLoaderService.LoadScene(
                 _cachedSceneToLoadAfterLoadingSceneLoad,
-                _cachedCallback ?? DefaultCallbackOnPayloadSceneLoaded,
+                _cachedCallback,
                 _infrastructureConfig.FakeTimeBeforeLoad
                 + _infrastructureConfig.FakeMinimalLoadTime
                 + _infrastructureConfig.FakeTimeAfterLoad
             );
         }
 
-        private async void DefaultCallbackOnPayloadSceneLoaded()
-        {
-            await ToNextState();
-        }
 
         private IEnumerator FakeLoading()
         {

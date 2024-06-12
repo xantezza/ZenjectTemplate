@@ -99,6 +99,21 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  <LoadingScene>k__BackingField:
+    m_AssetGUID: f221de51db4bb3c4f87504557f52b9bc
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <MenuScene>k__BackingField:
+    m_AssetGUID: 9fc0d4010bbf28b4594072e72b8655ab
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <GamePlayScene>k__BackingField:
+    m_AssetGUID: 8854245f3ede4384e83a8451d4921c83
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!1 &4674712813715039549
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 06.04.2024 16:36:28
-  _currentDate: 06.04.2024 16:36:33
+  _lastFetchDate: 12.06.2024 22:03:10
+  _currentDate: 12.06.2024 22:03:19
   _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
     false,\r\n    \"FakeTimeBeforeLoad\": 0.0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   
