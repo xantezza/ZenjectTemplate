@@ -35,7 +35,7 @@ namespace Editor.EditorWindows.Windows
             for (var index = 0; index < _scenes.Length; index++)
             {
                 var sceneName = _scenes[index];
-                if (GUILayout.Button($"{index + 1}: {Path.GetFileName(sceneName).Replace(".unity", "")}", new GUIStyle(GUI.skin.button) {alignment = TextAnchor.MiddleLeft}))
+                if (GUILayout.Button($"{index + 1}: {sceneName.Replace(".unity", "")}", new GUIStyle(GUI.skin.button) {alignment = TextAnchor.MiddleLeft}))
                 {
                     AssetDatabase.SaveAssets();
                     if (SceneManager.GetActiveScene().buildIndex != -1) EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
@@ -46,9 +46,10 @@ namespace Editor.EditorWindows.Windows
 
         private static void UpdateScenes(SceneSelector sceneSelector)
         {
-            var sceneCount = SceneManager.sceneCountInBuildSettings;
+            string[] paths = Directory.GetFiles("Assets/", "*.unity", SearchOption.AllDirectories);
+            var sceneCount = paths.Length;
             var scenes = new string[sceneCount];
-            for (var i = 0; i < sceneCount; i++) scenes[i] = SceneUtility.GetScenePathByBuildIndex(i);
+            for (var i = 0; i < sceneCount; i++) scenes[i] = paths[i];
             sceneSelector._scenes = scenes;
         }
     }
