@@ -8,8 +8,7 @@ using UnityEngine;
 
 namespace Infrastructure.Providers.DefaultConfigProvider
 {
-    public class CachedDefaultConfigProvider : MonoBehaviour, IDefaultConfigProvider
-
+    public class CachedDefaultUnityRemoteConfigProvider : MonoBehaviour, IDefaultConfigProvider
     {
         private const int TIME_OF_LOSS_OF_RELEVANCE_IN_MINUTES = -5;
 

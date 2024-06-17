@@ -8,7 +8,7 @@ namespace Infrastructure.Installers.ProjectContext
     public class ProviderInstallers : MonoInstaller
     {
         [SerializeField] private AssetReferenceProvider _assetReferenceProvider;
-        [SerializeField] private CachedDefaultConfigProvider cachedDefaultConfigProvider;
+        [SerializeField] private CachedDefaultUnityRemoteConfigProvider cachedDefaultUnityRemoteConfigProvider;
 
         public override void InstallBindings()
         {
@@ -17,6 +17,6 @@ namespace Infrastructure.Installers.ProjectContext
         }
 
         private void BindAssetReferenceProvider() => Container.Bind<AssetReferenceProvider>().FromInstance(_assetReferenceProvider).AsSingle().NonLazy();
-        private void BindDefaultConfigProvider() => Container.BindInterfacesTo<CachedDefaultConfigProvider>().FromInstance(cachedDefaultConfigProvider).AsSingle().NonLazy();
+        private void BindDefaultConfigProvider() => Container.BindInterfacesTo<CachedDefaultUnityRemoteConfigProvider>().FromInstance(cachedDefaultUnityRemoteConfigProvider).AsSingle().NonLazy();
     }
 }
