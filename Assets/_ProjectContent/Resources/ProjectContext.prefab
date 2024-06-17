@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _assetReferenceProvider: {fileID: 6512837330124944504}
-  cachedDefaultConfigProvider: {fileID: 7569658092093155845}
+  cachedDefaultUnityRemoteConfigProvider: {fileID: 7569658092093155845}
 --- !u!1 &6281541942477739200
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 12.06.2024 22:03:10
-  _currentDate: 12.06.2024 22:03:19
+  _lastFetchDate: 17.06.2024 22:23:52
+  _currentDate: 17.06.2024 22:23:55
   _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
     false,\r\n    \"FakeTimeBeforeLoad\": 0.0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   

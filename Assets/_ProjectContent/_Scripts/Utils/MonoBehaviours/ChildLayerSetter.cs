@@ -5,7 +5,7 @@ namespace Utils.MonoBehaviours
     [ExecuteInEditMode]
     public class ChildLayerSetter : MonoBehaviour
     {
-        private void OnTransformChildrenChanged()
+        private void OnValidate()
         {
             ChangeChildrenLayer();
         }
