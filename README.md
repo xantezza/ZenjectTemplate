@@ -21,11 +21,30 @@
 - IngameDebugConsole
 - SerializedCollections
 
- ### You can clone the entire repository and start working directly in it (for troubleshooting you can use the guide below)
- 
- ### Or paste only ```Asstets/``` folder inside existing project but then you need to:
+ ### You can clone the entire repository and start working directly in it:
 
-- Dependencies that must be added to ```Packages/manifest.json```
+Route Unity Services and add JSON Key-Value in `Settings => Services => Dashboard => Remote Config`:
+	
+`infrastructure_config` with data
+```
+{
+  	"FakeTimeBeforeLoad": 0.0,
+  	"FakeMinimalLoadTime": 0.2,
+	"FakeTimeAfterLoad": 0.2
+}
+```
+You can split production and dev configs usage by adding `dev` environment and uncomment section in `InitializeRemoteConfigState.cs:69`
+
+Use `InfrastructureConfig.cs` as reference for new configs.
+
+To easier configure them use  `Assets/_ProjectContent/Resources/ConfigUtility.asset`
+
+To Disable/Enable Logging and Debug Tools in builds go to `Player Settings => Other Settings => Scripting Define Symbols` and Remove/Add DEV string
+
+ ### Or you can paste only `Asstets/` folder inside existing project:
+
+- All above
+- Dependencies that must be added to `Packages/manifest.json`
 	```
     "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
@@ -33,36 +52,9 @@
     "com.unity.remote-config": "4.1.0",
     "com.unity.services.analytics": "5.1.1",
 	```
-- Go to ```Windows/Asset Management/Addressables/Groups/``` 
+- Go to `Windows/Asset Management/Addressables/Groups/` and press wide middle button `Create Default Group`
 
-	- if there no groups press wide middle button ```Create Default Group```, otherwise everything is fine.
-
-- Add DEV Scripting Define to let work Debug functionality in dev builds (you can remove it later for production builds)
-
-- Route Unity Services and add next environments:
-	- production (default)
-	- dev (used when DEV Scripting Define added)
-	
-	Then fill both of them with example ```infrastructure_config``` with data
-	```
-	{
-  		"FakeTimeBeforeLoad": 0.0,
-  		"FakeMinimalLoadTime": 0.2,
-  		"FakeTimeAfterLoad": 0.2
-	}
-	```
-
-	Use InfrastructureConfig.cs as reference for new configs.
-	To easier configure them use  ```Assets/_ProjectContent/Resources/ConfigUtility.asset```
-
-- You need to add ```Assets/_ProjectContent/Scenes/0_EntryPoint``` in ```Builds Settings/Scenes In Builds``` in with build index 0(!!!)
-
-	You can add other scenes to use ```Windows/SceneSelector```
-
-- If you have some unexpected troubles you can contact me https://t.me/xantezza
-
-
-
+- You need to add `Assets/_ProjectContent/Scenes/0_EntryPoint` in `Builds Settings/Scenes In Builds` in with build index 0(!!!)
 
 ## [Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 

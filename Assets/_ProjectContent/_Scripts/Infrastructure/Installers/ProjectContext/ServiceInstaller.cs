@@ -1,14 +1,8 @@
-﻿using Infrastructure.Providers;
-using Infrastructure.Services.Analytics;
+﻿using Infrastructure.Services.Analytics;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
-using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
-using Infrastructure.StateMachines;
-using Infrastructure.StateMachines.GameLoopStateMachine;
-using Infrastructure.StateMachines.InitializationStateMachine;
-using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Installers.ProjectContext
@@ -42,8 +36,7 @@ namespace Infrastructure.Installers.ProjectContext
         {
             Container.BindInterfacesTo<SceneLoaderService>().FromNew().AsSingle().NonLazy();
         }
-
-
+        
         private void BindSaveService()
         {
 #if DEV

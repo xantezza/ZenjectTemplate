@@ -3,7 +3,6 @@ using System.IO;
 using Infrastructure.Services.Logging;
 using Newtonsoft.Json;
 using UnityEngine;
-using Zenject;
 
 namespace Infrastructure.Services.Saving
 {

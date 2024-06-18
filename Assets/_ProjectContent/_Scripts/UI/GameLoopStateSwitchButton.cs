@@ -2,7 +2,6 @@
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
-using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;

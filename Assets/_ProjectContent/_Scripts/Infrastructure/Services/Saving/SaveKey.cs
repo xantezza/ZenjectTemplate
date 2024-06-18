@@ -2,7 +2,7 @@
 {
     public enum SaveKey
     {
-        //changing of string is prohibited
+        //changing is prohibited
         InGameTime,
         TutorialAnalytics,
         PrivacyPolicyState

@@ -1,5 +1,4 @@
 ﻿using Infrastructure;
-using Infrastructure.Services.SceneLoading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Saving;
 using Infrastructure.StateMachines.StateMachine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States

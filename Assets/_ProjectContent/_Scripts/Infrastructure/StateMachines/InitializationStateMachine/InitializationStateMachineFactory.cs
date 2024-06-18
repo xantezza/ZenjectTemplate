@@ -21,7 +21,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
         public InitializationStateMachine GetFrom(object summoner)
         {
             _stateMachine ??= _instantiator.Instantiate<InitializationStateMachine>();
-            _loggingService.Log($"Access to the GameLoopStateMachine is obtained from {summoner}", LogTag.InitializationStateMachine);
+            _loggingService.Log($"Access to the {this} is obtained from {summoner}", LogTag.InitializationStateMachine);
             return _stateMachine;
         }
     }

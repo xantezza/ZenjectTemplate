@@ -3,7 +3,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Infrastructure.Services.Logging;
 using UnityEngine;
-using Zenject;
 
 namespace Infrastructure.Services.Saving
 {

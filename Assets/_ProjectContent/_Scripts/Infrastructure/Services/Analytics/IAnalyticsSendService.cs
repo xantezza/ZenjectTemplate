@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 
 namespace Infrastructure.Services.Analytics
 {

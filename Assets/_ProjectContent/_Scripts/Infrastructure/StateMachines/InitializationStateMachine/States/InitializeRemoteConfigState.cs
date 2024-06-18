@@ -45,7 +45,16 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #if PLATFORM_WEBGL && !UNITY_EDITOR
             await InitializeRemoteConfigAsync();
 #else
-            if (Utilities.CheckForInternetConnection()) await InitializeRemoteConfigAsync();
+            if (Utilities.CheckForInternetConnection())
+            {
+                await InitializeRemoteConfigAsync();
+            }
+            else
+            
+            
+            {
+                await ToNextState();
+            }
 #endif
 
             _conditionalLoggingService.Log("Subscribe on fetch", LogTag.RemoteSettings);
@@ -56,8 +65,10 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private async UniTask InitializeRemoteConfigAsync()
         {
 #if DEV
-            var options = new InitializationOptions().SetEnvironmentName("dev");
-            _conditionalLoggingService.Log("Start of InitializeRemoteConfigAsync with environment: dev", LogTag.RemoteSettings);
+            var options = new InitializationOptions().SetEnvironmentName("production");
+            //You can uncomment it and add dev environment in dashboard to split production and dev configs if needed
+            //var options = new InitializationOptions().SetEnvironmentName("dev");
+            //_conditionalLoggingService.Log("Start of InitializeRemoteConfigAsync with environment: dev", LogTag.RemoteSettings);
 #else
             var options = new InitializationOptions().SetEnvironmentName("production");
 #endif

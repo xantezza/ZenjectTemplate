@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
-using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
