@@ -37,6 +37,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36ac903e5ea9353498d9d59694c900de
+    m_Address: Assets/_ProjectContent/Fonts/Monospace/MonospaceRegular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d0501d0c0df8423429d46e9fd5da9572, type: 2}
   m_SchemaSet:
