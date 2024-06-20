@@ -170,8 +170,16 @@ PrefabInstance:
       value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 1094602859211286017, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094602859211286017, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4279966714
+      value: 4283651071
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094602859211286017, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5451102515343883562, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_Pivot.x

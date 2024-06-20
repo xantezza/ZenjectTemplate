@@ -19,24 +19,24 @@ namespace Infrastructure.Services.OnGuiDev
 #if DEV
         private void OnGUI()
         {
-            GUILayout.BeginArea(new Rect(100, 0, 300, 1080));
-
-            if (GUILayout.Button($"Enable Dev GUI: {_guiEnabled}"))
+            for (var i = _elements.Count - 1; i >= 0; i--)
             {
-                _guiEnabled = !_guiEnabled;
+                if (_elements[_index] == null)
+                {
+                    _elements.RemoveAt(_index);
+                }
             }
 
-            if (_guiEnabled)
+            if (_elements.Count > 0)
             {
-                for (var i = _elements.Count - 1; i >= 0; i--)
+                GUILayout.BeginArea(new Rect(100, 0, 300, 1080));
+
+                if (GUILayout.Button($"Enable Dev GUI: {_guiEnabled}"))
                 {
-                    if (_elements[_index] == null)
-                    {
-                        _elements.RemoveAt(_index);
-                    }
+                    _guiEnabled = !_guiEnabled;
                 }
 
-                if (_elements.Count > 0)
+                if (_guiEnabled)
                 {
                     GUILayout.Label($"Elements: {_elements.Count}");
                     GUILayout.Label($"Current Element: {_index + 1}");
@@ -56,9 +56,9 @@ namespace Infrastructure.Services.OnGuiDev
                     GUILayout.Label($"{_elements[_index]}");
                     ((IDevGUIElement) _elements[_index]).DrawDevGUI();
                 }
-            }
 
-            GUILayout.EndArea();
+                GUILayout.EndArea();
+            }
         }
 #endif
     }
