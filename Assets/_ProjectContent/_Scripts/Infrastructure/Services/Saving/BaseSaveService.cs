@@ -33,6 +33,7 @@ namespace Infrastructure.Services.Saving
         public void Initialize()
         {
             Application.focusChanged += OnApplicationFocus;
+            //Application.exitCancellationToken.Register(() => { StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName); });
         }
 
         public void Dispose()
@@ -45,12 +46,10 @@ namespace Infrastructure.Services.Saving
             if (focusStatus) return;
             if (!Application.isPlaying) return;
 
-            var hasCachedFileName = _cachedSaveFileName != null;
-
-            StoreSaveFile(hasCachedFileName, _cachedSaveFileName);
+            StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName);
         }
 
-        protected abstract void Load<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class, new ();
+        protected abstract void Load<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class, new();
 
         private void AddToSave<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class
         {

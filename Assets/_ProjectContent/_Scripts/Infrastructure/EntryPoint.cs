@@ -9,7 +9,7 @@ namespace Infrastructure
     {
         private GameLoopStateMachineFactory _stateMachineFactory;
 
-        public static bool IsAwakened { get; private set; }
+        public static bool HasStarted { get; private set; }
 
         [Inject]
         private void Inject(GameLoopStateMachineFactory stateMachineFactory)
@@ -19,7 +19,7 @@ namespace Infrastructure
 
         private async void Start()
         {
-            IsAwakened = true;
+            HasStarted = true;
             await _stateMachineFactory.GetFrom(this).Enter<EntryPointState>();
         }
     }

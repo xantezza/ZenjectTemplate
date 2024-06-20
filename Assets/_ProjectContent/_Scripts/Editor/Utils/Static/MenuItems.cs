@@ -8,13 +8,7 @@ namespace Editor.Utils.Static
 {
     public static class MenuItems
     {
-        [MenuItem("Assets/Project/To Entry Point", false, 7)]
-        private static void ToEntryPoint()
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/0_EntryPoint.unity");
-        }
-
-        [MenuItem("Assets/Project/Select Project Context", false, 5)]
+        [MenuItem("Assets/Project/Select Project Context", false, 6)]
         private static void SelectProjectContext()
         {
             Selection.activeObject = Resources.Load<ProjectContext>("ProjectContext");
@@ -26,7 +20,7 @@ namespace Editor.Utils.Static
             Selection.activeObject = Resources.Load<ConfigUtility>("ConfigUtility");
         }
 
-        [MenuItem("Tools/Open PersistentDataPath", false, 8)]
+        [MenuItem("Assets/Project/Open PersistentDataPath", false, 10)]
         private static void OpenPersistentDataPath()
         {
             EditorUtility.RevealInFinder(Application.persistentDataPath);

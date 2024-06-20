@@ -8,10 +8,7 @@ namespace Utils.MonoBehaviours
     {
         private void Awake()
         {
-            if (EntryPoint.IsAwakened)
-                Destroy(gameObject);
-            else
-                SceneManager.LoadScene(0);
+            if (!EntryPoint.HasStarted) SceneManager.LoadScene(0);
         }
     }
 }
