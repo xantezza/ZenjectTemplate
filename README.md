@@ -46,6 +46,7 @@ To Disable/Enable Logging and Debug Tools in builds go to `Player Settings => Ot
 - All above
 - Dependencies that must be added to `Packages/manifest.json`
 	```
+    "com.annulusgames.lit-motion": "https://github.com/AnnulusGames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
     "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.unity.addressables": "1.21.21",
