@@ -1,13 +1,13 @@
 ﻿using System;
 using LitMotion;
+using LitMotion.Extensions;
 using TMPro;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using LitMotion.Extensions;
 
-namespace UI
+namespace UI.AnimatedUI
 {
     [Serializable]
     public class AnimatedUIElementAnimation

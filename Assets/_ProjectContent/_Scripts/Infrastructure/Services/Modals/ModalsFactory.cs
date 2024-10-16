@@ -21,6 +21,6 @@ namespace Infrastructure.Services.Modals
             var modalPopup = instantiated.GetComponent<T>();
             modalPopup.Show();
             return modalPopup;
-        } 
+        }
     }
 }

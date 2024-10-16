@@ -7,7 +7,7 @@ namespace Infrastructure.Services.OnGuiDev
     {
         private bool _guiEnabled;
         private int _index;
-        private List<MonoBehaviour> _elements = new();
+        private readonly List<MonoBehaviour> _elements = new();
 
         public void Add<T>(T element) where T : MonoBehaviour, IDevGUIElement
         {

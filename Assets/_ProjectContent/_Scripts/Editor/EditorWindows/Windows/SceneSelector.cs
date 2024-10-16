@@ -46,7 +46,7 @@ namespace Editor.EditorWindows.Windows
 
         private static void UpdateScenes(SceneSelector sceneSelector)
         {
-            string[] paths = Directory.GetFiles("Assets/", "*.unity", SearchOption.AllDirectories);
+            var paths = Directory.GetFiles("Assets/", "*.unity", SearchOption.AllDirectories);
             var sceneCount = paths.Length;
             var scenes = new string[sceneCount];
             for (var i = 0; i < sceneCount; i++) scenes[i] = paths[i];

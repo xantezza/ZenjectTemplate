@@ -34,7 +34,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         private async void OnLoadingScreenLoaded()
         {
-           await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
+            await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
         }
     }
 }

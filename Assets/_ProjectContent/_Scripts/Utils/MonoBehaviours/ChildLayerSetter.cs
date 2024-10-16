@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Utils.MonoBehaviours
 {
-    [ExecuteInEditMode]
     public class ChildLayerSetter : MonoBehaviour
     {
         private void OnValidate()

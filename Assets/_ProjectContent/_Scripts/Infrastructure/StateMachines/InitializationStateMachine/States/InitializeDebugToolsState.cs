@@ -9,7 +9,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     public class InitializeDebugToolsState : BaseInitializationState, IEnterableState
     {
         private readonly AssetReferenceProvider _assetReferenceProvider;
-        
+
         [Inject]
         public InitializeDebugToolsState(InitializationStateMachine stateMachine, AssetReferenceProvider assetReferenceProvider) : base(stateMachine)
         {

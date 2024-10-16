@@ -23,7 +23,7 @@ namespace Infrastructure.Services.Analytics
         {
             if (_initialized) return;
             _initialized = true;
-            
+
             Application.focusChanged += OnApplicationFocus;
         }
 
@@ -52,7 +52,7 @@ namespace Infrastructure.Services.Analytics
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
         {
             Initialize();
-            
+
             var customEvent = new CustomEvent(eventName);
             var stringBuilder = new StringBuilder();
             stringBuilder.Append($"{eventName} sent");

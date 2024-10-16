@@ -15,7 +15,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private readonly ConditionalLoggingService _conditionalLoggingService;
 
         private bool _isInitialized;
-        
+
         [Inject]
         public InitializeRemoteConfigState(
             InitializationStateMachine stateMachine,
@@ -50,8 +50,8 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 await InitializeRemoteConfigAsync();
             }
             else
-            
-            
+
+
             {
                 await ToNextState();
             }

@@ -54,7 +54,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _sceneLoaderService.LoadScene(_assetReferenceProvider.LoadingScene, false, onLoadingSceneLoad);
             return default;
         }
-        
+
         public UniTask Enter(AssetReference sceneToLoadAfterLoadingScreen, Action onPayloadSceneLoad)
         {
             _cachedSceneToLoadAfterLoadingSceneLoad = sceneToLoadAfterLoadingScreen;

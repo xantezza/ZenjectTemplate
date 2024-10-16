@@ -16,7 +16,14 @@ namespace Infrastructure.Installers.ProjectContext
             BindDefaultConfigProvider();
         }
 
-        private void BindAssetReferenceProvider() => Container.Bind<AssetReferenceProvider>().FromInstance(_assetReferenceProvider).AsSingle().NonLazy();
-        private void BindDefaultConfigProvider() => Container.BindInterfacesTo<CachedDefaultUnityRemoteConfigProvider>().FromInstance(cachedDefaultUnityRemoteConfigProvider).AsSingle().NonLazy();
+        private void BindAssetReferenceProvider()
+        {
+            Container.Bind<AssetReferenceProvider>().FromInstance(_assetReferenceProvider).AsSingle().NonLazy();
+        }
+
+        private void BindDefaultConfigProvider()
+        {
+            Container.BindInterfacesTo<CachedDefaultUnityRemoteConfigProvider>().FromInstance(cachedDefaultUnityRemoteConfigProvider).AsSingle().NonLazy();
+        }
     }
 }

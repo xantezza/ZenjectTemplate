@@ -34,7 +34,7 @@ namespace Infrastructure.Services.SceneLoading
 
             if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
-                _conditionalLoggingService.Log($"Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
+                _conditionalLoggingService.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
                 onLoaded?.Invoke();
                 yield break;
             }

@@ -24,7 +24,7 @@ namespace Infrastructure.Services.Saving
 
             dataSaveable.SaveData ??= new TSave();
         }
-        
+
         public override void LoadSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName) fileName = _defaultFileName;

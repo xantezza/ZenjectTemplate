@@ -13,7 +13,7 @@ namespace Infrastructure.Services.Analytics
         private readonly IAnalyticsSendService _analyticsSendService;
 
         public SaveKey SaveId => SaveKey.TutorialAnalytics;
-        
+
         public Save SaveData { get; set; }
 
         [Inject]

@@ -30,7 +30,6 @@ namespace Infrastructure.Providers.DefaultConfigProvider
         }
 
 #if UNITY_EDITOR
-
         private void OnValidate()
         {
             _currentDate = DateTime.Now.ToString(CultureInfo.CurrentCulture);

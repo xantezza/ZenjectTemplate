@@ -8,7 +8,7 @@ namespace Infrastructure.Providers.AssetReferenceProvider
     public class AssetReferenceProvider : MonoBehaviour
     {
         [field: SerializeField] public ModalsAssetReferences ModalsAssetReferences { get; private set; }
-        
+
         [field: SerializeField] public AssetReferenceGameObject DebugRootAssetReference { get; private set; }
         [field: SerializeField] public AssetReference LoadingScene { get; private set; }
         [field: SerializeField] public AssetReference MenuScene { get; private set; }
