@@ -1,15 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Infrastructure.Services.DevGUIService
 {
     public class OnGUIService : MonoBehaviour, IOnGUIService
     {
+        private const float _messageLifetime = 6f;
+
         private bool _guiEnabled;
         private int _index;
 
         // MonoBehaviour list to take advantage of Unity's ability to replace destroyed objects with nulls and not bother with removing elements from outside
         private readonly List<MonoBehaviour> _elements = new();
+
+        private readonly List<Message> _messages = new();
+
+        private class Message
+        {
+            public Message(string messageText, float lifeTime)
+            {
+                MessageText = messageText;
+                LifeTime = lifeTime;
+            }
+
+            public string MessageText;
+            public float LifeTime;
+        }
 
         public void AddDevOnGUIElement<T>(T element) where T : MonoBehaviour, IDevOnGUIElement
         {
@@ -20,6 +37,17 @@ namespace Infrastructure.Services.DevGUIService
 
         public void ShowMessage(string textToShowUp)
         {
+            _messages.Add(new Message(textToShowUp, _messageLifetime));
+        }
+
+        private void Update()
+        {
+            for (var i = _messages.Count - 1; i >= 0; i--)
+            {
+                var message = _messages.ElementAt(i);
+                message.LifeTime -= Time.unscaledDeltaTime;
+                if (message.LifeTime < 0) _messages.RemoveAt(i);
+            }
         }
 
         private void OnGUI()
@@ -28,9 +56,12 @@ namespace Infrastructure.Services.DevGUIService
 #if DEV
             DevOnGUI();
 #endif
-            
-            
-            Debug.LogError(Time.frameCount);
+
+            for (var i = _messages.Count - 1; i >= 0; i--)
+            {
+                var message = _messages.ElementAt(i);
+                GUILayout.Label(message.MessageText);
+            }
             
             GUILayout.EndVertical();
         }
@@ -68,7 +99,6 @@ namespace Infrastructure.Services.DevGUIService
                     ((IDevOnGUIElement) _elements[_index]).DrawDevGUI();
                 }
             }
-
         }
     }
 }

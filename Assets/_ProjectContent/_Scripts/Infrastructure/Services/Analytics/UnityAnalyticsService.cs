@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Infrastructure.Services.Logging;
+using Infrastructure.StateMachines.InitializationStateMachine.States;
 using Unity.Services.Analytics;
 using UnityEngine;
 using Zenject;
@@ -10,7 +11,6 @@ namespace Infrastructure.Services.Analytics
     public class UnityAnalyticsService : IAnalyticsService
     {
         private readonly ConditionalLoggingService _conditionalLoggingService;
-        private bool _initialized;
 
         [Inject]
         public UnityAnalyticsService(ConditionalLoggingService conditionalLoggingService)
@@ -23,12 +23,15 @@ namespace Infrastructure.Services.Analytics
         {
             if (focusStatus) return;
             if (!Application.isPlaying) return;
+            if (!InitializeRemoteConfigState.IsInitialized) return;
 
             AnalyticsService.Instance.Flush();
         }
 
         public void SendEvent(string eventName)
         {
+            if (!InitializeRemoteConfigState.IsInitialized) return;
+            
             _conditionalLoggingService.Log($"{eventName} sent", LogTag.Analytics);
 
             AnalyticsService.Instance.RecordEvent(eventName);
@@ -36,6 +39,7 @@ namespace Infrastructure.Services.Analytics
 
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
         {
+            if (!InitializeRemoteConfigState.IsInitialized) return;
 
             var customEvent = new CustomEvent(eventName);
             var stringBuilder = new StringBuilder();

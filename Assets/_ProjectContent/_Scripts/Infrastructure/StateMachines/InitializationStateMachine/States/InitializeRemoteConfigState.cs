@@ -12,9 +12,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
     public class InitializeRemoteConfigState : BaseInitializationState, IEnterableState
     {
+        public static bool IsInitialized { get; private set; }
+        
         private readonly ConditionalLoggingService _conditionalLoggingService;
-
-        private bool _isInitialized;
 
         [Inject]
         public InitializeRemoteConfigState(
@@ -36,7 +36,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         private async UniTask InitializeRemoteSettings()
         {
-            if (_isInitialized)
+            if (IsInitialized)
             {
                 await ToNextState();
                 return;
@@ -50,10 +50,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 await InitializeRemoteConfigAsync();
             }
             else
-
-
             {
                 await ToNextState();
+                return;
             }
 #endif
 
@@ -90,7 +89,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
             RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _conditionalLoggingService);
 
-            _isInitialized = true;
+            IsInitialized = true;
 
             await ToNextState();
         }

@@ -17,6 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 307319cb96fb4f049b02c03679b273d2
   m_SerializeEntries:
+  - m_GUID: 8854245f3ede4384e83a8451d4921c83
+    m_Address: Gameplay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
+    m_Address: Menu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e229f3a10bd36bf489298a1fda6da293
     m_Address: PrivacyPolicyModal
     m_ReadOnly: 0
@@ -27,24 +37,9 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Menu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8854245f3ede4384e83a8451d4921c83
-    m_Address: Gameplay
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 36ac903e5ea9353498d9d59694c900de
-    m_Address: Assets/_ProjectContent/Fonts/Monospace/MonospaceRegular SDF.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d0501d0c0df8423429d46e9fd5da9572, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d5a5cf568adf9824db19f2e211604a56, type: 2}
     - {fileID: 11400000, guid: 1bf6938a8d82b874585962aa35965a64, type: 2}
+    - {fileID: 11400000, guid: d5a5cf568adf9824db19f2e211604a56, type: 2}
