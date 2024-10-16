@@ -1,18 +1,15 @@
 ﻿using Infrastructure.Services.Analytics;
 using Infrastructure.Services.CoroutineRunner;
+using Infrastructure.Services.DevGUIService;
 using Infrastructure.Services.Logging;
-using Infrastructure.Services.OnGuiDev;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
-using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Installers.ProjectContext
 {
     public class ServiceInstaller : MonoInstaller
     {
-        [SerializeField] private DevGUIService _devGUIService;
-
         public override void InstallBindings()
         {
             BindConditionalLoggingService();
@@ -30,12 +27,12 @@ namespace Infrastructure.Installers.ProjectContext
 
         private void BindDevGUIService()
         {
-            Container.BindInterfacesTo<DevGUIService>().FromInstance(_devGUIService).AsSingle().NonLazy();
+            Container.BindInterfacesTo<OnGUIService>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
         }
 
         private void BindAnalyticsLogService()
         {
-            Container.BindInterfacesTo<UnityAnalyticsSendService>().FromNew().AsSingle().NonLazy();
+            Container.BindInterfacesTo<UnityAnalyticsService>().FromNew().AsSingle().NonLazy();
         }
 
         private void BindCoroutineRunnerService()

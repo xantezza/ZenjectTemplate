@@ -12,23 +12,23 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     public class InitializationFinalizerState : BaseInitializationState, IEnterableState
     {
         private readonly GameLoopStateMachineFactory _gameLoopStateMachineFactory;
-        private readonly IAnalyticsSendService _analyticsSendService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly AssetReferenceProvider _assetReferenceProvider;
 
         protected InitializationFinalizerState(
             InitializationStateMachine stateMachine,
             GameLoopStateMachineFactory gameLoopStateMachineFactory,
-            IAnalyticsSendService analyticsSendService,
+            IAnalyticsService analyticsService,
             AssetReferenceProvider assetReferenceProvider) : base(stateMachine)
         {
-            _analyticsSendService = analyticsSendService;
+            _analyticsService = analyticsService;
             _assetReferenceProvider = assetReferenceProvider;
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
         }
 
         public async UniTask Enter()
         {
-            _analyticsSendService.SendEvent("load_finished");
+            _analyticsService.SendEvent("load_finished");
             await _gameLoopStateMachineFactory.GetFrom(this).Enter<LoadingScreenState, AssetReference, Action>(_assetReferenceProvider.MenuScene, OnLoadingScreenLoaded);
         }
 

@@ -2,6 +2,7 @@
 {
     public enum LogTag
     {
+        Error,
         GameLoopStateMachine,
         InitializationStateMachine,
         RemoteSettings,

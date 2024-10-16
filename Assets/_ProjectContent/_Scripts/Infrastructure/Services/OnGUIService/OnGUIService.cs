@@ -1,27 +1,43 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.Services.OnGuiDev
+namespace Infrastructure.Services.DevGUIService
 {
-    public class DevGUIService : MonoBehaviour, IDevGUIService
+    public class OnGUIService : MonoBehaviour, IOnGUIService
     {
         private bool _guiEnabled;
         private int _index;
-        private readonly List<IDevGUIElement> _elements = new();
 
-        public void Add<T>(T element) where T : MonoBehaviour, IDevGUIElement
+        // MonoBehaviour list to take advantage of Unity's ability to replace destroyed objects with nulls and not bother with removing elements from outside
+        private readonly List<MonoBehaviour> _elements = new();
+
+        public void AddDevOnGUIElement<T>(T element) where T : MonoBehaviour, IDevOnGUIElement
         {
 #if DEV
             _elements.Add(element);
 #endif
         }
 
-#if DEV
+        public void ShowMessage(string textToShowUp)
+        {
+        }
+
         private void OnGUI()
         {
             GUILayout.BeginVertical();
+#if DEV
+            DevOnGUI();
+#endif
+            
+            
+            Debug.LogError(Time.frameCount);
+            
+            GUILayout.EndVertical();
+        }
 
-            if (GUILayout.Button($"Dev GUI: {_guiEnabled}"))
+        private void DevOnGUI()
+        {
+            if (GUILayout.Button($"DevOnGUI enabled: {_guiEnabled}"))
             {
                 _guiEnabled = !_guiEnabled;
             }
@@ -49,12 +65,10 @@ namespace Infrastructure.Services.OnGuiDev
                     if (_index >= _elements.Count) _index = 0;
 
                     GUILayout.Label($"{_elements[_index]}");
-                    _elements[_index].DrawDevGUI();
+                    ((IDevOnGUIElement) _elements[_index]).DrawDevGUI();
                 }
             }
 
-            GUILayout.EndVertical();
         }
     }
-#endif
 }

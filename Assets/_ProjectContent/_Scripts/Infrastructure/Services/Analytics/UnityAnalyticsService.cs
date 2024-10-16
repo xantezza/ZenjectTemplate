@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Infrastructure.Services.Logging;
 using Unity.Services.Analytics;
@@ -8,28 +7,16 @@ using Zenject;
 
 namespace Infrastructure.Services.Analytics
 {
-    public class UnityAnalyticsSendService : IAnalyticsSendService, IDisposable
+    public class UnityAnalyticsService : IAnalyticsService
     {
         private readonly ConditionalLoggingService _conditionalLoggingService;
         private bool _initialized;
 
         [Inject]
-        public UnityAnalyticsSendService(ConditionalLoggingService conditionalLoggingService)
+        public UnityAnalyticsService(ConditionalLoggingService conditionalLoggingService)
         {
             _conditionalLoggingService = conditionalLoggingService;
-        }
-
-        private void Initialize()
-        {
-            if (_initialized) return;
-            _initialized = true;
-
             Application.focusChanged += OnApplicationFocus;
-        }
-
-        public void Dispose()
-        {
-            Application.focusChanged -= OnApplicationFocus;
         }
 
         private void OnApplicationFocus(bool focusStatus)
@@ -42,8 +29,6 @@ namespace Infrastructure.Services.Analytics
 
         public void SendEvent(string eventName)
         {
-            Initialize();
-
             _conditionalLoggingService.Log($"{eventName} sent", LogTag.Analytics);
 
             AnalyticsService.Instance.RecordEvent(eventName);
@@ -51,7 +36,6 @@ namespace Infrastructure.Services.Analytics
 
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
         {
-            Initialize();
 
             var customEvent = new CustomEvent(eventName);
             var stringBuilder = new StringBuilder();
