@@ -5,10 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Configs
 {
-    /// <summary>
-    ///     Remote Settings
-    /// </summary>
-    public static class Remote
+    public static class RemoteConfig
     {
         public static event Action OnInitializeAny;
         public static event Action OnInitializeDefault;

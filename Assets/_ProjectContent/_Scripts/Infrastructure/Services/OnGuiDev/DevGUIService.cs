@@ -7,7 +7,7 @@ namespace Infrastructure.Services.OnGuiDev
     {
         private bool _guiEnabled;
         private int _index;
-        private readonly List<MonoBehaviour> _elements = new();
+        private readonly List<IDevGUIElement> _elements = new();
 
         public void Add<T>(T element) where T : MonoBehaviour, IDevGUIElement
         {
@@ -19,31 +19,26 @@ namespace Infrastructure.Services.OnGuiDev
 #if DEV
         private void OnGUI()
         {
-            for (var i = _elements.Count - 1; i >= 0; i--)
+            GUILayout.BeginVertical();
+
+            if (GUILayout.Button($"Dev GUI: {_guiEnabled}"))
             {
-                if (_elements[_index] == null)
-                {
-                    _elements.RemoveAt(_index);
-                }
+                _guiEnabled = !_guiEnabled;
             }
 
-            if (_elements.Count > 0)
+            if (_guiEnabled)
             {
-                GUILayout.BeginArea(new Rect(100, 0, 300, 1080));
-
-                if (GUILayout.Button($"Enable Dev GUI: {_guiEnabled}"))
+                for (var i = _elements.Count - 1; i >= 0; i--)
                 {
-                    _guiEnabled = !_guiEnabled;
+                    if (_elements[_index] == null)
+                    {
+                        _elements.RemoveAt(_index);
+                    }
                 }
 
-                if (_guiEnabled)
+                if (_elements.Count > 0)
                 {
-                    GUILayout.Label($"Elements: {_elements.Count}");
-                    GUILayout.Label($"Current Element: {_index + 1}");
-                    if (GUILayout.Button("Prev"))
-                    {
-                        _index--;
-                    }
+                    GUILayout.Label($"Element {_index + 1}/{_elements.Count}");
 
                     if (GUILayout.Button("Next"))
                     {
@@ -54,12 +49,12 @@ namespace Infrastructure.Services.OnGuiDev
                     if (_index >= _elements.Count) _index = 0;
 
                     GUILayout.Label($"{_elements[_index]}");
-                    ((IDevGUIElement) _elements[_index]).DrawDevGUI();
+                    _elements[_index].DrawDevGUI();
                 }
-
-                GUILayout.EndArea();
             }
+
+            GUILayout.EndVertical();
         }
-#endif
     }
+#endif
 }

@@ -88,7 +88,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
             if (configResponse.requestOrigin == ConfigOrigin.Default) return;
 
-            Remote.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _conditionalLoggingService);
+            RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _conditionalLoggingService);
 
             _isInitialized = true;
 

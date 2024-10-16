@@ -41,12 +41,12 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _stateMachine = stateMachine;
             _sceneLoaderService = sceneLoaderService;
             _coroutineRunnerService = coroutineRunnerService;
-            Remote.OnInitializeAny += OnRemoteInitializeAny;
+            RemoteConfig.OnInitializeAny += OnRemoteInitializeAny;
         }
 
         private void OnRemoteInitializeAny()
         {
-            _infrastructureConfig = Remote.InfrastructureConfig;
+            _infrastructureConfig = RemoteConfig.InfrastructureConfig;
         }
 
         public UniTask Enter(Action onLoadingSceneLoad)

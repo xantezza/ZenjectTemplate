@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Editor.Utils
 {
-    [CreateAssetMenu]
     public class ConfigUtility : ScriptableObject
     {
         private enum Type
@@ -17,11 +16,11 @@ namespace Editor.Utils
         [SerializeField] private Type type;
 
 
-        [ShowIf(nameof(condition)), SerializeField] private InfrastructureConfig _infrastructureConfig;
-        private bool condition => type == Type.Infrastructure;
-
-
-        [SerializeField] [TextArea(12, 9999)] private string _serialized;
+        [ShowIf(nameof(isInfrastructure)), SerializeField] private InfrastructureConfig _infrastructureConfig;
+        private bool isInfrastructure => type == Type.Infrastructure;
+        
+        [SerializeField] private string _key;
+        [SerializeField] [TextArea(12, 9999)] private string _json;
 
         [Button] [PropertyOrder(-10)]
         private void ToJson()
@@ -29,7 +28,8 @@ namespace Editor.Utils
             switch (type)
             {
                 case Type.Infrastructure:
-                    _serialized = $"{ConfigType.InfrastructureConfig}\n{JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented)}";
+                    _key = ConfigType.InfrastructureConfig;
+                    _json = JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -42,7 +42,7 @@ namespace Editor.Utils
             switch (type)
             {
                 case Type.Infrastructure:
-                    _infrastructureConfig = JsonConvert.DeserializeObject<InfrastructureConfig>(_serialized);
+                    _infrastructureConfig = JsonConvert.DeserializeObject<InfrastructureConfig>(_json);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

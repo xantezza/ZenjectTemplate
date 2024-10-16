@@ -1,7 +1,5 @@
 ﻿using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Editor.Utils.Static

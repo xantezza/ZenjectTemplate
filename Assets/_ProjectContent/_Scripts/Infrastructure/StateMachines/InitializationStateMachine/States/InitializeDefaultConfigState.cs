@@ -25,7 +25,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         public async UniTask Enter()
         {
-            Remote.InitializeByDefault(_defaultConfigProvider.CachedConfig, _conditionalLoggingService);
+            RemoteConfig.InitializeByDefault(_defaultConfigProvider.CachedConfig, _conditionalLoggingService);
             await _stateMachine.NextState();
         }
     }

@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: ConfigUtility
   m_EditorClassIdentifier: 
   type: 0
-  _serialized: "infrastructure_config\n{\r\n  \"FakeTimeBeforeLoad\": 0.0,\r\n  \"FakeMinimalLoadTime\":
-    0.2,\r\n  \"FakeTimeAfterLoad\": 0.2\r\n}"
+  _infrastructureConfig:
+    FakeTimeBeforeLoad: 0
+    FakeMinimalLoadTime: 0.2
+    FakeTimeAfterLoad: 0.3
+  _key: infrastructure_config
+  _json: "{\r\n  \"FakeTimeBeforeLoad\": 0.0,\r\n  \"FakeMinimalLoadTime\": 0.2,\r\n 
+    \"FakeTimeAfterLoad\": 0.3\r\n}"
