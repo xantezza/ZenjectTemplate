@@ -10,14 +10,14 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
-    public class InitializeRemoteConfigState : BaseInitializationState, IEnterableState
+    public class InitializeUnityServicesState : BaseInitializationState, IEnterableState
     {
         public static bool IsInitialized { get; private set; }
         
         private readonly ConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
-        public InitializeRemoteConfigState(
+        public InitializeUnityServicesState(
             InitializationStateMachine stateMachine,
             ConditionalLoggingService conditionalLoggingService) : base(stateMachine)
         {
@@ -43,11 +43,11 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             }
 
 #if PLATFORM_WEBGL && !UNITY_EDITOR
-            await InitializeRemoteConfigAsync();
+            await InitializeUnityServices();
 #else
             if (Utilities.CheckForInternetConnection())
             {
-                await InitializeRemoteConfigAsync();
+                await InitializeUnityServices();
             }
             else
             {
@@ -56,22 +56,25 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             }
 #endif
 
-            _conditionalLoggingService.Log("Subscribe on fetch", LogTag.RemoteSettings);
             RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
+            _conditionalLoggingService.Log("Fetch Configs", LogTag.RemoteSettings);
             RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
         }
 
-        private async UniTask InitializeRemoteConfigAsync()
+        private async UniTask InitializeUnityServices()
         {
 #if DEV
             var options = new InitializationOptions().SetEnvironmentName("production");
+            _conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: production", LogTag.RemoteSettings);
+            
             //You can uncomment it and add dev environment in dashboard to split production and dev configs if needed
             //var options = new InitializationOptions().SetEnvironmentName("dev");
-            //_conditionalLoggingService.Log("Start of InitializeRemoteConfigAsync with environment: dev", LogTag.RemoteSettings);
+            //_conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: dev", LogTag.RemoteSettings);
 #else
             var options = new InitializationOptions().SetEnvironmentName("production");
 #endif
 
+            
             await UnityServices.InitializeAsync(options);
 
             if (!AuthenticationService.Instance.IsSignedIn)
@@ -80,7 +83,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
         }
-
+        
         private async void ApplyRemoteSettings(ConfigResponse configResponse)
         {
             _conditionalLoggingService.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.RemoteSettings);

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TriInspector;
 using UnityEngine;
 
 namespace Infrastructure.Services.DevGUIService
@@ -35,19 +36,10 @@ namespace Infrastructure.Services.DevGUIService
 #endif
         }
 
+        [Button]
         public void ShowMessage(string textToShowUp)
         {
             _messages.Add(new Message(textToShowUp, _messageLifetime));
-        }
-
-        private void Update()
-        {
-            for (var i = _messages.Count - 1; i >= 0; i--)
-            {
-                var message = _messages.ElementAt(i);
-                message.LifeTime -= Time.unscaledDeltaTime;
-                if (message.LifeTime < 0) _messages.RemoveAt(i);
-            }
         }
 
         private void OnGUI()
@@ -60,6 +52,8 @@ namespace Infrastructure.Services.DevGUIService
             for (var i = _messages.Count - 1; i >= 0; i--)
             {
                 var message = _messages.ElementAt(i);
+                message.LifeTime -= Time.unscaledDeltaTime;
+                if (message.LifeTime < 0) _messages.RemoveAt(i);
                 GUILayout.Label(message.MessageText);
             }
             
@@ -77,9 +71,9 @@ namespace Infrastructure.Services.DevGUIService
             {
                 for (var i = _elements.Count - 1; i >= 0; i--)
                 {
-                    if (_elements[_index] == null)
+                    if (_elements[i] == null)
                     {
-                        _elements.RemoveAt(_index);
+                        _elements.RemoveAt(i);
                     }
                 }
 

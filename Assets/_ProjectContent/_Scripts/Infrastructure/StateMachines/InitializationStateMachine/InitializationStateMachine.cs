@@ -11,7 +11,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
         public InitializationStateMachine(StatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
-            RegisterState(statesFactory.Create<InitializeRemoteConfigState>(this));
+            RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
 #endif

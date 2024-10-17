@@ -23,14 +23,14 @@ namespace Infrastructure.Services.Analytics
         {
             if (focusStatus) return;
             if (!Application.isPlaying) return;
-            if (!InitializeRemoteConfigState.IsInitialized) return;
+            if (!InitializeUnityServicesState.IsInitialized) return;
 
             AnalyticsService.Instance.Flush();
         }
 
         public void SendEvent(string eventName)
         {
-            if (!InitializeRemoteConfigState.IsInitialized) return;
+            if (!InitializeUnityServicesState.IsInitialized) return;
             
             _conditionalLoggingService.Log($"{eventName} sent", LogTag.Analytics);
 
@@ -39,7 +39,7 @@ namespace Infrastructure.Services.Analytics
 
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
         {
-            if (!InitializeRemoteConfigState.IsInitialized) return;
+            if (!InitializeUnityServicesState.IsInitialized) return;
 
             var customEvent = new CustomEvent(eventName);
             var stringBuilder = new StringBuilder();

@@ -34,7 +34,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
             if (SaveData.ConsentGiven)
             {
-                AnalyticsService.Instance.StartDataCollection();
+                if (InitializeUnityServicesState.IsInitialized) AnalyticsService.Instance.StartDataCollection();
                 await _stateMachine.NextState();
             }
             else
@@ -47,8 +47,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private async void OnInteract()
         {
             SaveData.ConsentGiven = true;
-            _saveService.StoreSaveFile();
-            AnalyticsService.Instance.StartDataCollection();
+            if (InitializeUnityServicesState.IsInitialized) AnalyticsService.Instance.StartDataCollection();
             await _stateMachine.NextState();
         }
     }
