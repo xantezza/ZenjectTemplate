@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using TriInspector;
 using UnityEngine;
 
@@ -51,7 +50,7 @@ namespace Infrastructure.Services.DevGUIService
 
             for (var i = _messages.Count - 1; i >= 0; i--)
             {
-                var message = _messages.ElementAt(i);
+                var message = _messages[i];
                 message.LifeTime -= Time.unscaledDeltaTime;
                 if (message.LifeTime < 0) _messages.RemoveAt(i);
                 GUILayout.Label(message.MessageText);

@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 17.10.2024 2:01:29
-  _currentDate: 17.10.2024 2:01:34
+  _lastFetchDate: 17.10.2024 12:21:14
+  _currentDate: 17.10.2024 12:21:48
   _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
     true,\r\n    \"FakeTimeBeforeLoad\": 0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   

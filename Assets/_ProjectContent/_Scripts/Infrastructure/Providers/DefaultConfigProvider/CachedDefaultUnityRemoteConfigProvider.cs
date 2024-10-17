@@ -61,6 +61,7 @@ namespace Infrastructure.Providers.DefaultConfigProvider
             _cachedConfigString = JObject.ToString();
             _lastFetchDate = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             _minutesFromLastFetch = 0;
+            Debug.Log("Done Fetch Default Config");
         }
 #endif
     }
