@@ -78,7 +78,7 @@ namespace Infrastructure.Services.DevGUIService
 
                 if (_elements.Count > 0)
                 {
-                    GUILayout.Label($"Element {_index + 1}/{_elements.Count}");
+                    GUILayout.Label($"Element {_index + 1}/{_elements.Count}: {_elements[_index]}");
 
                     if (GUILayout.Button("Next"))
                     {
@@ -88,7 +88,6 @@ namespace Infrastructure.Services.DevGUIService
                     if (_index < 0) _index = _elements.Count - 1;
                     if (_index >= _elements.Count) _index = 0;
 
-                    GUILayout.Label($"{_elements[_index]}");
                     ((IDevOnGUIElement) _elements[_index]).DrawDevGUI();
                 }
             }
