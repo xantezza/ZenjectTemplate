@@ -53,7 +53,7 @@ namespace Configs
             }
             catch (Exception e)
             {
-                _loggingService.LogError($"Failed to parse remote config, using cached default. Exception: {e}", LogTag.RemoteSettings);
+                _loggingService.LogError($"Failed to parse remote config, using cached default. Exception: {e}", LogTag.UnityServices);
 
                 return InternalParse(_cachedDefaultConfig);
             }
@@ -62,7 +62,7 @@ namespace Configs
             {
                 var configString = config[type].ToString();
 
-                _loggingService.Log($"{type}: {configString}", LogTag.RemoteSettings);
+                _loggingService.Log($"{type}: {configString}", LogTag.UnityServices);
 
                 return JsonConvert.DeserializeObject<T>(configString);
             }

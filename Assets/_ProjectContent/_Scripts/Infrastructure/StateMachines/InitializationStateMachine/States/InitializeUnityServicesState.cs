@@ -57,7 +57,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #endif
 
             RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
-            _conditionalLoggingService.Log("Fetch Configs", LogTag.RemoteSettings);
+            _conditionalLoggingService.Log("Fetch Configs", LogTag.UnityServices);
             RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
         }
 
@@ -65,7 +65,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         {
 #if DEV
             var options = new InitializationOptions().SetEnvironmentName("production");
-            _conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: production", LogTag.RemoteSettings);
+            _conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: production", LogTag.UnityServices);
             
             //You can uncomment it and add dev environment in dashboard to split production and dev configs if needed
             //var options = new InitializationOptions().SetEnvironmentName("dev");
@@ -73,26 +73,24 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #else
             var options = new InitializationOptions().SetEnvironmentName("production");
 #endif
-
             
             await UnityServices.InitializeAsync(options);
 
             if (!AuthenticationService.Instance.IsSignedIn)
             {
-                _conditionalLoggingService.Log("Start of SignInAnonymouslyAsync", LogTag.RemoteSettings);
+                _conditionalLoggingService.Log("Start of SignInAnonymouslyAsync", LogTag.UnityServices);
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
         }
         
         private async void ApplyRemoteSettings(ConfigResponse configResponse)
         {
-            _conditionalLoggingService.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.RemoteSettings);
+            _conditionalLoggingService.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.UnityServices);
 
             if (configResponse.requestOrigin == ConfigOrigin.Default) return;
 
             RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _conditionalLoggingService);
 
-            IsInitialized = true;
 
             await ToNextState();
         }

@@ -5,7 +5,7 @@
         Error,
         GameLoopStateMachine,
         InitializationStateMachine,
-        RemoteSettings,
+        UnityServices,
         Analytics,
         SceneLoader,
         UI,
