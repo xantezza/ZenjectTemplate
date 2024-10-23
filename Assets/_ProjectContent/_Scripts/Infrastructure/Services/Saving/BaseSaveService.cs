@@ -33,7 +33,6 @@ namespace Infrastructure.Services.Saving
         public void Initialize()
         {
             Application.focusChanged += OnApplicationFocus;
-            //Application.exitCancellationToken.Register(() => { StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName); });
         }
 
         public void Dispose()

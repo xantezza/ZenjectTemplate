@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Infrastructure.Services.DevGUIService
+namespace Infrastructure.Services.OnGUIService
 {
     public interface IOnGUIService
     {

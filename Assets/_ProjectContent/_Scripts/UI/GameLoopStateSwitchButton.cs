@@ -60,7 +60,6 @@ namespace UI
             switch (_targetState)
             {
                 case TargetStates.Menu:
-                    _saveService.StoreSaveFile();
                     await _gameLoopStateMachineFactory.GetFrom(this)
                         .Enter<LoadingScreenState, AssetReference, Action>(_assetReferenceProvider.MenuScene, OnLoadingScreenLoadedToMenu);
                     break;
@@ -69,7 +68,7 @@ namespace UI
                         .Enter<LoadingScreenState, AssetReference, Action>(_assetReferenceProvider.GamePlayScene, OnLoadingScreenLoadedToGameplay);
                     break;
                 default:
-                    _conditionalLoggingService.LogError($"Missing logic in {this}", LogTag.UI);
+                    _conditionalLoggingService.LogError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
                     break;
             }
         }

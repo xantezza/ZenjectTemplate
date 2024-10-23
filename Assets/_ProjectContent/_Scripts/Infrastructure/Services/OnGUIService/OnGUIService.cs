@@ -2,7 +2,7 @@
 using TriInspector;
 using UnityEngine;
 
-namespace Infrastructure.Services.DevGUIService
+namespace Infrastructure.Services.OnGUIService
 {
     public class OnGUIService : MonoBehaviour, IOnGUIService
     {

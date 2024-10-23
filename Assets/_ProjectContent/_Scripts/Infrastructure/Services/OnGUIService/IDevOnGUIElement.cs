@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services.DevGUIService
+﻿namespace Infrastructure.Services.OnGUIService
 {
     public interface IDevOnGUIElement
     {
