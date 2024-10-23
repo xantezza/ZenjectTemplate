@@ -19,7 +19,10 @@ namespace Editor.Utils
         [ShowIf(nameof(isInfrastructure)), SerializeField] private InfrastructureConfig _infrastructureConfig;
         private bool isInfrastructure => type == Type.Infrastructure;
         
+        #pragma warning disable 
         [SerializeField] private string _key;
+        #pragma warning disable 
+        
         [SerializeField] [TextArea(12, 9999)] private string _json;
 
         [Button] [PropertyOrder(-10)]
