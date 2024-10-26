@@ -23,7 +23,7 @@ namespace Infrastructure.Services.Modals
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
             if (reference == null)
             {
-                _conditionalLoggingService.LogError($"In AssetReferenceProvider.ModalsAssetReferences not found reference to modal for type {typeof(T)}", LogTag.Error);
+                _conditionalLoggingService.LogError($"In AssetReferenceProvider.ModalsAssetReferences not found reference to modal for type {typeof(T)}", LogTag.AssetReferenceProvider);
                 return default;
             }
             
