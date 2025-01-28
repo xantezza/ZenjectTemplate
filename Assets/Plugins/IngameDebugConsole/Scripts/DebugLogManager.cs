@@ -990,7 +990,7 @@ namespace IngameDebugConsole
 
 				return '\0';
 			}
-			else if( addedChar == '\n' ) // Command is submitted
+			else if( addedChar == '\n' || addedChar == '!') // Command is submitted
 			{
 				// Clear the command field
 				if( clearCommandAfterExecution )
