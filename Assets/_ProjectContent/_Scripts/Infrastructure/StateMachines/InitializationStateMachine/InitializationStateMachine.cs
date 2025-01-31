@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace Infrastructure.StateMachines.InitializationStateMachine
 {
     [UsedImplicitly]
-    public class InitializationStateMachine : BaseStateMachine
+    public class InitializationStateMachine : SequentialStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
