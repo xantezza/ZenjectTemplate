@@ -15,10 +15,8 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             _saveService = saveService;
         }
 
-        //State changes by GameLoopStateSwitchButton in scene
         public UniTask Enter()
         {
-            _saveService.StoreSaveFile();
             return default;
         }
     }

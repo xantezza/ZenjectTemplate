@@ -8,7 +8,7 @@ namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class BaseStateMachine
     {
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly IConditionalLoggingService _conditionalLoggingService;
 
         private IState _activeState;
         private readonly Dictionary<Type, IState> _states = new();
@@ -17,7 +17,7 @@ namespace Infrastructure.StateMachines.StateMachine
         protected abstract LogTag LogTag { get; }
 
         [Inject]
-        protected BaseStateMachine(ConditionalLoggingService conditionalLoggingService)
+        protected BaseStateMachine(IConditionalLoggingService conditionalLoggingService)
         {
             _conditionalLoggingService = conditionalLoggingService;
         }

@@ -15,15 +15,15 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             _saveService = saveService;
         }
 
-        private async UniTask ToNextState()
-        {
-            await _stateMachine.NextState();
-        }
-
         public async UniTask Enter()
         {
             _saveService.LoadSaveFile();
             await ToNextState();
+        }
+
+        private async UniTask ToNextState()
+        {
+            await _stateMachine.NextState();
         }
     }
 }

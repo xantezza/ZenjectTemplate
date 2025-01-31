@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_Data:
-    m_SerializedData: []
   m_GUID: 307319cb96fb4f049b02c03679b273d2
   m_SerializeEntries:
   - m_GUID: 8854245f3ede4384e83a8451d4921c83
@@ -29,6 +27,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e229f3a10bd36bf489298a1fda6da293
     m_Address: PrivacyPolicyModal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9bc0abc060168644b810631a8ad9d26
+    m_Address: InventoryView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

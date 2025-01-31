@@ -1,3 +1,4 @@
+using Infrastructure.Factories;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
@@ -7,12 +8,12 @@ namespace Infrastructure
 {
     public class EntryPoint : MonoBehaviour
     {
-        private GameLoopStateMachineFactory _stateMachineFactory;
+        private IGameLoopStateMachineFactory _stateMachineFactory;
 
         public static bool HasStarted { get; private set; }
 
         [Inject]
-        private void Inject(GameLoopStateMachineFactory stateMachineFactory)
+        private void Inject(IGameLoopStateMachineFactory stateMachineFactory)
         {
             _stateMachineFactory = stateMachineFactory;
         }

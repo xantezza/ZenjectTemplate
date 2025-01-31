@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using Configs;
+using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.CoroutineRunner;
-using Infrastructure.Services.Logging;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.StateMachine;
 using UnityEngine;
@@ -13,15 +13,13 @@ using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 {
-    public class LoadingScreenState : IState, IPayloadedState<Action>, IPayloadedState<AssetReference, Action>
+    public class LoadingScreenState : BaseGameLoopState, IPayloadedState<Action>, IPayloadedState<AssetReference, Action>
     {
         public static event Action<float> OnLoadSceneProgressUpdated;
 
         private readonly ICoroutineRunnerService _coroutineRunnerService;
-        private readonly GameLoopStateMachine _stateMachine;
         private readonly ISceneLoaderService _sceneLoaderService;
-        private readonly ConditionalLoggingService _conditionalLoggingService;
-        private readonly AssetReferenceProvider _assetReferenceProvider;
+        private readonly IAssetReferenceProvider _assetReferenceProvider;
         private InfrastructureConfig _infrastructureConfig;
 
         private AssetReference _cachedSceneToLoadAfterLoadingSceneLoad;
@@ -32,21 +30,13 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             GameLoopStateMachine stateMachine,
             ISceneLoaderService sceneLoaderService,
             ICoroutineRunnerService coroutineRunnerService,
-            ConditionalLoggingService conditionalLoggingService,
-            AssetReferenceProvider assetReferenceProvider
-        )
+            IAssetReferenceProvider assetReferenceProvider
+        ) : base(stateMachine)
         {
-            _conditionalLoggingService = conditionalLoggingService;
             _assetReferenceProvider = assetReferenceProvider;
-            _stateMachine = stateMachine;
             _sceneLoaderService = sceneLoaderService;
             _coroutineRunnerService = coroutineRunnerService;
             RemoteConfig.OnInitializeAny += OnRemoteInitializeAny;
-        }
-
-        private void OnRemoteInitializeAny()
-        {
-            _infrastructureConfig = RemoteConfig.InfrastructureConfig;
         }
 
         public UniTask Enter(Action onLoadingSceneLoad)
@@ -93,9 +83,9 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             }
         }
 
-        public UniTask Exit()
+        private void OnRemoteInitializeAny()
         {
-            return default;
+            _infrastructureConfig = RemoteConfig.InfrastructureConfig;
         }
     }
 }

@@ -3,8 +3,7 @@
     public enum SaveKey
     {
         //changing is prohibited
-        InGameTime,
-        TutorialAnalytics,
-        PrivacyPolicyState
+        PrivacyPolicyState = 1,
+        Inventory = 2,
     }
 }

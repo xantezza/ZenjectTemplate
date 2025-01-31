@@ -1,13 +1,16 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Factories;
 using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
 using Infrastructure.StateMachines.StateMachine;
+using JetBrains.Annotations;
 using UniRx;
 using Unity.Services.Analytics;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
+    [UsedImplicitly]
     public class InitializePrivacyPolicyState : BaseInitializationState, IDataSaveable<InitializePrivacyPolicyState.Save>, IEnterableState
     {
         [Serializable]
@@ -20,17 +23,21 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         public Save SaveData { get; set; }
 
         private readonly ISaveService _saveService;
-        private readonly ModalsFactory _modalsFactory;
+        private readonly IModalPopupFactory _modalPopupFactory;
 
-        protected InitializePrivacyPolicyState(InitializationStateMachine stateMachine, ModalsFactory modalsFactory, ISaveService saveService) : base(stateMachine)
+        protected InitializePrivacyPolicyState(InitializationStateMachine stateMachine, IModalPopupFactory modalPopupFactory, ISaveService saveService) : base(stateMachine)
         {
-            _modalsFactory = modalsFactory;
+            _modalPopupFactory = modalPopupFactory;
             _saveService = saveService;
         }
 
         public async UniTask Enter()
         {
             _saveService.Process(this);
+
+#if UNITY_EDITOR
+            SaveData.ConsentGiven = true;
+#endif
 
             if (SaveData.ConsentGiven)
             {
@@ -39,7 +46,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             }
             else
             {
-                var popup = await _modalsFactory.Show<PrivacyPolicyModal>();
+                var popup = await _modalPopupFactory.Show<PrivacyPolicyModal>();
                 popup.OnInteract.Subscribe(_ => OnInteract());
             }
         }

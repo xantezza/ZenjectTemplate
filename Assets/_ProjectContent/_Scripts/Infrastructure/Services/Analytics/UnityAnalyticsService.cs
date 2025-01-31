@@ -10,10 +10,10 @@ namespace Infrastructure.Services.Analytics
 {
     public class UnityAnalyticsService : IAnalyticsService
     {
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly IConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
-        public UnityAnalyticsService(ConditionalLoggingService conditionalLoggingService)
+        public UnityAnalyticsService(IConditionalLoggingService conditionalLoggingService)
         {
             _conditionalLoggingService = conditionalLoggingService;
             Application.focusChanged += OnApplicationFocus;

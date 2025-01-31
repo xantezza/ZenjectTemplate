@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Infrastructure.Services.Logging
 {
-    public class UnityConditionalLoggingService : ConditionalLoggingService
+    [UsedImplicitly]
+    public class UnityConditionalLoggingService : IConditionalLoggingService
     {
         protected override void InternalLog(string text, LogTag tag)
         {

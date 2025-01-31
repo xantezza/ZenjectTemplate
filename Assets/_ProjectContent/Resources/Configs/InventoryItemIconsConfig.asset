@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df9687ce7cf4e198366cde0104bcb86, type: 3}
+  m_Name: InventoryItemIconsConfig
+  m_EditorClassIdentifier: 
+  <ItemIcons>k__BackingField:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 0}
+    - Key: 1
+      Value: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
+    - Key: 3
+      Value: {fileID: 21300000, guid: 70a77abda853dd941a0c8debf1de9b04, type: 3}
+    - Key: 4
+      Value: {fileID: 21300000, guid: ae496f5dad56ea645b72d374a0376368, type: 3}
+    - Key: 5
+      Value: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
+    - Key: 6
+      Value: {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+    - Key: 7
+      Value: {fileID: 21300000, guid: 4a39cb4b272639541b7bd5ac0649acf7, type: 3}
+    - Key: 8
+      Value: {fileID: 21300000, guid: b97c91e8b348f3f4ebdc11f5c82182cd, type: 3}

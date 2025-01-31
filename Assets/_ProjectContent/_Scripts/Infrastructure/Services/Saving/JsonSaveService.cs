@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Infrastructure.Services.Logging;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ namespace Infrastructure.Services.Saving
     {
         protected virtual string _defaultFileName => "jsonDefaultSave";
 
-        public JsonSaveService(ConditionalLoggingService loggingService) : base(loggingService)
+        public JsonSaveService(IConditionalLoggingService loggingService) : base(loggingService)
         {
         }
 
@@ -29,21 +30,31 @@ namespace Infrastructure.Services.Saving
         {
             if (useDefaultFileName) fileName = _defaultFileName;
 
-            var path = $"{Application.persistentDataPath}/{fileName}.txt";
-
-            if (!File.Exists(path))
+            try
             {
-                _loggingService.Log("No game data to load", LogTag.SaveService);
-                return;
+                var path = $"{Application.persistentDataPath}/{fileName}.txt";
+
+                if (!File.Exists(path))
+                {
+                    _loggingService.Log("No game data to load", LogTag.SaveService);
+                    _hasLoaded = true;
+                    return;
+                }
+
+                _cachedSaveFileName = fileName;
+
+                var fileContent = File.ReadAllText(path);
+
+                _readyToSaveDictionary = JsonConvert.DeserializeObject<Dictionary<SaveKey, object>>(fileContent);
+
+                _hasLoaded = true;
+                _loggingService.Log($"Game data loaded! \n{fileContent}", LogTag.SaveService);
             }
-
-            _cachedSaveFileName = fileName;
-
-            var file = File.ReadAllText(path);
-
-            _readyToSaveDictionary = JsonConvert.DeserializeObject<Dictionary<SaveKey, object>>(file);
-
-            _loggingService.Log("Game data loaded!", LogTag.SaveService);
+            catch (Exception e)
+            {
+                _loggingService.LogError($"Exception caught when loading save!\n{e}", LogTag.SaveService);
+                _hasLoaded = true;
+            }
         }
 
         public override void StoreSaveFile(bool useDefaultFileName = true, string fileName = null)

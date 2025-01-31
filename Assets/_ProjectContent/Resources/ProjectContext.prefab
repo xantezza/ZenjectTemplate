@@ -44,76 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11656b466394910acda24a6a4d3b079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4417802573853759439
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5092476381204130082}
-  - component: {fileID: 6512837330124944504}
-  m_Layer: 0
-  m_Name: AssetReferenceProvider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5092476381204130082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4417802573853759439}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7538335589412189997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512837330124944504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4417802573853759439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abd5e53b6a344caa448aeda32f2b335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ModalsAssetReferences>k__BackingField:
-    _privacyPolicyModal:
-      m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-  <DebugRootAssetReference>k__BackingField:
-    m_AssetGUID: 52d0d1ae7ef98434caef0186654f7b2c
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  <LoadingScene>k__BackingField:
-    m_AssetGUID: f221de51db4bb3c4f87504557f52b9bc
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  <MenuScene>k__BackingField:
-    m_AssetGUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  <GamePlayScene>k__BackingField:
-    m_AssetGUID: 8854245f3ede4384e83a8451d4921c83
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!1 &4674712813715039549
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +255,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5092476381204130082}
   - {fileID: 3127834018754900462}
   m_Father: {fileID: 6994547916840969886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -341,7 +270,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e05f611bfc041f5882470b999085bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _assetReferenceProvider: {fileID: 6512837330124944504}
+  _assetReferenceProvider:
+    <ModalsAssetReferences>k__BackingField:
+      <PrivacyPolicyModal>k__BackingField:
+        m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
+        m_SubObjectName: 
+        m_SubObjectGUID: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    <DebugRootAssetReference>k__BackingField:
+      m_AssetGUID: 52d0d1ae7ef98434caef0186654f7b2c
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    <InventoryViewAssetReference>k__BackingField:
+      m_AssetGUID: e9bc0abc060168644b810631a8ad9d26
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    <LoadingScene>k__BackingField:
+      m_AssetGUID: f221de51db4bb3c4f87504557f52b9bc
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    <MenuScene>k__BackingField:
+      m_AssetGUID: 9fc0d4010bbf28b4594072e72b8655ab
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    <GamePlayScene>k__BackingField:
+      m_AssetGUID: 8854245f3ede4384e83a8451d4921c83
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   cachedDefaultUnityRemoteConfigProvider: {fileID: 7569658092093155845}
 --- !u!1 &6281541942477739200
 GameObject:
@@ -432,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25869971a1e45cfa760a11acec63671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _modalsFactory: {fileID: 2648533701004758203}
+  modalPopupFactory: {fileID: 0}
 --- !u!1 &8257824420714989116
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,9 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 17.10.2024 12:21:14
-  _currentDate: 17.10.2024 12:21:48
+  _lastFetchDate: 30.01.2025 23:13:56
+  _currentDate: 30.01.2025 23:14:00
   _minutesFromLastFetch: 0
-  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"IsDebugEnabled\":
-    true,\r\n    \"FakeTimeBeforeLoad\": 0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n   
-    \"FakeTimeAfterLoad\": 0.5\r\n  }\r\n}"
+  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeTimeBeforeLoad\":
+    0,\r\n    \"FakeMinimalLoadTime\": 0.5,\r\n    \"FakeTimeAfterLoad\": 0.5\r\n 
+    }\r\n}"

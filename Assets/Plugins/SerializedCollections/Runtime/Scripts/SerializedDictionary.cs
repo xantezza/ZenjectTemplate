@@ -163,7 +163,7 @@ namespace AYellowpaper.SerializedCollections
             if (UnityEditor.BuildPipeline.isBuildingPlayer)
                 LookupTable.RemoveDuplicates();
 
-            //is there a better way to check if the dictionary was deserialized with reflection?
+            // TODO: is there a better way to check if the dictionary was deserialized with reflection?
             if (_serializedList.Count == 0 && Count > 0)
                 SyncDictionaryToBackingField_Editor();
 #else

@@ -1,25 +1,28 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
+using JetBrains.Annotations;
 using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
+    [UsedImplicitly]
     public class InitializationFinalizerState : BaseInitializationState, IEnterableState
     {
-        private readonly GameLoopStateMachineFactory _gameLoopStateMachineFactory;
+        private readonly IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
         private readonly IAnalyticsService _analyticsService;
-        private readonly AssetReferenceProvider _assetReferenceProvider;
+        private readonly IAssetReferenceProvider _assetReferenceProvider;
 
         protected InitializationFinalizerState(
             InitializationStateMachine stateMachine,
-            GameLoopStateMachineFactory gameLoopStateMachineFactory,
+            IGameLoopStateMachineFactory gameLoopStateMachineFactory,
             IAnalyticsService analyticsService,
-            AssetReferenceProvider assetReferenceProvider) : base(stateMachine)
+            IAssetReferenceProvider assetReferenceProvider) : base(stateMachine)
         {
             _analyticsService = analyticsService;
             _assetReferenceProvider = assetReferenceProvider;

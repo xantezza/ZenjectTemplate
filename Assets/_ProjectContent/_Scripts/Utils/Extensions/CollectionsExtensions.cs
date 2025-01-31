@@ -10,6 +10,14 @@ namespace Utils.Extensions
     {
         #region Arrays
 
+        public static void Reset<T>(this T[] array)
+        {
+            for (var i = 0; i < array.Length; i++)
+            {
+                array[i] = default;
+            }
+        }
+
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             foreach (var obj in source)

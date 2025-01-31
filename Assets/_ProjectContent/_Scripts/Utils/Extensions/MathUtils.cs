@@ -16,6 +16,37 @@ namespace Utils.Extensions
             return num / denominator;
         }
 
+        public static (int, int) GetDigitCounts(float number)
+        {
+            int integerPart = (int) number;
+            float fractionalPart = number - integerPart;
+
+            int integerCount = 0;
+            if (integerPart == 0)
+            {
+                integerCount = 1; 
+            }
+            else
+            {
+                while (integerPart != 0)
+                {
+                    integerPart /= 10;
+                    integerCount++;
+                }
+            }
+
+            int fractionalCount = 0;
+            while (fractionalPart != 0 && fractionalCount < 10)
+            {
+                fractionalPart *= 10;
+                int digit = (int) fractionalPart;
+                fractionalPart -= digit;
+                fractionalCount++;
+            }
+
+            return (integerCount, fractionalCount);
+        }
+
         public static int GetDigitCapacity(this int value)
         {
             var digitCapacity = 1;

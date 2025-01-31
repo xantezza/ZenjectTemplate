@@ -2,6 +2,7 @@
 {
     public enum LogTag
     {
+        Default,
         GameLoopStateMachine,
         InitializationStateMachine,
         UnityServices,

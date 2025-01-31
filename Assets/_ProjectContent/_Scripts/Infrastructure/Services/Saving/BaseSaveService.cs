@@ -10,9 +10,10 @@ namespace Infrastructure.Services.Saving
     {
         protected Dictionary<SaveKey, object> _readyToSaveDictionary = new();
 
-        protected readonly ConditionalLoggingService _loggingService;
+        protected readonly IConditionalLoggingService _loggingService;
 
         protected string _cachedSaveFileName;
+        protected bool _hasLoaded;
 
         public void Process<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class, new()
         {
@@ -25,7 +26,7 @@ namespace Infrastructure.Services.Saving
         public abstract void StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
 
         [Inject]
-        protected BaseSaveService(ConditionalLoggingService loggingService)
+        protected BaseSaveService(IConditionalLoggingService loggingService)
         {
             _loggingService = loggingService;
         }
@@ -44,6 +45,8 @@ namespace Infrastructure.Services.Saving
         {
             if (focusStatus) return;
             if (!Application.isPlaying) return;
+            if (_readyToSaveDictionary.Count == 0) return;
+            if (!_hasLoaded) return;
 
             StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName);
         }

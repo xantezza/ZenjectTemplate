@@ -165,7 +165,7 @@ namespace AYellowpaper.SerializedCollections.Editor
             ToggleSearchBar(_propertyData.AlwaysShowSearch ? true : SCEditorUtility.ShouldShowSearch(pageCount));
         }
 
-        // This works for now, but isn't perfect. This checks if the serialized dictionary was reassigned with new(), simply by comparing the count. Should be instead done by reference equality in the future
+        // TODO: This works for now, but isn't perfect. This checks if the serialized dictionary was reassigned with new(), simply by comparing the count. Should be instead done by reference equality in the future
         private void CheckIfNewDictionary()
         {
             if (_singleEditingData.IsValid && _singleEditingData.LookupTable.GetCount() != _activeState.ListSize)
@@ -213,7 +213,7 @@ namespace AYellowpaper.SerializedCollections.Editor
 
         private void CheckPaging()
         {
-            // Is there a better solution to check for Revert/delete/add?
+            // TODO: Is there a better solution to check for Revert/delete/add?
             if (_lastListSize != _activeState.ListSize)
             {
                 _lastListSize = _activeState.ListSize;
@@ -304,7 +304,7 @@ namespace AYellowpaper.SerializedCollections.Editor
 
         private (DisplayType displayType, bool canToggleListDrawer) CreateDisplaySettings(SerializedProperty property, Type type)
         {
-            bool hasCustomEditor = SCEditorUtility.HasDrawerForType(type);
+            bool hasCustomEditor = SCEditorUtility.HasDrawerForProperty(property, type);
             bool isGenericWithChildren = property.propertyType == SerializedPropertyType.Generic && property.hasVisibleChildren;
             bool isArray = property.isArray && property.propertyType != SerializedPropertyType.String;
             bool canToggleListDrawer = isArray || (isGenericWithChildren && hasCustomEditor);

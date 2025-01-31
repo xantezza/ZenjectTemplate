@@ -1,14 +1,17 @@
-﻿using Infrastructure.Services.Logging;
+﻿using Infrastructure.Factories;
+using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
+using JetBrains.Annotations;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine
 {
+    [UsedImplicitly]
     public class InitializationStateMachine : BaseStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
-        public InitializationStateMachine(StatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public InitializationStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Logging;
+﻿using Infrastructure.Factories;
+using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using Zenject;
@@ -10,7 +11,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
         [Inject]
-        public GameLoopStateMachine(StatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public GameLoopStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
             RegisterState(statesFactory.Create<LoadingScreenState>(this));

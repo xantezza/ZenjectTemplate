@@ -19,6 +19,124 @@ namespace Utils.Extensions
 
     public static class StringExtensions
     {
+        public static void InsertStringAtStart(this char[] targetArray, string str)
+        {
+            if (str == null || targetArray == null)
+            {
+                throw new ArgumentNullException("Arguments cannot be null.");
+            }
+
+            int strLength = str.Length;
+
+            if (strLength + 1 > targetArray.Length)
+            {
+                throw new ArgumentException("Target array is not large enough to hold the inserted string.");
+            }
+
+            for (int i = targetArray.Length - 1; i >= strLength; i--)
+            {
+                targetArray[i] = targetArray[i - strLength];
+            }
+
+            for (int i = 0; i < strLength; i++)
+            {
+                targetArray[i] = str[i];
+            }
+        }
+
+        public static void FloatToStringNonAlloc(float number, char[] buffer, int maxFractionDigits = 3)
+        {
+            int index = 0;
+            bool isNegative = number < 0;
+            if (isNegative)
+            {
+                number = -number;
+                buffer[index++] = '-';
+            }
+
+            int intPart = (int) number;
+            float fractionalPart = number - intPart;
+
+            index += IntToStringNonAlloc(intPart, buffer, index);
+
+            if (index < buffer.Length)
+            {
+                buffer[index++] = '.';
+            }
+            else
+            {
+                throw new InvalidOperationException("Buffer overflow while adding decimal point.");
+            }
+
+            for (int i = 0; i < maxFractionDigits; i++)
+            {
+                fractionalPart *= 10;
+                int fractionalDigit = (int) fractionalPart;
+
+                if (index < buffer.Length)
+                {
+                    buffer[index++] = (char) ('0' + fractionalDigit);
+
+                    fractionalPart -= fractionalDigit;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Buffer overflow while adding fractional digits.");
+                }
+            }
+
+            if (index < buffer.Length)
+            {
+                buffer[index] = default;
+            }
+        }
+
+        public static int IntToStringNonAlloc(int number, char[] buffer, int index = 0)
+        {
+            int startIndex = index;
+            bool isNegative = number < 0;
+
+            if (isNegative)
+            {
+                number = -number;
+            }
+
+            do
+            {
+                buffer[index++] = (char) ('0' + (number % 10));
+                number /= 10;
+            } while (number > 0);
+
+            if (isNegative)
+            {
+                buffer[index++] = '-';
+            }
+
+            Array.Reverse(buffer, startIndex, index - startIndex);
+
+            return index - startIndex;
+        }
+
+        private static int GetStringLength(int number)
+        {
+            if (number == 0) return 1;
+
+            int length = 0;
+            if (number < 0)
+            {
+                length++;
+                number = -number;
+            }
+
+            while (number > 0)
+            {
+                number /= 10;
+                length++;
+            }
+
+            return length;
+        }
+
         public static string Replace(this string stringToModificate, IEnumerable<StringReplacer> replacers)
         {
             if (stringToModificate.IsNullOrWhitespace() || !replacers.Any() || replacers.Any(x => x == null)) return stringToModificate;

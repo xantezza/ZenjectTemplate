@@ -11,10 +11,5 @@ namespace Zenject
         {
             _renderableManager = renderableManager;
         }
-
-        public void OnGUI()
-        {
-            _renderableManager.OnGui();
-        }
     }
 }

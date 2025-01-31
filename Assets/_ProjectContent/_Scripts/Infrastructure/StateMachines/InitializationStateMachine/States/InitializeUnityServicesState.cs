@@ -1,4 +1,5 @@
 ﻿using Configs;
+using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.StateMachine;
@@ -13,20 +14,15 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     public class InitializeUnityServicesState : BaseInitializationState, IEnterableState
     {
         public static bool IsInitialized { get; private set; }
-        
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+
+        private readonly IConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
         public InitializeUnityServicesState(
             InitializationStateMachine stateMachine,
-            ConditionalLoggingService conditionalLoggingService) : base(stateMachine)
+            IConditionalLoggingService conditionalLoggingService) : base(stateMachine)
         {
             _conditionalLoggingService = conditionalLoggingService;
-        }
-
-        private async UniTask ToNextState()
-        {
-            await _stateMachine.NextState();
         }
 
         public async UniTask Enter()
@@ -66,14 +62,14 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #if DEV
             var options = new InitializationOptions().SetEnvironmentName("production");
             _conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: production", LogTag.UnityServices);
-            
+
             //You can uncomment it and add dev environment in dashboard to split production and dev configs if needed
             //var options = new InitializationOptions().SetEnvironmentName("dev");
             //_conditionalLoggingService.Log("UnityServices.InitializeAsync with environment: dev", LogTag.RemoteSettings);
 #else
             var options = new InitializationOptions().SetEnvironmentName("production");
 #endif
-            
+
             await UnityServices.InitializeAsync(options);
 
             if (!AuthenticationService.Instance.IsSignedIn)
@@ -82,7 +78,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
         }
-        
+
         private async void ApplyRemoteSettings(ConfigResponse configResponse)
         {
             _conditionalLoggingService.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.UnityServices);
@@ -91,8 +87,14 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
             RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _conditionalLoggingService);
 
+            IsInitialized = true;
 
             await ToNextState();
+        }
+
+        private async UniTask ToNextState()
+        {
+            await _stateMachine.NextState();
         }
 
         private struct userAttributes

@@ -1,5 +1,6 @@
 ﻿using System;
 using Configs;
+using Configs.RemoteConfig;
 using Newtonsoft.Json;
 using TriInspector;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Editor.Utils
             switch (type)
             {
                 case Type.Infrastructure:
-                    _key = ConfigType.InfrastructureConfig;
+                    _key = RemoteConfigType.InfrastructureConfig;
                     _json = JsonConvert.SerializeObject(_infrastructureConfig, Formatting.Indented);
                     break;
                 default:

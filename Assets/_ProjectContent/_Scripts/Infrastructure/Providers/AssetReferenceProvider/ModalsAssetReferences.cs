@@ -8,11 +8,11 @@ namespace Infrastructure.Providers.AssetReferenceProvider
     [Serializable]
     public class ModalsAssetReferences
     {
-        [SerializeField] private AssetReferenceGameObject _privacyPolicyModal;
+        [field: SerializeField] public AssetReferenceGameObject PrivacyPolicyModal { get; private set; }
 
         public AssetReferenceGameObject TypeToReference<T>() where T : ModalPopup
         {
-            if (typeof(T) == typeof(PrivacyPolicyModal)) return _privacyPolicyModal;
+            if (typeof(T) == typeof(PrivacyPolicyModal)) return PrivacyPolicyModal;
 
             return null;
         }
