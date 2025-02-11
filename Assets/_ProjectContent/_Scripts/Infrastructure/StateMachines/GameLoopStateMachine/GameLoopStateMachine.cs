@@ -14,7 +14,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         public GameLoopStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
-            RegisterState(statesFactory.Create<LoadingScreenState>(this));
             RegisterState(statesFactory.Create<MenuState>(this));
             RegisterState(statesFactory.Create<GameplayState>(this));
         }

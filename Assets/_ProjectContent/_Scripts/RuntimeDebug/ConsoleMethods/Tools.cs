@@ -6,8 +6,6 @@ namespace RuntimeDebug.ConsoleMethods
 {
     public class Tools
     {
-#if DEV
-
         [ConsoleMethod("graphy.toggle-a", "toggle active"), UnityEngine.Scripting.Preserve]
         public static void GraphyToggleActive()
         {
@@ -19,6 +17,5 @@ namespace RuntimeDebug.ConsoleMethods
         {
             GraphyManager.Instance.ToggleModes();
         }
-#endif
     }
 }

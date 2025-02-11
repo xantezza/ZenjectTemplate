@@ -4,6 +4,6 @@
     {
         //changing is prohibited
         PrivacyPolicyState = 1,
-        Inventory = 2,
+        PlayerInventory = 2,
     }
 }

@@ -6,6 +6,7 @@ namespace Utils.Extensions
     {
         private static readonly char[] _buffer = new char[50];
         
+        //string must be constant for zero allocation
         public static void SetTextNonAlloc(this TMP_Text textLabel, string description, float value, int maxFractionDigits)
         {
             _buffer.Reset();
@@ -14,6 +15,7 @@ namespace Utils.Extensions
             textLabel.SetText(_buffer);
         }
         
+        //string must be constant for zero allocation
         public static void SetTextNonAlloc(this TMP_Text textLabel, string description, int value)
         {
             _buffer.Reset();

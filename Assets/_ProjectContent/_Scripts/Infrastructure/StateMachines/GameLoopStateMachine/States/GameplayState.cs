@@ -19,5 +19,11 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         {
             return default;
         }
+
+        public override UniTask Exit()
+        {
+            _saveService.StoreSaveFile();
+            return default;
+        }
     }
 }

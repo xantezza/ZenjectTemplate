@@ -23,7 +23,6 @@ namespace Infrastructure.Installers
             // Fake Interface
             Container.Bind<IConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
         }
-
         private void BindAnalyticsLogService()
         {
             Container.BindInterfacesTo<UnityAnalyticsService>().FromNew().AsSingle().NonLazy();

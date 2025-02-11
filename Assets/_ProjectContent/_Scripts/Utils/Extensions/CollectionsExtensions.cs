@@ -147,9 +147,7 @@ namespace Utils.Extensions
             for (var i = 0; i < list.Count; i++)
             {
                 var randomIndex = Random.Range(0, list.Count);
-                var tmp = list[randomIndex];
-                list[randomIndex] = list[i];
-                list[i] = tmp;
+                (list[randomIndex], list[i]) = (list[i], list[randomIndex]);
             }
         }
 
@@ -169,6 +167,11 @@ namespace Utils.Extensions
             var index = Random.Range(0, items.Count);
 
             return items[index];
+        }
+        
+        public static T FastLast<T>(this List<T> items)
+        {
+            return items[^1];
         }
 
         public static bool TryGetValue<T>(this List<T> list, int index, out T value)

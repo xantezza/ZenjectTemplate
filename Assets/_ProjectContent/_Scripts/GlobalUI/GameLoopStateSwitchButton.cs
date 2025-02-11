@@ -3,6 +3,7 @@ using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
+using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -25,17 +26,18 @@ namespace GlobalUI
 
         private IConditionalLoggingService _conditionalLoggingService;
         private IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
-        private ISaveService _saveService;
         private IAssetReferenceProvider _assetReferenceProvider;
+        private ISceneLoaderService _sceneLoaderService;
 
         [Inject]
-        private void Inject(IGameLoopStateMachineFactory gameLoopStateMachineFactory,
-            ISaveService saveService,
+        private void Inject(
+            IGameLoopStateMachineFactory gameLoopStateMachineFactory,
+            ISceneLoaderService sceneLoaderService,
             IConditionalLoggingService conditionalLoggingService,
             IAssetReferenceProvider assetReferenceProvider)
         {
+            _sceneLoaderService = sceneLoaderService;
             _assetReferenceProvider = assetReferenceProvider;
-            _saveService = saveService;
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
             _conditionalLoggingService = conditionalLoggingService;
         }
@@ -60,12 +62,10 @@ namespace GlobalUI
             switch (_targetState)
             {
                 case TargetStates.Menu:
-                    await _gameLoopStateMachineFactory.GetFrom(this)
-                        .Enter<LoadingScreenState, AssetReference, Action>(_assetReferenceProvider.MenuScene, OnLoadingScreenLoadedToMenu);
+                    await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnMenuSceneLoaded);
                     break;
                 case TargetStates.Gameplay:
-                    await _gameLoopStateMachineFactory.GetFrom(this)
-                        .Enter<LoadingScreenState, AssetReference, Action>(_assetReferenceProvider.GamePlayScene, OnLoadingScreenLoadedToGameplay);
+                    await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, OnGameplaySceneLoaded);
                     break;
                 default:
                     _conditionalLoggingService.LogError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
@@ -73,12 +73,12 @@ namespace GlobalUI
             }
         }
 
-        private async void OnLoadingScreenLoadedToMenu()
+        private async void OnMenuSceneLoaded()
         {
             await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
         }
 
-        private async void OnLoadingScreenLoadedToGameplay()
+        private async void OnGameplaySceneLoaded()
         {
             await _gameLoopStateMachineFactory.GetFrom(this).Enter<GameplayState>();
         }

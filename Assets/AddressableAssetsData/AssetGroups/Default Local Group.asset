@@ -15,28 +15,148 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 307319cb96fb4f049b02c03679b273d2
   m_SerializeEntries:
-  - m_GUID: 8854245f3ede4384e83a8451d4921c83
-    m_Address: Gameplay
+  - m_GUID: 05c7216c78d4dd34ebe2bac9c1e274d7
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconWarning.psd
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Menu
+  - m_GUID: 066c0b04be98cd348abb79add91d42bf
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconSnapToBottom.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 066d3840badf4d24dba1d42b4c59b888
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/SlicedBackground.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ebfda809d82b4714b7eea9e1da20bb1
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Circle Frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18d3fc88e8cdd4011a1e28114222ec5f
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Square.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33b115bf5efdfa04d8e2e0b70a6643cd
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/Unused/IconInfoHighRes.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36ac903e5ea9353498d9d59694c900de
+    m_Address: Assets/TextMesh Pro/Fonts/MonospaceRegular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 56852816c519247b1a5dbf916ce38278
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Circle Frame - Thin.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a97d5afa6254804f81b7ba956296996
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconInfo.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66305a19e3614694f868c75a982e6b68
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconError.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 678df822d585bd94592593f6498c3fb2
+    m_Address: Assets/_ProjectContent/Scenes/1_Menu.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75c1c63df0cdf4d83a19cd013e6904d8
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Circle.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a9e374666ad6cc47807bb001844f3d8
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconClear.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ca7cff540264064cb8765e54c959334
+    m_Address: Assets/_ProjectContent/Scenes/2_Gameplay.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f0db3cf23c93fc4eac01cb3a52388ee
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconResizeAllDirections.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95841526fd68f42909aab03a1cbfec9c
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Checkmark.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98e8e1cf8dc7dbf469617c2e40c8a944
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/SlicedBackground2.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ea50068bf59b1d43b86ab9539e0bc05
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a97ca0b99ece2d94aaaf59653feb45dd
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/Unused/IconErrorHighRes.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9fd8f6b461461f4a92eafc60921ee78
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconResizeVertialOnly.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af17f91b4376d6a41a793c056c02dadc
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/Unused/IconWarningHighRes.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3905a73a6672d9449647aaf036e23fc
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconHide.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3f0d976f6d6802479d6465d11b3aa68
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/SlicedBackground3.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b902f763d0e47364dae25207b7e47800
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconSnapToBottomBg.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1546f8db185caf4dafcfa58efa3ba2c
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IconCollapse.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6b198d983e9b41f5ad1ad6ed85b4797
+    m_Address: Assets/_ProjectContent/Textures/GlobalUI/Frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d829dcfc225f56440a2b10d9ac318aea
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/IngameDebugConsoleSpriteAtlas.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e04e6c970b950d946a782ea08e5f971d
+    m_Address: Assets/Plugins/IngameDebugConsole/Sprites/SearchIcon.psd
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e229f3a10bd36bf489298a1fda6da293
     m_Address: PrivacyPolicyModal
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e9bc0abc060168644b810631a8ad9d26
-    m_Address: InventoryView
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f221de51db4bb3c4f87504557f52b9bc
-    m_Address: Loading
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

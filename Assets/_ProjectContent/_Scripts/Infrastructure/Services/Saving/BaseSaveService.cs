@@ -14,11 +14,18 @@ namespace Infrastructure.Services.Saving
 
         protected string _cachedSaveFileName;
         protected bool _hasLoaded;
+        
+        public abstract TSave Load<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class;
 
-        public void Process<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class, new()
+        public void AddToSaveables<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class
         {
-            Load(dataSaveable);
-            AddToSave(dataSaveable);
+            if (_readyToSaveDictionary.ContainsKey(dataSaveable.SaveKey))
+            {
+                _readyToSaveDictionary[dataSaveable.SaveKey] = dataSaveable.SaveData;
+                return;
+            }
+
+            _readyToSaveDictionary.Add(dataSaveable.SaveKey, dataSaveable.SaveData);
         }
 
         public abstract void LoadSaveFile(bool useDefaultFileName = true, string fileName = null);
@@ -49,19 +56,6 @@ namespace Infrastructure.Services.Saving
             if (!_hasLoaded) return;
 
             StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName);
-        }
-
-        protected abstract void Load<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class, new();
-
-        private void AddToSave<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class
-        {
-            if (_readyToSaveDictionary.ContainsKey(dataSaveable.SaveId))
-            {
-                _readyToSaveDictionary[dataSaveable.SaveId] = dataSaveable.SaveData;
-                return;
-            }
-
-            _readyToSaveDictionary.Add(dataSaveable.SaveId, dataSaveable.SaveData);
         }
     }
 }

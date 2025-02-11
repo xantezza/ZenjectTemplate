@@ -16,11 +16,11 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         [Serializable]
         public class Save
         {
-            public bool ConsentGiven;
+            public bool ConsentGiven = false;
         }
 
-        public SaveKey SaveId => SaveKey.PrivacyPolicyState;
-        public Save SaveData { get; set; }
+        public SaveKey SaveKey => SaveKey.PrivacyPolicyState;
+        public Save SaveData { get; private set; }
 
         private readonly ISaveService _saveService;
         private readonly IModalPopupFactory _modalPopupFactory;
@@ -33,7 +33,8 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         public async UniTask Enter()
         {
-            _saveService.Process(this);
+            SaveData = _saveService.Load(this) ?? new Save();
+            _saveService.AddToSaveables(this);
 
 #if UNITY_EDITOR
             SaveData.ConsentGiven = true;

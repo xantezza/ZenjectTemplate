@@ -1,9 +1,11 @@
-﻿namespace Infrastructure.Services.Saving
-{
-    public interface IDataSaveable<TSave>
-    {
-        SaveKey SaveId { get; }
+﻿using Newtonsoft.Json;
 
-        TSave SaveData { get; set; }
+namespace Infrastructure.Services.Saving
+{
+    public interface IDataSaveable<out TSave> where TSave : class
+    {
+        SaveKey SaveKey { get; }
+
+        [JsonProperty] TSave SaveData { get; }
     }
 }

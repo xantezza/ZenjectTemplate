@@ -20,14 +20,14 @@ namespace Infrastructure.Services.Saving
         {
         }
 
-        protected override void Load<TSave>(IDataSaveable<TSave> dataSaveable)
+        public override TSave Load<TSave>(IDataSaveable<TSave> dataSaveable)
         {
-            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveId, out var value) && value is TSave save)
+            if (_readyToSaveDictionary.TryGetValue(dataSaveable.SaveKey, out var value) && value is TSave save)
             {
-                dataSaveable.SaveData = save;
+               return save;
             }
 
-            dataSaveable.SaveData ??= new TSave();
+            return null;
         }
 
         public override void LoadSaveFile(bool useDefaultFileName = true, string fileName = null)
