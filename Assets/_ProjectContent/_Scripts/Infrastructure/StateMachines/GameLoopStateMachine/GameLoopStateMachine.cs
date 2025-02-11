@@ -1,4 +1,5 @@
-﻿using Infrastructure.Factories;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.Factories;
 using Infrastructure.Services.Logging;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
@@ -16,6 +17,10 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
             RegisterState(statesFactory.Create<EntryPointState>(this));
             RegisterState(statesFactory.Create<MenuState>(this));
             RegisterState(statesFactory.Create<GameplayState>(this));
+        }
+        public new async UniTask Enter<TState>() where TState : class, IState, IEnterableState
+        {
+            await base.Enter<TState>();
         }
     }
 }

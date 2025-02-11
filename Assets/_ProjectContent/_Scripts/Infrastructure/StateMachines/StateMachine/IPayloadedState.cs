@@ -6,9 +6,4 @@ namespace Infrastructure.StateMachines.StateMachine
     {
         UniTask Enter(TPayload payload);
     }
-
-    public interface IPayloadedState<in TPayload, in TPayload1>
-    {
-        UniTask Enter(TPayload payload, TPayload1 payload1);
-    }
 }
