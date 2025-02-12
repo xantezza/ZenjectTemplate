@@ -37,7 +37,7 @@ To easier configure them use  `Assets/_ProjectContent/Resources/ConfigUtility.as
 
 To Disable/Enable Logging and Debug Tools in builds go to `Player Settings => Other Settings => Scripting Define Symbols` and Remove/Add DEV string
 
- ### Or you can paste only `Asstets/` folder inside existing project:
+ ### Or you can paste only `Assets/` folder inside existing project:
 
 - All above
 - Dependencies that must be added to `Packages/manifest.json`
