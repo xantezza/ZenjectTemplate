@@ -1,8 +1,8 @@
 <span style="font-family:monospace;">
 
-# Unity Project template with ready-made functionality and industrial standart technology stack
+## ```Unity Project Template``` with ready-made functionality and industrial standart technology stack
 
-## Architecture on Zenject + GameLoop Finite-State Machine, UniRx, UniTasks, Addressables
+### ```Architecture on Zenject + Initialization/GameLoop Finite-State Machine, UniRx, UniTasks, Addressables```
 - Detailed Conditional Logging
 - Unity Analytics, Unity RemoteConfig (with caching)
 - JSON/Binary Save Service
