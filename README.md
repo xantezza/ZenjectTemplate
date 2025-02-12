@@ -2,8 +2,6 @@
 
 # Unity Project template with ready-made functionality and industrial standart technology stack
 
-## [Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
-
 ## Architecture on Zenject + GameLoop Finite-State Machine, UniRx, UniTasks, Addressables
 - Detailed Conditional Logging
 - Unity Analytics, Unity RemoteConfig (with caching)
@@ -12,7 +10,7 @@
 - Runtime Debugging tools
 - Editor Windows and other utilities to improve QOL
  
-### ```Assets/Plugins/```
+### ```3rdParty Plugins```
 
 - Zenject
 - UniRx
@@ -28,9 +26,7 @@ Route Unity Services and add JSON Key-Value in `Settings => Services => Dashboar
 `infrastructure_config` with data
 ```
 {
-  	"FakeTimeBeforeLoad": 0.0,
   	"FakeMinimalLoadTime": 0.2,
-	"FakeTimeAfterLoad": 0.2
 }
 ```
 You can split production and dev configs usage by adding `dev` environment and uncomment section in `InitializeRemoteConfigState.cs:69`
@@ -56,10 +52,6 @@ To Disable/Enable Logging and Debug Tools in builds go to `Player Settings => Ot
 - Go to `Windows/Asset Management/Addressables/Groups/` and press wide middle button `Create Default Group`
 
 - You need to add `Assets/_ProjectContent/Scenes/0_EntryPoint` in `Builds Settings/Scenes In Builds` in with build index 0(!!!)
-
-## [Demo on itch.io](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
-
-[![image](https://github.com/xantezza/ZenjectTemplate/assets/74206629/0c785e38-cf0b-4760-8b44-83febe659efc)](https://xantezza.itch.io/zenjecttemplate?secret=UttPjfN9suIcAZPYfNQrxg4MsT8)
 
 </span>
     
