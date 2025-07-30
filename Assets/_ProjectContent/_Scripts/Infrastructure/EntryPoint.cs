@@ -1,5 +1,4 @@
 using Infrastructure.Factories;
-using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
 using Zenject;

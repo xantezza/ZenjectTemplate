@@ -45,11 +45,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 36ac903e5ea9353498d9d59694c900de
-    m_Address: Assets/TextMesh Pro/Fonts/MonospaceRegular SDF.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 56852816c519247b1a5dbf916ce38278
     m_Address: Assets/_ProjectContent/Textures/GlobalUI/Circle Frame - Thin.png
     m_ReadOnly: 0

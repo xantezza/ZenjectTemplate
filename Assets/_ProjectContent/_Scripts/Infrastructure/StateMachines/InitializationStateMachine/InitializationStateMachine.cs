@@ -13,11 +13,12 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
 
         public InitializationStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
-            RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
-            RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
 #endif
+            
+            RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
+            RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
             RegisterState(statesFactory.Create<InitializePrivacyPolicyState>(this));
             RegisterState(statesFactory.Create<InitializationFinalizerState>(this));

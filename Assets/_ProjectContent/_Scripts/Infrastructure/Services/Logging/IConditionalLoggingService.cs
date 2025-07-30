@@ -3,13 +3,14 @@ using System.Linq;
 
 namespace Infrastructure.Services.Logging
 {
-    // Fake interface for consistency in injection methods and for Conditional attribute
+    // Fake interface for consistency in injection
+    // Must be abstract for Conditional attribute to work
     public abstract class IConditionalLoggingService
     {
 #if DEV
         private readonly LogTag[] _tagsToExclude = {};
         private readonly LogTag[] _warningTagsToExclude = {};
-        private readonly LogTag[] _errorTagsToExclude = {LogTag.UnityServices};
+        private readonly LogTag[] _errorTagsToExclude = {};
 #endif
 
         [Conditional("DEV")]

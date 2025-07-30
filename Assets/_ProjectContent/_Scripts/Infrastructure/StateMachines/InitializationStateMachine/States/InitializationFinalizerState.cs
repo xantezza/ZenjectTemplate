@@ -1,14 +1,11 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.SceneLoading;
-using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
-using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
@@ -18,7 +15,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private readonly IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
         private readonly IAnalyticsService _analyticsService;
         private readonly IAssetReferenceProvider _assetReferenceProvider;
-        private ISceneLoaderService _sceneLoaderService;
+        private readonly ISceneLoaderService _sceneLoaderService;
 
         protected InitializationFinalizerState(
             InitializationStateMachine stateMachine,
