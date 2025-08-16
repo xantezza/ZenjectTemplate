@@ -2,7 +2,7 @@
 using IngameDebugConsole;
 using UnityEngine;
 
-namespace Utils.MonoBehaviours
+namespace RuntimeDebug
 {
     public class InGameDebugConsoleLogCatcher : MonoBehaviour
     {

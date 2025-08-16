@@ -21,6 +21,9 @@ namespace Infrastructure.Installers
             BindSceneLoaderService();
             BindAnalyticsLogService();
             BindSaveService();
+            BindAudioService();
+            BindSettingsService();
+            BindWindowService();
         }
 
         private void BindConditionalLoggingService()
