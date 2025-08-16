@@ -10,6 +10,7 @@
         SceneLoader,
         UI,
         SaveService,
-        AssetReferenceProvider
+        AssetReferenceProvider,
+        CritError
     }
 }

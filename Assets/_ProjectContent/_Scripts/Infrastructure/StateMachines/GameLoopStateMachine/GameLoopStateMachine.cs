@@ -12,7 +12,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
         [Inject]
-        public GameLoopStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public GameLoopStateMachine(IStatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
             RegisterState(statesFactory.Create<MenuState>(this));

@@ -118,7 +118,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6494458837169386634}
+  - {fileID: 6101366278743521883}
   m_Father: {fileID: 6994547916840969886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9191255481482360321
@@ -133,6 +135,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11656b466394910acda24a6a4d3b079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioService: {fileID: 2409385068935266630}
+  _settingsService: {fileID: 0}
+--- !u!1 &2094466951321122760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6101366278743521883}
+  - component: {fileID: 5538704236895380556}
+  m_Layer: 0
+  m_Name: SettingsService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6101366278743521883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094466951321122760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4895855354268550096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5538704236895380556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094466951321122760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a2dc3afdca4b8788b56d0f4c311b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxGroup: {fileID: 24300002, guid: 935d6d3afc1dbf849b6ce35f13ea63f1, type: 2}
+  _musicGroup: {fileID: 24300002, guid: 30a3733d135e27f47a150b66835d0f9e, type: 2}
 --- !u!1 &2101192245478115799
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +258,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3010298704625579187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6494458837169386634}
+  - component: {fileID: 2409385068935266630}
+  m_Layer: 0
+  m_Name: AudioService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6494458837169386634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010298704625579187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4895855354268550096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2409385068935266630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010298704625579187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25343c97542479abb7b88611c349212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxGroup: {fileID: 24300002, guid: 935d6d3afc1dbf849b6ce35f13ea63f1, type: 2}
+  _musicGroup: {fileID: 24300002, guid: 30a3733d135e27f47a150b66835d0f9e, type: 2}
+  _sfxClips:
+    _serializedList: []
+  _musicClips:
+    _serializedList: []
 --- !u!1 &4674712813715039549
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,9 +1082,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 30.07.2025 22:25:29
-  _currentDate: 30.07.2025 22:25:32
-  _minutesFromLastFetch: 0
+  _lastFetchDate: 16.08.2025 23:08:17
+  _currentDate: 16.08.2025 23:09:52
+  _minutesFromLastFetch: -1
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"SlotMachineConfig\":
     {\r\n      \"BlueCircleConfig\": [\r\n        1.55,\r\n        4.85,\r\n       
     10,\r\n        17\r\n      ],\r\n      \"GreenCircleConfig\": [\r\n        2.5,\r\n       

@@ -13,11 +13,11 @@ namespace Infrastructure.Services.SceneLoading
     [UsedImplicitly]
     public class SceneLoaderService : ISceneLoaderService
     {
-        private readonly IConditionalLoggingService _conditionalLoggingService;
+        private readonly ConditionalLoggingService _conditionalLoggingService;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private string _cachedSceneGUID;
 
-        public SceneLoaderService(IConditionalLoggingService conditionalLoggingService, ILoadingCurtainProvider loadingCurtainProvider)
+        public SceneLoaderService(ConditionalLoggingService conditionalLoggingService, ILoadingCurtainProvider loadingCurtainProvider)
         {
             _loadingCurtainProvider = loadingCurtainProvider;
             _conditionalLoggingService = conditionalLoggingService;

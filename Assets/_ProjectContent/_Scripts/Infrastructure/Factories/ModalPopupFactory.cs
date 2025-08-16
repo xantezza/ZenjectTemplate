@@ -10,10 +10,10 @@ namespace Infrastructure.Factories
     public class ModalPopupFactory : MonoBehaviour, IModalPopupFactory
     {
         private IAssetReferenceProvider _assetReferenceProvider;
-        private IConditionalLoggingService _conditionalLoggingService;
+        private ConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
-        public void Inject(IAssetReferenceProvider assetReferenceProvider, IConditionalLoggingService conditionalLoggingService)
+        public void Inject(IAssetReferenceProvider assetReferenceProvider, ConditionalLoggingService conditionalLoggingService)
         {
             _conditionalLoggingService = conditionalLoggingService;
             _assetReferenceProvider = assetReferenceProvider;
@@ -30,7 +30,9 @@ namespace Infrastructure.Factories
             
             var instantiated = await reference.InstantiateAsync(transform);
             var modalPopup = instantiated.GetComponent<T>();
+#pragma warning disable CS4014
             modalPopup.Show();
+#pragma warning restore CS4014
             return modalPopup;
         }
     }

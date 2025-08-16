@@ -11,7 +11,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
-        public InitializationStateMachine(IStatesFactory statesFactory, IConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        public InitializationStateMachine(IStatesFactory statesFactory, ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
         {
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));

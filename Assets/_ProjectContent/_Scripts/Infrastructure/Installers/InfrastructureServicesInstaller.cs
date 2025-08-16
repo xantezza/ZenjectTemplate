@@ -1,14 +1,19 @@
 ﻿using Infrastructure.Services.Analytics;
+using Infrastructure.Services.AudioService;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
+using Infrastructure.Services.SettingsService;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Installers
 {
     public class InfrastructureServicesInstaller : MonoInstaller
     {
+        [SerializeField] private AudioService _audioService;
+        [SerializeField] private SettingsService _settingsService;
         public override void InstallBindings()
         {
             BindConditionalLoggingService();
@@ -20,8 +25,7 @@ namespace Infrastructure.Installers
 
         private void BindConditionalLoggingService()
         {
-            // Fake Interface
-            Container.Bind<IConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
+            Container.Bind<ConditionalLoggingService>().To<UnityConditionalLoggingService>().FromNew().AsSingle().NonLazy();
         }
         private void BindAnalyticsLogService()
         {
@@ -44,7 +48,7 @@ namespace Infrastructure.Installers
             // Readable
             Container.BindInterfacesTo<JsonSaveService>().FromNew().AsSingle().NonLazy();
 #else
-            // Faster
+            // Encrypted
             Container.BindInterfacesTo<BinarySaveService>().FromNew().AsSingle().NonLazy();
 #endif
         }

@@ -13,6 +13,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     [UsedImplicitly]
     public class InitializePrivacyPolicyState : BaseInitializationState, IDataSaveable<InitializePrivacyPolicyState.Save>, IEnterableState
     {
+        private const bool EDITOR_IGNORE_CONSENT = true;
+        private const bool IGNORE_CONSENT = true;
+        
         [Serializable]
         public class Save
         {
@@ -37,9 +40,10 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
             _saveService.AddToSaveables(this);
 
 #if UNITY_EDITOR
-            SaveData.ConsentGiven = true;
+            SaveData.ConsentGiven = EDITOR_IGNORE_CONSENT;
 #endif
-
+            SaveData.ConsentGiven = IGNORE_CONSENT;
+            
             if (SaveData.ConsentGiven)
             {
                 if (InitializeUnityServicesState.IsInitialized) AnalyticsService.Instance.StartDataCollection();

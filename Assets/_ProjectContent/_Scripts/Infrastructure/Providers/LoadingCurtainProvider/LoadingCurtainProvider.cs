@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
+﻿using Cysharp.Threading.Tasks;
+using LitMotion;
+using LitMotion.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +11,7 @@ namespace Infrastructure.Providers.LoadingCurtainProvider
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Slider _slider;
-        private TweenerCore<float, float, FloatOptions> _tweenerCore;
+        private MotionHandle? _motionHandle;
 
         private void Awake()
         {
@@ -24,15 +22,17 @@ namespace Infrastructure.Providers.LoadingCurtainProvider
         {
             if (_canvas.enabled) return;
             _canvas.enabled = true;
-            _tweenerCore?.Kill();
-            _tweenerCore = _canvasGroup.DOFade(1f, tweenDuration);
-            await _tweenerCore.AsyncWaitForCompletion();
+            _motionHandle?.TryCancel();
+            _motionHandle = LMotion
+                .Create(_canvasGroup.alpha, 1f, tweenDuration)
+                .BindToAlpha(_canvasGroup);
+            await ((MotionHandle)_motionHandle).ToUniTask();
         }
 
         public void ForceShow()
         {
             if (_canvas.enabled) return;
-            _tweenerCore?.Kill();
+            _motionHandle?.TryCancel();
             _canvasGroup.alpha = 1f;
             _canvas.enabled = true;
         }
@@ -42,18 +42,22 @@ namespace Infrastructure.Providers.LoadingCurtainProvider
             _slider.value = value;
         }
 
-        public void Hide(float tweenDuration = 0.3f)
+        public async UniTask Hide(float tweenDuration = 0.3f)
         {
             if (!_canvas.enabled) return;
-            _tweenerCore?.Kill();
-            _tweenerCore = _canvasGroup.DOFade(0f, tweenDuration);
-            _tweenerCore.OnComplete(ForceHide);
+            
+            _motionHandle?.TryCancel();
+            _motionHandle = LMotion
+                .Create(_canvasGroup.alpha, 0f, tweenDuration)
+                .BindToAlpha(_canvasGroup);
+            await ((MotionHandle)_motionHandle).ToUniTask();
+            _canvas.enabled = false;
         }
 
         public void ForceHide()
         {
             if (!_canvas.enabled) return;
-            _tweenerCore?.Kill();
+            _motionHandle?.TryCancel();
             _canvasGroup.alpha = 0f;
             _canvas.enabled = false;
         }

@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
+using Infrastructure.Services.Analytics;
 using JetBrains.Annotations;
 using UnityEngine;
+using Zenject;
 
 namespace Infrastructure.Services.Logging
 {
     [UsedImplicitly]
-    public class UnityConditionalLoggingService : IConditionalLoggingService
+    public class UnityConditionalLoggingService : ConditionalLoggingService
     {
-        private readonly Dictionary<LogTag, Color> _tagColors = new()
-        {
-            { LogTag.InitializationStateMachine, new Color(0.3f, 1, 0) },
-            { LogTag.GameLoopStateMachine, Color.yellow },
-        };
+        private IAnalyticsService _analyticsService;
 
+        [Inject]
+        private void Inject(IAnalyticsService analyticsService)
+        {
+            _analyticsService = analyticsService;
+        }
         protected override void InternalLog(string text, LogTag tag)
         {
             if (_tagColors.TryGetValue(tag, out Color color))
@@ -47,6 +50,12 @@ namespace Infrastructure.Services.Logging
             {
                 Debug.LogErrorFormat("[{0}] {1}", tag, text);
             }
+        }
+
+        protected override void InternalLogCritError(string text, LogTag tag)
+        {
+            Debug.LogError($"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>[{tag}]</color> {text}");
+            _analyticsService.SendEvent("CRITICAL_ERROR", new Dictionary<string, object>(){["ERROR_NAME"] = text});
         }
     }
 }

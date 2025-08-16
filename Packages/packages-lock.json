@@ -9,7 +9,7 @@
         "com.unity.collections": "1.5.1",
         "com.unity.mathematics": "1.0.1"
       },
-      "hash": "b6002a25d18b889216d886ee787fe1878e66be00"
+      "hash": "b651c5866fe0e3fba065ce2e56dfdfcd59d3d109"
     },
     "com.codewriter.triinspector": {
       "version": "https://github.com/codewriter-packages/Tri-Inspector.git",
@@ -18,14 +18,14 @@
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "6c844f0b69b2843808a0d30aec46cdd3486cce0f"
+      "hash": "1921fb03fe903a64f9244106f3152c41404c2fc5"
     },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fbe0bf85155f42f8832205f7b3ac3df571ada33e"
+      "hash": "f213ff497e4ff462a77319cf677cf20cc0860ca9"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -175,7 +175,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.analytics": {
-      "version": "6.0.2",
+      "version": "6.0.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {

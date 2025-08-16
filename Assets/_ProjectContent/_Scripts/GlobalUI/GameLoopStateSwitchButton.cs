@@ -24,7 +24,7 @@ namespace GlobalUI
         [SerializeField] private TargetStates _targetState = 0;
         [HideInInspector] [SerializeField] private Button _button;
 
-        private IConditionalLoggingService _conditionalLoggingService;
+        private ConditionalLoggingService _conditionalLoggingService;
         private IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
         private IAssetReferenceProvider _assetReferenceProvider;
         private ISceneLoaderService _sceneLoaderService;
@@ -33,7 +33,7 @@ namespace GlobalUI
         private void Inject(
             IGameLoopStateMachineFactory gameLoopStateMachineFactory,
             ISceneLoaderService sceneLoaderService,
-            IConditionalLoggingService conditionalLoggingService,
+            ConditionalLoggingService conditionalLoggingService,
             IAssetReferenceProvider assetReferenceProvider)
         {
             _sceneLoaderService = sceneLoaderService;
@@ -59,6 +59,7 @@ namespace GlobalUI
 
         private async void OnClick()
         {
+            _conditionalLoggingService.LogCritError("BamBambam");
             switch (_targetState)
             {
                 case TargetStates.Menu:

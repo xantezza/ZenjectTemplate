@@ -4,6 +4,6 @@
     {
         //changing is prohibited
         PrivacyPolicyState = 1,
-        PlayerInventory = 2,
+        SettingsService = 2,
     }
 }

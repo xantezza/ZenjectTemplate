@@ -10,10 +10,10 @@ namespace Infrastructure.Services.Analytics
 {
     public class UnityAnalyticsService : IAnalyticsService
     {
-        private readonly IConditionalLoggingService _conditionalLoggingService;
+        private readonly ConditionalLoggingService _conditionalLoggingService;
 
         [Inject]
-        public UnityAnalyticsService(IConditionalLoggingService conditionalLoggingService)
+        public UnityAnalyticsService(ConditionalLoggingService conditionalLoggingService)
         {
             _conditionalLoggingService = conditionalLoggingService;
             Application.focusChanged += OnApplicationFocus;
@@ -43,11 +43,11 @@ namespace Infrastructure.Services.Analytics
 
             var customEvent = new CustomEvent(eventName);
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append($"{eventName} sent");
+            stringBuilder.Append($"{eventName} sent with params:");
 
             foreach (var (key, value) in paramsDictionary)
             {
-                stringBuilder.AppendLine($"\nwith param: {key}: {value}");
+                stringBuilder.AppendLine($"\n{key}: {value}");
                 customEvent.Add(key, value);
             }
 

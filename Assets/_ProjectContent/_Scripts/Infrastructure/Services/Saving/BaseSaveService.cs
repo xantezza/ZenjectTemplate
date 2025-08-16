@@ -10,7 +10,7 @@ namespace Infrastructure.Services.Saving
     {
         protected Dictionary<SaveKey, object> _readyToSaveDictionary = new();
 
-        protected readonly IConditionalLoggingService _loggingService;
+        protected readonly ConditionalLoggingService _loggingService;
 
         protected string _cachedSaveFileName;
         protected bool _hasLoaded;
@@ -33,7 +33,7 @@ namespace Infrastructure.Services.Saving
         public abstract void StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
 
         [Inject]
-        protected BaseSaveService(IConditionalLoggingService loggingService)
+        protected BaseSaveService(ConditionalLoggingService loggingService)
         {
             _loggingService = loggingService;
         }

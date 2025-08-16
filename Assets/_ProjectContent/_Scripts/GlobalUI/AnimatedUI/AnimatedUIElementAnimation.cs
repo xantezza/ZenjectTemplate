@@ -109,7 +109,7 @@ namespace GlobalUI.AnimatedUI
 
             LMotion.Create(_textLabel.characterSpacing, _textCharacterSpacing, _textAnimationDuration)
                 .WithEase(_textAnimationEase)
-                .BindWithState(_textLabel, (x, label) => { label.characterSpacing = x; })
+                .Bind(_textLabel, (x, label) => { label.characterSpacing = x; })
                 .AddTo(_textMotionHandles);
         }
 
@@ -166,7 +166,7 @@ namespace GlobalUI.AnimatedUI
 
             LMotion.Create(_textLabel.characterSpacing, 0, _textAnimationDuration)
                 .WithEase(_textAnimationEase)
-                .BindWithState(_textLabel, (x, label) => { label.characterSpacing = x; })
+                .Bind(_textLabel, (x, label) => { label.characterSpacing = x; })
                 .AddTo(_textMotionHandles);
         }
 

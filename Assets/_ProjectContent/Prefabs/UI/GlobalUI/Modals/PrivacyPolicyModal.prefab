@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Privacy Policy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 36ac903e5ea9353498d9d59694c900de, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 7940445161744591242, guid: 36ac903e5ea9353498d9d59694c900de, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -245,6 +245,7 @@ MonoBehaviour:
   _modalSettings:
     CloseButton: {fileID: 6412590871055118}
     ResizableRoot: {fileID: 2450957752206524967}
+    TargetSize: 1
     StartSize: 0.2
     MaxSize: 1.2
     ShowTime: 0.5
