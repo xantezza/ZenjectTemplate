@@ -4,20 +4,24 @@
 
 ### ```Architecture on Zenject + Initialization/GameLoop Finite-State Machine, UniRx, UniTasks, Addressables```
 - Detailed Conditional Logging
-- Unity Analytics, Unity RemoteConfig (with caching)
-- JSON/Binary Save Service
-- Modal Windows System
-- Runtime Debugging tools
+- Analytics, Remote Config
+- JSON/Binary Save Services
+- Audio, Settings, Window Systems
+- Runtime Debugging Tools
 - Editor Windows and other utilities to improve QOL
  
 ### ```3rdParty Plugins```
 
 - Zenject
+- UniTask
 - UniRx
-- Demigiant DOTween
+- LitMotion
+- TriInspector
 - Graphy - Ultimate Stats Monitor
 - IngameDebugConsole
 - SerializedCollections
+
+***
 
  ### You can clone the entire repository and start working directly in it:
 
