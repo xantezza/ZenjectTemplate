@@ -13,14 +13,14 @@ namespace Infrastructure.Services.SceneLoading
     [UsedImplicitly]
     public class SceneLoaderService : ISceneLoaderService
     {
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly LoggingService _loggingService;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private string _cachedSceneGUID;
 
-        public SceneLoaderService(ConditionalLoggingService conditionalLoggingService, ILoadingCurtainProvider loadingCurtainProvider)
+        public SceneLoaderService(LoggingService loggingService, ILoadingCurtainProvider loadingCurtainProvider)
         {
             _loadingCurtainProvider = loadingCurtainProvider;
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
         }
 
         public async UniTask LoadScene(AssetReference nextSceneName, Action onLoaded = null, bool allowReloadSameScene = false)
@@ -32,7 +32,7 @@ namespace Infrastructure.Services.SceneLoading
         {
             if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
-                _conditionalLoggingService.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
+                _loggingService.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
                 onLoaded?.Invoke();
                 return;
             }
@@ -47,7 +47,7 @@ namespace Infrastructure.Services.SceneLoading
                 await UniTask.Yield();
             }
             
-            _conditionalLoggingService.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
+            _loggingService.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
 
             onLoaded?.Invoke();
             await UniTask.WaitForSeconds(RemoteConfig.Infrastructure.FakeMinimalLoadTime);

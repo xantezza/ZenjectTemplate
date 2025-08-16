@@ -7,7 +7,7 @@ using Zenject;
 namespace Infrastructure.Services.Logging
 {
     [UsedImplicitly]
-    public class UnityConditionalLoggingService : ConditionalLoggingService
+    public class UnityLoggingService : LoggingService
     {
         private IAnalyticsService _analyticsService;
 

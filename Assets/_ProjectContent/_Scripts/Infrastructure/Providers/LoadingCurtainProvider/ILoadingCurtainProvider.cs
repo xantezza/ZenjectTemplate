@@ -7,7 +7,7 @@ namespace Infrastructure.Providers.LoadingCurtainProvider
         UniTask Show(float tweenDuration = 0.3f);
         void ForceShow();
         void SetProgress01(float value);
-        UniTask Hide(float tweenDuration = 0.3f);
+        void Hide(float tweenDuration = 0.3f);
         void ForceHide();
     }
 }

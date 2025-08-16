@@ -10,12 +10,12 @@ namespace Infrastructure.Services.Analytics
 {
     public class UnityAnalyticsService : IAnalyticsService
     {
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly LoggingService _loggingService;
 
         [Inject]
-        public UnityAnalyticsService(ConditionalLoggingService conditionalLoggingService)
+        public UnityAnalyticsService(LoggingService loggingService)
         {
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
             Application.focusChanged += OnApplicationFocus;
         }
 
@@ -32,7 +32,7 @@ namespace Infrastructure.Services.Analytics
         {
             if (!InitializeUnityServicesState.IsInitialized) return;
             
-            _conditionalLoggingService.Log($"{eventName} sent", LogTag.Analytics);
+            _loggingService.Log($"{eventName} sent", LogTag.Analytics);
 
             AnalyticsService.Instance.RecordEvent(eventName);
         }
@@ -51,7 +51,7 @@ namespace Infrastructure.Services.Analytics
                 customEvent.Add(key, value);
             }
 
-            _conditionalLoggingService.Log(stringBuilder.ToString(), LogTag.Analytics);
+            _loggingService.Log(stringBuilder.ToString(), LogTag.Analytics);
             AnalyticsService.Instance.RecordEvent(customEvent);
         }
     }

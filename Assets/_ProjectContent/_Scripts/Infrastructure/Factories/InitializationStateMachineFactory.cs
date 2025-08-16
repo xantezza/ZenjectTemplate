@@ -9,11 +9,11 @@ namespace Infrastructure.Factories
     public class InitializationStateMachineFactory : IInitializationStateMachineFactory
     {
         private InitializationStateMachine _stateMachine;
-        private readonly ConditionalLoggingService _loggingService;
+        private readonly LoggingService _loggingService;
         private readonly IInstantiator _instantiator;
 
         [Inject]
-        public InitializationStateMachineFactory(IInstantiator instantiator, ConditionalLoggingService loggingService)
+        public InitializationStateMachineFactory(IInstantiator instantiator, LoggingService loggingService)
         {
             _instantiator = instantiator;
             _loggingService = loggingService;

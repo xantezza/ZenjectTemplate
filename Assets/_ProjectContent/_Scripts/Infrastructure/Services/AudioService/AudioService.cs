@@ -14,7 +14,10 @@ namespace Infrastructure.Services.AudioService
         private Dictionary<SFXClip, AudioSource> _sfxSources = new();
         private Dictionary<MusicClip, AudioSource> _musicSources = new();
 
-        public void PlaySFX(SFXClip sfxClip, bool restartIfAlreadyExists = true)
+        public AudioMixerGroup SfxMixerGroup => _sfxGroup;
+        public AudioMixerGroup MusicMixerGroup => _musicGroup;
+
+        public void PlaySFX(SFXClip sfxClip, float pitchDelta = 0, bool restartIfAlreadyExists = true)
         {
             if (_sfxSources.TryGetValue(sfxClip, out var existSource))
             {
@@ -23,10 +26,12 @@ namespace Infrastructure.Services.AudioService
                 existSource.Play();
                 return;
             }
+
             var source = gameObject.AddComponent<AudioSource>();
             source.clip = _sfxClips[sfxClip];
             source.loop = false;
             source.outputAudioMixerGroup = _sfxGroup;
+            source.pitch = pitchDelta != 0 ? Random.Range(1f - pitchDelta, 1f + pitchDelta) : 1f;
             source.Play();
             _sfxSources.Add(sfxClip, source);
         }

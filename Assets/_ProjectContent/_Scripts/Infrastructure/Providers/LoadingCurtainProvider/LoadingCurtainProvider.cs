@@ -42,7 +42,7 @@ namespace Infrastructure.Providers.LoadingCurtainProvider
             _slider.value = value;
         }
 
-        public async UniTask Hide(float tweenDuration = 0.3f)
+        public async void Hide(float tweenDuration = 0.3f)
         {
             if (!_canvas.enabled) return;
             

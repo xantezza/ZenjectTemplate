@@ -1,4 +1,5 @@
 ﻿using System;
+using Infrastructure.Services.AudioService;
 using Infrastructure.Services.Saving;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -14,17 +15,16 @@ namespace Infrastructure.Services.SettingsService
             public float LastSFXValue = 0;
         }
 
-        [SerializeField] private AudioMixerGroup _sfxGroup;
-        [SerializeField] private AudioMixerGroup _musicGroup;
-
         public SaveKey SaveKey => SaveKey.SettingsService;
         public Save SaveData { get; private set; }
 
         private ISaveService _saveService;
+        private IAudioService _audioService;
 
         [Inject]
-        private void Inject(ISaveService saveService)
+        private void Inject(ISaveService saveService, IAudioService audioService)
         {
+            _audioService = audioService;
             _saveService = saveService;
         }
 
@@ -32,12 +32,14 @@ namespace Infrastructure.Services.SettingsService
         {
             SaveData = _saveService.Load(this) ?? new Save();
             _saveService.AddToSaveables(this);
+            SetMusicVolume(SaveData.LastMusicValue);
+            SetSFXVolume(SaveData.LastSFXValue);
         }
 
         public void MuteAudio()
         {
-            _musicGroup.audioMixer.SetFloat("Volume", -100);
-            _sfxGroup.audioMixer.SetFloat("Volume", -100);
+            _audioService.MusicMixerGroup.audioMixer.SetFloat("Volume", -100);
+            _audioService.SfxMixerGroup.audioMixer.SetFloat("Volume", -100);
         }
 
         public void UnMuteAudio()
@@ -46,17 +48,16 @@ namespace Infrastructure.Services.SettingsService
             SetSFXVolume(SaveData.LastSFXValue);
         }
 
-        // from -100 to 20 (dB), 0 is default
         public void SetMusicVolume(float value)
         {
             SaveData.LastMusicValue = value;
-            _musicGroup.audioMixer.SetFloat("Volume", value);
+            _audioService.MusicMixerGroup.audioMixer.SetFloat("Volume", value);
         }
 
         public void SetSFXVolume(float value)
         {
             SaveData.LastSFXValue = value;
-            _sfxGroup.audioMixer.SetFloat("Volume", value);
+            _audioService.SfxMixerGroup.audioMixer.SetFloat("Volume", value);
         }
     }
 }

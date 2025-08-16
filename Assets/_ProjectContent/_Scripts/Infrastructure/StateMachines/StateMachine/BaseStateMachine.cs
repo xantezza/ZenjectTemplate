@@ -8,7 +8,7 @@ namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class BaseStateMachine
     {
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly LoggingService _loggingService;
 
         protected IState _activeState;
         private readonly Dictionary<Type, IState> _states = new();
@@ -17,16 +17,16 @@ namespace Infrastructure.StateMachines.StateMachine
         protected abstract LogTag LogTag { get; }
 
         [Inject]
-        protected BaseStateMachine(ConditionalLoggingService conditionalLoggingService)
+        protected BaseStateMachine(LoggingService loggingService)
         {
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
         }
 
         protected async UniTask Enter<TState>() where TState : class, IState, IEnterableState
         {
             var state = await ChangeState<TState>();
 
-            _conditionalLoggingService.Log($"Entering state {typeof(TState).Name}", LogTag);
+            _loggingService.Log($"Entering state {typeof(TState).Name}", LogTag);
 
             await state.Enter();
         }
@@ -35,7 +35,7 @@ namespace Infrastructure.StateMachines.StateMachine
         {
             var state = await ChangeState<TState>();
 
-            _conditionalLoggingService.Log($"Entering state {typeof(TState).Name} with payload: \n{typeof(TPayload).Name}: {payload}", LogTag);
+            _loggingService.Log($"Entering state {typeof(TState).Name} with payload: \n{typeof(TPayload).Name}: {payload}", LogTag);
 
             await state.Enter(payload);
         }
@@ -44,7 +44,7 @@ namespace Infrastructure.StateMachines.StateMachine
         {
             var state = await ChangeState(index);
 
-            _conditionalLoggingService.Log($"Entering state {state.GetType().Name}", LogTag);
+            _loggingService.Log($"Entering state {state.GetType().Name}", LogTag);
 
             if (state is IEnterableState enterableState) await enterableState.Enter();
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Infrastructure.Services.Logging
 {
     // Must be abstract for Conditional attribute to work
-    public abstract class ConditionalLoggingService
+    public abstract class LoggingService
     {
 #if DEV
         protected readonly Dictionary<LogTag, Color> _tagColors = new()

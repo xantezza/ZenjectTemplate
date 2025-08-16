@@ -11,6 +11,8 @@
         UI,
         SaveService,
         AssetReferenceProvider,
-        CritError
+        CritError,
+        WindowsQueueController,
+        WindowService
     }
 }

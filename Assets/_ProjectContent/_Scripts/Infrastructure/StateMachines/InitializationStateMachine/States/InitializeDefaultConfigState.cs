@@ -11,22 +11,22 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     public class InitializeDefaultConfigState : BaseInitializationState, IEnterableState
     {
         private readonly IDefaultConfigProvider _defaultConfigProvider;
-        private readonly ConditionalLoggingService _conditionalLoggingService;
+        private readonly LoggingService _loggingService;
 
         [Inject]
         public InitializeDefaultConfigState(
             InitializationStateMachine gameLoopStateMachine,
             IDefaultConfigProvider defaultConfigProvider,
-            ConditionalLoggingService conditionalLoggingService
+            LoggingService loggingService
         ) : base(gameLoopStateMachine)
         {
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
             _defaultConfigProvider = defaultConfigProvider;
         }
 
         public async UniTask Enter()
         {
-            RemoteConfig.InitializeByDefault(_defaultConfigProvider.CachedConfig, _conditionalLoggingService);
+            RemoteConfig.InitializeByDefault(_defaultConfigProvider.CachedConfig, _loggingService);
             await _stateMachine.NextState();
         }
     }

@@ -5,7 +5,7 @@ namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class SequentialStateMachine : BaseStateMachine
     {
-        protected SequentialStateMachine(ConditionalLoggingService conditionalLoggingService) : base(conditionalLoggingService)
+        protected SequentialStateMachine(LoggingService loggingService) : base(loggingService)
         {
         }
 

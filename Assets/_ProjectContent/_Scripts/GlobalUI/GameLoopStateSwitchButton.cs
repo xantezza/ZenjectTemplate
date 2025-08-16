@@ -24,7 +24,7 @@ namespace GlobalUI
         [SerializeField] private TargetStates _targetState = 0;
         [HideInInspector] [SerializeField] private Button _button;
 
-        private ConditionalLoggingService _conditionalLoggingService;
+        private LoggingService _loggingService;
         private IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
         private IAssetReferenceProvider _assetReferenceProvider;
         private ISceneLoaderService _sceneLoaderService;
@@ -33,13 +33,13 @@ namespace GlobalUI
         private void Inject(
             IGameLoopStateMachineFactory gameLoopStateMachineFactory,
             ISceneLoaderService sceneLoaderService,
-            ConditionalLoggingService conditionalLoggingService,
+            LoggingService loggingService,
             IAssetReferenceProvider assetReferenceProvider)
         {
             _sceneLoaderService = sceneLoaderService;
             _assetReferenceProvider = assetReferenceProvider;
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
         }
 
         private void OnValidate()
@@ -59,7 +59,6 @@ namespace GlobalUI
 
         private async void OnClick()
         {
-            _conditionalLoggingService.LogCritError("BamBambam");
             switch (_targetState)
             {
                 case TargetStates.Menu:
@@ -69,7 +68,7 @@ namespace GlobalUI
                     await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, OnGameplaySceneLoaded);
                     break;
                 default:
-                    _conditionalLoggingService.LogError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
+                    _loggingService.LogCritError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
                     break;
             }
         }

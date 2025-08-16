@@ -10,12 +10,12 @@ namespace Infrastructure.Factories
     public class ModalPopupFactory : MonoBehaviour, IModalPopupFactory
     {
         private IAssetReferenceProvider _assetReferenceProvider;
-        private ConditionalLoggingService _conditionalLoggingService;
+        private LoggingService _loggingService;
 
         [Inject]
-        public void Inject(IAssetReferenceProvider assetReferenceProvider, ConditionalLoggingService conditionalLoggingService)
+        public void Inject(IAssetReferenceProvider assetReferenceProvider, LoggingService loggingService)
         {
-            _conditionalLoggingService = conditionalLoggingService;
+            _loggingService = loggingService;
             _assetReferenceProvider = assetReferenceProvider;
         }
 
@@ -24,7 +24,7 @@ namespace Infrastructure.Factories
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
             if (reference == null)
             {
-                _conditionalLoggingService.LogError($"In AssetReferenceProvider.ModalsAssetReferences not found reference to modal for type {typeof(T)}", LogTag.AssetReferenceProvider);
+                _loggingService.LogError($"In AssetReferenceProvider.ModalsAssetReferences not found reference to modal for type {typeof(T)}", LogTag.AssetReferenceProvider);
                 return default;
             }
             

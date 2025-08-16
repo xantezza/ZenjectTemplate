@@ -12,7 +12,7 @@ namespace Infrastructure.Services.Saving
     {
         protected virtual string _defaultFileName => "jsonDefaultSave";
 
-        public JsonSaveService(ConditionalLoggingService loggingService) : base(loggingService)
+        public JsonSaveService(LoggingService loggingService) : base(loggingService)
         {
         }
 

@@ -13,13 +13,13 @@ namespace Configs.RemoteConfig
 
         public static InfrastructureConfig Infrastructure { get; private set; }
 
-        private static ConditionalLoggingService _loggingService;
+        private static LoggingService _loggingService;
         private static JToken _cachedDefaultConfig;
         private static JToken _remoteConfig;
 
         private static bool _hasInitializedByRemote;
 
-        public static void InitializeByDefault(JToken cachedDefaultConfig, ConditionalLoggingService loggingService)
+        public static void InitializeByDefault(JToken cachedDefaultConfig, LoggingService loggingService)
         {
             _cachedDefaultConfig = cachedDefaultConfig;
 
@@ -30,7 +30,7 @@ namespace Configs.RemoteConfig
             OnInitializeAny?.Invoke();
         }
 
-        public static void InitializeByRemote(JToken remoteConfig, ConditionalLoggingService loggingService)
+        public static void InitializeByRemote(JToken remoteConfig, LoggingService loggingService)
         {
             _hasInitializedByRemote = true;
             _remoteConfig = remoteConfig;
@@ -39,7 +39,7 @@ namespace Configs.RemoteConfig
             OnInitializeAny?.Invoke();
         }
 
-        private static void ParseConfigs(ConditionalLoggingService loggingService)
+        private static void ParseConfigs(LoggingService loggingService)
         {
             _loggingService = loggingService;
             Infrastructure = Parse<InfrastructureConfig>(RemoteConfigType.InfrastructureConfig);
