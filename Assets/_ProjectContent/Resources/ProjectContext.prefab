@@ -384,6 +384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6994547916840969886}
   - component: {fileID: 6618613213814882690}
+  - component: {fileID: 5536158387482786618}
   - component: {fileID: 5462094420063529817}
   m_Layer: 0
   m_Name: ProjectContext
@@ -441,6 +442,18 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
+--- !u!114 &5536158387482786618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089873749942209858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd26e5ea557611d4e80374563b9a2b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5462094420063529817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,8 +1047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 17.08.2025 1:36:26
-  _currentDate: 17.08.2025 1:36:32
+  _lastFetchDate: 17.08.2025 1:42:17
+  _currentDate: 17.08.2025 1:42:22
   _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeMinimalLoadTime\":
     0.2\r\n  }\r\n}"
