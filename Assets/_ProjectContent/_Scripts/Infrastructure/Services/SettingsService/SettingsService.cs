@@ -1,13 +1,11 @@
 ﻿using System;
 using Infrastructure.Services.AudioService;
 using Infrastructure.Services.Saving;
-using UnityEngine;
-using UnityEngine.Audio;
 using Zenject;
 
 namespace Infrastructure.Services.SettingsService
 {
-    public class SettingsService : MonoBehaviour, ISettingsService, IDataSaveable<SettingsService.Save>
+    public class SettingsService : ISettingsService, IDataSaveable<SettingsService.Save>, IInitializable
     {
         [Serializable] public class Save
         {
@@ -28,7 +26,7 @@ namespace Infrastructure.Services.SettingsService
             _saveService = saveService;
         }
 
-        private void Start()
+        public void Initialize()
         {
             SaveData = _saveService.Load(this) ?? new Save();
             _saveService.AddToSaveables(this);
