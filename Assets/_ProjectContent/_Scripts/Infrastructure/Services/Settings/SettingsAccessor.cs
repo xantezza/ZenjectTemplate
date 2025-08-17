@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.Services.SettingsService
+namespace Infrastructure.Services.Settings
 {
     public class SettingsAccessor : MonoBehaviour
     {

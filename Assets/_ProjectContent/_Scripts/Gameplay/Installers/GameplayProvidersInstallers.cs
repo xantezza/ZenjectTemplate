@@ -2,8 +2,9 @@
 
 namespace Gameplay.Installers
 {
-    public class GameplayServicesInstaller : MonoInstaller
+    public class GameplayProvidersInstallers : MonoInstaller
     {
+
         public override void InstallBindings()
         {
         }

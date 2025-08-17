@@ -1,9 +1,9 @@
 ﻿using System;
-using Infrastructure.Services.AudioService;
+using Infrastructure.Services.Audio;
 using Infrastructure.Services.Saving;
 using Zenject;
 
-namespace Infrastructure.Services.SettingsService
+namespace Infrastructure.Services.Settings
 {
     public class SettingsService : ISettingsService, IDataSaveable<SettingsService.Save>, IInitializable
     {

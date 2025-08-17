@@ -2,7 +2,7 @@
 
 namespace Gameplay.Installers
 {
-    public class GameplayServicesInstaller : MonoInstaller
+    public class GameplayFactoriesInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

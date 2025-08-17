@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services.SettingsService
+﻿namespace Infrastructure.Services.Settings
 {
     public interface ISettingsService
     {

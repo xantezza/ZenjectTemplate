@@ -1,10 +1,10 @@
 ﻿using Infrastructure.Services.Analytics;
-using Infrastructure.Services.AudioService;
+using Infrastructure.Services.Audio;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
-using Infrastructure.Services.SettingsService;
+using Infrastructure.Services.Settings;
 using Infrastructure.Services.Windows;
 using UnityEngine;
 using Zenject;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Configs;
 using Configs.RemoteConfig;
+using Configs.RemoteConfig.Configs;
 using Newtonsoft.Json;
 using TriInspector;
 using UnityEngine;

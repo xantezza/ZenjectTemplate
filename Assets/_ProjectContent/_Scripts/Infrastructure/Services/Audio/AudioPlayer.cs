@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.Services.AudioService
+namespace Infrastructure.Services.Audio
 {
     public class AudioPlayer : MonoBehaviour
     {
