@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Infrastructure.Installers
+namespace Gameplay.Installers
 {
     public class GameplayServicesInstaller : MonoInstaller
     {

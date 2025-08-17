@@ -3,7 +3,7 @@ using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Infrastructure.Services.AudioService
+namespace Infrastructure.Services.Audio
 {
     public class AudioService : MonoBehaviour, IAudioService
     {
