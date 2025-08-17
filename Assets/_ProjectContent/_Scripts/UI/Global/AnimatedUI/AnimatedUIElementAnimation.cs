@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GlobalUI.AnimatedUI
+namespace UI.Global.AnimatedUI
 {
     [Serializable]
     public class AnimatedUIElementAnimation

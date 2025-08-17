@@ -1,16 +1,13 @@
-﻿using System;
-using Infrastructure.Factories;
+﻿using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Logging;
-using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace GlobalUI
+namespace UI.Global
 {
     [RequireComponent(typeof(Button))]
     public class GameLoopStateSwitchButton : MonoBehaviour
