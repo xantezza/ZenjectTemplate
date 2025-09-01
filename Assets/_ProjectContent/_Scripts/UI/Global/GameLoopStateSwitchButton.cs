@@ -63,7 +63,7 @@ namespace UI.Global
                     await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, OnGameplaySceneLoaded);
                     break;
                 default:
-                    Logger.CritError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
+                    Logger.Error($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
                     break;
             }
         }

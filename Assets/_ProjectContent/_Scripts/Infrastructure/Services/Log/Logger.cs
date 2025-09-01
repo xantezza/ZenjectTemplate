@@ -75,7 +75,7 @@ namespace Infrastructure.Services.Log
         {
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.LogError($"{color.ToRichHEX("ERROR")}{color.ToRichHEX(tag)} {text}");
+                Debug.LogError($"{color.ToRichHEX("EXCEPTION")}{color.ToRichHEX(tag)} {text}");
             }
             else
             {
@@ -83,17 +83,6 @@ namespace Infrastructure.Services.Log
             }
         }
 
-        public static void CritError(string text, LogTag tag = LogTag.CritError)
-        {
-            if (_tagColors.TryGetValue(tag, out Color color))
-            {
-                Debug.LogError($"{color.ToRichHEX("CRITICAL ERROR")}{color.ToRichHEX(tag)} {text}");
-            }
-            else
-            {
-                Debug.LogErrorFormat("[{0}] {1}", tag, text);
-            }
-        }
         
         private void OnApplicationLogMessageReceived(string condition, string stacktrace, LogType type)
         {
