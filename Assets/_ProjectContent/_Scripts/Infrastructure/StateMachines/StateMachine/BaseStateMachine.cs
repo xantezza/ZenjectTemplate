@@ -1,32 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Zenject;
 
 namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class BaseStateMachine
     {
-        private readonly LoggingService _loggingService;
-
         protected IState _activeState;
         private readonly Dictionary<Type, IState> _states = new();
         protected readonly List<IState> _statesList = new();
 
         protected abstract LogTag LogTag { get; }
 
-        [Inject]
-        protected BaseStateMachine(LoggingService loggingService)
-        {
-            _loggingService = loggingService;
-        }
-
         protected async UniTask Enter<TState>() where TState : class, IState, IEnterableState
         {
             var state = await ChangeState<TState>();
 
-            _loggingService.Log($"Entering state {typeof(TState).Name}", LogTag);
+            Logger.Log($"Entering state {typeof(TState).Name}", LogTag);
 
             await state.Enter();
         }
@@ -35,7 +27,7 @@ namespace Infrastructure.StateMachines.StateMachine
         {
             var state = await ChangeState<TState>();
 
-            _loggingService.Log($"Entering state {typeof(TState).Name} with payload: \n{typeof(TPayload).Name}: {payload}", LogTag);
+            Logger.Log($"Entering state {typeof(TState).Name} with payload: \n{typeof(TPayload).Name}: {payload}", LogTag);
 
             await state.Enter(payload);
         }
@@ -44,7 +36,7 @@ namespace Infrastructure.StateMachines.StateMachine
         {
             var state = await ChangeState(index);
 
-            _loggingService.Log($"Entering state {state.GetType().Name}", LogTag);
+            Logger.Log($"Entering state {state.GetType().Name}", LogTag);
 
             if (state is IEnterableState enterableState) await enterableState.Enter();
         }

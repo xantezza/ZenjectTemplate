@@ -1,5 +1,5 @@
 ﻿using Infrastructure.Factories;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
@@ -11,7 +11,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
-        public InitializationStateMachine(IStatesFactory statesFactory, LoggingService loggingService) : base(loggingService)
+        public InitializationStateMachine(IStatesFactory statesFactory)
         {
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));

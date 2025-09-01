@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using UnityEngine;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace Infrastructure.Services.Saving
 {
@@ -15,10 +16,6 @@ namespace Infrastructure.Services.Saving
         private static readonly byte[] IV = Convert.FromBase64String("c29tZUl2MTIzNDU2Nzg5MA==");
 
         protected virtual string _defaultFileName => "binaryDefaultSave";
-
-        public BinarySaveService(LoggingService loggingService) : base(loggingService)
-        {
-        }
 
         public override TSave Load<TSave>(IDataSaveable<TSave> dataSaveable)
         {
@@ -38,7 +35,7 @@ namespace Infrastructure.Services.Saving
 
             if (!File.Exists(path))
             {
-                _loggingService.Log("No game data to load", LogTag.SaveService);
+                Logger.Log("No game data to load", LogTag.SaveService);
                 _hasLoaded = true;
                 return;
             }
@@ -55,7 +52,7 @@ namespace Infrastructure.Services.Saving
             _readyToSaveDictionary = (Dictionary<SaveKey, object>) binaryFormatter.Deserialize(cryptoStream);
             
             _hasLoaded = true;
-            _loggingService.Log("Game data loaded!", LogTag.SaveService);
+            Logger.Log("Game data loaded!", LogTag.SaveService);
         }
 
         public override void StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
@@ -76,7 +73,7 @@ namespace Infrastructure.Services.Saving
             using var cryptoStream = new CryptoStream(fileStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
             cryptoStream.Write(serializedData, 0, serializedData.Length);
 
-            _loggingService.Log($"Game data saved! At path: \n{path} \nContent is binary", LogTag.SaveService);
+            Logger.Log($"Game data saved! At path: \n{path} \nContent is binary", LogTag.SaveService);
         }
     }
 }

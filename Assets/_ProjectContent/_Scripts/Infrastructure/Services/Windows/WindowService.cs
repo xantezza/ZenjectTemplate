@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.Services.Windows.Queues;
 using Zenject;
 
@@ -28,15 +28,13 @@ namespace Infrastructure.Services.Windows
     public class WindowService : IWindowService
     {
         private readonly Dictionary<Type, IWindowBase> _windows = new();
-        private readonly LoggingService _loggingService;
         public HashSet<Type> ShowedWindows { get; } = new();
         public WindowsQueueController QueueController { get; }
 
         [Inject]
-        public WindowService(LoggingService loggingService)
+        public WindowService()
         {
-            _loggingService = loggingService;
-            QueueController = new WindowsQueueController(this, loggingService);
+            QueueController = new WindowsQueueController(this);
         }
 
         public bool ExistWindow(Type type) =>
@@ -95,7 +93,7 @@ namespace Infrastructure.Services.Windows
             _windows.Add(typeof(T), window);
             window.OnAfterHide += OnAfterWindowHide;
             window.OnAfterShow += OnAfterShow;
-            _loggingService.Log($"Registering window of type {typeof(T).ToString().Split('.')[^1]}", LogTag.WindowService);
+            Logger.Log($"Registering window of type {typeof(T).ToString().Split('.')[^1]}", LogTag.WindowService);
         }
 
         public void UnregisterWindow<T>(WindowBase<T> window) where T : IWindowBase
@@ -103,7 +101,7 @@ namespace Infrastructure.Services.Windows
             _windows.Remove(typeof(T));
             window.OnAfterHide -= OnAfterWindowHide;
             window.OnAfterShow -= OnAfterShow;
-            _loggingService.Log($"Unregistering window of type {typeof(T).ToString().Split('.')[^1]}", LogTag.WindowService);
+            Logger.Log($"Unregistering window of type {typeof(T).ToString().Split('.')[^1]}", LogTag.WindowService);
         }
 
         private void OnAfterShow(Type windowType) =>

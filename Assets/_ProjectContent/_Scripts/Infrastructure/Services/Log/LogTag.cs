@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services.Logging
+﻿namespace Infrastructure.Services.Log
 {
     public enum LogTag
     {

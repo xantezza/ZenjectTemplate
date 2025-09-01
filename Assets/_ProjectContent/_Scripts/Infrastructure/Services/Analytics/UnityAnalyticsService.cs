@@ -1,21 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
 using Unity.Services.Analytics;
 using UnityEngine;
 using Zenject;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace Infrastructure.Services.Analytics
 {
     public class UnityAnalyticsService : IAnalyticsService
     {
-        private readonly LoggingService _loggingService;
-
         [Inject]
-        public UnityAnalyticsService(LoggingService loggingService)
+        public UnityAnalyticsService()
         {
-            _loggingService = loggingService;
             Application.focusChanged += OnApplicationFocus;
         }
 
@@ -32,7 +30,7 @@ namespace Infrastructure.Services.Analytics
         {
             if (!InitializeUnityServicesState.IsInitialized) return;
             
-            _loggingService.Log($"{eventName} sent", LogTag.Analytics);
+            Logger.Log($"{eventName} sent", LogTag.Analytics);
 
             AnalyticsService.Instance.RecordEvent(eventName);
         }
@@ -51,7 +49,7 @@ namespace Infrastructure.Services.Analytics
                 customEvent.Add(key, value);
             }
 
-            _loggingService.Log(stringBuilder.ToString(), LogTag.Analytics);
+            Logger.Log(stringBuilder.ToString(), LogTag.Analytics);
             AnalyticsService.Instance.RecordEvent(customEvent);
         }
     }

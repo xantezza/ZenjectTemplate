@@ -2,7 +2,7 @@
 using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.LoadingCurtainProvider;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using JetBrains.Annotations;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -13,14 +13,12 @@ namespace Infrastructure.Services.SceneLoading
     [UsedImplicitly]
     public class SceneLoaderService : ISceneLoaderService
     {
-        private readonly LoggingService _loggingService;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private string _cachedSceneGUID;
 
-        public SceneLoaderService(LoggingService loggingService, ILoadingCurtainProvider loadingCurtainProvider)
+        public SceneLoaderService(ILoadingCurtainProvider loadingCurtainProvider)
         {
             _loadingCurtainProvider = loadingCurtainProvider;
-            _loggingService = loggingService;
         }
 
         public async UniTask LoadScene(AssetReference nextSceneName, Action onLoaded = null, bool allowReloadSameScene = false)
@@ -32,7 +30,7 @@ namespace Infrastructure.Services.SceneLoading
         {
             if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
-                _loggingService.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
+                Logger.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
                 onLoaded?.Invoke();
                 return;
             }
@@ -47,7 +45,7 @@ namespace Infrastructure.Services.SceneLoading
                 await UniTask.Yield();
             }
             
-            _loggingService.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
+            Logger.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
 
             onLoaded?.Invoke();
             await UniTask.WaitForSeconds(RemoteConfig.Infrastructure.FakeMinimalLoadTime);

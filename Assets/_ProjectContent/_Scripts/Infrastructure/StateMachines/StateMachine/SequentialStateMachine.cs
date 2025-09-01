@@ -1,14 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 
 namespace Infrastructure.StateMachines.StateMachine
 {
     public abstract class SequentialStateMachine : BaseStateMachine
     {
-        protected SequentialStateMachine(LoggingService loggingService) : base(loggingService)
-        {
-        }
-
         public async UniTask NextState()
         {
             var indexOfActiveState = -1;

@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Infrastructure.StateMachines.StateMachine;
 using Zenject;
@@ -12,7 +12,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
         protected override LogTag LogTag => LogTag.GameLoopStateMachine;
 
         [Inject]
-        public GameLoopStateMachine(IStatesFactory statesFactory, LoggingService loggingService) : base(loggingService)
+        public GameLoopStateMachine(IStatesFactory statesFactory)
         {
             RegisterState(statesFactory.Create<EntryPointState>(this));
             RegisterState(statesFactory.Create<MenuState>(this));

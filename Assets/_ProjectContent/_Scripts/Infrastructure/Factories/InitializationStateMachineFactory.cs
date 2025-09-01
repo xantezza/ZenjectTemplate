@@ -1,4 +1,4 @@
-﻿using Infrastructure.Services.Logging;
+﻿using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine;
 using JetBrains.Annotations;
 using Zenject;
@@ -9,20 +9,18 @@ namespace Infrastructure.Factories
     public class InitializationStateMachineFactory : IInitializationStateMachineFactory
     {
         private InitializationStateMachine _stateMachine;
-        private readonly LoggingService _loggingService;
         private readonly IInstantiator _instantiator;
 
         [Inject]
-        public InitializationStateMachineFactory(IInstantiator instantiator, LoggingService loggingService)
+        public InitializationStateMachineFactory(IInstantiator instantiator)
         {
             _instantiator = instantiator;
-            _loggingService = loggingService;
         }
 
         public InitializationStateMachine GetFrom(object summoner)
         {
             _stateMachine ??= _instantiator.Instantiate<InitializationStateMachine>();
-            _loggingService.Log($"Access to the {this} is obtained from {summoner}", LogTag.InitializationStateMachine);
+            Logger.Log($"Access to the {this} is obtained from {summoner}", LogTag.InitializationStateMachine);
             return _stateMachine;
         }
     }

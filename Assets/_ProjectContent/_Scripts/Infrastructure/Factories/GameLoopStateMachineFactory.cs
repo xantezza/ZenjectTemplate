@@ -1,4 +1,4 @@
-﻿using Infrastructure.Services.Logging;
+﻿using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.GameLoopStateMachine;
 using JetBrains.Annotations;
 using Zenject;
@@ -9,20 +9,18 @@ namespace Infrastructure.Factories
     public class GameLoopStateMachineFactory : IGameLoopStateMachineFactory
     {
         private GameLoopStateMachine _stateMachine;
-        private readonly LoggingService _loggingService;
         private readonly IInstantiator _instantiator;
 
         [Inject]
-        public GameLoopStateMachineFactory(IInstantiator instantiator, LoggingService loggingService)
+        public GameLoopStateMachineFactory(IInstantiator instantiator)
         {
             _instantiator = instantiator;
-            _loggingService = loggingService;
         }
 
         public GameLoopStateMachine GetFrom(object summoner)
         {
             _stateMachine ??= _instantiator.Instantiate<GameLoopStateMachine>();
-            _loggingService.Log($"Access to the {this} is obtained from {summoner}", LogTag.GameLoopStateMachine);
+            Logger.Log($"Access to the {this} is obtained from {summoner}", LogTag.GameLoopStateMachine);
             return _stateMachine;
         }
     }

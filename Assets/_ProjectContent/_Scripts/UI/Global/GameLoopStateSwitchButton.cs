@@ -1,11 +1,12 @@
 ﻿using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace UI.Global
 {
@@ -21,7 +22,6 @@ namespace UI.Global
         [SerializeField] private TargetStates _targetState = 0;
         [HideInInspector] [SerializeField] private Button _button;
 
-        private LoggingService _loggingService;
         private IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
         private IAssetReferenceProvider _assetReferenceProvider;
         private ISceneLoaderService _sceneLoaderService;
@@ -30,13 +30,11 @@ namespace UI.Global
         private void Inject(
             IGameLoopStateMachineFactory gameLoopStateMachineFactory,
             ISceneLoaderService sceneLoaderService,
-            LoggingService loggingService,
             IAssetReferenceProvider assetReferenceProvider)
         {
             _sceneLoaderService = sceneLoaderService;
             _assetReferenceProvider = assetReferenceProvider;
             _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
-            _loggingService = loggingService;
         }
 
         private void OnValidate()
@@ -65,7 +63,7 @@ namespace UI.Global
                     await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, OnGameplaySceneLoaded);
                     break;
                 default:
-                    _loggingService.LogCritError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
+                    Logger.CritError($"Missing logic in [{this}, {gameObject.name}]", LogTag.UI);
                     break;
             }
         }

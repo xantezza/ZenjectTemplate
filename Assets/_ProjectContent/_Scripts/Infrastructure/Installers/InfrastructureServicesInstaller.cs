@@ -1,13 +1,14 @@
 ﻿using Infrastructure.Services.Analytics;
 using Infrastructure.Services.Audio;
 using Infrastructure.Services.CoroutineRunner;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Settings;
 using Infrastructure.Services.Windows;
 using UnityEngine;
 using Zenject;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace Infrastructure.Installers
 {
@@ -28,7 +29,7 @@ namespace Infrastructure.Installers
 
         private void BindConditionalLoggingService()
         {
-            Container.Bind<LoggingService>().To<UnityLoggingService>().FromNew().AsSingle().NonLazy();
+            Container.Bind<Logger>().To<Logger>().FromNew().AsSingle().NonLazy();
         }
         private void BindAnalyticsLogService()
         {

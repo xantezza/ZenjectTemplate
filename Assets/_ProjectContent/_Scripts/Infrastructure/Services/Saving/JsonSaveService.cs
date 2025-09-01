@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Newtonsoft.Json;
 using UnityEngine;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace Infrastructure.Services.Saving
 {
@@ -11,10 +12,6 @@ namespace Infrastructure.Services.Saving
     public class JsonSaveService : BaseSaveService
     {
         protected virtual string _defaultFileName => "jsonDefaultSave";
-
-        public JsonSaveService(LoggingService loggingService) : base(loggingService)
-        {
-        }
 
         public override TSave Load<TSave>(IDataSaveable<TSave> dataSaveable)
         {
@@ -36,7 +33,7 @@ namespace Infrastructure.Services.Saving
 
                 if (!File.Exists(path))
                 {
-                    _loggingService.Log("No game data to load", LogTag.SaveService);
+                    Logger.Log("No game data to load", LogTag.SaveService);
                     _hasLoaded = true;
                     return;
                 }
@@ -48,11 +45,11 @@ namespace Infrastructure.Services.Saving
                 _readyToSaveDictionary = JsonConvert.DeserializeObject<Dictionary<SaveKey, object>>(fileContent);
 
                 _hasLoaded = true;
-                _loggingService.Log($"Game data loaded! \n{fileContent}", LogTag.SaveService);
+                Logger.Log($"Game data loaded! \n{fileContent}", LogTag.SaveService);
             }
             catch (Exception e)
             {
-                _loggingService.LogError($"Exception caught when loading save!\n{e}", LogTag.SaveService);
+                Logger.Error($"Exception caught when loading save!\n{e}", LogTag.SaveService);
                 _hasLoaded = true;
             }
         }
@@ -65,7 +62,7 @@ namespace Infrastructure.Services.Saving
             var path = $"{Application.persistentDataPath}/{fileName}.txt";
             var serializedObject = JsonConvert.SerializeObject(_readyToSaveDictionary, Formatting.Indented);
             File.WriteAllText(path, serializedObject);
-            _loggingService.Log($"Game data saved! At path: \n{path} \nContent: \n{serializedObject}", LogTag.SaveService);
+            Logger.Log($"Game data saved! At path: \n{path} \nContent: \n{serializedObject}", LogTag.SaveService);
         }
     }
 }

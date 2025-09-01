@@ -1,5 +1,5 @@
 ﻿using System;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 
 namespace Infrastructure.Services.Windows.Queues
 {
@@ -7,12 +7,10 @@ namespace Infrastructure.Services.Windows.Queues
     {
         private readonly IWindowService _windowsService;
         private WindowsQueue _mainQueue;
-        private readonly LoggingService _loggingService;
 
-        public WindowsQueueController(IWindowService windowsService, LoggingService loggingService)
+        public WindowsQueueController(IWindowService windowsService)
         {
             _windowsService = windowsService;
-            _loggingService = loggingService;
             _mainQueue = new WindowsQueue(windowsService);
         }
 
@@ -29,15 +27,11 @@ namespace Infrastructure.Services.Windows.Queues
 
             if (_mainQueue.Run())
             {
-#if DEV
-                _loggingService.Log($"Windows queue is run!", LogTag.WindowsQueueController);
-#endif
+                Logger.Log($"Windows queue is run!", LogTag.WindowsQueueController);
             }
             else
             {
-#if DEV
-                _loggingService.LogError($"Windows queue run is aborted!", LogTag.WindowsQueueController);
-#endif
+                Logger.Error($"Windows queue run is aborted!", LogTag.WindowsQueueController);
             }
         }
 
@@ -51,15 +45,11 @@ namespace Infrastructure.Services.Windows.Queues
         {
             if (_mainQueue.AddWindowByTypeIn(type))
             {
-#if DEV
-                _loggingService.Log($"A new window '{type.ToString().Split('.')[^1]}' has been successfully added to the window queue.", LogTag.WindowsQueueController);
-#endif
+                Logger.Log($"A new window '{type.ToString().Split('.')[^1]}' has been successfully added to the window queue.", LogTag.WindowsQueueController);
             }
             else
             {
-#if DEV
-                _loggingService.LogError($"Couldn't add window '{type.ToString().Split('.')[^1]}' was not added to the queue because the window does not exist in the context of the scene.", LogTag.WindowsQueueController);
-#endif
+                Logger.Error($"Couldn't add window '{type.ToString().Split('.')[^1]}' was not added to the queue because the window does not exist in the context of the scene.", LogTag.WindowsQueueController);
             }
         }
 
@@ -68,13 +58,13 @@ namespace Infrastructure.Services.Windows.Queues
             if (_mainQueue.AddWindowIn(window))
             {
 #if DEV
-                _loggingService.Log($"A new window '{window.GetType().ToString().Split('.')[^1]}' has been successfully added to the window queue.", LogTag.WindowsQueueController);
+                Logger.Log($"A new window '{window.GetType().ToString().Split('.')[^1]}' has been successfully added to the window queue.", LogTag.WindowsQueueController);
 #endif
             }
             else
             {
 #if DEV
-                _loggingService.LogWarning($"Couldn't add window '{window.GetType().ToString().Split('.')[^1]}' was not added to the queue because it already exists.", LogTag.WindowsQueueController);
+                Logger.Warn($"Couldn't add window '{window.GetType().ToString().Split('.')[^1]}' was not added to the queue because it already exists.", LogTag.WindowsQueueController);
 #endif
             }
         }
@@ -86,7 +76,7 @@ namespace Infrastructure.Services.Windows.Queues
         {
             _mainQueue.OnQueueFinished -= OnQueueFinished;
 #if DEV
-            _loggingService.Log($"Windows queue is finished!", LogTag.WindowsQueueController);
+            Logger.Log($"Windows queue is finished!", LogTag.WindowsQueueController);
 #endif
         }
     }
