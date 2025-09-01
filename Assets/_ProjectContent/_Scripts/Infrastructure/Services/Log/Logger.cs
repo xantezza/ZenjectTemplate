@@ -21,10 +21,10 @@ namespace Infrastructure.Services.Log
         
         private static readonly Dictionary<LogTag, Color> _tagColors = new()
         {
-            {LogTag.InitializationStateMachine, new Color(0.3f, 1, 0)},
-            {LogTag.GameLoopStateMachine, new Color(0.35f, 0.9f, 0.35f)},
-            {LogTag.SaveService, new Color(1f, 0.5f, 1f)},
-            {LogTag.SceneLoader, new Color(1f, 1f, 1f)},
+            {LogTag.InitializationStateMachine, new Color(0.0f, 1, 0)},
+            {LogTag.GameLoopStateMachine, new Color(0.3f, 0.99f, 0.7f)},
+            {LogTag.SaveService, new Color(0.4f, 1f, 1f)},
+            {LogTag.SceneLoader, new Color(0.7f, 0.5f, 1f)},
             {LogTag.Analytics, new Color(0.0f, 1f, 1f)},
             {LogTag.UnityServices, new Color(0.0f, 0.8f, 1f)}
         };
@@ -50,7 +50,7 @@ namespace Infrastructure.Services.Log
             
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.Log($"{color.ToRichHEX(tag)} {text}");
+                Debug.Log($"{color.ColorizeWithBrackets(tag)} {text}");
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Infrastructure.Services.Log
         {
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.LogWarning($"{color.ToRichHEX(tag)} {text}");
+                Debug.LogWarning($"{color.ColorizeWithBrackets(tag)} {text}");
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Infrastructure.Services.Log
         {
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.LogError($"{color.ToRichHEX("EXCEPTION")}{color.ToRichHEX(tag)} {text}");
+                Debug.LogError($"{color.ColorizeWithBrackets("EXCEPTION")}{color.ColorizeWithBrackets(tag)} {text}");
             }
             else
             {
