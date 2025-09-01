@@ -5,10 +5,10 @@ namespace Infrastructure.Services.Windows.Queues
 {
     public class WindowsQueueController
     {
-        private readonly IWindowService _windowsService;
+        private readonly IWindowsService _windowsService;
         private WindowsQueue _mainQueue;
 
-        public WindowsQueueController(IWindowService windowsService)
+        public WindowsQueueController(IWindowsService windowsService)
         {
             _windowsService = windowsService;
             _mainQueue = new WindowsQueue(windowsService);
@@ -57,20 +57,13 @@ namespace Infrastructure.Services.Windows.Queues
         {
             if (_mainQueue.AddWindowIn(window))
             {
-#if DEV
                 Logger.Log($"A new window '{window.GetType().ToString().Split('.')[^1]}' has been successfully added to the window queue.", LogTag.WindowsQueueController);
-#endif
             }
             else
             {
-#if DEV
                 Logger.Warn($"Couldn't add window '{window.GetType().ToString().Split('.')[^1]}' was not added to the queue because it already exists.", LogTag.WindowsQueueController);
-#endif
             }
         }
-
-        public void AddWindowInQueue<T>(WindowBase<T> window) where T : class, IWindowBase =>
-            AddWindowInQueue(window);
 
         private void OnQueueFinished()
         {

@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Infrastructure.Services.Windows
 {
-    public interface IWindowService
+    public interface IWindowsService
     {
         public WindowsQueueController QueueController { get; }
         public HashSet<Type> ShowedWindows { get; }
@@ -25,14 +25,14 @@ namespace Infrastructure.Services.Windows
         public bool ExistWindow(Type type);
     }
 
-    public class WindowService : IWindowService
+    public class WindowsService : IWindowsService
     {
         private readonly Dictionary<Type, IWindowBase> _windows = new();
         public HashSet<Type> ShowedWindows { get; } = new();
         public WindowsQueueController QueueController { get; }
 
         [Inject]
-        public WindowService()
+        public WindowsService()
         {
             QueueController = new WindowsQueueController(this);
         }

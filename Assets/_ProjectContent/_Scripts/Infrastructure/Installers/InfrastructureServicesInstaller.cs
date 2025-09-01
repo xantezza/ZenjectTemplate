@@ -68,7 +68,7 @@ namespace Infrastructure.Installers
         }
         private void BindWindowService()
         {
-            Container.BindInterfacesTo<WindowService>().FromNew().AsSingle().NonLazy();
+            Container.BindInterfacesTo<WindowsService>().FromNew().AsSingle().NonLazy();
         }
     }
 }
