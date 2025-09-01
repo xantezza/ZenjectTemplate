@@ -17,10 +17,11 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
 #endif
             
+            RegisterState(statesFactory.Create<InitializeErrorModalState>(this));
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
-            RegisterState(statesFactory.Create<InitializePrivacyPolicyState>(this));
+            RegisterState(statesFactory.Create<InitializePrivacyPolicyModalState>(this));
             RegisterState(statesFactory.Create<InitializationFinalizerState>(this));
         }
     }

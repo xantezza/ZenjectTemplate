@@ -88,7 +88,7 @@ namespace Infrastructure.Services.Log
         {
             if (type is LogType.Exception or LogType.Error)
             {
-                SendAnalyticsErrorEvent($"{condition}, \n {stacktrace}");
+                SendAnalyticsErrorEvent($"{condition}\n{stacktrace}");
                 
                 OnError?.Invoke(condition);
             }

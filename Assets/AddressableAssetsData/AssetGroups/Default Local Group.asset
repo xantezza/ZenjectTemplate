@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d36ec070ccbcee429f54f449dc8097d
+    m_Address: ErrorModal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 56852816c519247b1a5dbf916ce38278
     m_Address: Assets/_ProjectContent/Textures/GlobalUI/Circle Frame - Thin.png
     m_ReadOnly: 0

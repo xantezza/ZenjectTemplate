@@ -508,6 +508,12 @@ MonoBehaviour:
         m_SubObjectGUID: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
+      <ErrorModal>k__BackingField:
+        m_AssetGUID: 3d36ec070ccbcee429f54f449dc8097d
+        m_SubObjectName: 
+        m_SubObjectGUID: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
     <DebugRootAssetReference>k__BackingField:
       m_AssetGUID: 52d0d1ae7ef98434caef0186654f7b2c
       m_SubObjectName: 
@@ -1034,8 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 17.08.2025 1:42:17
-  _currentDate: 17.08.2025 1:42:22
+  _lastFetchDate: 01.09.2025 23:37:32
+  _currentDate: 01.09.2025 23:37:32
   _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeMinimalLoadTime\":
     0.2\r\n  }\r\n}"

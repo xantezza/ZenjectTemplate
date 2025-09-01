@@ -11,7 +11,7 @@ using Unity.Services.Analytics;
 namespace Infrastructure.StateMachines.InitializationStateMachine.States
 {
     [UsedImplicitly]
-    public class InitializePrivacyPolicyState : BaseInitializationState, IDataSaveable<InitializePrivacyPolicyState.Save>, IEnterableState
+    public class InitializePrivacyPolicyModalState : BaseInitializationState, IDataSaveable<InitializePrivacyPolicyModalState.Save>, IEnterableState
     {
         private const bool EDITOR_IGNORE_CONSENT = true;
         private const bool IGNORE_CONSENT = true;
@@ -28,7 +28,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         private readonly ISaveService _saveService;
         private readonly IModalPopupFactory _modalPopupFactory;
 
-        protected InitializePrivacyPolicyState(InitializationStateMachine stateMachine, IModalPopupFactory modalPopupFactory, ISaveService saveService) : base(stateMachine)
+        protected InitializePrivacyPolicyModalState(InitializationStateMachine stateMachine, IModalPopupFactory modalPopupFactory, ISaveService saveService) : base(stateMachine)
         {
             _modalPopupFactory = modalPopupFactory;
             _saveService = saveService;
