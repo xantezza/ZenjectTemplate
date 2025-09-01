@@ -3,31 +3,37 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Infrastructure.Services.Analytics;
+using JetBrains.Annotations;
 using UnityEngine;
+using Utils.Extensions;
 using Zenject;
 using Debug = UnityEngine.Debug;
 
 namespace Infrastructure.Services.Log
 {
-    public abstract class Logger
+    public class Logger
     {
         public static event Action<string> OnError;
         
         private static IAnalyticsService _analyticsService;
 
-#if DEV
+        private static readonly LogTag[] _tagsToExclude = { };
+        
         private static readonly Dictionary<LogTag, Color> _tagColors = new()
         {
             {LogTag.InitializationStateMachine, new Color(0.3f, 1, 0)},
-            {LogTag.GameLoopStateMachine, Color.yellow},
-            {LogTag.Analytics, Color.cyan}
+            {LogTag.GameLoopStateMachine, new Color(0.35f, 0.9f, 0.35f)},
+            {LogTag.SaveService, new Color(1f, 0.5f, 1f)},
+            {LogTag.SceneLoader, new Color(1f, 1f, 1f)},
+            {LogTag.Analytics, new Color(0.0f, 1f, 1f)},
+            {LogTag.UnityServices, new Color(0.0f, 0.8f, 1f)}
         };
-#endif
 
         [Inject]
         private void Inject(IAnalyticsService analyticsService)
         {
             _analyticsService = analyticsService;
+            
             Application.logMessageReceived += OnApplicationLogMessageReceived;
         }
 
@@ -36,40 +42,15 @@ namespace Infrastructure.Services.Log
             Application.logMessageReceived -= OnApplicationLogMessageReceived;
         }
         
-        private static readonly LogTag[] _tagsToExclude = { };
-        private static readonly LogTag[] _warningTagsToExclude = { };
 
         [Conditional("DEV")]
         public static void Log(string text, LogTag tag = LogTag.Default)
         {
             if (_tagsToExclude.Contains(tag)) return;
-            InternalLog(text, tag);
-        }
-
-        [Conditional("DEV")]
-        public static void Warn(string text, LogTag tag = LogTag.Default)
-        {
-            if (_warningTagsToExclude.Contains(tag)) return;
-            InternalLogWarning(text, tag);
-        }
-
-        public static void Error(string text, LogTag tag = LogTag.Default)
-        {
-            InternalLogError(text, tag);
-            OnError?.Invoke(text);
-        }
-
-        public static void CritError(string text, LogTag tag = LogTag.CritError)
-        {
-            InternalLogCritError(text, tag);
-            OnError?.Invoke(text);
-        }
-
-        private static void InternalLog(string text, LogTag tag)
-        {
+            
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGB(color)}>[{tag}]</color> {text}");
+                Debug.Log($"{color.ToRichHEX(tag)} {text}");
             }
             else
             {
@@ -77,11 +58,12 @@ namespace Infrastructure.Services.Log
             }
         }
 
-        private static void InternalLogWarning(string text, LogTag tag)
+        [Conditional("DEV")]
+        public static void Warn(string text, LogTag tag = LogTag.Default)
         {
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.LogWarning($"<color=#{ColorUtility.ToHtmlStringRGB(color)}>[{tag}]</color> {text}");
+                Debug.LogWarning($"{color.ToRichHEX(tag)} {text}");
             }
             else
             {
@@ -89,11 +71,11 @@ namespace Infrastructure.Services.Log
             }
         }
 
-        private static void InternalLogError(string text, LogTag tag)
+        public static void Error(string text, LogTag tag = LogTag.Default)
         {
             if (_tagColors.TryGetValue(tag, out Color color))
             {
-                Debug.LogError($"<color=#{ColorUtility.ToHtmlStringRGB(color)}>[{tag}]</color> {text}");
+                Debug.LogError($"{color.ToRichHEX("ERROR")}{color.ToRichHEX(tag)} {text}");
             }
             else
             {
@@ -101,22 +83,31 @@ namespace Infrastructure.Services.Log
             }
         }
 
-        private static void InternalLogCritError(string text, LogTag tag)
+        public static void CritError(string text, LogTag tag = LogTag.CritError)
         {
-            Debug.LogError($"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>[{tag}]</color> {text}");
+            if (_tagColors.TryGetValue(tag, out Color color))
+            {
+                Debug.LogError($"{color.ToRichHEX("CRITICAL ERROR")}{color.ToRichHEX(tag)} {text}");
+            }
+            else
+            {
+                Debug.LogErrorFormat("[{0}] {1}", tag, text);
+            }
         }
         
         private void OnApplicationLogMessageReceived(string condition, string stacktrace, LogType type)
         {
             if (type is LogType.Exception or LogType.Error)
             {
-                SendErrorEvent($"{condition}, \n {stacktrace}");
+                SendAnalyticsErrorEvent($"{condition}, \n {stacktrace}");
+                
+                OnError?.Invoke(condition);
             }
         }
         
-        private void SendErrorEvent(string text)
+        private void SendAnalyticsErrorEvent(string text)
         {
-            _analyticsService.SendEvent("CRITICAL_ERROR", new Dictionary<string, object>() {["ERROR_NAME"] = text});
+            _analyticsService.SendEvent("exception", new Dictionary<string, object>() {["content"] = text});
         }
     }
 }
