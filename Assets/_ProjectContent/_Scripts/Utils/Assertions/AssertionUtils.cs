@@ -1,4 +1,5 @@
 ﻿using System;
+using Infrastructure.Services.Log;
 
 namespace Utils.Assertions
 {
@@ -8,7 +9,7 @@ namespace Utils.Assertions
         {
             if (obj == null)
             {
-                throw new NullReferenceException($"Object of type {nameof(T)} is null");
+                Logger.Error($"Object of type {nameof(T)} is null");
             }
             return obj;
         }
