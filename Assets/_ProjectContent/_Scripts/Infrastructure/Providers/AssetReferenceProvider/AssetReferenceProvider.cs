@@ -17,10 +17,9 @@ namespace Infrastructure.Providers.AssetReferenceProvider
 
         public void ValidateReferences()
         {
-#if UNITY_EDITOR
-          
+#if UNITY_EDITOR || DEV
             Assert.False(ReflectionUtils.GetClassPropertyInfo(this).Any(x => x == "[]"), "Missing reference!!");
-           Assert.False(ReflectionUtils.GetClassPropertyInfo(ModalsAssetReferences).Any(x => x == "[]"), "Missing reference!!");  
+            Assert.False(ReflectionUtils.GetClassPropertyInfo(ModalsAssetReferences).Any(x => x == "[]"), "Missing reference!!");
 #endif
         }
     }

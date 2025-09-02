@@ -23,15 +23,14 @@ namespace Infrastructure.Services.SceneLoading
 
         public async UniTask LoadScene(AssetReference nextSceneName, Action onLoaded = null, bool allowReloadSameScene = false)
         {
-            await LoadSceneByAddressables(nextSceneName, onLoaded, allowReloadSameScene);
+            await LoadSceneByAddressables(nextSceneName, allowReloadSameScene);
         }
 
-        private async UniTask LoadSceneByAddressables(AssetReference nextScene, Action onLoaded, bool allowReloadSameScene)
+        private async UniTask LoadSceneByAddressables(AssetReference nextScene, bool allowReloadSameScene)
         {
             if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
                 Logger.Log("Scene tried to be loaded from itself, loading ignored", LogTag.SceneLoader);
-                onLoaded?.Invoke();
                 return;
             }
 
@@ -47,7 +46,6 @@ namespace Infrastructure.Services.SceneLoading
             
             Logger.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
 
-            onLoaded?.Invoke();
             await UniTask.WaitForSeconds(RemoteConfig.Infrastructure.FakeMinimalLoadTime);
             _loadingCurtainProvider.Hide();
         }

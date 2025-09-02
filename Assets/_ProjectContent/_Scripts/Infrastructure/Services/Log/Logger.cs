@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Infrastructure.Services.Analytics;
-using JetBrains.Annotations;
 using UnityEngine;
 using Utils.Extensions;
 using Zenject;
@@ -16,7 +14,7 @@ namespace Infrastructure.Services.Log
         private static IAnalyticsService _analyticsService;
 
         private static readonly LogTag[] _tagsToExclude = { };
-        
+
         private static readonly Dictionary<LogTag, Color> _tagColors = new()
         {
             {LogTag.InitializationStateMachine, new Color(0.0f, 1, 0)},
@@ -28,12 +26,12 @@ namespace Infrastructure.Services.Log
         };
 
         private static bool IsColoredLogs => true;
-        
+
         [Inject]
         private void Inject(IAnalyticsService analyticsService)
         {
             _analyticsService = analyticsService;
-            
+
             Application.logMessageReceived += OnApplicationLogMessageReceived;
         }
 
@@ -43,7 +41,7 @@ namespace Infrastructure.Services.Log
         }
 
 
-        [Conditional("DEV")]
+        [Conditional("DEV"), Conditional("UNITY_EDITOR")]
         public static void Log(string text, LogTag tag = LogTag.Default)
         {
             if (_tagsToExclude.Contains(tag)) return;
@@ -58,7 +56,7 @@ namespace Infrastructure.Services.Log
             }
         }
 
-        [Conditional("DEV")]
+        [Conditional("DEV"), Conditional("UNITY_EDITOR")]
         public static void Warn(string text, LogTag tag = LogTag.Default)
         {
             if (_tagColors.TryGetValue(tag, out Color color) && IsColoredLogs)
@@ -82,7 +80,6 @@ namespace Infrastructure.Services.Log
                 Debug.LogErrorFormat("[Exception][{0}] {1}", tag, text);
             }
         }
-
 
         private void OnApplicationLogMessageReceived(string condition, string stacktrace, LogType type)
         {

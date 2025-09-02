@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
@@ -18,9 +19,25 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine
             RegisterState(statesFactory.Create<MenuState>(this));
             RegisterState(statesFactory.Create<GameplayState>(this));
         }
+
         public new async UniTask Enter<TState>() where TState : class, IState, IEnterableState
         {
             await base.Enter<TState>();
+        }
+
+        public async UniTask Enter(TargetGameLoopState targetGameLoopState)
+        {
+            switch (targetGameLoopState)
+            {
+                case TargetGameLoopState.Menu:
+                    await base.Enter<MenuState>();
+                    break;
+                case TargetGameLoopState.Gameplay:
+                    await base.Enter<GameplayState>();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(targetGameLoopState), targetGameLoopState, null);
+            }
         }
     }
 }

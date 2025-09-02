@@ -19,8 +19,6 @@ namespace RuntimeDebug
                 Destroy(this);
                 return;
             }
-            
-            _logs.Clear();
 
             if (transform.parent == null) DontDestroyOnLoad(this);
 
