@@ -1,5 +1,5 @@
 ﻿using System;
-using Infrastructure.Services.Audio;
+using Infrastructure.Providers.AudioProvider;
 using Infrastructure.Services.Saving;
 using Zenject;
 
@@ -18,12 +18,12 @@ namespace Infrastructure.Services.Settings
         public Save SaveData { get; private set; }
 
         private ISaveService _saveService;
-        private IAudioService _audioService;
+        private IAudioProvider _audioProvider;
 
         [Inject]
-        private void Inject(ISaveService saveService, IAudioService audioService)
+        private void Inject(ISaveService saveService, IAudioProvider audioProvider)
         {
-            _audioService = audioService;
+            _audioProvider = audioProvider;
             _saveService = saveService;
         }
 
@@ -37,8 +37,8 @@ namespace Infrastructure.Services.Settings
 
         public void MuteAudio()
         {
-            _audioService.MusicMixerGroup.audioMixer.SetFloat("Volume", -100);
-            _audioService.SfxMixerGroup.audioMixer.SetFloat("Volume", -100);
+            _audioProvider.MusicGroup.audioMixer.SetFloat("Volume", -100);
+            _audioProvider.SFXGroup.audioMixer.SetFloat("Volume", -100);
         }
 
         public void UnMuteAudio()
@@ -50,13 +50,13 @@ namespace Infrastructure.Services.Settings
         public void SetMusicVolume(float value)
         {
             SaveData.LastMusicValue = value;
-            _audioService.MusicMixerGroup.audioMixer.SetFloat("Volume", value);
+            _audioProvider.MusicGroup.audioMixer.SetFloat("Volume", value);
         }
 
         public void SetSFXVolume(float value)
         {
             SaveData.LastSFXValue = value;
-            _audioService.SfxMixerGroup.audioMixer.SetFloat("Volume", value);
+            _audioProvider.SFXGroup.audioMixer.SetFloat("Volume", value);
         }
     }
 }

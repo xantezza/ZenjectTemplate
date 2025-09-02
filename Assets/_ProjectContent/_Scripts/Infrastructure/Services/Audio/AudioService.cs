@@ -10,16 +10,17 @@ namespace Infrastructure.Services.Audio
     {
         private readonly Dictionary<SFXClip, AudioSource> _sfxSources = new();
         private readonly Dictionary<MusicClip, AudioSource> _musicSources = new();
-        private readonly IAudioProvider _audioProvider;
+        private IAudioProvider _audioProvider;
 
         public AudioMixerGroup SfxMixerGroup => _audioProvider.SFXGroup;
         public AudioMixerGroup MusicMixerGroup => _audioProvider.MusicGroup;
 
         [Inject]
-        public AudioService(IAudioProvider audioProvider)
+        public void Inject(IAudioProvider audioProvider)
         {
             _audioProvider = audioProvider;
         }
+
         public void PlaySFX(SFXClip sfxClip, float pitchDelta = 0, bool restartIfAlreadyExists = true)
         {
             if (_sfxSources.TryGetValue(sfxClip, out var existSource))
