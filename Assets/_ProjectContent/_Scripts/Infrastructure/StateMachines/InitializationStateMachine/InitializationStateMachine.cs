@@ -15,9 +15,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
         {
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
-#endif
-            
+#else
             RegisterState(statesFactory.Create<InitializeErrorModalState>(this));
+#endif
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));

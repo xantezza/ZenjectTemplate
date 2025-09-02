@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
-using Zenject;
 
 namespace Infrastructure.StateMachines.StateMachine
 {

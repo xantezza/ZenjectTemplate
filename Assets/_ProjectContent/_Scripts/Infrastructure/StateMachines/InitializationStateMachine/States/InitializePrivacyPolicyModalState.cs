@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Services.Log;
 using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
 using Infrastructure.StateMachines.StateMachine;
@@ -13,9 +14,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     [UsedImplicitly]
     public class InitializePrivacyPolicyModalState : BaseInitializationState, IDataSaveable<InitializePrivacyPolicyModalState.Save>, IEnterableState
     {
-        private const bool EDITOR_IGNORE_CONSENT = true;
-        private const bool IGNORE_CONSENT = true;
-        
+        private const bool EDITOR_IGNORE_CONSENT = false;
+        private const bool IGNORE_CONSENT = false;
+
         [Serializable]
         public class Save
         {
@@ -41,9 +42,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
 #if UNITY_EDITOR
             SaveData.ConsentGiven = EDITOR_IGNORE_CONSENT;
+#else
+            if (IGNORE_CONSENT) SaveData.ConsentGiven = IGNORE_CONSENT;
 #endif
-            SaveData.ConsentGiven = IGNORE_CONSENT;
-            
             if (SaveData.ConsentGiven)
             {
                 if (InitializeUnityServicesState.IsInitialized) AnalyticsService.Instance.StartDataCollection();

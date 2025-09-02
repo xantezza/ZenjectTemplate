@@ -36,7 +36,7 @@ namespace Infrastructure.Services.SceneLoading
             }
 
             await _loadingCurtainProvider.Show();
-            AsyncOperationHandle<SceneInstance> waitNextScene = Addressables.LoadSceneAsync(nextScene);
+            var waitNextScene = Addressables.LoadSceneAsync(nextScene);
             
             while (!waitNextScene.IsDone)
             {

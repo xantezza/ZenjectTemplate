@@ -257,33 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace
-
-    stacktrace'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d6862f3f3c23455f9dc3e39ad05c3c3, type: 2}
   m_sharedMaterial: {fileID: -6882807006959332767, guid: 0d6862f3f3c23455f9dc3e39ad05c3c3, type: 2}
@@ -310,7 +284,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.6
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -660,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modalSettings:
     CloseButton: {fileID: 0}
-    ResizableRoot: {fileID: 0}
+    ResizableRoot: {fileID: 2450957752206524967}
     TargetSize: 1
     StartSize: 0.3
     MaxSize: 1.3

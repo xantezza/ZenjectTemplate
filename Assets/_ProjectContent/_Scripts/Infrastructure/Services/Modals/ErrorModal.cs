@@ -11,15 +11,13 @@ namespace Infrastructure.Services.Modals
         [SerializeField] private Button _copyButton;
         private string _errorText;
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             _copyButton.onClick.AddListener(SetToBuffer);
         }
 
-        protected override void OnDisable()
+        protected void OnDisable()
         {
-            base.OnDisable();
             _copyButton.onClick.RemoveListener(SetToBuffer);
         }
 

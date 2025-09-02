@@ -23,15 +23,12 @@ namespace Infrastructure.Factories
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
             if (reference == null)
             {
-                Logger.Error($"In AssetReferenceProvider.ModalsAssetReferences not found reference to modal for type {typeof(T)}", LogTag.AssetReferenceProvider);
-                return default;
+w                return default;
             }
-            
+
             var instantiated = await reference.InstantiateAsync(transform);
             var modalPopup = instantiated.GetComponent<T>();
-#pragma warning disable CS4014
-            modalPopup.Show();
-#pragma warning restore CS4014
+            await modalPopup.Show();
             return modalPopup;
         }
     }

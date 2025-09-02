@@ -27,38 +27,38 @@ namespace Infrastructure.Services.Modals
 
         [SerializeField] private ModalPopupSettings _modalSettings;
 
-        protected virtual void OnEnable()
-        {
-            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.AddListener(Hide);
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.RemoveListener(Hide);
-        }
-
         public async UniTask Show()
         {
-            _modalSettings.ResizableRoot.localScale = _modalSettings.StartSize * Vector3.one;
-            await _modalSettings.ResizableRoot.DOPopOutScale(
-                _modalSettings.MaxSize,
-                _modalSettings.TargetSize,
-                _modalSettings.ShowTime / 2,
-                _modalSettings.ShowTime / 2
-            );
+            if (_modalSettings.ResizableRoot != null)
+            {
+                _modalSettings.ResizableRoot.localScale = _modalSettings.StartSize * Vector3.one;
+                await _modalSettings.ResizableRoot.DOPopOutScale(
+                    _modalSettings.MaxSize,
+                    _modalSettings.TargetSize,
+                    _modalSettings.ShowTime / 2,
+                    _modalSettings.ShowTime / 2
+                );
+            }
+
+            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.AddListener(Hide);
         }
 
         private async void Hide()
         {
-            var motionHandle = await _modalSettings.ResizableRoot.DOPopOutScale(
-                _modalSettings.MaxSize,
-                _modalSettings.StartSize,
-                _modalSettings.HideTime / 2,
-                _modalSettings.HideTime / 2
-            );
+            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.RemoveListener(Hide);
+
+            if (_modalSettings.ResizableRoot != null)
+            {
+                MotionHandle motionHandle = await _modalSettings.ResizableRoot.DOPopOutScale(
+                    _modalSettings.MaxSize,
+                    _modalSettings.StartSize,
+                    _modalSettings.HideTime / 2,
+                    _modalSettings.HideTime / 2
+                );
+                await motionHandle;
+            }
 
             OnInteract.Execute();
-            await motionHandle;
             Destroy(gameObject);
             await Task.CompletedTask;
         }
