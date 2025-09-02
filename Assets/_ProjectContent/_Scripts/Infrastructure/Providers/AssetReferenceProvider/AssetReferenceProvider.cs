@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Utils.Extensions;
@@ -18,9 +17,9 @@ namespace Infrastructure.Providers.AssetReferenceProvider
 
         public void ValidateReferences()
         {
-#if UNITY_EDITOR || DEV
-            Assert.False(ReflectionUtils.GetClassPropertyInfo(this).Any(x => x == "[]"), "Missing reference!!");
-            Assert.False(ReflectionUtils.GetClassPropertyInfo(ModalsAssetReferences).Any(x => x == "[]"), "Missing reference!!");
+#if UNITY_EDITOR
+            NUnit.Framework.Assert.False(ReflectionUtils.GetClassPropertyInfo(this).Any(x => x == "[]"), "Missing reference!!");
+            NUnit.Framework.Assert.False(ReflectionUtils.GetClassPropertyInfo(ModalsAssetReferences).Any(x => x == "[]"), "Missing reference!!");
 #endif
         }
     }
