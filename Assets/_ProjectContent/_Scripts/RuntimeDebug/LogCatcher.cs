@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using IngameDebugConsole;
 using UnityEngine;
 
 namespace RuntimeDebug
 {
-    public class InGameDebugConsoleLogCatcher : MonoBehaviour
+    public class LogCatcher : MonoBehaviour
     {
 #if DEV
         private static bool IsAwakened;
 
-        private List<(string, string, LogType)> _logs;
+        private static List<(string, string, LogType)> _logs;
 
         private void OnEnable()
         {
@@ -18,11 +19,13 @@ namespace RuntimeDebug
                 Destroy(this);
                 return;
             }
+            
+            _logs.Clear();
 
             if (transform.parent == null) DontDestroyOnLoad(this);
 
             IsAwakened = true;
-            _logs = new List<(string, string, LogType)>(30);
+            _logs = new List<(string, string, LogType)>(60);
 
             Application.logMessageReceived += CacheLogOnMessageReceived;
             DebugLogManager.OnInit += InGameDebugWindowInitialize;
@@ -34,10 +37,20 @@ namespace RuntimeDebug
             DebugLogManager.OnInit -= InGameDebugWindowInitialize;
         }
 
+        public static void CopyLogsToSystemBuffer()
+        {
+            var sb = new StringBuilder();
+
+            foreach (var (item1, item2, logType) in _logs)
+            {
+                sb.AppendLine($"[{logType}]{item1}\n{item2}");
+            }
+
+            GUIUtility.systemCopyBuffer = sb.ToString();
+        }
+
         private void InGameDebugWindowInitialize()
         {
-            Application.logMessageReceived -= CacheLogOnMessageReceived;
-            
             DebugLogManager.Instance.gameObject.SetActive(true);
             
             var logsCount = _logs.Count;
@@ -46,8 +59,6 @@ namespace RuntimeDebug
                 var log = _logs[i];
                 SendLogToInGameDebugWindow(log.Item1, log.Item2, log.Item3);
             }
-
-            _logs.Clear();
         }
 
         private void CacheLogOnMessageReceived(string condition, string stacktrace, LogType type)
