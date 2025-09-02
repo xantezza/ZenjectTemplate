@@ -42,15 +42,15 @@ namespace Editor.Utils.Static
 
         private static void BuildGame(BuildTarget target, string platformFolderName)
         {
-            string projectName = Path.GetFileName(Application.productName);
-            string date = System.DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
+            var projectName = Path.GetFileName(Application.productName);
+            var date = DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
 
-            string platformFolderPath = Path.Combine(@"D:\UnityBuilds", platformFolderName);
+            var platformFolderPath = Path.Combine(@"D:\UnityBuilds", platformFolderName);
             if (!Directory.Exists(platformFolderPath))
                 Directory.CreateDirectory(platformFolderPath);
 
-            string buildFolderName = $"{projectName}_{date}";
-            string buildFolderPath = Path.Combine(platformFolderPath, buildFolderName);
+            var buildFolderName = $"{projectName}_{date}";
+            var buildFolderPath = Path.Combine(platformFolderPath, buildFolderName);
 
             if (!Directory.Exists(buildFolderPath))
                 Directory.CreateDirectory(buildFolderPath);
@@ -69,11 +69,11 @@ namespace Editor.Utils.Static
                     throw new NotImplementedException();
             }
 
-            string[] scenes = new string[EditorBuildSettings.scenes.Length];
+            var scenes = new string[EditorBuildSettings.scenes.Length];
             for (int i = 0; i < scenes.Length; i++)
                 scenes[i] = EditorBuildSettings.scenes[i].path;
 
-            BuildPlayerOptions options = new BuildPlayerOptions
+            var options = new BuildPlayerOptions
             {
                 scenes = scenes,
                 locationPathName = buildPath,
@@ -90,13 +90,23 @@ namespace Editor.Utils.Static
 
                 if (target == BuildTarget.WebGL)
                 {
-                    string zipPath = buildFolderPath + ".zip";
+                    var zipPath = buildFolderPath + ".zip";
 
                     if (File.Exists(zipPath))
                         File.Delete(zipPath);
 
                     ZipFile.CreateFromDirectory(buildFolderPath, zipPath);
                     Debug.Log($"WebGL build zipped to {zipPath}");
+
+                    try
+                    {
+                        Directory.Delete(buildFolderPath, true);
+                        Debug.Log($"Deleted original WebGL build folder: {buildFolderPath}");
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError($"Failed to delete WebGL build folder: {e.Message}");
+                    }
                 }
             }
             else
