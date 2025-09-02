@@ -36,7 +36,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         public async UniTask Enter()
         {
-            _analyticsService.SendEvent("LOAD_FINISHED", new Dictionary<string, object> {["LOAD_TIME"] = Time.realtimeSinceStartup});
+            _analyticsService.SendEvent(AnalyticsNames.LoadTime, new Dictionary<string, object> {["data"] = Time.realtimeSinceStartup});
             CollectHardwareData();
             await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnSceneLoaded);
         }
@@ -99,7 +99,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 .Append('\n');
 
             var hardwareDataString = sb.ToString();
-            _analyticsService.SendEvent("HARDWARE_DATA", new Dictionary<string, object> {["data"] = hardwareDataString});
+            _analyticsService.SendEvent(AnalyticsNames.HardwareData, new Dictionary<string, object> {["data"] = hardwareDataString});
         }
     }
 }

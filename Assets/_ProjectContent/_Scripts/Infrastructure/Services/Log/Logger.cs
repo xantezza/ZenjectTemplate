@@ -91,7 +91,7 @@ namespace Infrastructure.Services.Log
 
         private void SendAnalyticsErrorEvent(string text)
         {
-            _analyticsService.SendEvent("exception", new Dictionary<string, object>() {["content"] = text});
+            _analyticsService.SendEvent(AnalyticsNames.Exception, new Dictionary<string, object>() {["data"] = text});
         }
     }
 }
