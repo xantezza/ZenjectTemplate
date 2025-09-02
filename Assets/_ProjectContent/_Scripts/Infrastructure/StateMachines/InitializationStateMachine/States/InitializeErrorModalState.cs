@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Services.Modals;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 using UnityEngine;
 

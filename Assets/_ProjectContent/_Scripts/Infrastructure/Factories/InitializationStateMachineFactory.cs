@@ -20,7 +20,7 @@ namespace Infrastructure.Factories
         public InitializationStateMachine GetFrom(object summoner)
         {
             _stateMachine ??= _instantiator.Instantiate<InitializationStateMachine>();
-            Logger.Log($"Access to the {this} is obtained from {summoner}", LogTag.InitializationStateMachine);
+            Logger.Log($"Access to the {nameof(InitializationStateMachine)} is obtained from {summoner}", LogTag.InitializationStateMachine);
             return _stateMachine;
         }
     }

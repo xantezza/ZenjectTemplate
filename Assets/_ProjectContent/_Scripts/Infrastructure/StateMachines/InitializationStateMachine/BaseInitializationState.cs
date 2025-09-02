@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine

@@ -3,7 +3,6 @@ using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.DefaultConfigProvider;
 using Infrastructure.Services.Log;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States

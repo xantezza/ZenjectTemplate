@@ -2,7 +2,6 @@
 using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
-using Infrastructure.StateMachines.StateMachine;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;

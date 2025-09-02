@@ -2,7 +2,6 @@
 using Infrastructure.Factories;
 using Infrastructure.Providers;
 using Infrastructure.Providers.LoadingCurtainProvider;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States

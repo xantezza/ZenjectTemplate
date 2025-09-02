@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
 
-namespace Infrastructure.StateMachines.StateMachine
+namespace Infrastructure.StateMachines
 {
     public abstract class BaseStateMachine
     {

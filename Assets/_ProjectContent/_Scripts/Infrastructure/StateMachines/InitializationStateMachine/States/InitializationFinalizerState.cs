@@ -5,7 +5,6 @@ using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 using Tayx.Graphy.Utils.NumString;
 using UnityEngine;

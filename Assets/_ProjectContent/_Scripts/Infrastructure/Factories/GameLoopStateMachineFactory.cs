@@ -20,7 +20,7 @@ namespace Infrastructure.Factories
         public GameLoopStateMachine GetFrom(object summoner)
         {
             _stateMachine ??= _instantiator.Instantiate<GameLoopStateMachine>();
-            Logger.Log($"Access to the {this} is obtained from {summoner}", LogTag.GameLoopStateMachine);
+            Logger.Log($"Access to the {nameof(GameLoopStateMachine)} is obtained from {summoner}", LogTag.GameLoopStateMachine);
             return _stateMachine;
         }
     }

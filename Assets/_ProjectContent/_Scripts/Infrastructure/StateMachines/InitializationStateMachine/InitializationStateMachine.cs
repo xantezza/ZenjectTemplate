@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Factories;
 using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine

@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Saving;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine.States

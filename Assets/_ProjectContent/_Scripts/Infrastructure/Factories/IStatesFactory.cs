@@ -1,4 +1,4 @@
-using Infrastructure.StateMachines.StateMachine;
+using Infrastructure.StateMachines;
 
 namespace Infrastructure.Factories
 {

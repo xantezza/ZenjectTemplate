@@ -4,7 +4,6 @@ using Infrastructure.Factories;
 using Infrastructure.Services.Log;
 using Infrastructure.Services.Modals;
 using Infrastructure.Services.Saving;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 using UniRx;
 using Unity.Services.Analytics;

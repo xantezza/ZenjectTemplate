@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.SceneLoading;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States

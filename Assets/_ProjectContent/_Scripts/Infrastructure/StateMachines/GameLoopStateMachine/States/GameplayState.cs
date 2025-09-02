@@ -2,7 +2,6 @@
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States

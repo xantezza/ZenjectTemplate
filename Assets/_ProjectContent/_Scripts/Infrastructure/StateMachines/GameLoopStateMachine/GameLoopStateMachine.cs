@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
-using Infrastructure.StateMachines.StateMachine;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine
