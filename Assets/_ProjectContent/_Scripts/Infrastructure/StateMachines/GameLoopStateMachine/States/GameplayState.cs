@@ -1,7 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
+using Infrastructure.Services.Analytics;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
+using UnityEngine;
+using UnityEngine.Analytics;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
@@ -11,15 +15,18 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         private readonly ISaveService _saveService;
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly IAssetReferenceProvider _assetReferenceProvider;
+        private readonly IAnalyticsService _analyticsService;
 
         [Inject]
         public GameplayState(
-            GameLoopStateMachine gameLoopStateMachine, 
+            GameLoopStateMachine gameLoopStateMachine,
             ISaveService saveService,
-            ISceneLoaderService sceneLoaderService, 
-            IAssetReferenceProvider assetReferenceProvider
-            ) : base(gameLoopStateMachine)
+            ISceneLoaderService sceneLoaderService,
+            IAssetReferenceProvider assetReferenceProvider,
+            IAnalyticsService analyticsService
+        ) : base(gameLoopStateMachine)
         {
+            _analyticsService = analyticsService;
             _assetReferenceProvider = assetReferenceProvider;
             _sceneLoaderService = sceneLoaderService;
             _saveService = saveService;
@@ -32,6 +39,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         public override UniTask Exit()
         {
+            _analyticsService.SendEvent(AnalyticsNames.AverageFPS, Time.frameCount / Time.realtimeSinceStartup);
             _saveService.StoreSaveFile();
             return default;
         }

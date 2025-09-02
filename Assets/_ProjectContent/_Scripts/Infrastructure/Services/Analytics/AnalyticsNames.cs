@@ -5,5 +5,6 @@
         public const string Exception = "exception";
         public const string HardwareData = "hardware_data";
         public const string LoadTime = "load_time";
+        public const string AverageFPS = "average_fps";
     }
 }

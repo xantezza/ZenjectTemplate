@@ -52,5 +52,10 @@ namespace Infrastructure.Services.Analytics
             Logger.Log(stringBuilder.ToString(), LogTag.Analytics);
             AnalyticsService.Instance.RecordEvent(customEvent);
         }
+
+        public void SendEvent(string eventName, object data)
+        {
+            SendEvent(eventName, new Dictionary<string, object>() {["data"] = data});
+        }
     }
 }
