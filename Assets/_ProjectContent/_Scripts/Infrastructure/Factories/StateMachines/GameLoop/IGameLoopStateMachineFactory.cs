@@ -1,6 +1,6 @@
 using Infrastructure.StateMachines.GameLoopStateMachine;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.StateMachines.GameLoop
 {
     public interface IGameLoopStateMachineFactory
     {

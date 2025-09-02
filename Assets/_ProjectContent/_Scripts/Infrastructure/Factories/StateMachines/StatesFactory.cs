@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.StateMachines
 {
     [UsedImplicitly]
     public class StatesFactory : IStatesFactory

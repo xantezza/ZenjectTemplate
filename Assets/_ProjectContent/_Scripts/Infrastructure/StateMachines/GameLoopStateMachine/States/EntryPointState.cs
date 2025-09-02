@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines.Initialization;
 using Infrastructure.Providers;
 using Infrastructure.Services.LoadingCurtain;
 using Zenject;

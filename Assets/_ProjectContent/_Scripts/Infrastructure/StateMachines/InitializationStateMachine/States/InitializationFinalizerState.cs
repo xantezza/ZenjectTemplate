@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines.GameLoop;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.SceneLoading;

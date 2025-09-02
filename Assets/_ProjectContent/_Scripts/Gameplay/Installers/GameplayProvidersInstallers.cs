@@ -7,7 +7,6 @@ namespace Gameplay.Installers
     {
         public override void InstallBindings()
         {
-            throw new NullReferenceException();
         }
     }
 }

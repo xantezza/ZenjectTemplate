@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines;
 using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Zenject;

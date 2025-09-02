@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.ModalPopup;
 using Infrastructure.Services.Modals;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -27,8 +28,9 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         {
             if (type is LogType.Error or LogType.Exception)
             {
-                var popup = await _modalPopupFactory.Show<ErrorModal>();
+                var popup = await _modalPopupFactory.Create<ErrorModal>();
                 popup.Init(condition, stacktrace);
+                await popup.Show();
             }
         }
 

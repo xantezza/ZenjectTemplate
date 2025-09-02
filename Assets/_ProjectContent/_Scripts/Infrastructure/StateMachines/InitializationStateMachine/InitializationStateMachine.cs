@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines;
 using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
 using JetBrains.Annotations;
@@ -15,8 +16,8 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
 #else
-            RegisterState(statesFactory.Create<InitializeErrorModalState>(this));
 #endif
+            RegisterState(statesFactory.Create<InitializeErrorModalState>(this));
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));

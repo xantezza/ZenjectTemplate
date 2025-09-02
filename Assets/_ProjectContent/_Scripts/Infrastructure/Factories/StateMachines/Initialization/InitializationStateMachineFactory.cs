@@ -3,7 +3,7 @@ using Infrastructure.StateMachines.InitializationStateMachine;
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.StateMachines.Initialization
 {
     [UsedImplicitly]
     public class InitializationStateMachineFactory : IInitializationStateMachineFactory

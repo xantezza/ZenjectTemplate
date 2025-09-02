@@ -1,12 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
-using Infrastructure.Services.Log;
-using Infrastructure.Services.Modals;
 using UnityEngine;
 using Zenject;
-using Logger = Infrastructure.Services.Log.Logger;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.ModalPopup
 {
     public class ModalPopupFactory : MonoBehaviour, IModalPopupFactory
     {
@@ -18,12 +15,20 @@ namespace Infrastructure.Factories
             _assetReferenceProvider = assetReferenceProvider;
         }
 
-        public async UniTask<T> Show<T>() where T : ModalPopup
+        public async UniTask<T> Show<T>() where T : Services.Modals.ModalPopup
         {
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
             var instantiated = await reference.InstantiateAsync(transform);
             var modalPopup = instantiated.GetComponent<T>();
             await modalPopup.Show();
+            return modalPopup;
+        }
+        
+        public async UniTask<T> Create<T>() where T : Services.Modals.ModalPopup
+        {
+            var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
+            var instantiated = await reference.InstantiateAsync(transform);
+            var modalPopup = instantiated.GetComponent<T>();
             return modalPopup;
         }
     }

@@ -1,6 +1,6 @@
 using Infrastructure.StateMachines.InitializationStateMachine;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.StateMachines.Initialization
 {
     public interface IInitializationStateMachineFactory
     {

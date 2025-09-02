@@ -3,7 +3,7 @@ using Infrastructure.StateMachines.GameLoopStateMachine;
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Infrastructure.Factories
+namespace Infrastructure.Factories.StateMachines.GameLoop
 {
     [UsedImplicitly]
     public class GameLoopStateMachineFactory : IGameLoopStateMachineFactory
