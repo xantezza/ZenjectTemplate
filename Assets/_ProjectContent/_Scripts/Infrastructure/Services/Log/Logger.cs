@@ -13,8 +13,6 @@ namespace Infrastructure.Services.Log
 {
     public class Logger
     {
-        public static event Action<string> OnError;
-        
         private static IAnalyticsService _analyticsService;
 
         private static readonly LogTag[] _tagsToExclude = { };
@@ -29,6 +27,8 @@ namespace Infrastructure.Services.Log
             {LogTag.UnityServices, new Color(0.0f, 0.8f, 1f)}
         };
 
+        private static bool IsColoredLogs => true;
+        
         [Inject]
         private void Inject(IAnalyticsService analyticsService)
         {
@@ -41,14 +41,14 @@ namespace Infrastructure.Services.Log
         {
             Application.logMessageReceived -= OnApplicationLogMessageReceived;
         }
-        
+
 
         [Conditional("DEV")]
         public static void Log(string text, LogTag tag = LogTag.Default)
         {
             if (_tagsToExclude.Contains(tag)) return;
-            
-            if (_tagColors.TryGetValue(tag, out Color color))
+
+            if (_tagColors.TryGetValue(tag, out Color color) && IsColoredLogs)
             {
                 Debug.Log($"{color.ColorizeWithBrackets(tag)} {text}");
             }
@@ -61,39 +61,37 @@ namespace Infrastructure.Services.Log
         [Conditional("DEV")]
         public static void Warn(string text, LogTag tag = LogTag.Default)
         {
-            if (_tagColors.TryGetValue(tag, out Color color))
+            if (_tagColors.TryGetValue(tag, out Color color) && IsColoredLogs)
             {
-                Debug.LogWarning($"{color.ColorizeWithBrackets(tag)} {text}");
+                Debug.LogWarning($"[Warn]{color.ColorizeWithBrackets(tag)} {text}");
             }
             else
             {
-                Debug.LogWarningFormat("[{0}] {1}", tag, text);
+                Debug.LogWarningFormat("[Warn][{0}] {1}", tag, text);
             }
         }
 
         public static void Error(string text, LogTag tag = LogTag.Default)
         {
-            if (_tagColors.TryGetValue(tag, out Color color))
+            if (_tagColors.TryGetValue(tag, out Color color) && IsColoredLogs)
             {
-                Debug.LogError($"{color.ColorizeWithBrackets("EXCEPTION")}{color.ColorizeWithBrackets(tag)} {text}");
+                Debug.LogError($"[Exception]{color.ColorizeWithBrackets(tag)} {text}");
             }
             else
             {
-                Debug.LogErrorFormat("[{0}] {1}", tag, text);
+                Debug.LogErrorFormat("[Exception][{0}] {1}", tag, text);
             }
         }
 
-        
+
         private void OnApplicationLogMessageReceived(string condition, string stacktrace, LogType type)
         {
             if (type is LogType.Exception or LogType.Error)
             {
                 SendAnalyticsErrorEvent($"{condition}\n{stacktrace}");
-                
-                OnError?.Invoke(condition);
             }
         }
-        
+
         private void SendAnalyticsErrorEvent(string text)
         {
             _analyticsService.SendEvent("exception", new Dictionary<string, object>() {["content"] = text});

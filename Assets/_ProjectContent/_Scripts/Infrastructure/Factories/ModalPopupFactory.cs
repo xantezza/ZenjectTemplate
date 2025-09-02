@@ -23,7 +23,7 @@ namespace Infrastructure.Factories
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
             if (reference == null)
             {
-w                return default;
+                return default;
             }
 
             var instantiated = await reference.InstantiateAsync(transform);
