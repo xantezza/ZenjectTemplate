@@ -1,43 +1,33 @@
-﻿using Infrastructure.Providers;
-using Infrastructure.Providers.AssetReferenceProvider;
+﻿using Infrastructure.Providers.AssetReferenceProvider;
+using Infrastructure.Providers.AudioProvider;
 using Infrastructure.Providers.DefaultConfigProvider;
-using Infrastructure.Providers.LoadingCurtainProvider;
 using UnityEngine;
+using Utils.Assertions;
 using Zenject;
 
 namespace Infrastructure.Installers
 {
     public class InfrastructureProvidersInstallers : MonoInstaller
     {
-        [SerializeField] private LoadingCurtainProvider _loadingCurtainProvider;
         [SerializeField] private AssetReferenceProvider _assetReferenceProvider;
-        [SerializeField] private CachedDefaultUnityRemoteConfigProvider cachedDefaultUnityRemoteConfigProvider;
+        [SerializeField] private AudioProvider _audioProvider;
+        [SerializeField] private CachedDefaultUnityRemoteConfigProvider _cachedDefaultUnityRemoteConfigProvider;
 
         public override void InstallBindings()
         {
-            BindLoadingCurtainProvider();
-            BindAssetReferenceProvider();
-            BindDefaultConfigProvider();
+            Container.BindInterfacesTo<AssetReferenceProvider>().FromInstance(_assetReferenceProvider.AssertNotNull()).AsSingle().NonLazy();
+            Container.BindInterfacesTo<AudioProvider>().FromInstance(_audioProvider.AssertNotNull()).AsSingle().NonLazy();
+            Container.BindInterfacesTo<CachedDefaultUnityRemoteConfigProvider>().FromInstance(_cachedDefaultUnityRemoteConfigProvider.AssertNotNull()).AsSingle().NonLazy();
         }
 
         private void Awake()
         {
             _assetReferenceProvider.ValidateReferences();
         }
-
-        private void BindAssetReferenceProvider()
-        {
-            Container.BindInterfacesTo<AssetReferenceProvider>().FromInstance(_assetReferenceProvider).AsSingle().NonLazy();
-        }
         
-        private void BindLoadingCurtainProvider()
+        private void OnValidate()
         {
-            Container.BindInterfacesTo<LoadingCurtainProvider>().FromInstance(_loadingCurtainProvider).AsSingle().NonLazy();
-        }
-
-        private void BindDefaultConfigProvider()
-        {
-            Container.BindInterfacesTo<CachedDefaultUnityRemoteConfigProvider>().FromInstance(cachedDefaultUnityRemoteConfigProvider).AsSingle().NonLazy();
+            _cachedDefaultUnityRemoteConfigProvider.Validate();
         }
     }
 }

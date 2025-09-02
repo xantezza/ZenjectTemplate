@@ -15,5 +15,6 @@ namespace Infrastructure.Installers
             Container.BindInterfacesTo<InitializationStateMachineFactory>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesTo<ModalPopupFactory>().FromInstance(modalPopupFactory).AsSingle().NonLazy();
         }
+
     }
 }

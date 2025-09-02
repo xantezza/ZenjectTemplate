@@ -21,11 +21,6 @@ namespace Infrastructure.Factories
         public async UniTask<T> Show<T>() where T : ModalPopup
         {
             var reference = _assetReferenceProvider.ModalsAssetReferences.TypeToReference<T>();
-            if (reference == null)
-            {
-                return default;
-            }
-
             var instantiated = await reference.InstantiateAsync(transform);
             var modalPopup = instantiated.GetComponent<T>();
             await modalPopup.Show();

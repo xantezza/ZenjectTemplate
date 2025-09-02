@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Infrastructure.Providers.LoadingCurtainProvider
+namespace Infrastructure.Services.LoadingCurtain
 {
-    public interface ILoadingCurtainProvider
+    public interface ILoadingCurtainService
     {
         UniTask Show(float tweenDuration = 0.3f);
         void ForceShow();

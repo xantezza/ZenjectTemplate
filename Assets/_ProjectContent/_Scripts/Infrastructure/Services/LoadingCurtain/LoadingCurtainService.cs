@@ -4,9 +4,9 @@ using LitMotion.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Infrastructure.Providers.LoadingCurtainProvider
+namespace Infrastructure.Services.LoadingCurtain
 {
-    public class LoadingCurtainProvider : MonoBehaviour, ILoadingCurtainProvider
+    public class LoadingCurtainService : MonoBehaviour, ILoadingCurtainService
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Canvas _canvas;

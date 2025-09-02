@@ -7,7 +7,8 @@ namespace Infrastructure.Services.Settings
 {
     public class SettingsService : ISettingsService, IDataSaveable<SettingsService.Save>, IInitializable
     {
-        [Serializable] public class Save
+        [Serializable]
+        public class Save
         {
             public float LastMusicValue = 0;
             public float LastSFXValue = 0;

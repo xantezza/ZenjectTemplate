@@ -8,7 +8,8 @@ using Utils.Extensions;
 namespace Infrastructure.Providers.AssetReferenceProvider
 {
     [Serializable]
-    public class AssetReferenceProvider : IAssetReferenceProvider
+    [CreateAssetMenu]
+    public class AssetReferenceProvider : ScriptableObject, IAssetReferenceProvider
     {
         [field: SerializeField] public ModalsAssetReferences ModalsAssetReferences { get; private set; }
         [field: SerializeField] public AssetReferenceGameObject DebugRootAssetReference { get; private set; }
