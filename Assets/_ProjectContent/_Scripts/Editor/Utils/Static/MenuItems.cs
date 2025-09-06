@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
+using UnityEditor.Compilation;
 using UnityEngine;
 using Zenject;
 
@@ -28,18 +29,51 @@ namespace Editor.Utils.Static
             EditorUtility.RevealInFinder(Application.persistentDataPath);
         }
 
-        [MenuItem("Build/Windows")]
+#if DEV
+        [MenuItem("Build/DEV_Windows")]
         public static void BuildWindows()
         {
             BuildGame(BuildTarget.StandaloneWindows64, "Windows");
         }
 
-        [MenuItem("Build/WebGL")]
+        [MenuItem("Build/DEV_WebGL")]
         public static void BuildWebGL()
         {
             BuildGame(BuildTarget.WebGL, "WebGL");
         }
 
+        [MenuItem("DEV/To Prod")]
+        public static void DEVToProd()
+        {
+            var currentGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
+            var currentDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(currentGroup);
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(currentGroup, currentDefines.Replace(";DEV", "").Replace("DEV", ""));
+            CompilationPipeline.RequestScriptCompilation(RequestScriptCompilationOptions.None);
+        }
+#else
+
+        [MenuItem("Build/PROD_Windows")]
+        public static void BuildWindows()
+        {
+            BuildGame(BuildTarget.StandaloneWindows64, "Windows");
+        }
+
+        [MenuItem("Build/PROD_WebGL")]
+        public static void BuildWebGL()
+        {
+            BuildGame(BuildTarget.WebGL, "WebGL");
+        }
+        
+        [MenuItem("PROD/To DEV")]
+        public static void ProdToDEV()
+        {
+            var currentGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
+            var currentDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(currentGroup);
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(currentGroup, currentDefines + ";DEV");
+            CompilationPipeline.RequestScriptCompilation(RequestScriptCompilationOptions.None);
+        }
+
+#endif
         private static void BuildGame(BuildTarget target, string platformFolderName)
         {
             var projectName = Path.GetFileName(Application.productName);

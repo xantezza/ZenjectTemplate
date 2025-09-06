@@ -6,6 +6,7 @@ namespace RuntimeDebug.ConsoleMethods
 {
     public class Tools
     {
+#if DEV
         [ConsoleMethod("copy-logs", "puts all logs to system buffer"), UnityEngine.Scripting.Preserve]
         public static void CopyLogsToSystemBuffer()
         {
@@ -23,5 +24,7 @@ namespace RuntimeDebug.ConsoleMethods
         {
             GraphyManager.Instance.ToggleModes();
         }
+        
+#endif
     }
 }
