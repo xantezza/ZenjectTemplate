@@ -157,8 +157,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 36ac903e5ea9353498d9d59694c900de, type: 2}
-  m_sharedMaterial: {fileID: 7940445161744591242, guid: 36ac903e5ea9353498d9d59694c900de, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0d6862f3f3c23455f9dc3e39ad05c3c3, type: 2}
+  m_sharedMaterial: {fileID: -6882807006959332767, guid: 0d6862f3f3c23455f9dc3e39ad05c3c3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 4034562265065007353}
   - component: {fileID: 8859141505957593707}
   - component: {fileID: 6308130720758375327}
+  - component: {fileID: 2858502907988642032}
   m_Layer: 5
   m_Name: AnimatedButton
   m_TagString: Untagged
@@ -392,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -422,7 +423,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4034562265065007353}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2858502907988642032}
+        m_TargetAssemblyTypeName: Infrastructure.Services.Audio.AudioPlayer, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6308130720758375327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +520,23 @@ MonoBehaviour:
     _hoverImageFillColor: {r: 1, g: 1, b: 1, a: 1}
     _hoverImageAnimationDuration: 0.2
     _hoverImageAnimationEase: 2
+--- !u!114 &2858502907988642032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393933103660817407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602dbf61416a4cb6a6dffe4406276a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnEnable: 0
+  _stopOnDisable: 0
+  _sfx: 1
+  _sfxClip: 1
+  _musicClip: 0
 --- !u!1 &8772301556112549524
 GameObject:
   m_ObjectHideFlags: 0

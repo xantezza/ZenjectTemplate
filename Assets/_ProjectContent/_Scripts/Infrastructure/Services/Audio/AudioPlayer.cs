@@ -13,7 +13,8 @@ namespace Infrastructure.Services.Audio
         [SerializeField] [HideIf("_sfx")] private MusicClip _musicClip;
         private IAudioService _audioService;
 
-        [Inject] private void Inject(IAudioService audioService)
+        [Inject]
+        private void Inject(IAudioService audioService)
         {
             _audioService = audioService;
         }

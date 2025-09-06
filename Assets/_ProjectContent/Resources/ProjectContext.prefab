@@ -427,14 +427,14 @@ MonoBehaviour:
   _editorReflectionBakingCoverageMode: 0
   _buildsReflectionBakingCoverageMode: 0
   _settings:
-    _ensureDeterministicDestructionOrderOnApplicationQuit: 0
+    _ensureDeterministicDestructionOrderOnApplicationQuit: 1
     _displayWarningWhenResolvingDuringInstall: 1
-    _validationRootResolveMethod: 0
+    _validationRootResolveMethod: 1
     _validationErrorResponse: 0
     _signalSettings:
-      _defaultSyncMode: 0
+      _defaultSyncMode: 1
       _missingHandlerDefaultResponse: 2
-      _requireStrictUnsubscribe: 0
+      _requireStrictUnsubscribe: 1
       _defaultAsyncTickPriority: 1
 --- !u!1 &5524281937185170949
 GameObject:

@@ -15,6 +15,8 @@ MonoBehaviour:
   <SFXGroup>k__BackingField: {fileID: 24300002, guid: 935d6d3afc1dbf849b6ce35f13ea63f1, type: 2}
   <MusicGroup>k__BackingField: {fileID: 24300002, guid: 30a3733d135e27f47a150b66835d0f9e, type: 2}
   _SFXClips:
-    _serializedList: []
+    _serializedList:
+    - Key: 1
+      Value: {fileID: 8300000, guid: 52fa8aafea2ce654088455379be38687, type: 3}
   _musicClips:
     _serializedList: []

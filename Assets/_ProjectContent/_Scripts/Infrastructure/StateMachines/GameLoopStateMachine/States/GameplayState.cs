@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
+using Infrastructure.Services.LoadingCurtain;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly IAssetReferenceProvider _assetReferenceProvider;
         private readonly IAnalyticsService _analyticsService;
+        private ILoadingCurtainService _loadingCurtainService;
 
         [Inject]
         public GameplayState(
@@ -23,9 +25,11 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             ISaveService saveService,
             ISceneLoaderService sceneLoaderService,
             IAssetReferenceProvider assetReferenceProvider,
-            IAnalyticsService analyticsService
+            IAnalyticsService analyticsService, 
+            ILoadingCurtainService loadingCurtainService
         ) : base(gameLoopStateMachine)
         {
+            _loadingCurtainService = loadingCurtainService;
             _analyticsService = analyticsService;
             _assetReferenceProvider = assetReferenceProvider;
             _sceneLoaderService = sceneLoaderService;

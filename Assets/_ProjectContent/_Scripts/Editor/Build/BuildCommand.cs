@@ -3,9 +3,13 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEditor.Compilation;
+using UnityEditor.WebGL;
 using UnityEngine;
+using UnityEngine.Profiling;
 using Debug = UnityEngine.Debug;
 
 namespace Editor.Build
@@ -65,14 +69,25 @@ namespace Editor.Build
 #endif
         private static void BuildGame(BuildTarget target, string platformFolderName, bool isDev, bool autoRun = false)
         {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildPipeline.GetBuildTargetGroup(target), target);
+            
+            var settings = AddressableAssetSettingsDefaultObject.Settings;
+            if (settings == null)
+            {
+                Debug.LogError("AddressableAssetSettings not found. Make sure Addressables are set up.");
+                return;
+            }
+            
+            AddressableAssetSettings.BuildPlayerContent();
+            
             var projectName = Path.GetFileName(Application.productName);
-            var date = DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
+            var date = DateTime.Now.ToString("dd-MM-yy_HH-mm");
 
             var platformFolderPath = Path.Combine(@"D:\UnityBuilds", platformFolderName);
             if (!Directory.Exists(platformFolderPath))
                 Directory.CreateDirectory(platformFolderPath);
 
-            var buildFolderName = $"{projectName}_{date}";
+            var buildFolderName = $"{projectName}\\{date}";
             var buildFolderPath = Path.Combine(platformFolderPath, buildFolderName);
 
             if (!Directory.Exists(buildFolderPath))
@@ -83,6 +98,8 @@ namespace Editor.Build
             switch (target)
             {
                 case BuildTarget.WebGL:
+                    UserBuildSettings.codeOptimization = WasmCodeOptimization.DiskSize;
+                    PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Brotli;
                     PlayerSettings.WebGL.exceptionSupport = isDev ? WebGLExceptionSupport.FullWithStacktrace : WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
                     buildPath = buildFolderPath;
                     break;
@@ -109,8 +126,7 @@ namespace Editor.Build
             {
                 options.options
                     |= BuildOptions.Development
-                       | BuildOptions.ConnectWithProfiler
-                       | BuildOptions.EnableDeepProfilingSupport;
+                       | BuildOptions.DetailedBuildReport;
             }
 
             var report = BuildPipeline.BuildPlayer(options);
@@ -152,6 +168,8 @@ namespace Editor.Build
                         Debug.LogError($"Failed to delete WebGL build folder: {e.Message}");
                     }
                 }
+                
+                Process.Start(platformFolderPath);
             }
             else
             {

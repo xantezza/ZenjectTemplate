@@ -5,5 +5,6 @@ namespace Infrastructure.StateMachines
     public interface IEnterableState
     {
         UniTask Enter();
+        
     }
 }

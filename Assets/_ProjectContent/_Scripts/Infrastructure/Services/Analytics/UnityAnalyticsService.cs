@@ -29,9 +29,11 @@ namespace Infrastructure.Services.Analytics
         public void SendEvent(string eventName)
         {
             if (!InitializeUnityServicesState.IsInitialized) return;
-            
-            Logger.Log($"{eventName} sent", LogTag.Analytics);
 
+#if DEV
+            Logger.Log($"{eventName} sent", LogTag.Analytics);
+            return;
+#endif
             AnalyticsService.Instance.RecordEvent(eventName);
         }
 
@@ -49,7 +51,10 @@ namespace Infrastructure.Services.Analytics
                 customEvent.Add(key, value);
             }
 
+#if DEV
             Logger.Log(stringBuilder.ToString(), LogTag.Analytics);
+            return;
+#endif
             AnalyticsService.Instance.RecordEvent(customEvent);
         }
 

@@ -237,7 +237,7 @@ namespace Cysharp.Threading.Tasks
                 hasUnhandledError = false;
                 if (error is OperationCanceledException oce)
                 {
-                    throw oce;
+                    return result;
                 }
                 else if (error is ExceptionHolder eh)
                 {
