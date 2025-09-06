@@ -9,7 +9,6 @@ using UnityEditor.Build.Reporting;
 using UnityEditor.Compilation;
 using UnityEditor.WebGL;
 using UnityEngine;
-using UnityEngine.Profiling;
 using Debug = UnityEngine.Debug;
 
 namespace Editor.Build
@@ -81,7 +80,7 @@ namespace Editor.Build
             AddressableAssetSettings.BuildPlayerContent();
             
             var projectName = Path.GetFileName(Application.productName);
-            var date = DateTime.Now.ToString("dd-MM-yy_HH-mm");
+            var date = DateTime.Now.ToString("HH-mm_dd-MM-yy");
 
             var platformFolderPath = Path.Combine(@"D:\UnityBuilds", platformFolderName);
             if (!Directory.Exists(platformFolderPath))

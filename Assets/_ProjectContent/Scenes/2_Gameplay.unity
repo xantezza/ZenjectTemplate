@@ -853,6 +853,7 @@ MonoBehaviour:
   - {fileID: 18533506}
   - {fileID: 14250998}
   _installerPrefabs: []
+  _findSiblingMonoInstallers: 0
   _autoRun: 1
   OnPreInstall:
     m_PersistentCalls:
@@ -946,7 +947,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541181988}
   - component: {fileID: 1541181992}
-  - component: {fileID: 1541181991}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -969,14 +969,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1106393756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1541181991
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541181987}
-  m_Enabled: 1
 --- !u!20 &1541181992
 Camera:
   m_ObjectHideFlags: 0

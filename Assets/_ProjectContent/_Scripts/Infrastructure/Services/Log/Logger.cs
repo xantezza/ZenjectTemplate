@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Infrastructure.Services.Analytics;
@@ -9,7 +10,7 @@ using Debug = UnityEngine.Debug;
 
 namespace Infrastructure.Services.Log
 {
-    public class Logger
+    public class Logger : IDisposable
     {
         private static IAnalyticsService _analyticsService;
 
@@ -34,13 +35,12 @@ namespace Infrastructure.Services.Log
 
             Application.logMessageReceived += OnApplicationLogMessageReceived;
         }
-
-        ~Logger()
+        
+        public void Dispose()
         {
             Application.logMessageReceived -= OnApplicationLogMessageReceived;
         }
-
-
+        
         [Conditional("DEV"), Conditional("UNITY_EDITOR")]
         public static void Log(string text, LogTag tag = LogTag.Default)
         {

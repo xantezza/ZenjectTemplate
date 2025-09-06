@@ -324,7 +324,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -423,14 +423,16 @@ MonoBehaviour:
   - {fileID: 3123277775489456959}
   - {fileID: 1104072240970714977}
   _installerPrefabs: []
+  _findSiblingMonoInstallers: 0
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
-  _buildsReflectionBakingCoverageMode: 0
+  _buildsReflectionBakingCoverageMode: 2
   _settings:
     _ensureDeterministicDestructionOrderOnApplicationQuit: 1
     _displayWarningWhenResolvingDuringInstall: 1
     _validationRootResolveMethod: 1
     _validationErrorResponse: 0
+    _constructorChoiceStrategy: 0
     _signalSettings:
       _defaultSyncMode: 1
       _missingHandlerDefaultResponse: 2

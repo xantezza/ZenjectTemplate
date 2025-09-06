@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2858502907988642032, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
+      propertyPath: _sfx
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5451102515343883562, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -593,6 +597,14 @@ PrefabInstance:
     - target: {fileID: 7393933103660817407, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_Name
       value: AnimatedButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859141505957593707, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859141505957593707, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Infrastructure.Services.Audio.AudioPlayer, ZenjectTemplate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
