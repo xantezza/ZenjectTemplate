@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Infrastructure.Services.Settings
 {
-    public class SettingsService : ISettingsService, IDataSaveable<SettingsService.Save>, IInitializable
+    public class SettingsService : ISettingsService, IInitializable, IDataSaveable<SettingsService.Save>
     {
         [Serializable]
         public class Save
