@@ -6,6 +6,6 @@ namespace Infrastructure.Services.SceneLoading
 {
     public interface ISceneLoaderService
     {
-        UniTask LoadScene(AssetReference nextSceneName, Action onLoaded = null, bool allowReloadSameScene = false);
+        UniTask LoadScene(AssetReference nextSceneName, bool autoHideCurtain, bool allowReloadSameScene = false);
     }
 }

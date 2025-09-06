@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEditor.Compilation;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-namespace Editor
+namespace Editor.Build
 {
     public class BuildCommand
     {
-        
+        private const int PORT = 50000;
 #if DEV
         [MenuItem("Build/DEV_Windows/Confirm")]
         public static void BuildWindows()
@@ -22,6 +24,12 @@ namespace Editor
         public static void BuildWebGL()
         {
             BuildGame(BuildTarget.WebGL, "WebGL", true);
+        }
+
+        [MenuItem("Build/DEV_WebGL AutoRun/Confirm")]
+        public static void BuildWebGLAutoRun()
+        {
+            BuildGame(BuildTarget.WebGL, "WebGL", true, true);
         }
 
         [MenuItem("DEV/To Production/Confirm")]
@@ -55,7 +63,7 @@ namespace Editor
         }
 
 #endif
-        private static void BuildGame(BuildTarget target, string platformFolderName, bool isDev)
+        private static void BuildGame(BuildTarget target, string platformFolderName, bool isDev, bool autoRun = false)
         {
             var projectName = Path.GetFileName(Application.productName);
             var date = DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
@@ -75,7 +83,7 @@ namespace Editor
             switch (target)
             {
                 case BuildTarget.WebGL:
-                    PlayerSettings.WebGL.exceptionSupport = isDev ? WebGLExceptionSupport.FullWithoutStacktrace : WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
+                    PlayerSettings.WebGL.exceptionSupport = isDev ? WebGLExceptionSupport.FullWithStacktrace : WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
                     buildPath = buildFolderPath;
                     break;
                 case BuildTarget.StandaloneWindows64:
@@ -102,8 +110,7 @@ namespace Editor
                 options.options
                     |= BuildOptions.Development
                        | BuildOptions.ConnectWithProfiler
-                       | BuildOptions.EnableDeepProfilingSupport
-                       | BuildOptions.AllowDebugging;
+                       | BuildOptions.EnableDeepProfilingSupport;
             }
 
             var report = BuildPipeline.BuildPlayer(options);
@@ -125,8 +132,20 @@ namespace Editor
 
                     try
                     {
-                        Directory.Delete(buildFolderPath, true);
-                        Debug.Log($"Deleted original WebGL build folder: {buildFolderPath}");
+                        if (autoRun)
+                        {
+                            PythonServerLauncher.StartPythonHttpServer(buildFolderPath, PORT);
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = $"http://localhost:{PORT}/index.html",
+                                UseShellExecute = true
+                            });
+                        }
+                        else
+                        {
+                            Directory.Delete(buildFolderPath, true);
+                            Debug.Log($"Deleted original WebGL build folder: {buildFolderPath}");
+                        }
                     }
                     catch (Exception e)
                     {

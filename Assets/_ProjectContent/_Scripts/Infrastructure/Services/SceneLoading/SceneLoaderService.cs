@@ -1,12 +1,9 @@
-﻿using System;
-using Configs.RemoteConfig;
+﻿using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.LoadingCurtain;
 using Infrastructure.Services.Log;
 using JetBrains.Annotations;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace Infrastructure.Services.SceneLoading
 {
@@ -21,12 +18,12 @@ namespace Infrastructure.Services.SceneLoading
             _loadingCurtainService = loadingCurtainService;
         }
 
-        public async UniTask LoadScene(AssetReference nextSceneName, Action onLoaded = null, bool allowReloadSameScene = false)
+        public async UniTask LoadScene(AssetReference nextSceneName, bool autoHideCurtain, bool allowReloadSameScene = false)
         {
-            await LoadSceneByAddressables(nextSceneName, allowReloadSameScene);
+            await LoadSceneByAddressables(nextSceneName, autoHideCurtain, allowReloadSameScene);
         }
 
-        private async UniTask LoadSceneByAddressables(AssetReference nextScene, bool allowReloadSameScene)
+        private async UniTask LoadSceneByAddressables(AssetReference nextScene, bool autoHideCurtain, bool allowReloadSameScene)
         {
             if (!allowReloadSameScene && _cachedSceneGUID == nextScene.AssetGUID)
             {
@@ -47,7 +44,7 @@ namespace Infrastructure.Services.SceneLoading
             Logger.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
 
             await UniTask.WaitForSeconds(RemoteConfig.Infrastructure.FakeMinimalLoadTime);
-            _loadingCurtainService.Hide();
+            if (autoHideCurtain) _loadingCurtainService.Hide();
         }
     }
 }

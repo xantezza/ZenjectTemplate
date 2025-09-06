@@ -34,7 +34,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         public async UniTask Enter()
         {
-            await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene);
+            await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, true);
         }
 
         public override UniTask Exit()

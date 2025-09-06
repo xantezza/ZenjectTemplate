@@ -38,11 +38,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         {
             _analyticsService.SendEvent(AnalyticsNames.LoadTime, Time.realtimeSinceStartup);
             CollectHardwareData();
-            await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnSceneLoaded);
-        }
-
-        private async void OnSceneLoaded()
-        {
+            await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, true);
             await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
         }
 

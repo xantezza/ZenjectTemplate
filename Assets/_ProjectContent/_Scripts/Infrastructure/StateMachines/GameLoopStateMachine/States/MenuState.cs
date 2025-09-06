@@ -23,7 +23,7 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
 
         public async UniTask Enter()
         {
-            await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene);
+            await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, true);
         }
     }
 }
