@@ -46,14 +46,14 @@ namespace Infrastructure.Providers.DefaultConfigProvider
         [Button] [PropertyOrder(-10)]
         private void FetchDefaultConfig()
         {
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchDefaultEnvironmentFinished += OnFetchDefaultEnvironmentID;
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchDefaultEnvironment(Application.cloudProjectId);
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchDefaultEnvironmentFinished += OnFetchDefaultEnvironmentID;
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchDefaultEnvironment(Application.cloudProjectId);
         }
 
         private void OnFetchDefaultEnvironmentID(string defaultEnvironmentId)
         {
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchConfigsFinished += OnFetchDefaultConfigFinished;
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchConfigs(Application.cloudProjectId, defaultEnvironmentId);
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchConfigsFinished += OnFetchDefaultConfigFinished;
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchConfigs(Application.cloudProjectId, defaultEnvironmentId);
         }
 
         private void OnFetchDefaultConfigFinished(JObject defaultConfig)

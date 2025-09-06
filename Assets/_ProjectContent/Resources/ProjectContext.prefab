@@ -425,7 +425,7 @@ MonoBehaviour:
   _installerPrefabs: []
   _findSiblingMonoInstallers: 0
   _parentNewObjectsUnderContext: 1
-  _editorReflectionBakingCoverageMode: 0
+  _editorReflectionBakingCoverageMode: 2
   _buildsReflectionBakingCoverageMode: 2
   _settings:
     _ensureDeterministicDestructionOrderOnApplicationQuit: 1

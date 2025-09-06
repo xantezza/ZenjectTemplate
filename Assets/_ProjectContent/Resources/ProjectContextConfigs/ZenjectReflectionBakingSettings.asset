@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: ZenjectReflectionBakingSettings
   m_EditorClassIdentifier: 
   _isEnabledInBuilds: 1
-  _isEnabledInEditor: 0
+  _isEnabledInEditor: 1
   _allGeneratedAssemblies: 0
   _includeAssemblies:
   - Library/ScriptAssemblies/ZenjectTemplate.dll
-  - Library/ScriptAssemblies/Zenject.dll
-  - Library/ScriptAssemblies/Unity.TextMeshPro.dll
-  - Library/ScriptAssemblies/UnityEngine.UI.dll
   _excludeAssemblies: []
   _namespacePatterns: []

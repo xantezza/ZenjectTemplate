@@ -4,9 +4,7 @@
     "references": [
         "Zenject",
         "Zenject-Editor",
-        "ZenjectTemplate",
-        "UnityEngine.UI",
-        "UniTask.TextMeshPro"
+        "ZenjectTemplate"
     ],
     "includePlatforms": [
         "Editor"

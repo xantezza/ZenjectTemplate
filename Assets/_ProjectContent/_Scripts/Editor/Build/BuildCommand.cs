@@ -86,7 +86,7 @@ namespace Editor.Build
             if (!Directory.Exists(platformFolderPath))
                 Directory.CreateDirectory(platformFolderPath);
 
-            var buildFolderName = $"{projectName}\\{date}";
+            var buildFolderName = $"{projectName}\\{date}_{projectName}";
             var buildFolderPath = Path.Combine(platformFolderPath, buildFolderName);
 
             if (!Directory.Exists(buildFolderPath))
@@ -123,9 +123,6 @@ namespace Editor.Build
 
             if (isDev)
             {
-                options.options
-                    |= BuildOptions.Development
-                       | BuildOptions.DetailedBuildReport;
             }
 
             var report = BuildPipeline.BuildPlayer(options);
