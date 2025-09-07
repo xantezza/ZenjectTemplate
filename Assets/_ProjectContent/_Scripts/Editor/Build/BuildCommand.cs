@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using Editor.Utils;
+using Editor.Utils.Static;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -64,8 +66,8 @@ namespace Editor.Build
             PlayerSettings.SetScriptingDefineSymbolsForGroup(currentGroup, currentDefines + ";DEV");
             CompilationPipeline.RequestScriptCompilation(RequestScriptCompilationOptions.None);
         }
-
 #endif
+        
         private static void BuildGame(BuildTarget target, string platformFolderName, bool isDev, bool autoRun = false)
         {
             if (EditorUserBuildSettings.activeBuildTarget != target)
@@ -81,14 +83,22 @@ namespace Editor.Build
                 return;
             }
 
+            VersionProvider versionProvider = AssetUtils.GetAssetOfType<VersionProvider>();
+            versionProvider.Minor++;
+            EditorUtility.SetDirty(versionProvider);
+            AssetDatabase.SaveAssets();
+            var buildType = isDev ? "DEV" : "Production";
+            var versionWithDate = $"{buildType}_{versionProvider.Major}.{versionProvider.Minor}_{DateTime.Now:dd.MM.yy}";
+            PlayerSettings.bundleVersion = versionWithDate;
+            Debug.Log("Version: " + versionWithDate);
+            
             var projectName = Path.GetFileName(Application.productName);
-            var date = DateTime.Now.ToString("HH-mm_dd-MM-yy");
 
             var platformFolderPath = Path.Combine(@"D:\UnityBuilds", platformFolderName);
             if (!Directory.Exists(platformFolderPath))
                 Directory.CreateDirectory(platformFolderPath);
 
-            var buildFolderName = $"{projectName}\\{date}_{projectName}";
+            var buildFolderName = $"{projectName}\\{versionWithDate}_{projectName}";
             var buildFolderPath = Path.Combine(platformFolderPath, buildFolderName);
 
             if (!Directory.Exists(buildFolderPath))

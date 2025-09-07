@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6943386eff0c48698319baf8f47af62b, type: 3}
   m_Name: ModalsAssetReferencesProvider
   m_EditorClassIdentifier: 
-  <PrivacyPolicyModal>k__BackingField:
-    m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
-    m_SubObjectName: 
-    m_SubObjectGUID: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  <ErrorModal>k__BackingField:
-    m_AssetGUID: 3d36ec070ccbcee429f54f449dc8097d
-    m_SubObjectName: 
-    m_SubObjectGUID: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  modalReferences:
+  - typeName: 
+    assetReference:
+      m_AssetGUID: 3d36ec070ccbcee429f54f449dc8097d
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - typeName: Infrastructure.Services.Modals.PrivacyPolicyModal
+    assetReference:
+      m_AssetGUID: e229f3a10bd36bf489298a1fda6da293
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
