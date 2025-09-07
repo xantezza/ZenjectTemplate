@@ -8,7 +8,8 @@
 
 - Analytics, Remote Config
 - JSON/Binary Save Services
-- Audio, Settings, Window Services
+- Audio, Settings, Tutorial, Window Services
+- Addressables Pooling
 - Detailed Logging
 - Runtime Debugging Tools, Cheat Commands
 - Editor Windows, Menu Items, Build Helpers and utilities to improve QOL
