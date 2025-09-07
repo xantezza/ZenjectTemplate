@@ -27,13 +27,13 @@ namespace Infrastructure.Services.Modals
         public readonly ReactiveCommand OnInteract = new();
 
         [SerializeField] private ModalPopupSettings _modalSettings;
-        private IModalPopupFactory _modalPopupFactory;
+        protected IModalPopupFactory _modalPopupFactory;
 
         public void SetModalPopupFactory(IModalPopupFactory modalPopupFactory)
         {
             _modalPopupFactory = modalPopupFactory;
         }
-        
+
         public async UniTask Show()
         {
             if (_modalSettings.ResizableRoot != null)
@@ -66,8 +66,10 @@ namespace Infrastructure.Services.Modals
             }
 
             OnInteract.Execute();
-            _modalPopupFactory.ReturnToPool(this);
+            ReturnToPool();
             await Task.CompletedTask;
         }
+
+        protected abstract void ReturnToPool();
     }
 }

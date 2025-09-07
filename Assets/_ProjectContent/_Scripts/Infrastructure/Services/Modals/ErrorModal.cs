@@ -32,5 +32,10 @@ namespace Infrastructure.Services.Modals
         {
             GUIUtility.systemCopyBuffer = _errorText;
         }
+
+        protected override void ReturnToPool()
+        {
+            _modalPopupFactory.ReturnToPool(this);
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Infrastructure.Services.LoadingCurtain
         public void ForceShow()
         {
             _motionHandle?.TryCancel();
+            SetProgress01(0);
             _canvasGroup.alpha = 1f;
             _canvas.enabled = true;
         }
@@ -28,6 +29,7 @@ namespace Infrastructure.Services.LoadingCurtain
         public void ForceHide()
         {
             _motionHandle?.TryCancel();
+            SetProgress01(1);
             _canvasGroup.alpha = 0f;
             _canvas.enabled = false;
         }
@@ -36,6 +38,7 @@ namespace Infrastructure.Services.LoadingCurtain
         {
             _motionHandle?.TryCancel();
             if (_canvas.enabled) return;
+            SetProgress01(0);
             _canvas.enabled = true;
             _motionHandle = LMotion
                 .Create(_canvasGroup.alpha, 1f, tweenDuration)
@@ -47,6 +50,7 @@ namespace Infrastructure.Services.LoadingCurtain
         {
             _motionHandle?.TryCancel();
             if (!_canvas.enabled) return;
+            SetProgress01(1);
             _motionHandle = LMotion
                 .Create(_canvasGroup.alpha, 0f, tweenDuration)
                 .BindToAlpha(_canvasGroup);

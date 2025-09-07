@@ -11,6 +11,7 @@ namespace Infrastructure.Factories.ModalPopup
     public class ModalPopupFactory : MonoBehaviour, IModalPopupFactory
     {
         private IAssetReferenceProvider _assetReferenceProvider;
+        private Transform _poolTransform;
 
         private Dictionary<Type, object> _pools = new();
 

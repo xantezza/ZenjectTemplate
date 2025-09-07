@@ -10,20 +10,25 @@ namespace Infrastructure.Services.Pooling
     {
         private readonly AssetReference _reference;
         private readonly Transform _parent;
+        private readonly Transform _pooledObjectsParent;
         private readonly Stack<T> _pool = new();
 
         public AddressablesPool(AssetReference reference, Transform parent = null)
         {
             _reference = reference;
             _parent = parent;
+            
+            _pooledObjectsParent = new GameObject("Pool Root").transform;
+            _pooledObjectsParent.parent = _parent;
         }
-        
+                
         public async Task<T> GetAsync()
         {
             if (_pool.Count > 0)
             {
                 var item = _pool.Pop();
                 item.gameObject.SetActive(true);
+                item.gameObject.transform.SetParent(_parent, false);
                 return item;
             }
 
@@ -36,7 +41,7 @@ namespace Infrastructure.Services.Pooling
                 var component = instance.GetComponent<T>();
                 if (component != null) return component;
                 Debug.LogError($"Object dont have {typeof(T)}");
-                Object.Destroy(instance);
+                _reference.ReleaseInstance(instance);
                 return null;
             }
 
@@ -50,6 +55,7 @@ namespace Infrastructure.Services.Pooling
                 return;
 
             item.gameObject.SetActive(false);
+            item.gameObject.transform.SetParent(_pooledObjectsParent, false);
             _pool.Push(item);
         }
 

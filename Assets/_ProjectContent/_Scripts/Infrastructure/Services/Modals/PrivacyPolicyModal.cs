@@ -23,5 +23,10 @@ namespace Infrastructure.Services.Modals
         {
             Application.OpenURL(PRIVACY_POLICY_LINK);
         }
+
+        protected override void ReturnToPool()
+        {
+            _modalPopupFactory.ReturnToPool(this);
+        }
     }
 }
