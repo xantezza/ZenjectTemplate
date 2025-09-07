@@ -30,11 +30,13 @@ namespace Infrastructure.Services.Analytics
         {
             if (!InitializeUnityServicesState.IsInitialized) return;
 
-#if DEV
             Logger.Log($"{eventName} sent", LogTag.Analytics);
+#if DEV
             return;
 #endif
+#pragma warning disable CS0162
             AnalyticsService.Instance.RecordEvent(eventName);
+#pragma warning restore CS0162
         }
 
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
@@ -51,16 +53,18 @@ namespace Infrastructure.Services.Analytics
                 customEvent.Add(key, value);
             }
 
-#if DEV
             Logger.Log(stringBuilder.ToString(), LogTag.Analytics);
+#if DEV
             return;
 #endif
+#pragma warning disable CS0162
             AnalyticsService.Instance.RecordEvent(customEvent);
+#pragma warning restore CS0162
         }
 
         public void SendEvent(string eventName, object data)
         {
-            SendEvent(eventName, new Dictionary<string, object>() {["data"] = data});
+            SendEvent(eventName, new Dictionary<string, object> {["data"] = data});
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Factories.ModalPopup;
 using LitMotion;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Extensions;
+using Utilities.Extensions;
 
 namespace Infrastructure.Services.Modals
 {
@@ -26,7 +27,13 @@ namespace Infrastructure.Services.Modals
         public readonly ReactiveCommand OnInteract = new();
 
         [SerializeField] private ModalPopupSettings _modalSettings;
+        private IModalPopupFactory _modalPopupFactory;
 
+        public void SetModalPopupFactory(IModalPopupFactory modalPopupFactory)
+        {
+            _modalPopupFactory = modalPopupFactory;
+        }
+        
         public async UniTask Show()
         {
             if (_modalSettings.ResizableRoot != null)
@@ -59,7 +66,7 @@ namespace Infrastructure.Services.Modals
             }
 
             OnInteract.Execute();
-            Destroy(gameObject);
+            _modalPopupFactory.ReturnToPool(this);
             await Task.CompletedTask;
         }
     }

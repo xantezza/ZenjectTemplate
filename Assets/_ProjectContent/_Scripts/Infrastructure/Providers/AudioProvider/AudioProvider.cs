@@ -6,7 +6,6 @@ using UnityEngine.Audio;
 
 namespace Infrastructure.Providers.AudioProvider
 {
-    [CreateAssetMenu]
     public class AudioProvider : ScriptableObject, IAudioProvider
     {
         [field: SerializeField] public AudioMixerGroup SFXGroup { get; private set; }

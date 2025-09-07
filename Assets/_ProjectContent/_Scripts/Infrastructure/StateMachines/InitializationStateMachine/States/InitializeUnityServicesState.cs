@@ -1,5 +1,4 @@
-﻿using Configs;
-using Configs.RemoteConfig;
+﻿using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
 using Unity.Services.Authentication;
@@ -36,7 +35,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #if PLATFORM_WEBGL && !UNITY_EDITOR
             await InitializeUnityServices();
 #else
-            if (Utilities.CheckForInternetConnection())
+            if (Unity.Services.RemoteConfig.Utilities.CheckForInternetConnection())
             {
                 await InitializeUnityServices();
             }

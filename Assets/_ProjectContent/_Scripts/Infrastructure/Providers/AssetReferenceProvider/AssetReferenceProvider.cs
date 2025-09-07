@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Utils.Extensions;
+using Utilities.Extensions;
 
 namespace Infrastructure.Providers.AssetReferenceProvider
 {

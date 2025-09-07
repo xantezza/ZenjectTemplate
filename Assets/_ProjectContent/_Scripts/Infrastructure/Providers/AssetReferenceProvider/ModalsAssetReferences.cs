@@ -8,7 +8,6 @@ using Logger = Infrastructure.Services.Log.Logger;
 namespace Infrastructure.Providers.AssetReferenceProvider
 {
     [Serializable]
-    [CreateAssetMenu]
     public class ModalsAssetReferences : ScriptableObject
     {
         [field: SerializeField] public AssetReferenceGameObject PrivacyPolicyModal { get; private set; }

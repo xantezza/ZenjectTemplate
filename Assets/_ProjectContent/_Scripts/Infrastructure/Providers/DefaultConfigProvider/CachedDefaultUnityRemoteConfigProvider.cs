@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace Infrastructure.Providers.DefaultConfigProvider
 {
-    [CreateAssetMenu]
     public class CachedDefaultUnityRemoteConfigProvider : ScriptableObject, IDefaultConfigProvider
     {
         private const int TIME_OF_LOSS_OF_RELEVANCE_IN_MINUTES = -5;

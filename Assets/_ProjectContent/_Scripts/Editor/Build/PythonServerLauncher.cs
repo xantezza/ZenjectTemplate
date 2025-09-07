@@ -24,13 +24,13 @@ namespace Editor.Build
                 Process process = new Process { StartInfo = psi };
                 process.Start();
 
-                UnityEngine.Debug.Log($"Python HTTP server запущен в папке {folderPath} на порту {port}");
+                UnityEngine.Debug.Log($"Python HTTP server is running {folderPath} on port {port}");
 
                 return process;
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.Log("Ошибка запуска Python сервера: " + ex.Message);
+                UnityEngine.Debug.Log("Error starting Python HTTP server: " + ex.Message);
                 return null;
             }
         }

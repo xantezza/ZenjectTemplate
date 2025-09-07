@@ -68,7 +68,11 @@ namespace Editor.Build
 #endif
         private static void BuildGame(BuildTarget target, string platformFolderName, bool isDev, bool autoRun = false)
         {
-            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildPipeline.GetBuildTargetGroup(target), target);
+            if (EditorUserBuildSettings.activeBuildTarget != target)
+            {
+                EditorUserBuildSettings.SwitchActiveBuildTarget(BuildPipeline.GetBuildTargetGroup(target), target);
+                AddressableAssetSettings.BuildPlayerContent();
+            }
             
             var settings = AddressableAssetSettingsDefaultObject.Settings;
             if (settings == null)
@@ -76,9 +80,7 @@ namespace Editor.Build
                 Debug.LogError("AddressableAssetSettings not found. Make sure Addressables are set up.");
                 return;
             }
-            
-            AddressableAssetSettings.BuildPlayerContent();
-            
+
             var projectName = Path.GetFileName(Application.productName);
             var date = DateTime.Now.ToString("HH-mm_dd-MM-yy");
 
@@ -97,8 +99,8 @@ namespace Editor.Build
             switch (target)
             {
                 case BuildTarget.WebGL:
-                    UserBuildSettings.codeOptimization = WasmCodeOptimization.DiskSize;
-                    PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Brotli;
+                    UserBuildSettings.codeOptimization =  isDev ? WasmCodeOptimization.BuildTimes : WasmCodeOptimization.DiskSize;
+                    PlayerSettings.WebGL.compressionFormat =  isDev ? WebGLCompressionFormat.Disabled : WebGLCompressionFormat.Brotli;
                     PlayerSettings.WebGL.exceptionSupport = isDev ? WebGLExceptionSupport.FullWithStacktrace : WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
                     buildPath = buildFolderPath;
                     break;
@@ -120,10 +122,6 @@ namespace Editor.Build
                 target = target,
                 options = BuildOptions.None
             };
-
-            if (isDev)
-            {
-            }
 
             var report = BuildPipeline.BuildPlayer(options);
             var summary = report.summary;

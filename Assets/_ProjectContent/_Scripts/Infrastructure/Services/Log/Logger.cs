@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Infrastructure.Services.Analytics;
 using UnityEngine;
-using Utils.Extensions;
+using Utilities.Extensions;
 using Zenject;
 using Debug = UnityEngine.Debug;
 

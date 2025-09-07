@@ -28,7 +28,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         {
             if (type is LogType.Error or LogType.Exception)
             {
-                var popup = await _modalPopupFactory.Create<ErrorModal>();
+                var popup = await _modalPopupFactory.Spawn<ErrorModal>();
                 popup.Init(condition, stacktrace);
                 await popup.Show();
             }

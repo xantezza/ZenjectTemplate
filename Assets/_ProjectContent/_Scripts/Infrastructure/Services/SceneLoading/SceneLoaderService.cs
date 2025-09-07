@@ -44,7 +44,7 @@ namespace Infrastructure.Services.SceneLoading
             Logger.Log($"Loaded scene: {waitNextScene.Result.Scene.name} \n{nextScene.AssetGUID}", LogTag.SceneLoader);
 
             await UniTask.WaitForSeconds(RemoteConfig.Infrastructure.FakeMinimalLoadTime);
-            if (autoHideCurtain) _loadingCurtainService.Hide();
+            if (autoHideCurtain) await _loadingCurtainService.Hide();
         }
     }
 }

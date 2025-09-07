@@ -7,7 +7,7 @@ using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Settings;
 using Infrastructure.Services.Windows;
 using UnityEngine;
-using Utils.Assertions;
+using Utilities.Assertions;
 using Zenject;
 using Logger = Infrastructure.Services.Log.Logger;
 

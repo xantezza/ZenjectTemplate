@@ -2,7 +2,7 @@
 using Infrastructure.Providers.AudioProvider;
 using Infrastructure.Providers.DefaultConfigProvider;
 using UnityEngine;
-using Utils.Assertions;
+using Utilities.Assertions;
 using Zenject;
 
 namespace Infrastructure.Installers

@@ -17,7 +17,6 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly IAssetReferenceProvider _assetReferenceProvider;
         private readonly IAnalyticsService _analyticsService;
-        private ILoadingCurtainService _loadingCurtainService;
 
         [Inject]
         public GameplayState(
@@ -25,11 +24,9 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             ISaveService saveService,
             ISceneLoaderService sceneLoaderService,
             IAssetReferenceProvider assetReferenceProvider,
-            IAnalyticsService analyticsService, 
-            ILoadingCurtainService loadingCurtainService
+            IAnalyticsService analyticsService
         ) : base(gameLoopStateMachine)
         {
-            _loadingCurtainService = loadingCurtainService;
             _analyticsService = analyticsService;
             _assetReferenceProvider = assetReferenceProvider;
             _sceneLoaderService = sceneLoaderService;
