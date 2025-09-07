@@ -5,6 +5,7 @@ using Infrastructure.Services.LoadingCurtain;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Settings;
+using Infrastructure.Services.Tutorial;
 using Infrastructure.Services.Windows;
 using UnityEngine;
 using Utilities.Assertions;
@@ -17,6 +18,7 @@ namespace Infrastructure.Installers
     {
         [SerializeField] private LoadingCurtainService loadingCurtainService;
         [SerializeField] private AudioService _audioService;
+        [SerializeField] private TutorialService _tutorialService;
 
         public override void InstallBindings()
         {
@@ -30,6 +32,7 @@ namespace Infrastructure.Installers
             
             Container.BindInterfacesTo<LoadingCurtainService>().FromInstance(loadingCurtainService.AssertNotNull()).AsSingle().NonLazy();
             Container.BindInterfacesTo<AudioService>().FromInstance(_audioService.AssertNotNull()).AsSingle().NonLazy();
+            Container.BindInterfacesTo<TutorialService>().FromInstance(_tutorialService.AssertNotNull()).AsSingle().NonLazy();
 #if DEV
             // Readable
             Container.BindInterfacesTo<JsonSaveService>().FromNew().AsSingle().NonLazy();
