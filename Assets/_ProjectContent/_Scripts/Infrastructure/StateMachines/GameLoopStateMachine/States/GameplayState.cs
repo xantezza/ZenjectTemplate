@@ -38,11 +38,10 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
             await _sceneLoaderService.LoadScene(_assetReferenceProvider.GamePlayScene, true);
         }
 
-        public override UniTask Exit()
+        public override async UniTask Exit()
         {
             _analyticsService.SendEvent(AnalyticsNames.AverageFPS, Time.frameCount / Time.realtimeSinceStartup);
-            _saveService.StoreSaveFile();
-            return default;
+            await _saveService.StoreSaveFile();
         }
     }
 }

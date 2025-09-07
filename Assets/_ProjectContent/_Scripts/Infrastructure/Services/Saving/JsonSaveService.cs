@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -54,14 +55,14 @@ namespace Infrastructure.Services.Saving
             }
         }
 
-        public override void StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
+        public override async UniTask StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName || _cachedSaveFileName == null) fileName = _defaultFileName;
             else if (fileName == null && _cachedSaveFileName != null) fileName = _cachedSaveFileName;
 
             var path = $"{Application.persistentDataPath}/{fileName}.txt";
             var serializedObject = JsonConvert.SerializeObject(_readyToSaveDictionary, Formatting.Indented);
-            File.WriteAllText(path, serializedObject);
+            await File.WriteAllTextAsync(path, serializedObject);
             Logger.Log($"Game data saved! At path: \n{path} \nContent: \n{serializedObject}", LogTag.SaveService);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
 using UnityEngine;
 using Zenject;
@@ -29,7 +30,7 @@ namespace Infrastructure.Services.Saving
 
         public abstract void LoadSaveFile(bool useDefaultFileName = true, string fileName = null);
 
-        public abstract void StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
+        public abstract UniTask StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
 
         public void Initialize()
         {
@@ -41,14 +42,14 @@ namespace Infrastructure.Services.Saving
             Application.focusChanged -= OnApplicationFocus;
         }
 
-        private void OnApplicationFocus(bool focusStatus)
+        private async void OnApplicationFocus(bool focusStatus)
         {
             if (focusStatus) return;
             if (!Application.isPlaying) return;
             if (_readyToSaveDictionary.Count == 0) return;
             if (!_hasLoaded) return;
 
-            StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName);
+            await StoreSaveFile(_cachedSaveFileName != null, _cachedSaveFileName);
         }
     }
 }

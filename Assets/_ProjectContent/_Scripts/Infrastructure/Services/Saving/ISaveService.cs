@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Infrastructure.Services.Saving
 {
@@ -8,6 +9,6 @@ namespace Infrastructure.Services.Saving
         void AddToSaveables<TSave>(IDataSaveable<TSave> dataSaveable) where TSave : class;
 
         void LoadSaveFile(bool useDefaultFileName = true, string fileName = null);
-        void StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
+        UniTask StoreSaveFile(bool useDefaultFileName = true, string fileName = null);
     }
 }

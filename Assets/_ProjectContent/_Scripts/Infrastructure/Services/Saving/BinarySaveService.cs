@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Log;
 using UnityEngine;
 using Logger = Infrastructure.Services.Log.Logger;
@@ -55,23 +56,23 @@ namespace Infrastructure.Services.Saving
             Logger.Log("Game data loaded!", LogTag.SaveService);
         }
 
-        public override void StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
+        public override async UniTask StoreSaveFile(bool useDefaultFileName = true, string fileName = null)
         {
             if (useDefaultFileName || _cachedSaveFileName == null) fileName = _defaultFileName;
             else if (fileName == null && _cachedSaveFileName != null) fileName = _cachedSaveFileName;
 
             var path = $"{Application.persistentDataPath}/{fileName}.dat";
             var binaryFormatter = new BinaryFormatter();
-            using var fileStream = File.Create(path);
-            using var memoryStream = new MemoryStream();
+            await using var fileStream = File.Create(path);
+            await using var memoryStream = new MemoryStream();
             binaryFormatter.Serialize(memoryStream, _readyToSaveDictionary);
             var serializedData = memoryStream.ToArray();
             using var aes = Aes.Create();
             aes.Key = Key;
             aes.IV = IV;
 
-            using var cryptoStream = new CryptoStream(fileStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
-            cryptoStream.Write(serializedData, 0, serializedData.Length);
+            await using var cryptoStream = new CryptoStream(fileStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
+            await cryptoStream.WriteAsync(serializedData, 0, serializedData.Length);
 
             Logger.Log($"Game data saved! At path: \n{path} \nContent is binary", LogTag.SaveService);
         }
