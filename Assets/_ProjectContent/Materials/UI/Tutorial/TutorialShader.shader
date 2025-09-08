@@ -2,9 +2,10 @@ Shader "UI/RectHoleMask"
 {
     Properties
     {
-        _Color ("Color", Color) = (0,0,0,0.7)
-        _HoleCenter ("Hole Center (UV)", Vector) = (0.5, 0.5, 0, 0)
-        _HoleSize ("Hole Size (UV)", Vector) = (0.3, 0.2, 0, 0)
+        _Color ("Color", Color) = (0,0,0,0.8)
+        _HoleCenter ("Hole Center", Vector) = (0.5, 0.5, 0, 0)
+        _HoleSize ("Hole Size", Vector) = (0.3, 0.2, 0, 0)
+        _Radius ("Radius", Float) = 0.01
     }
     SubShader
     {
@@ -21,10 +22,15 @@ Shader "UI/RectHoleMask"
             #pragma fragment frag
             #include "UnityCG.cginc"
 
+            fixed4 _Color;
+            float4 _HoleCenter;
+            float4 _HoleSize;
+            float _Radius;
+
             struct appdata_t
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float2 texcoord : TEXCOORD0;
             };
 
             struct v2f
@@ -33,15 +39,11 @@ Shader "UI/RectHoleMask"
                 float2 uv : TEXCOORD0;
             };
 
-            fixed4 _Color;
-            float4 _HoleCenter;
-            float4 _HoleSize;
-
             v2f vert(appdata_t v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = v.texcoord;
                 return o;
             }
 
@@ -49,18 +51,17 @@ Shader "UI/RectHoleMask"
             {
                 float2 uv = i.uv;
 
-                // Вычисляем границы дырки
                 float2 holeMin = _HoleCenter.xy - _HoleSize.xy * 0.5;
                 float2 holeMax = _HoleCenter.xy + _HoleSize.xy * 0.5;
 
-                // Проверяем, находится ли текущий пиксель внутри дырки
-                bool insideHole = (uv.x >= holeMin.x) && (uv.x <= holeMax.x) &&
-                                  (uv.y >= holeMin.y) && (uv.y <= holeMax.y);
+                float2 dist = max(holeMin - uv, uv - holeMax);
+                dist = max(dist, 0.0);
 
-                if (insideHole)
-                    discard; // прозрачная дырка
+                float distLength = length(dist);
 
-                return _Color;
+                float alpha = step(_Radius, distLength);//smoothstep(_Radius, _Radius * 0.5, distLength);
+
+                return fixed4(_Color.rgb, _Color.a * alpha);
             }
             ENDCG
         }

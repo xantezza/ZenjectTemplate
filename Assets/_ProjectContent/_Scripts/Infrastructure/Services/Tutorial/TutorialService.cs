@@ -1,32 +1,42 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using TriInspector;
 
 namespace Infrastructure.Services.Tutorial
 {
     public class TutorialService : MonoBehaviour, ITutorialService
     {
         [SerializeField] private TutorialScreenBlocker _tutorialScreenBlocker;
-        
-        public void LockToButton(Button button, bool autoHideOnClick = true)
+
+        private void Start()
         {
-            ProcessRect(button.GetComponent<RectTransform>());
+            Hide();
+        }
+
+        [Button]
+        public void LockToButton(Button button, bool animated = true, bool autoHideOnClick = true)
+        {
+            var targetState = ProcessRect(button.GetComponent<RectTransform>());
+
+            if (animated) _tutorialScreenBlocker.ShowAnimated(targetState);
+            else _tutorialScreenBlocker.Show(targetState);
+
+            if (autoHideOnClick) button.onClick.AddListener(HideFromButton);
 
             void HideFromButton()
             {
                 button.onClick.RemoveListener(HideFromButton);
                 Hide();
             }
-
-            if (autoHideOnClick) button.onClick.AddListener(HideFromButton);
         }
 
+        [Button]
         public void Hide()
         {
             _tutorialScreenBlocker.gameObject.SetActive(false);
         }
 
-        private void ProcessRect(RectTransform rectTransform)
+        private Vector4 ProcessRect(RectTransform rectTransform)
         {
             _tutorialScreenBlocker.gameObject.SetActive(true);
             var blockerRect = _tutorialScreenBlocker.GetComponent<RectTransform>();
@@ -53,8 +63,8 @@ namespace Infrastructure.Services.Tutorial
 
             var holeSizeX = localSize.x / rect.width;
             var holeSizeY = localSize.y / rect.height;
-
-            _tutorialScreenBlocker.Show(new Vector2(holeCenterX, holeCenterY), new Vector2(holeSizeX, holeSizeY));
+            
+            return new Vector4(holeCenterX, holeCenterY, holeSizeX, holeSizeY);
         }
     }
 }

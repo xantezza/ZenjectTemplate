@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LitMotion;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Infrastructure.Services.Tutorial
@@ -11,7 +12,8 @@ namespace Infrastructure.Services.Tutorial
         private float _holeSizeY = 0.2f;
 
         private Material _material;
-
+        private bool _lockedByAnimation;
+        private MotionHandle? _animation;
         protected override void Awake()
         {
             base.Awake();
@@ -24,14 +26,37 @@ namespace Infrastructure.Services.Tutorial
             material = _material;
         }
 
-        public void Show(Vector2 center, Vector2 size)
+        public void Show(Vector4 targetState)
         {
-            _holeCenterX = center.x;
-            _holeCenterY = center.y;
-            _holeSizeX = size.x;
-            _holeSizeY = size.y;
+            _animation?.TryCancel();
+            _lockedByAnimation = false;
+            _holeCenterX = targetState.x;
+            _holeCenterY = targetState.y;
+            _holeSizeX = targetState.z;
+            _holeSizeY = targetState.w;
         }
-        
+
+        public void ShowAnimated(Vector4 targetState, float time = 0.5f)
+        {
+            _animation?.TryCancel();
+            _lockedByAnimation = true;
+            var currentState = new Vector4(_holeCenterX, _holeCenterY, _holeSizeX, _holeSizeY);
+            _animation = LMotion.Create(currentState, targetState, time)
+                .WithOnComplete(() => { _lockedByAnimation = false;})
+                .WithOnCancel(() => { _lockedByAnimation = false;})
+                .Bind(AssignAnimatedValues);
+
+
+        }
+
+        private void AssignAnimatedValues(Vector4 vector4)
+        {
+            _holeCenterX = vector4.x;
+            _holeCenterY = vector4.y;
+            _holeSizeX = vector4.z;
+            _holeSizeY = vector4.w;
+        }
+
         private void Update()
         {
             if (_material == null)
@@ -48,7 +73,8 @@ namespace Infrastructure.Services.Tutorial
         {
             if (!base.Raycast(sp, eventCamera))
                 return false;
-
+            if (_lockedByAnimation) return false;
+            
             Rect rect = rectTransform.rect;
 
             Vector2 localPoint;
