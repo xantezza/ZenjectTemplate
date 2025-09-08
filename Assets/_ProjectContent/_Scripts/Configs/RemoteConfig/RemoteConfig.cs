@@ -1,6 +1,6 @@
 ﻿using System;
 using Configs.RemoteConfig.Configs;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,35 +14,33 @@ namespace Configs.RemoteConfig
 
         public static InfrastructureConfig Infrastructure { get; private set; }
 
-        private static LoggingService _loggingService;
         private static JToken _cachedDefaultConfig;
         private static JToken _remoteConfig;
 
         private static bool _hasInitializedByRemote;
 
-        public static void InitializeByDefault(JToken cachedDefaultConfig, LoggingService loggingService)
+        public static void InitializeByDefault(JToken cachedDefaultConfig)
         {
             _cachedDefaultConfig = cachedDefaultConfig;
 
             if (_hasInitializedByRemote) return;
 
-            ParseConfigs(loggingService);
+            ParseConfigs();
             OnInitializeDefault?.Invoke();
             OnInitializeAny?.Invoke();
         }
 
-        public static void InitializeByRemote(JToken remoteConfig, LoggingService loggingService)
+        public static void InitializeByRemote(JToken remoteConfig)
         {
             _hasInitializedByRemote = true;
             _remoteConfig = remoteConfig;
-            ParseConfigs(loggingService);
+            ParseConfigs();
             OnInitializeRemote?.Invoke();
             OnInitializeAny?.Invoke();
         }
 
-        private static void ParseConfigs(LoggingService loggingService)
+        private static void ParseConfigs()
         {
-            _loggingService = loggingService;
             Infrastructure = Parse<InfrastructureConfig>(RemoteConfigType.InfrastructureConfig);
         }
 
@@ -56,13 +54,13 @@ namespace Configs.RemoteConfig
             {
                 try
                 {
-                    _loggingService.LogError($"Failed to parse remote config \"{type}\", using cached default. Exception: {exception1}", LogTag.UnityServices);
+                    Logger.Error($"Failed to parse remote config \"{type}\", using cached default. Exception: {exception1}", LogTag.UnityServices);
 
                     return InternalParse(_cachedDefaultConfig);
                 }
                 catch (Exception exception2)
                 {
-                    _loggingService.LogError($"Failed to parse default config \"{type}\", using scripted default. Exception: {exception2}", LogTag.UnityServices);
+                    Logger.Error($"Failed to parse default config \"{type}\", using scripted default. Exception: {exception2}", LogTag.UnityServices);
                     return new T();
                 }
             }
@@ -71,7 +69,7 @@ namespace Configs.RemoteConfig
             {
                 var configString = config[type].ToString();
 
-                _loggingService.Log($"Parsing config: \n{type}: \n{configString}", LogTag.UnityServices);
+                Logger.Log($"Parsing config: \n{type}: \n{configString}", LogTag.UnityServices);
 
                 return JsonConvert.DeserializeObject<T>(configString);
             }

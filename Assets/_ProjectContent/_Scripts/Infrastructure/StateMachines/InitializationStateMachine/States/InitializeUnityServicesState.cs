@@ -1,8 +1,6 @@
-﻿using Configs;
-using Configs.RemoteConfig;
+﻿using Configs.RemoteConfig;
 using Cysharp.Threading.Tasks;
-using Infrastructure.Services.Logging;
-using Infrastructure.StateMachines.StateMachine;
+using Infrastructure.Services.Log;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
@@ -15,14 +13,10 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
     {
         public static bool IsInitialized { get; private set; }
 
-        private readonly LoggingService _loggingService;
-
         [Inject]
         public InitializeUnityServicesState(
-            InitializationStateMachine stateMachine,
-            LoggingService loggingService) : base(stateMachine)
+            InitializationStateMachine stateMachine) : base(stateMachine)
         {
-            _loggingService = loggingService;
         }
 
         public async UniTask Enter()
@@ -41,7 +35,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #if PLATFORM_WEBGL && !UNITY_EDITOR
             await InitializeUnityServices();
 #else
-            if (Utilities.CheckForInternetConnection())
+            if (Unity.Services.RemoteConfig.Utilities.CheckForInternetConnection())
             {
                 await InitializeUnityServices();
             }
@@ -53,7 +47,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 #endif
 
             RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
-            _loggingService.Log("Fetch Configs", LogTag.UnityServices);
+            Logger.Log("Fetch Configs", LogTag.UnityServices);
             RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
         }
 
@@ -61,7 +55,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
         {
 #if DEV
             var options = new InitializationOptions().SetEnvironmentName("production");
-            _loggingService.Log("UnityServices.InitializeAsync with environment: production", LogTag.UnityServices);
+            Logger.Log("UnityServices.InitializeAsync with environment: production", LogTag.UnityServices);
 
             //You can uncomment it and add dev environment in dashboard to split production and dev configs if needed
             //var options = new InitializationOptions().SetEnvironmentName("dev");
@@ -74,18 +68,18 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
             if (!AuthenticationService.Instance.IsSignedIn)
             {
-                _loggingService.Log("Start of SignInAnonymouslyAsync", LogTag.UnityServices);
+                Logger.Log("Start of SignInAnonymouslyAsync", LogTag.UnityServices);
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
         }
 
         private async void ApplyRemoteSettings(ConfigResponse configResponse)
         {
-            _loggingService.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.UnityServices);
+            Logger.Log($"Request Origin: {configResponse.requestOrigin}", LogTag.UnityServices);
 
             if (configResponse.requestOrigin == ConfigOrigin.Default) return;
 
-            RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config, _loggingService);
+            RemoteConfig.InitializeByRemote(RemoteConfigService.Instance.appConfig.config);
 
             IsInitialized = true;
 

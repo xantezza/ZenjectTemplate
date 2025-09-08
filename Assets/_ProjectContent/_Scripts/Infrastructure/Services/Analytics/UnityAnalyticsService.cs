@@ -1,21 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Infrastructure.Services.Logging;
+using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
 using Unity.Services.Analytics;
 using UnityEngine;
 using Zenject;
+using Logger = Infrastructure.Services.Log.Logger;
 
 namespace Infrastructure.Services.Analytics
 {
     public class UnityAnalyticsService : IAnalyticsService
     {
-        private readonly LoggingService _loggingService;
-
         [Inject]
-        public UnityAnalyticsService(LoggingService loggingService)
+        public UnityAnalyticsService()
         {
-            _loggingService = loggingService;
             Application.focusChanged += OnApplicationFocus;
         }
 
@@ -31,10 +29,14 @@ namespace Infrastructure.Services.Analytics
         public void SendEvent(string eventName)
         {
             if (!InitializeUnityServicesState.IsInitialized) return;
-            
-            _loggingService.Log($"{eventName} sent", LogTag.Analytics);
 
+            Logger.Log($"{eventName} sent", LogTag.Analytics);
+#if DEV
+            return;
+#endif
+#pragma warning disable CS0162
             AnalyticsService.Instance.RecordEvent(eventName);
+#pragma warning restore CS0162
         }
 
         public void SendEvent(string eventName, Dictionary<string, object> paramsDictionary)
@@ -51,8 +53,18 @@ namespace Infrastructure.Services.Analytics
                 customEvent.Add(key, value);
             }
 
-            _loggingService.Log(stringBuilder.ToString(), LogTag.Analytics);
+            Logger.Log(stringBuilder.ToString(), LogTag.Analytics);
+#if DEV
+            return;
+#endif
+#pragma warning disable CS0162
             AnalyticsService.Instance.RecordEvent(customEvent);
+#pragma warning restore CS0162
+        }
+
+        public void SendEvent(string eventName, object data)
+        {
+            SendEvent(eventName, new Dictionary<string, object> {["data"] = data});
         }
     }
 }

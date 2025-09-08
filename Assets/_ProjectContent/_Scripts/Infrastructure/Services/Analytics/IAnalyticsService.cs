@@ -6,5 +6,6 @@ namespace Infrastructure.Services.Analytics
     {
         void SendEvent(string eventName);
         void SendEvent(string eventName, Dictionary<string, object> paramsDictionary);
+        void SendEvent(string eventName, object data);
     }
 }

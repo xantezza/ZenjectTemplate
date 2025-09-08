@@ -17,7 +17,7 @@ namespace Infrastructure.Services.Windows
         public void Toggle();
         public bool IsShowing { get; }
         public bool InQueue { get; set; }
-        public IWindowService WindowService { get; }
+        public IWindowsService WindowService { get; }
         public int QueuePriority { get; }
     }
 
@@ -33,10 +33,10 @@ namespace Infrastructure.Services.Windows
         [field: SerializeField, ReadOnly] public bool InQueue { get; set; } = false;
         [field: SerializeField, ReadOnly] public int QueuePriority { get; protected set; } = 0;
 
-        public IWindowService WindowService { get; private set; }
+        public IWindowsService WindowService { get; private set; }
 
         [Inject]
-        protected virtual void Inject(IWindowService windowsService)
+        protected virtual void Inject(IWindowsService windowsService)
         {
             WindowService = windowsService;
         }

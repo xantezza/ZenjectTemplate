@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1
+  bundleVersion: DEV_0.2_07.09.25
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -815,7 +815,7 @@ PlayerSettings:
   blurSplashScreenBackground: 0
   spritePackerPolicy: 
   webGLMemorySize: 16
-  webGLExceptionSupport: 1
+  webGLExceptionSupport: 3
   webGLNameFilesAsHashes: 0
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
@@ -848,9 +848,9 @@ PlayerSettings:
     PS5: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     QNX: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     Stadia: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
-    Standalone: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN;DEV
+    Standalone: LITMOTION_SUPPORT_UNITASK;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN;DEV
     VisionOS: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
-    WebGL: DEV;IN_GAME_CONSOLE;UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
+    WebGL: DEV;IN_GAME_CONSOLE;UNITY_POST_PROCESSING_STACK_V2;LITMOTION_SUPPORT_UNITASK
     Windows Store Apps: DOTWEEN
     XboxOne: UNITY_POST_PROCESSING_STACK_V2;DOTWEEN
     iPhone: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;DOTWEEN
@@ -860,7 +860,7 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-    Standalone: 1
+    Standalone: 0
   il2cppCompilerConfiguration:
     WebGL: 1
   il2cppCodeGeneration:

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Infrastructure.Providers.DefaultConfigProvider
 {
-    public class CachedDefaultUnityRemoteConfigProvider : MonoBehaviour, IDefaultConfigProvider
+    public class CachedDefaultUnityRemoteConfigProvider : ScriptableObject, IDefaultConfigProvider
     {
         private const int TIME_OF_LOSS_OF_RELEVANCE_IN_MINUTES = -5;
 
@@ -29,27 +30,29 @@ namespace Infrastructure.Providers.DefaultConfigProvider
             }
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
+        public void Validate()
         {
+#if UNITY_EDITOR
             _currentDate = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             var lastCachingDate = DateTime.Parse(_lastFetchDate);
             _minutesFromLastFetch = (int) lastCachingDate.Subtract(DateTime.Now).TotalMinutes;
 
             if (_minutesFromLastFetch < TIME_OF_LOSS_OF_RELEVANCE_IN_MINUTES) FetchDefaultConfig();
+#endif
         }
-
+        
+#if UNITY_EDITOR
         [Button] [PropertyOrder(-10)]
         private void FetchDefaultConfig()
         {
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchDefaultEnvironmentFinished += OnFetchDefaultEnvironmentID;
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchDefaultEnvironment(Application.cloudProjectId);
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchDefaultEnvironmentFinished += OnFetchDefaultEnvironmentID;
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchDefaultEnvironment(Application.cloudProjectId);
         }
 
         private void OnFetchDefaultEnvironmentID(string defaultEnvironmentId)
         {
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchConfigsFinished += OnFetchDefaultConfigFinished;
-            Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchConfigs(Application.cloudProjectId, defaultEnvironmentId);
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.fetchConfigsFinished += OnFetchDefaultConfigFinished;
+            //Unity.RemoteConfig.Editor.RemoteConfigWebApiClient.FetchConfigs(Application.cloudProjectId, defaultEnvironmentId);
         }
 
         private void OnFetchDefaultConfigFinished(JObject defaultConfig)

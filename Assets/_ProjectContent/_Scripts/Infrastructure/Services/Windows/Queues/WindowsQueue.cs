@@ -10,12 +10,11 @@ namespace Infrastructure.Services.Windows.Queues
         public Action OnQueueFinished { get; set; }
         public Action OnQueueRunned { get; set; }
         public bool IsRunning { get; private set; }
-        protected readonly IWindowService WindowsService;
-        private Dictionary<int, Queue<IWindowBase>> _queueItems = new();
-
+        private readonly IWindowsService WindowsService;
+        private readonly Dictionary<int, Queue<IWindowBase>> _queueItems = new();
         private int _currentQueueIndex;
 
-        public WindowsQueue(IWindowService windowsService)
+        public WindowsQueue(IWindowsService windowsService)
         {
             WindowsService = windowsService;
         }
@@ -32,14 +31,15 @@ namespace Infrastructure.Services.Windows.Queues
             ValidatePriority(window.QueuePriority);
             if (ExistWindowInQueue(window))
                 return false;
-            UpdateQueue(window.QueuePriority);
             _queueItems[window.QueuePriority].Enqueue(window);
-            if (!IsRunning)
+            if (IsRunning)
+                UpdateQueue(window.QueuePriority);
+            else
                 WindowsService.QueueController.RunQueue();
             return true;
         }
 
-        public bool AddWindowIn<T>(WindowBase<T> window) where T : class, IWindowBase => AddWindowIn(window);
+        public bool AddWindowIn<T>(WindowBase<T> window) where T : class, IWindowBase => AddWindowIn((IWindowBase) window);
 
         public bool ExistWindowInQueue(IWindowBase window)
         {

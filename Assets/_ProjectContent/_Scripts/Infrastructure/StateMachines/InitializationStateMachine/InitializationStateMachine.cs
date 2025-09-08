@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Factories;
-using Infrastructure.Services.Logging;
+using Infrastructure.Factories.StateMachines;
+using Infrastructure.Services.Log;
 using Infrastructure.StateMachines.InitializationStateMachine.States;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 
 namespace Infrastructure.StateMachines.InitializationStateMachine
@@ -11,16 +11,17 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
     {
         protected override LogTag LogTag => LogTag.InitializationStateMachine;
 
-        public InitializationStateMachine(IStatesFactory statesFactory, LoggingService loggingService) : base(loggingService)
+        public InitializationStateMachine(IStatesFactory statesFactory)
         {
 #if DEV
             RegisterState(statesFactory.Create<InitializeDebugToolsState>(this));
+#else
+            RegisterState(statesFactory.Create<InitializeErrorModalState>(this));
 #endif
-            
             RegisterState(statesFactory.Create<InitializeDefaultConfigState>(this));
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
-            RegisterState(statesFactory.Create<InitializePrivacyPolicyState>(this));
+            RegisterState(statesFactory.Create<InitializePrivacyPolicyModalState>(this));
             RegisterState(statesFactory.Create<InitializationFinalizerState>(this));
         }
     }

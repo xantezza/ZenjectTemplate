@@ -9,21 +9,24 @@ namespace Infrastructure.Services.Modals
 
         [SerializeField] private Button _showPolicyButton;
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             _showPolicyButton.onClick.AddListener(ShowPolicy);
         }
 
-        protected override void OnDisable()
+        protected void OnDisable()
         {
-            base.OnDisable();
             _showPolicyButton.onClick.RemoveListener(ShowPolicy);
         }
 
         private void ShowPolicy()
         {
             Application.OpenURL(PRIVACY_POLICY_LINK);
+        }
+
+        protected override void ReturnToPool()
+        {
+            _modalPopupFactory.ReturnToPool(this);
         }
     }
 }

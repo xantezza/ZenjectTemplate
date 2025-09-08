@@ -1,0 +1,25 @@
+{
+    "name": "ZenjectTemplate.Editor",
+    "rootNamespace": "",
+    "references": [
+        "TriInspector",
+        "TriInspector.Editor",
+        "UniTask",
+        "Unity.Addressables.Editor",
+        "ZenjectTemplate",
+        "Unity.Core.Editor",
+        "Zenject",
+        "Unity.Addressables"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

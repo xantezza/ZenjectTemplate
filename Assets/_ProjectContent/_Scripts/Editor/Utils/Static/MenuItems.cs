@@ -23,5 +23,6 @@ namespace Editor.Utils.Static
         {
             EditorUtility.RevealInFinder(Application.persistentDataPath);
         }
+
     }
 }

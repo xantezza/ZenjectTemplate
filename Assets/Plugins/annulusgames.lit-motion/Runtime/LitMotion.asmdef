@@ -1,0 +1,48 @@
+{
+    "name": "LitMotion",
+    "rootNamespace": "LitMotion",
+    "references": [
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:2d979afacd3449849a5fca601a23e960",
+        "GUID:4f5c0c83dfd6a0743834baba2b4de79e",
+        "GUID:9c6dda6c7922c624cb7ea9a7f1c7d54a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "LITMOTION_SUPPORT_UNITASK"
+        },
+        {
+            "name": "com.neuecc.unirx",
+            "expression": "",
+            "define": "LITMOTION_SUPPORT_UNIRX"
+        },
+        {
+            "name": "com.cysharp.r3",
+            "expression": "",
+            "define": "LITMOTION_SUPPORT_R3"
+        },
+        {
+            "name": "org.nuget.r3",
+            "expression": "",
+            "define": "LITMOTION_SUPPORT_R3"
+        },
+        {
+            "name": "com.unity.collections",
+            "expression": "2.0.0",
+            "define": "LITMOTION_COLLECTIONS_2_0_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+}

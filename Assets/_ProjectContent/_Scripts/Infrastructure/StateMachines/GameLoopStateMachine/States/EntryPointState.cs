@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines.Initialization;
 using Infrastructure.Providers;
-using Infrastructure.Providers.LoadingCurtainProvider;
-using Infrastructure.StateMachines.StateMachine;
+using Infrastructure.Services.LoadingCurtain;
 using Zenject;
 
 namespace Infrastructure.StateMachines.GameLoopStateMachine.States
@@ -10,22 +10,22 @@ namespace Infrastructure.StateMachines.GameLoopStateMachine.States
     public class EntryPointState : BaseGameLoopState, IEnterableState
     {
         private readonly IInitializationStateMachineFactory _initializationStateMachineFactory;
-        private readonly ILoadingCurtainProvider _loadingCurtainProvider;
+        private readonly ILoadingCurtainService _loadingCurtainService;
 
         [Inject]
         public EntryPointState(
             GameLoopStateMachine stateMachine, 
             IInitializationStateMachineFactory initializationStateMachineFactory, 
-            ILoadingCurtainProvider loadingCurtainProvider
+            ILoadingCurtainService loadingCurtainService
             ) : base(stateMachine)
         {
-            _loadingCurtainProvider = loadingCurtainProvider;
+            _loadingCurtainService = loadingCurtainService;
             _initializationStateMachineFactory = initializationStateMachineFactory;
         }
 
         public async UniTask Enter()
         {
-            _loadingCurtainProvider.ForceShow();
+            _loadingCurtainService.ForceShow();
             await ToNextState();
         }
 

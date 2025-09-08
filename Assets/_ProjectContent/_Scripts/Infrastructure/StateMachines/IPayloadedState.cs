@@ -1,0 +1,9 @@
+﻿using Cysharp.Threading.Tasks;
+
+namespace Infrastructure.StateMachines
+{
+    public interface IPayloadedState<in TPayload>
+    {
+        UniTask Enter(TPayload payload);
+    }
+}

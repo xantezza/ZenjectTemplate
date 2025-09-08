@@ -1,4 +1,8 @@
 ﻿using Infrastructure.Factories;
+using Infrastructure.Factories.ModalPopup;
+using Infrastructure.Factories.StateMachines;
+using Infrastructure.Factories.StateMachines.GameLoop;
+using Infrastructure.Factories.StateMachines.Initialization;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +17,6 @@ namespace Infrastructure.Installers
             Container.BindInterfacesTo<StatesFactory>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesTo<GameLoopStateMachineFactory>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesTo<InitializationStateMachineFactory>().FromNew().AsSingle().NonLazy();
-            
             Container.BindInterfacesTo<ModalPopupFactory>().FromInstance(modalPopupFactory).AsSingle().NonLazy();
         }
     }

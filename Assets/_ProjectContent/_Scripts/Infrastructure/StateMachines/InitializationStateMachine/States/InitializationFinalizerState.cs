@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
+using Infrastructure.Factories.StateMachines.GameLoop;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Analytics;
-using Infrastructure.Services.Logging;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
-using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;
 using Tayx.Graphy.Utils.NumString;
 using UnityEngine;
@@ -37,13 +36,8 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
 
         public async UniTask Enter()
         {
-            _analyticsService.SendEvent("LOAD_FINISHED", new Dictionary<string, object> {["LOAD_TIME"] = Time.realtimeSinceStartup});
+            _analyticsService.SendEvent(AnalyticsNames.LoadTime, Time.realtimeSinceStartup);
             CollectHardwareData();
-            await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnSceneLoaded);
-        }
-
-        private async void OnSceneLoaded()
-        {
             await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
         }
 
@@ -100,7 +94,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine.States
                 .Append('\n');
 
             var hardwareDataString = sb.ToString();
-            _analyticsService.SendEvent("HARDWARE_DATA", new Dictionary<string, object> {["data"] = hardwareDataString});
+            _analyticsService.SendEvent(AnalyticsNames.HardwareData, hardwareDataString);
         }
     }
 }

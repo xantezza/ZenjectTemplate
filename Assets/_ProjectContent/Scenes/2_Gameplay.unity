@@ -340,11 +340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5451102515343883562, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -49.999878
+      value: -49.999756
       objectReference: {fileID: 0}
     - target: {fileID: 5451102515343883562, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -49.99994
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5451102515343883562, guid: e6d25213686880e4bb594d3aadf67cf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -916,6 +916,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers: [{fileID: 482610847}, {fileID: 18533506}, {fileID: 14250998}]
   _installerPrefabs: []
+  _findSiblingMonoInstallers: 0
   _autoRun: 1
   OnPreInstall:
     m_PersistentCalls:
@@ -1009,7 +1010,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541181988}
   - component: {fileID: 1541181992}
-  - component: {fileID: 1541181991}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1032,14 +1032,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1106393756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1541181991
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541181987}
-  m_Enabled: 1
 --- !u!20 &1541181992
 Camera:
   m_ObjectHideFlags: 0

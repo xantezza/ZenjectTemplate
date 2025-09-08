@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Factories.ModalPopup;
 using LitMotion;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Extensions;
+using Utilities.Extensions;
 
 namespace Infrastructure.Services.Modals
 {
@@ -26,41 +27,49 @@ namespace Infrastructure.Services.Modals
         public readonly ReactiveCommand OnInteract = new();
 
         [SerializeField] private ModalPopupSettings _modalSettings;
+        protected IModalPopupFactory _modalPopupFactory;
 
-        protected virtual void OnEnable()
+        public void SetModalPopupFactory(IModalPopupFactory modalPopupFactory)
         {
-            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.AddListener(Hide);
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.RemoveListener(Hide);
+            _modalPopupFactory = modalPopupFactory;
         }
 
         public async UniTask Show()
         {
-            _modalSettings.ResizableRoot.localScale = _modalSettings.StartSize * Vector3.one;
-            await _modalSettings.ResizableRoot.DOPopOutScale(
-                _modalSettings.MaxSize,
-                _modalSettings.TargetSize,
-                _modalSettings.ShowTime / 2,
-                _modalSettings.ShowTime / 2
-            );
+            if (_modalSettings.ResizableRoot != null)
+            {
+                _modalSettings.ResizableRoot.localScale = _modalSettings.StartSize * Vector3.one;
+                await _modalSettings.ResizableRoot.DOPopOutScale(
+                    _modalSettings.MaxSize,
+                    _modalSettings.TargetSize,
+                    _modalSettings.ShowTime / 2,
+                    _modalSettings.ShowTime / 2
+                );
+            }
+
+            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.AddListener(Hide);
         }
 
         private async void Hide()
         {
-            var motionHandle = await _modalSettings.ResizableRoot.DOPopOutScale(
-                _modalSettings.MaxSize,
-                _modalSettings.StartSize,
-                _modalSettings.HideTime / 2,
-                _modalSettings.HideTime / 2
-            );
+            if (_modalSettings.CloseButton != null) _modalSettings.CloseButton.onClick.RemoveListener(Hide);
+
+            if (_modalSettings.ResizableRoot != null)
+            {
+                MotionHandle motionHandle = await _modalSettings.ResizableRoot.DOPopOutScale(
+                    _modalSettings.MaxSize,
+                    _modalSettings.StartSize,
+                    _modalSettings.HideTime / 2,
+                    _modalSettings.HideTime / 2
+                );
+                await motionHandle;
+            }
 
             OnInteract.Execute();
-            await motionHandle;
-            Destroy(gameObject);
+            ReturnToPool();
             await Task.CompletedTask;
         }
+
+        protected abstract void ReturnToPool();
     }
 }
