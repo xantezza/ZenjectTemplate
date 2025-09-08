@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 791863200340623077}
   - component: {fileID: 5435853238325340922}
   - component: {fileID: 1505693484657696765}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ModalsFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6994547916840969886}
   - component: {fileID: 6618613213814882690}
-  - component: {fileID: 5462094420063529817}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -441,18 +440,6 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 1
       _defaultAsyncTickPriority: 1
---- !u!114 &5462094420063529817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5089873749942209858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd26e5ea557611d4e80374563b9a2b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5524281937185170949
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3492b3143a948d4ad00d507e59e4bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 02591245da0854549bbc1b8043290b37, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -852,7 +839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 209004101722861648}
   - component: {fileID: 1104072240970714977}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FactoryInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: e48d058271abf4b4581bb66d90efd46f, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0.16941492, g: 0.153824, b: 0.184, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1167,23 +1154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tutorialScreenBlocker: {fileID: 3192454578046561683}
---- !u!114 &7569658092093155845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8257824420714989116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lastFetchDate: 17.08.2025 13:36:33
-  _currentDate: 17.08.2025 13:37:48
-  _minutesFromLastFetch: -1
-  _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeMinimalLoadTime\":
-    0.2\r\n  }\r\n}"
 --- !u!1 &9098501253840493479
 GameObject:
   m_ObjectHideFlags: 0
